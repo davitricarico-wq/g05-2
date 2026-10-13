@@ -120,51 +120,62 @@ _BOM (Bill of Material) pode ser definido como uma lista completa de materiais, 
 
 ### 3.2.1. Personas (sprint 1)	
 
-_Coloque aqui suas Personas:_
-- _Representação fictícia do público-alvo._
-- _Baseada em dados reais e pesquisas._
-- _Humaniza o público, facilitando decisões centradas no usuário._
-- _Trabalhar na criação de pelo menos uma Persona_
+_Coloque aqui suas Personas (seguindo as instruções na descrição do artefato)_
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)	
 
-_Coloque aqui seu Mapa de Jornada do Usuário:_
-- _Ferramenta visual da sequência de interações do usuário._
-- _Retrata sentimentos, obstáculos e satisfação ao longo de um processo._
-- _Identifica oportunidades de melhoria na experiência._
-- _Fazer pelo menos um mapa de jornada do usuário_
+_Coloque aqui seu Mapa de Jornada do Usuário (seguindo as instruções na descrição do artefato)_
 
-_Coloque aqui seu Storyboard:_
-- _Ilustração sequencial da interação do usuário com a solução._
-- _Enfatiza fluxo, interações e narrativa visual._
-- _Destaca pontos de atrito ou oportunidades na experiência._
-- _Criar ao menos um storyboard._
+_Coloque aqui seu Storyboard (seguindo as instruções na descrição do artefato)_
 
 ## 3.3. Solução Técnica	
 
 _Nesta seção, detalhe a especificação da solução, de acordo com o disposto nas subseções._
 
-### 3.3.1. Requisitos Funcionais (sprint 1)	
+### 3.3.1. Requisitos Funcionais (sprint 1, refinar e atualizar até sprint 5)
 
-_Descreva quais são os requisitos funcionais e sua relação com as demandas e problemas de negócios (visão de funcionalidades). Evolua estes requisitos conforme o desenvolvimento do projeto._
+*Liste os RF numerados de forma objetiva e verificável. Cada RF deve poder ser convertido em caso de teste.*
 
-_Atente-se as regras de negócios. Caso necessário, as aponte nos cenários dos requisitos funcionais._
+| ID    | Descrição | Prioridade | Status       |
+|-------|-----------|------------|--------------|
+| RF001 | ...       | Alta       | Implementado |
+| RF002 | ...       | Média      | Planejado    |
 
-| **RF#** | **Descrição** | **Regra de negócio** | 
-|----------|----------|----------|
-|RF01|Ex. O dispositivo deve permitir acionamento por botão liga e desliga|Ex. A solução deve funcionar apenas durante seu uso por operadores|
-|RF02|Preencha aqui seus requisitos|Preencha aqui as regras de negócio relacionadas|
+### 3.3.2. Regras de Negócio (sprint 1, refinar até sprint 5)
 
-### 3.3.2. Requisitos Não Funcionais (sprint 2)	
+*Numere e redija as RN de forma implementável e testável. Toda RN deve ter pelo menos um teste automatizado associado a partir da sprint 3.*
 
-_Descreva quais são os requisitos não funcionais e sua relação com aspectos de qualidade seguindo a norma ISO25010 (visão de aspectos de qualidade). Evolua estes requisitos conforme o desenvolvimento do projeto._
+| ID   | Descrição | RF associado |
+|------|-----------|--------------|
+| RN01 | ...       | RF001        |
+| RN02 | ...       | RF001        |
 
-| **RNF#** | **Descrição** | **Aspecto de qualidade** | 
-|----------|----------|----------|
-|RNF01|Ex. O painel dashboard deve estar disponível 99% do tempo|Ex. Disponibilidade|
-|RNF02|Preencha aqui seus requisitos|Preencha aqui o aspecto de qualidade|
+### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
 
-### 3.3.3. Arquitetura da Solução (sprint 3)
+*Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métrica, limite ou critério concreto) ou justificativa explícita de ausência. Evolua do conceitual (sprint 2) ao técnico mensurável (sprint 5).*
+
+| Eixo                     | Requisito | Métrica / Critério | Justificativa |
+|--------------------------|-----------|--------------------|---------------|
+| USAB — Usabilidade       | ...       | ...                | ...           |
+| CONF — Confiabilidade    | ...       | ...                | ...           |
+| DES — Desempenho         | ...       | p95 < X ms         | ...           |
+| SUP — Suportabilidade    | ...       | ...                | ...           |
+| SEG — Segurança          | ...       | ...                | ...           |
+| CAP — Capacidade         | ...       | ...                | ...           |
+| REST — Restrições Design | ...       | ...                | ...           |
+| ORG — Organizacionais    | ...       | ...                | ...           |
+
+
+### 3.3.4. Matriz de Rastreabilidade (RTM) (sprints 1 a 5)
+
+_A RTM consolida a rastreabilidade completa do sistema. Um elo quebrado invalida toda a cadeia — mantenha-a atualizada a cada sprint. Referencie os casos de testes a partir das tabelas definidas na seção 3.4.x_
+
+| Persona | RF    | RN   | Caso de Teste | Evidência        |
+|---------|-------|------|---------------|------------------|
+| ...     | RF001 | RN01 | CT02  | print, log, relatório de cobertura |
+
+
+### 3.3.5. Arquitetura da Solução (sprint 3)
 
 _Vídeo de explicação sobre a arquitetura da solução: (coloque aqui o link do vídeo)_
 
@@ -181,7 +192,7 @@ O diagrama de arquitetura deve:_
 - _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros_
 
 
-### 3.3.4. Arquitetura do Protótipo(sprint 4)	
+### 3.3.6. Arquitetura do Protótipo(sprint 4)	
 
 _Vídeo de explicação sobre a arquitetura do protótipo físico: (coloque aqui o link do vídeo)_
 
@@ -201,7 +212,7 @@ _Faça uma tabela dos possíveis componentes utilizados. Todos os componentes de
 |E.g. ESP32 WROOM 32 Devkit|E.g. Trata-se de um microcontrolador amplamente usado na indústria e em projetos educacionais, que possui interfaces mais amigáveis para conexão de componentes diversos...|E.g. Microcontrolador|
 |E.g. sensor XPTO|E.g. Este sensor mede o sinal de XYZ em unidades q/s, e possui tolerância de abcd...|E.g. Sensor|
 
-### 3.3.5. Arquitetura Refinada da Solução (sprint 5)	
+### 3.3.7. Arquitetura Refinada da Solução (sprint 5)	
 
 _Descreva a revisão da arquitetura técnica da solução de forma detalhada (visão de arquitetura). <br>
 
@@ -221,27 +232,27 @@ _Preencha aqui o link para o protótipo inicial no Wokwi_
 _Abaixo você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema no simulador. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
 Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do simulador e descreva os testes realizados para ilustrar o funcionamento do protótipo simulado. A tabela a seguir serve como exemplo._
 
-**#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição**
+**CT#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição**
 |----------|----------|----------|----------|----------|----------|----------|
-|01|ex. medidor de umidade relativa do ar|ex. “sensor de umidade XPTO”| < 100 | ex. led amarelo | piscante em intervalo de 1s | quando a umidade está baixa, o led amarelo pisca
+|CT01|ex. medidor de umidade relativa do ar|ex. “sensor de umidade XPTO”| < 100 | ex. led amarelo | piscante em intervalo de 1s | quando a umidade está baixa, o led amarelo pisca
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)	
 
 _Aqui você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema físico. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. A tabela a seguir serve como exemplo._
+Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
 
-**#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Pós-condição/Resultado esperado** | **Observações** (opcional)
+**CT#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Pós-condição/Resultado esperado** | **Observações** (opcional)
 |----------|----------|----------|----------|----------|----------|
-|01|ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado.| ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
+|CT11|ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado.| ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I2C (sprint 3)	
 
 _Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. A tabela a seguir serve como exemplo._
+Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
 
-**#** | **Configuração do ambiente** | **Ação do usuário** | **Resposta esperada do sistema** 
+**CT#** | **Configuração do ambiente** | **Ação do usuário** | **Resposta esperada do sistema** 
 |----------|----------|----------|----------|
-|01|ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização | 
+|CT21|ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização | 
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
 
