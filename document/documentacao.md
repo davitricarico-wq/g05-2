@@ -78,7 +78,13 @@ _Link para os templates de negócios: https://drive.google.com/drive/folders/1lT
 
 _O aluno deve fornecer informações sobre a concorrência (mínimo 3 competidores - 1 parágrafo; modelo de negócio - 1 parágrafo, e tendências - 1 parágrafo). Considere o setor do parceiro. Por exemplo, se o parceiro for a Rede Gazeta, o setor de Televisão.<br>
 <br>
-A análise de 5 forças deve ser feita considerando também o parceiro, o aluno deve preencher o template disponibilizado. No link a seguir há indicações de como avaliar as 5 forças: https://rockcontent.com/br/blog/5-forcas-de-porter/_
+
+O modelo das Cinco Forças de Porter permite analisar a posição competitiva da Unipar no setor químico e petroquímico. A empresa atua principalmente na produção de cloro, soda cáustica e policloreto de vinila (PVC), além de fabricar produtos como hipoclorito de sódio, ácido clorídrico, dicloroetano e monocloreto de vinila. Seus produtos abastecem setores como saneamento, construção civil, papel e celulose, mineração, indústria têxtil e produtos de limpeza. A divisão da análise em cinco forças permite visualizar os concorrentes atuais e potenciais, a disponibilidade de produtos substitutos e o poder de negociação dos fornecedores e compradores. Dessa forma, torna-se possível identificar as pressões enfrentadas pela empresa e compreender sua posição estratégica no mercado.
+
+#### Rivalidade entre os concorrentes
+ A Unipar disputa mercado com grandes empresas químicas e petroquímicas, como Braskem, Dow, Olin, Chemtrade, Katrium, Chlorum e CMPC. A concorrência ocorre por preço, escala produtiva, qualidade, disponibilidade dos produtos, eficiência logística, inovação e relacionamento com clientes industriais. Além dos produtores nacionais e regionais, a empresa enfrenta a concorrência de produtos importados, especialmente quando o câmbio e os preços internacionais tornam essas importações mais atrativas. Como parte dos produtos comercializados possui características de commodity, existe menor possibilidade de diferenciação apenas por suas propriedades, aumentando a pressão sobre custos e eficiência operacional. A rivalidade também envolve investimentos em sustentabilidade, segurança e confiabilidade de fornecimento. Portanto, a competição é elevada, embora a escala produtiva, a infraestrutura instalada e a posição da Unipar como maior produtora de cloro e soda cáustica e segunda maior produtora de PVC da América do Sul fortaleçam sua posição no mercado.
+
+
 
 ### 3.1.2. Análise SWOT (sprint 1)
 
