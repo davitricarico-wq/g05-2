@@ -85,6 +85,10 @@ A análise de 5 forças deve ser feita considerando também o parceiro, o aluno 
 
 A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que avalia quatro elementos: forças (fatores internos positivos), fraquezas (fatores internos negativos), oportunidades (fatores externos positivos) e ameaças (fatores externos negativos). Com base nisso, realizou-se a análise SWOT da Unipar, considerando suas características organizacionais, sua atuação no mercado e os fatores internos e externos que podem influenciar seu desempenho e sua competitividade, conforme apresentado na figura abaixo.
 
+<img src="../assets/SWOT.png" alt="Análise SWOT da Unipar">
+
+Fonte: Elaborado pelos autores (2026).
+
 ### 3.1.3. Descrição da Solução a ser Desenvolvida (sprint 1)	
 
 #### 3.1.3.1 Qual é o problema a ser resolvido
