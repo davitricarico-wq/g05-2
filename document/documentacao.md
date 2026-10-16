@@ -89,6 +89,22 @@ A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que ava
 
 Fonte: Elaborado pelos autores (2026).
 
+**Forças**
+
+A análise das forças da Unipar evidencia sua experiência consolidada no setor químico e petroquímico, construída ao longo de décadas de atuação no mercado. Sua presença industrial no Brasil e na Argentina fortalece sua posição na América do Sul e contribui para o atendimento de diferentes setores da economia. Além disso, a empresa possui uma cultura organizacional voltada à segurança e à prevenção de acidentes, aspecto fundamental para suas atividades industriais. A existência de sistemas de alarmes e brigadas de emergência demonstra uma estrutura de resposta a situações de risco, oferecendo uma base importante para o aprimoramento dos procedimentos de segurança.
+
+**Fraquezas**
+
+Em relação às fraquezas, destacam-se limitações nos processos de monitoramento e confirmação de evacuação em situações de emergência. A conferência dos colaboradores nos pontos de encontro ainda depende de procedimentos manuais, como listas e contagens realizadas pelas equipes responsáveis. A ausência de monitoramento digital em tempo real dificulta o acompanhamento da evacuação e a identificação de pessoas que ainda não tiveram sua presença confirmada. Além disso, a falta de uma infraestrutura dedicada ao rastreamento, como sensores e dispositivos de identificação, limita a automatização desses processos. Essas dificuldades evidenciam a necessidade de aprimorar os mecanismos de acompanhamento e comunicação durante emergências industriais.
+
+**Oportunidades**
+
+A crescente demanda do mercado por práticas industriais sustentáveis pode incentivar a adoção de processos mais eficientes e ambientalmente responsáveis, enquanto os avanços tecnológicos em digitalização e automação industrial oferecem oportunidades para melhorar o controle e a produtividade das atividades. Além disso, o crescimento da demanda por saneamento básico representa uma oportunidade comercial, considerando a importância de produtos como o cloro no tratamento de água. No cenário internacional, a possibilidade de ampliar as exportações pode permitir que a Unipar alcance novos mercados consumidores, diversifique sua base de clientes e reduza a dependência dos mercados em que já atua, fortalecendo sua competitividade e presença no setor químico global.
+
+**Ameaças**
+
+Por fim, as ameaças estão relacionadas às condições externas do mercado e às exigências regulatórias que afetam a indústria química. A concorrência no mercado químico internacional pode pressionar os preços e a competitividade da Unipar, enquanto as oscilações nos custos de energia e matérias-primas podem elevar suas despesas de produção. Além disso, as exigências regulatórias e ambientais rigorosas demandam investimentos contínuos em segurança, conformidade e modernização das instalações industriais. A esses fatores somam-se a instabilidade econômica e as variações cambiais nos países em que a empresa atua, que podem impactar seus custos operacionais, seus resultados financeiros e sua competitividade no mercado.
+
 ### 3.1.3. Descrição da Solução a ser Desenvolvida (sprint 1)	
 
 #### 3.1.3.1 Qual é o problema a ser resolvido
