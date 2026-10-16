@@ -87,6 +87,30 @@ Os brigadistas, utilizando vestimentas pesadas de proteção química encapsulad
 
 #### 3.1.3.2 Qual a solução proposta (visão de negócios)
 
+Sob o prisma de gestão estratégica de SSMA, governança corporativa e eficiência operacional, a solução proposta constitui uma Plataforma Digital de Balanço e Confirmação de Evacuação Industrial em Tempo Real. O sistema não tem como premissa substituir os equipamentos de controle de acesso ou os sistemas prediais legados de detecção de incêndio, mas conectá-los a uma malha de Internet das Coisas (IoT) industrial estrategicamente posicionada, transformando um processo vulnerável e estritamente manual em uma operação orientada a telemetria instantânea e balanço de fluxo.
+
+A base teórica e matemática da arquitetura proposta fundamenta-se no Princípio da Conservação de Fluxo Populacional aplicado a Zonas Agregadas de Evacuação:
+- População Base Inicial Congelada (B): no instante exato do acionamento do alarme de emergência, o sistema executa um congelamento digital (snapshot) da base de colaboradores presentes na planta. Esse número é obtido a partir dos registros de crachá consolidados pelas catracas de controle de acesso rotineiro das Portarias P1 e P2 (saldo de entradas ativas menos saídas efetuadas até aquele instante), definindo com exatidão a população total em risco (aproximadamente 755 pessoas, entre trabalhadores próprios e terceiros).
+- População Confirmada nos Pontos de Encontro (A): fluxo cumulativo de chegadas registrado de forma ininterrupta e automatizada pelos nós de sensoriamento IoT instalados nos acessos dos Pontos de Encontro (PEs) e portais de evacuação.
+- População Pendente de Confirmação (D): contingente de pessoas cujo paradeiro seguro ainda não foi atestado pelo sistema, calculado em tempo real pela equação de balanço dinâmico:
+
+$$D = B - A$$
+
+No instante inicial da emergência ($t = 0$), constata-se $A = 0$ e $D = B$. Conforme os trabalhadores alcançam as áreas seguras dos Pontos de Encontro e transpõem as zonas de detecção dos nós de sensoriamento, a contagem de $A$ é sucessivamente incrementada, resultando na convergência decrescente de $D$ em direção a zero.
+
+A presente arquitetura atende estritamente à restrição mandatória disposta no Termo de Abertura do Projeto de Inovação (TAPI), a qual veda categoricamente o uso de sistemas de localização contínua de alta precisão em ambientes internos (indoor tracking ou RTLS contínuo por meio de triangulação UWB, Bluetooth Low Energy ativo ou Wi-Fi por crachá eletrônico individualizado). A exclusão do indoor tracking contínuo alinha-se a imperativos técnicos, financeiros e de governança:
+1. Viabilidade em Áreas Classificadas: o complexo de cloro-soda de Cubatão possui extensas zonas com atmosferas potencialmente explosivas (Zonas 1 e 2, conforme NR-20 e ABNT NBR IEC 60079). A implantação de uma infraestrutura massiva de antenas ativas e o fornecimento de crachás emissores contínuos com baterias para todo o contingente operacional exigiriam certificação de segurança intrínseca (Ex ia/Ex ib). Tal exigência implicaria custos de implementação e manutenção impraticáveis, além de alto risco de indisponibilidade em ambientes industriais agressivos.
+2. Conformidade com a LGPD e Relações de Trabalho: o monitoramento ininterrupto da trajetória física dos colaboradores durante suas jornadas cria passivos regulatórios à luz da Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018) e resistência sindical quanto à vigilância indevida. A abordagem por zonas agregadas e contagem não intrusiva em pontos de passagem respeita o princípio da necessidade e minimização de dados, utilizando os registros unicamente para a salvaguarda da vida humana em situações críticas de emergência (Artigo 7º, inciso VII, da LGPD).
+3. Eficiência Focada na Decisão de Crise: para a coordenação de emergência, a informação essencial não é o rastreamento individual dentro de prédios, mas a validação numérica e inequívoca de que os colaboradores atingiram os Pontos de Encontro seguros dentro da janela regulamentar.
+
+A entrega de valor de negócio consolida-se em um Dashboard Centralizado disponibilizado no CCO e na sala de comando de SSMA. Essa interface analítica fornece:
+- A curva de convergência da evacuação, apresentando em tempo real a taxa instantânea de esvaziamento ($dA/dt$) e a curva de amortização de pendentes ($D$);
+- O cronômetro regressivo vinculado ao SLA de 10 minutos, gerando alertas visuais progressivos conforme o tempo avança;
+- O balanço de ocupação desagregado por Ponto de Encontro, possibilitando ao CCO identificar se algum PE específico está recebendo uma sobrecarga atípica ou se encontra-se deserto, o que indica rotas de fuga bloqueadas pela pluma de cloro;
+- A correlação cruzada entre os colaboradores pendentes e seus respectivos setores de trabalho de rotina (congelados na base $B$), permitindo delimitar os quadrantes prioritários para intervenção antes que a janela de 10 minutos seja extrapolada.
+
+Em termos de estratégia evolutiva de engenharia, a solução é delineada como um Produto Mínimo Viável (MVP) cujo escopo na Sprint 1 concentra-se na validação do nó de confirmação e contagem automatizada nos pontos de encontro. O hardware do protótipo é estruturado em torno do microcontrolador ESP32 acoplado a sensores de passagem/presença, display e sinalizadores de retorno visual, associado à implementação de rotinas de debouncing e persistência. Essa base tecnológica padronizada e modular, ancorada em protocolos abertos da indústria (MQTT, JSON e REST), garante que a solução validada na planta de Cubatão apresente total interoperabilidade e escalabilidade para as demais unidades do Grupo Unipar, abrangendo as fábricas de Santo André (SP), Polo Petroquímico de Camaçari (BA) e Bahía Blanca (Argentina).
+
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
 
 #### 3.1.3.4 Quais os benefícios trazidos pela solução proposta
