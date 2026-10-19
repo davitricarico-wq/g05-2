@@ -113,6 +113,38 @@ Em termos de estratégia evolutiva de engenharia, a solução é delineada como 
 
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
 
+A dinâmica operacional da solução distribui-se em uma jornada cronológica de quatro fases sequenciais, integrando a interação contínua de quatro atores-chave da planta de Cubatão:
+1. Operador de Campo / Colaborador (abrangendo os 355 funcionários próprios e os 400 trabalhadores terceirizados);
+2. Brigada de Emergência e Resgate (equipe técnica especializada em intervenções químicas e salvamento industrial);
+3. Operador do Centro de Controle Operacional (CCO) (responsável pela supervisão global dos sistemas e malhas de automação da planta);
+4. Gerente / Liderança de SSMA (coordenador do comitê de gestão de crise e autoridade de tomada de decisão tática).
+
+As fases de operação ocorrem da seguinte forma:
+
+1. Estado de Rotina (Operação Normal)
+Durante o expediente padrão, o sistema opera de forma passiva, sem alterar a rotina de trabalho. Os colaboradores próprios e prestadores de serviços utilizam seus crachás RFID funcionais para transpor as catracas eletrônicas convencionais das Portarias P1 e P2. O sistema central armazena os registros de acesso em banco de dados, estabelecendo o censo de colaboradores ativos na planta, estratificado por empresa, vínculo e área inicial de alocação de turno.
+Nessa fase, os nós de sensoriamento IoT instalados nos Pontos de Encontro operam em modo de vigília (standby), realizando verificações cíclicas de integridade (heartbeats de conectividade e status de energia). O operador do CCO mantém a rotina de monitoramento de processos e variáveis industriais, enquanto os colaboradores executam suas atividades industriais sem qualquer tipo de vigilância intrusiva.
+
+2. Deflagração da Emergência Química
+Diante de uma detecção contínua de cloro gasoso por analisadores de campo ou do acionamento manual de uma botoeira de sinistro por um operador, o alarme geral da planta de Cubatão é disparado. Concomitantemente, o sistema de segurança predial e a plataforma de balanço de evacuação mudam instantaneamente para o modo de emergência:
+- Os bloqueios das catracas das portarias P1 e P2 e passagens internas são desarmados, operando em giro mecânico livre para permitir a evacuação desimpedida de todo o contingente humano;
+- O backend do sistema congela a base de dados de colaboradores ativos presentes no perímetro fabril no exato segundo do disparo, fixando o parâmetro da população inicial $B$ (por exemplo, 755 indivíduos);
+- O cronômetro regressivo do protocolo de 10 minutos é iniciado nas telas do CCO e de SSMA;
+- Os nós de sensoriamento IoT nos Pontos de Encontro são ativados automaticamente para o estado de contagem e recepção contínua de eventos.
+
+3. Deslocamento e Confirmação no Ponto de Encontro
+Ao soar a sirene de alarme de cloro, os colaboradores interrompem suas tarefas, consultam as birutas de vento para definir a rota de fuga transversal ou em sentido contrário à trajetória do gás e dirigem-se aos Pontos de Encontro seguros.
+Ao alcançarem o Ponto de Encontro, os colaboradores passam pelos acessos monitorados pelos nós de sensoriamento IoT. A passagem física de cada indivíduo é computada de modo contínuo pelos sensores acoplados ao microcontrolador ESP32, sem que o colaborador precise parar a caminhada para assinar formulários físicos ou responder à chamada verbal.
+Ao registrar a passagem, o nó de sensoriamento aciona imediatamente um retorno sensorial (sinalização luminescente de confirmação e mensagem informativa no display), confirmando visualmente ao trabalhador que sua chegada segura foi registrada no sistema. Em seguida, o nó sensor despacha o evento via mensagem MQTT para o broker central, que incrementa instantaneamente o total de pessoas atendidas $A$. Os evacuados permanecem abrigados nas dependências seguras do Ponto de Encontro.
+
+4. Monitoramento em Tempo Real e Decisão Tática
+No CCO e na sala de gestão de SSMA, o painel exibe em tempo real o balanço consolidado de evacuação. O Operador do CCO e a Liderança de SSMA observam a subida da contagem de chegadas $A$ e o decréscimo correlato do saldo pendente $D = B - A$, bem como a densidade de evacuados por Ponto de Encontro.
+Caso a taxa de convergência alcance a totalidade dos colaboradores presentes ($D = 0$) antes do encerramento dos 10 minutos regulamentares, a liderança de SSMA obtém a confirmação auditada de evacuação bem-sucedida, descartando qualquer necessidade de deslocamento de brigadistas para áreas perigosas.
+Se, contudo, a contagem de tempo atingir a marca crítica de 10 minutos com o saldo de pendentes superior a zero ($D > 0$):
+- A plataforma emite alarmes visuais e acústicos de alta severidade na interface do CCO e de SSMA;
+- O painel exibe de forma imediata o relatório de discrepância, apresentando a quantidade e o perfil funcional das pessoas não confirmadas (vínculo, empresa terceira e último setor conhecido de lotação no turno);
+- O Gerente de SSMA aciona a Brigada de Emergência de forma cirúrgica e com direcionamento tático: em vez de expor os socorristas a buscas aleatórias e extenuantes por toda a extensão de Cubatão, a brigada é orientada diretamente aos setores de processo onde há pendências reais, reduzindo drasticamente o tempo de intervenção e mitigando a exposição à atmosfera tóxica de cloro.
+
 #### 3.1.3.4 Quais os benefícios trazidos pela solução proposta
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
