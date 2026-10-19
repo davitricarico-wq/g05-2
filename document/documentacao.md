@@ -111,8 +111,30 @@ _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita
 
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
-_BOM (Bill of Material) pode ser definido como uma lista completa de materiais, que detalha todos os itens necessários para construir, fabricar ou reparar um produto. Deve-se preencher o template fornecido.
 
+&nbsp; &nbsp; &nbsp; &nbsp;_<b>Introdução:</b> apresentar a finalidade da Bill of Materials (BOM) no contexto do MVP e delimitar os componentes físicos cobertos pelo levantamento._
+
+&nbsp; &nbsp; &nbsp; &nbsp;_<b>Escopo:</b> contextualizar as categorias previstas na arquitetura, as necessidades do protótipo e as restrições relevantes do ambiente industrial._
+
+<div align="center">
+<p>Quadro X — Bill of Materials do MVP</p>
+
+| Categoria | Quantidade | Referência do componente no protótipo/PCI | Código do componente (fabricante) | Valor do componente (R$) |
+| --- | ---: | --- | --- | ---: |
+| [Categoria do componente] | [Quantidade] | [Referência] | [Código/modelo do fabricante] | [Valor unitário ou total] |
+| [Categoria do componente] | [Quantidade] | [Referência] | [Código/modelo do fabricante] | [Valor unitário ou total] |
+| [Categoria do componente] | [Quantidade] | [Referência] | [Código/modelo do fabricante] | [Valor unitário ou total] |
+| **Subtotal da categoria** |  |  |  | **[Subtotal]** |
+| **Total estimado do MVP** |  |  |  | **[Total]** |
+
+<p>Fonte: elaboração dos autores ([ano]).</p>
+</div>
+
+&nbsp; &nbsp; &nbsp; &nbsp;_<b>Legenda da tabela:</b> explicar que a categoria identifica o grupo funcional do item; a quantidade registra as unidades necessárias; a referência aponta a identificação no protótipo ou na PCI, quando aplicável; o código registra o part number ou modelo do fabricante; e o valor apresenta o custo adotado na estimativa. Informar também o critério utilizado para subtotais e total estimado._
+
+&nbsp; &nbsp; &nbsp; &nbsp;_<b>Aplicação na solução:</b> relacionar os grupos de componentes às funções previstas na arquitetura, como monitoramento, orientação e confirmação de evacuação. Registrar, quando necessário, aspectos de compatibilidade, proteção e adequação ao ambiente industrial._
+
+&nbsp; &nbsp; &nbsp; &nbsp;_<b>Conclusão:</b> sintetizar como a BOM apoia a implementação do MVP, a estimativa de custos, o planejamento de aquisição e a avaliação da viabilidade técnica da solução._
 
 
 
