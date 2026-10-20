@@ -147,6 +147,25 @@ Se, contudo, a contagem de tempo atingir a marca crítica de 10 minutos com o sa
 
 #### 3.1.3.4 Quais os benefícios trazidos pela solução proposta
 
+A implementação da plataforma de balanço dinâmico de evacuação propicia benefícios tangíveis e estratégicos distribuídos em três eixos corporativos:
+
+1. Proteção à Vida e Integridade Física
+- Minimização do tempo de exposição ao cloro gasoso: a redução no tempo de confirmação nos Pontos de Encontro garante que qualquer discrepância seja notada com rapidez, mitigando o período em que um colaborador ferido ou desorientado possa permanecer inalando concentrações tóxicas de gás.
+- Direcionamento assertivo da Brigada de Emergência: elimina o envio de brigadistas para buscas cegas em áreas perigosas. A brigada somente realiza varreduras sob vestimentas químicas pesadas de nível A/B quando há confirmação objetiva de pendências, intervindo pontualmente no quadrante de provável retenção, o que salvaguarda a integridade dos próprios socorristas.
+- Prevenção de acidentes periféricos e controle de fluxo: a passagem contínua e sem atrito nos nós sensores previne a formação de gargalos, tumultos e quedas nos acessos aos Pontos de Encontro, eliminando a desordem comum às chamadas manuais.
+
+2. Eficiência Operacional e Gestão de Crise
+- Eliminação definitiva de controles manuais e pranchetas: anulação de erros de preenchimento, ilegibilidade de grafia, perda de folhas de papel e falhas de comunicação causadas pelo barulho das sirenes.
+- Telemetria unificada e visibilidade situacional: CCO, liderança de SSMA e coordenação de resgate operam sobre a mesma base de dados em tempo real, conferindo agilidade e precisão à tomada de decisões do comitê de crise.
+- Cumprimento rigoroso do SLA de 10 minutos: capacitação técnica da gestão de SSMA para fechar o censo de abandono de área estritamente dentro da janela temporal estipulada pela Unipar.
+- Aceleração no restabelecimento da operação fabril: após simulados periódicos ou eventos controlados, a validação digital imediata de que toda a população está segura viabiliza a rápida autorização para retomada das linhas produtivas, minimizando o impacto financeiro de paradas não programadas.
+
+3. Governança, Compliance e Cultura de Segurança
+- Trilha digital auditável e carimbos de tempo (timestamps): todas as etapas de transição e passagens nos sensores são registradas com precisão temporal de milissegundos, gerando registros confiáveis para investigações de causa raiz, relatórios pós-incidente e auditorias corporativas.
+- Aperfeiçoamento contínuo de planos de emergência: a análise dos dados históricos da curva de esvaziamento ($dA/dt$) permite identificar rotas de fuga sobrecarregadas e subsidiar o aprimoramento constante do Plano de Ação de Emergência (PAE).
+- Conformidade legal e regulatória: aderência às diretrizes da NR-20 (Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis), NR-23 (Proteção Contra Incêndios), requisitos de Gestão de Segurança de Processos da ABIQUIM e normas internacionais de segurança química.
+- Respeito à LGPD (Lei nº 13.709/2018): o tratamento de dados pessoais restringe-se estritamente à proteção da vida e incolumidade física dos trabalhadores (Artigo 7º, inciso VII), abstendo-se de métodos intrusivos de geolocalização contínua e garantindo a privacidade dos funcionários.
+
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 	
 ### 3.1.4. Value Proposition Canvas (sprint 1)	
