@@ -112,9 +112,9 @@ _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
 
-&nbsp; &nbsp; &nbsp; &nbsp;A Bill of Materials (BOM) apresenta os componentes necessários para a montagem do protótipo físico do MVP. O levantamento reúne os itens de processamento, sensoriamento, interação, sinalização, visualização e interconexão utilizados no circuito, permitindo a rastreabilidade dos materiais e apoiando o planejamento de aquisição.
+A Bill of Materials (BOM) apresenta os componentes necessários para a montagem do protótipo físico do MVP. O levantamento reúne os itens de processamento, sensoriamento, interação, sinalização, visualização e interconexão utilizados no circuito, permitindo a rastreabilidade dos materiais e apoiando o planejamento de aquisição.
 
-&nbsp; &nbsp; &nbsp; &nbsp;Esta BOM considera uma unidade do protótipo ilustrado, composta por Arduino Uno, sensor ultrassônico, elementos de sinalização visual e sonora, display LCD, botão para alternância entre os modos normal e emergência, e materiais de montagem. Os preços e os respectivos links de compra serão inseridos posteriormente.
+Esta BOM considera **uma unidade** do protótipo ilustrado, composta por Arduino Uno, sensor ultrassônico, elementos de sinalização visual e sonora, display LCD, botão para alternância entre os modos normal e emergência, e materiais de montagem. Os valores foram levantados em fornecedores brasileiros para apoiar uma estimativa inicial de custo; eles não incluem frete, impostos adicionais ou materiais de reposição.
 
 <div align="center">
 <p>Quadro X — Bill of Materials do MVP</p>
@@ -135,18 +135,20 @@ _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita
 | Interconexão | 13 ou 17 | Jumpers macho-macho | Alternativa A: 13 unidades; alternativa B: 17 unidades, sem jumpers macho-fêmea | R$0,42 (unidade); Alternativa A: R$5,46; Alternativa B: R$7,14; Ambos em [Mercado Livre](https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281)
 | **Total estimado do MVP** |  |  |  | **Alternativa A: R$107,29; Alternativa B: R$104,77** |
 
-<p>Fonte: elaboração dos autores 2026.</p>
+<p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
 > Observação: Todos os links de compra dos componentes foram acessados em 20/10/2026. Os preços e a disponibilidade podem variar em função do tempo.
 
-&nbsp; &nbsp; &nbsp; &nbsp;A coluna <i>Categoria</i> identifica a função do item no protótipo, enquanto <i>Quantidade</i> registra o número de unidades necessárias. A <i>Referência</i> descreve o componente empregado no circuito, e o <i>Código do componente</i> apresenta o modelo conhecido ou indica a especificação que ainda precisa de confirmação. A coluna <i>Valor do componente</i> ficará reservada para o preenchimento manual dos preços e links de compra.
+ A coluna <i>Categoria</i> identifica a função do item no protótipo, enquanto <i>Quantidade</i> registra o número de unidades necessárias. A <i>Referência</i> descreve o componente empregado no circuito, e o <i>Código do componente</i> apresenta o modelo ou a especificação adotada. A coluna <i>Valor do componente</i> registra o valor estimado e disponibiliza o respectivo link de consulta. Nos itens vendidos por unidade, o custo total foi calculado pela multiplicação do valor unitário pela quantidade indicada.
 
-&nbsp; &nbsp; &nbsp; &nbsp;No protótipo, o Arduino Uno realiza o processamento das entradas e controla as saídas. O sensor ultrassônico é empregado para a detecção de passagem de pessoas, cujas informações são apresentadas no display LCD. O botão permite alternar entre os modos normal e emergência; os LEDs e o buzzer fornecem os avisos visuais e sonoros. O potenciômetro oferece uma entrada analógica ajustável, e a protoboard, os resistores e os jumpers viabilizam a montagem e as conexões do circuito.
+O custo estimado da alternativa A é de R$ 107,29, considerando quatro jumpers macho-fêmea e treze jumpers macho-macho. Na alternativa B, o custo estimado é de R$ 104,77, utilizando somente dezessete jumpers macho-macho. A alternativa B é R$ 2,52 mais econômica e reduz a variedade de cabos necessária; contudo, a escolha entre as alternativas deve respeitar o tipo de terminal presente nos componentes e no protótipo físico.
 
-&nbsp; &nbsp; &nbsp; &nbsp;Assim, a BOM consolida os materiais já identificados para a implementação do MVP. A confirmação das especificações pendentes e o posterior registro de fornecedores e preços permitirão concluir a estimativa de custo e orientar a aquisição dos componentes.
+No protótipo, o Arduino Uno realiza o processamento das entradas e controla as saídas. O sensor ultrassônico HC-SR04 é empregado para identificar a passagem de pessoas, cujas informações são apresentadas no display LCD. O botão permite alternar entre os modos normal e emergência. Os LEDs e o buzzer funcionam como recursos de sinalização visual e sonora. O potenciômetro fornece uma entrada analógica ajustável, enquanto os resistores limitam a corrente dos LEDs. A protoboard e os jumpers viabilizam a montagem e as conexões do circuito sem a necessidade de solda.
 
+A lista apresentada é adequada ao protótipo de bancada, mas não caracteriza, por si só, uma solução pronta para uso no ambiente industrial. Para uma futura implantação, será necessário especificar itens adicionais, como gabinete de proteção, alimentação apropriada, conectores, cabeamento, fixação mecânica e componentes com grau de proteção compatível com as condições de operação da Unipar.
 
+Assim, a BOM consolida os materiais e as duas possibilidades de interconexão identificadas para a implementação do MVP. A versão final deverá validar as especificações ainda pendentes e confirmar a alternativa de jumpers que será utilizada antes da aquisição dos componentes.
 
 ## 3.2. Domínio de Fundamentos de Experiência de Usuário 
 
