@@ -31,9 +31,22 @@ Este projeto é feito com a fábrica de Cubatão, a unidade com a maior capacida
 
 [^1]: Informação fornecida por representantes da Unipar na reunião de kickoff do projeto, em 16 de outubro de 2026.
 
-## 1.1 Objetivos
+## <a name="c1.1"></a>1.1. Objetivos
 
-_Descreva os objetivos gerais e específicos do seu parceiro de negócios, sem entrar em méritos técnicos ou especificações de tecnologia. Aqui importa o objetivo em si, não os meios para se chegar até lá._
+Os objetivos abaixo foram definidos a partir do Termo de Abertura do Projeto (UNIPAR, 2026) e da reunião de kickoff com a Unipar (informação verbal)[^1].
+
+**Objetivo geral**
+
+Aumentar a rapidez, a precisão e a rastreabilidade da evacuação da fábrica de Cubatão em situações de emergência, fortalecendo a gestão de emergências e a proteção das pessoas que estão na planta.
+
+**Objetivos específicos**
+
+- Saber em que área da planta cada pessoa está durante uma emergência, sem precisar da posição exata;
+- Saber a situação de cada pessoa durante a evacuação, como se ela está bem ou se precisa de ajuda;
+- Orientar as pessoas até o ponto de encontro por um caminho seguro;
+- Confirmar a chegada de cada pessoa ao ponto de encontro sem depender de listas e da chamada feita pelos líderes;
+- Identificar quem ainda não foi confirmado em até 10 minutos após o alarme, prazo a partir do qual a Unipar considera a pessoa não identificada um caso crítico;
+- Avisar os gestores de SSMA e as equipes de resposta sobre o andamento da evacuação, dando mais agilidade às decisões.
 
 ## 1.2 Proposta da solução
 
@@ -283,6 +296,7 @@ UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. *Movimento Econômico*, 
 
 VEJA o impacto gerado pela Unipar em 55 anos de história. *Exame*, São Paulo, 28 maio 2024. Disponível em: https://exame.com/esg/impacto-unipar-em-55-anos-de-historia/. Acesso em: 19 out. 2026.
 
+UNIPAR. *Projeto parceiro Unipar*: sistema de IoT para monitoramento, orientação e confirmação de evacuação em emergências industriais. São Paulo: Inteli, 2026. Termo de Abertura do Projeto (TAPI), Turma 25, Módulo 4. Documento não publicado.
 
 
 _Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site: <br>
