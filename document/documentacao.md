@@ -48,9 +48,13 @@ Aumentar a rapidez, a precisão e a rastreabilidade da evacuação da fábrica d
 - Identificar quem ainda não foi confirmado em até 10 minutos após o alarme, prazo a partir do qual a Unipar considera a pessoa não identificada um caso crítico;
 - Avisar os gestores de SSMA e as equipes de resposta sobre o andamento da evacuação, dando mais agilidade às decisões.
 
-## 1.2 Proposta da solução
+## <a name="c1.2"></a>1.2. Proposta de solução
 
-_Descreva resumidamente sua proposta de solução (em alto nível) e como essa solução pretende resolver o problema, atendendo os objetivos listados na seção anterior._
+A proposta é um sistema que divide a fábrica de Cubatão em zonas e mostra, durante uma emergência, em qual zona cada pessoa está e como ela está. O sistema tem três partes: um dispositivo pequeno que cada pessoa leva preso ao EPI, um ponto de leitura fixo em cada zona e um painel de acompanhamento.
+
+O dispositivo identifica a pessoa e tem dois botões, um para avisar que ela está saindo e está bem e outro para pedir ajuda. Ele também percebe se a pessoa ficou parada por muito tempo durante a emergência e, nesse caso, gera um alerta sozinho. Com luz e vibração, avisa a pessoa se ela ainda está em uma zona de risco ou se já está em segurança. Os pontos de leitura reconhecem os dispositivos que estão por perto, o que mostra em que área da planta a pessoa está, sem indicar a posição exata. O ponto de encontro também é uma zona: quando a pessoa chega lá, a presença dela é confirmada na hora, sem lista e sem chamada.
+
+Para orientar a saída, cada saída de emergência tem uma luz verde ou vermelha que indica se ela está liberada ou bloqueada. Assim, a pessoa, que já conhece o caminho pelo treinamento, sabe qual saída evitar. O painel, pensado para a sala segura e para os responsáveis pelos pontos de encontro, mostra o mapa da planta com as zonas a evacuar e as zonas seguras, quem está em cada uma e a situação de cada pessoa: bem, pediu ajuda, sem movimento ou sem sinal. Com isso, a equipe de emergência recebe alertas e vê rápido quem ainda está em zona de risco ou precisa de ajuda, para agir dentro do prazo de 10 minutos definido pela Unipar.
 
 ## 1.3 Justificativa
 
