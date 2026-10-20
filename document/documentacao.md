@@ -225,16 +225,71 @@ A revisão deverá incluir comentários sobre cada ponto levantado, mostrando co
 
 _Nesta seção, detalhe os resultados obtidos com a implementação, de acordo com o disposto nas subseções._
 
-### 3.4.1.Protótipo Inicial do Projeto usando o Simulador Wokwi (sprint 1)
+### 3.4.1. Protótipo Inicial do Projeto usando o Simulador Wokwi (sprint 1)
 
-_Preencha aqui o link para o protótipo inicial no Wokwi_
+O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito também estão versionados em [`src/firmware/prototipo`](../src/firmware/prototipo/).
 
-_Abaixo você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema no simulador. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do simulador e descreva os testes realizados para ilustrar o funcionamento do protótipo simulado. A tabela a seguir serve como exemplo._
+O circuito simula um contador de pessoas baseado em um Arduino Uno e um sensor ultrassônico HC-SR04. O botão alterna entre o modo pausado, indicado pelo LED verde, e o modo de monitoramento, indicado pelo LED vermelho. Durante o monitoramento, a detecção de um objeto a menos de 200 cm incrementa o contador uma única vez, atualiza o LCD 16x2 e produz um aviso sonoro de 100 ms. A frequência desse aviso é definida pela leitura do potenciômetro, variando de 200 Hz a 2.000 Hz. Para impedir contagens duplicadas, uma presença contínua permanece registrada como o mesmo objeto; uma nova contagem somente é liberada depois que o sensor volta a medir 200 cm ou mais. Se o HC-SR04 não retornar eco dentro de 30 ms, a leitura é tratada como inválida e o total é preservado.
 
-**CT#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição**
-|----------|----------|----------|----------|----------|----------|----------|
-|CT01|ex. medidor de umidade relativa do ar|ex. “sensor de umidade XPTO”| < 100 | ex. led amarelo | piscante em intervalo de 1s | quando a umidade está baixa, o led amarelo pisca
+O software contém as funções obrigatórias `setup()` e `loop()`, funções auxiliares para inicialização e escrita no LCD e a classe `ContadorPessoas`. A instância `contador` dessa classe é utilizada no `loop()` para validar as leituras e controlar o total exibido. A execução do projeto publicado foi verificada no Wokwi sem erros de sintaxe ou compilação.
+
+#### Casos de teste
+
+Os testes CT01 a CT07 foram executados em sequência. Portanto, o total apresentado por esses casos parte do resultado do caso anterior. Para o CT08, a simulação foi reiniciada com o fio `ECHO` desconectado, de modo a reproduzir isoladamente uma falha de leitura do sensor.
+
+| **CT#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição e resultado observado** |
+|---|---|---|---|---|---|---|
+| CT01 | Controle do monitoramento | Botão | Pressionamento válido | LEDs e LCD 16x2 | LED vermelho aceso, LED verde apagado e `Total: 0` | Ativa o monitoramento sem alterar o contador. |
+| CT02 | Detecção de presença | HC-SR04 | 148 cm, abaixo do limite de 200 cm | LCD 16x2 e buzzer | `Total: 1` e aviso sonoro de 100 ms | A primeira presença é reconhecida e contabilizada uma única vez. |
+| CT03 | Proteção contra duplicidade | HC-SR04 | 148 cm mantidos, sem afastamento | LCD 16x2 | Total permanece em `1` | A permanência do mesmo objeto na área de detecção não gera contagens repetidas. |
+| CT04 | Liberação para nova contagem | HC-SR04 | Distância alterada de 321 cm para 40 cm | LCD 16x2 e buzzer | Total permanece em `1` a 321 cm e passa para `2` a 40 cm; novo aviso sonoro | O afastamento acima do limite libera o sistema, e a aproximação seguinte é tratada como uma nova pessoa. |
+| CT05 | Leitura fora da área de interesse | HC-SR04 | 376 cm, acima do limite de 200 cm | LCD 16x2 | Total permanece em `2` e buzzer não é acionado | Uma leitura válida, mas fora do limite configurado, não altera o total. |
+| CT06 | Pausa do sistema | Botão | Pressionamento válido | LEDs, buzzer e LCD 16x2 | LED verde aceso, LED vermelho apagado, buzzer desligado e `Total: 2` | O usuário pausa o monitoramento sem perder a contagem já registrada. |
+| CT07 | Entrada ignorada durante pausa | HC-SR04 | 74 cm com o sistema pausado | LEDs e LCD 16x2 | LED verde permanece aceso e total permanece em `2` | Mesmo com um objeto abaixo de 200 cm, o sistema não contabiliza entradas enquanto está pausado. Esse caso verifica uma condição de uso indevido ou leitura que deve ser ignorada. |
+| CT08 | Falha de leitura do sensor | HC-SR04 com o fio `ECHO` desconectado | Sensor configurado em 103 cm, mas ausência de pulso de retorno por 30 ms (`duracao = 0`) | Monitor serial, LCD 16x2 e buzzer | Serial exibe `0.00`, LCD permanece em `Total: 0` e buzzer não é acionado | O tempo limite do `pulseIn` trata a leitura ausente como inválida, mantém o sistema em execução e impede que uma pessoa seja contabilizada incorretamente. |
+
+#### Evidências dos testes
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T01.png" alt="CT01: monitoramento ativado e contador zerado" width="85%"><br>
+  <em>Figura 1 — CT01: monitoramento ativado, LED vermelho aceso e contador iniciado em zero.</em>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T02.png" alt="CT02: primeira detecção a 148 cm" width="85%"><br>
+  <em>Figura 2 — CT02: objeto a 148 cm contabilizado como a primeira pessoa.</em>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T03.png" alt="CT03: permanência a 148 cm sem duplicidade" width="85%"><br>
+  <em>Figura 3 — CT03: permanência do objeto a 148 cm sem incremento duplicado.</em>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T04_1.png" alt="CT04: afastamento para 321 cm" width="42%">
+  <img src="../assets/casos_teste_prototipos/inicial/T04_2.png" alt="CT04: nova aproximação a 40 cm" width="42%"><br>
+  <em>Figura 4 — CT04: afastamento para 321 cm e nova aproximação a 40 cm, elevando o total para dois.</em>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T05.png" alt="CT05: leitura de 376 cm fora do limite" width="85%"><br>
+  <em>Figura 5 — CT05: leitura de 376 cm não altera o total.</em>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T06.png" alt="CT06: sistema pausado pelo botão" width="85%"><br>
+  <em>Figura 6 — CT06: monitoramento pausado, com LED verde aceso e total preservado.</em>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T07.png" alt="CT07: objeto a 74 cm ignorado durante a pausa" width="85%"><br>
+  <em>Figura 7 — CT07: leitura de 74 cm ignorada durante a pausa, mantendo o total em dois.</em>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T08.png" alt="CT08: falha de leitura com o fio ECHO desconectado" width="85%"><br>
+  <em>Figura 8 — CT08: com o fio ECHO desconectado, o monitor serial apresenta 0,00 cm e o contador permanece em zero, sem acionamento do buzzer.</em>
+</p>
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)	
 
