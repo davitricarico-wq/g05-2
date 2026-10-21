@@ -116,6 +116,8 @@ _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita
 
 ### 3.2.1. Personas
 
+Foram identificados os cinco Stackholders a seguir: Gerente de SSMA, Operador de Centro de Controle Operacional (CCO), Head de Infra e TI, Brigadista e Colaborador. Dentre eles, foram identificados três personas primárias (Gerente de SSMA, Operador de Centro de Controle Operacional (CCO) e Colaborador) e duas secundárias (Brigadista e Head de Infra e TI).
+
 #### 3.2.1.2. Persona - Colaborador
 
 A persona colaborador corresponde a todos os colaboradores e funcionários que trabalham dentro do complexo industrial de Cubatão da Unipar.
@@ -134,9 +136,7 @@ A persona colaborador corresponde a todos os colaboradores e funcionários que t
 
 **Biografia**
 
-João trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em uma zona diferente quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Chega ao trabalho com EPI e, no cenário do MVP, recebe ou utiliza um dispositivo individual associado à sua identificação. Sua prioridade durante uma emergência é sair com segurança e saber que a equipe de resposta recebeu seu pedido de ajuda, caso precise.
-
-**Dores**
+João trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em uma zona diferente quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Chega ao trabalho com EPI e, tem como prioridade durante uma emergência, sair com segurança e saber que a equipe de resposta recebeu seu pedido de ajuda, caso precise.
 
 | Prioridade      | Dor ou necessidade                                                          | O que espera da solução(desejos)                                                                             |
 | :-------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
@@ -170,7 +170,48 @@ João trabalha há oito anos em ambiente industrial e conhece os procedimentos d
 
 **Abrangência e variações do público:** A persona reúne a necessidade comum de **todos os funcionários e colaboradores que trabalham no complexo**: perceber o alerta, sair da área afetada, receber apoio quando necessário e ser contabilizado. Função, turno, vínculo, área autorizada, conhecimento das rotas, EPI e necessidades de acessibilidade variam. Essas diferenças devem ser observadas na pesquisa para evitar que a experiência de um setor seja tomada como padrão para todos. Visitantes ocasionais ficam fora do público de trabalhadores representado por Gustavo Fring.
 
-#### 3.2.1.3. Persona -
+#### 3.2.1.3. Persona - Operador de Centro de Controle Operacional (CCO)
+
+- Nome fictício: Marta Ferreira.
+- Idade: 38 anos.
+- Profissão: operadora de Centro de Controle Operacional (CCO).
+- Localização: Cubatão, São Paulo.
+- Formação: curso técnico em Automação Industrial e treinamentos internos aplicáveis à operação.
+- Perfil socioeconômico: profissional assalariada de nível técnico, com renda familiar estável. Esses dados compõem um perfil plausível, não uma descrição de uma empregada real da Unipar.
+
+**Biografia**
+
+Camila trabalhou em funções de apoio à operação antes de passar para a sala de controle. No retrato fictício, atua em turnos, acompanha indicadores e alarmes operacionais e responsável por alarmar emergências e evacuações, recebe informações de quem está em campo e registra alterações relevantes para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e de passeios de bicicleta. Opera painéis, registrar alterações e informar lideranças e operadores. **Como o CCO da Unipar participa da resposta a emergências ainda precisa ser confirmado.**
+
+| Prioridade      | Dor ou necessidade atual                                                                                | Consequência na rotina                                                                                                                                            |
+| :-------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1 — Crítica** | Distinguir rapidamente um alarme operacional relevante de outros avisos simultâneos.                    | Precisa verificar os sinais e seguir os critérios e responsáveis previstos nos procedimentos da unidade.                                                          |
+| **2 — Crítica** | Comunicar a alteração observada às equipes certas, sem perda de contexto.                               | Depende dos canais e das confirmações de recebimento usados atualmente pela operação, pelo SSMA e pela brigada.                                                   |
+| **3 — Alta**    | Acompanhar a condição do processo enquanto chegam relatos de campo sobre o mesmo evento.                | Informações podem chegar em momentos diferentes e exigir reconciliação antes de repassá-las.                                                                      |
+| **4 — Alta**    | Entender o andamento da evacuação sem confundir status operacional de uma área com presença de pessoas. | A contagem de pessoas ocorre predominantemente por listas e confirmação manual nos pontos de encontro, fora dos painéis de processo descritos para esta hipótese. |
+| **5 — Média**   | Deixar um histórico claro para a troca de turno e a análise posterior.                                  | Horários de alarmes, comunicações e providências precisam ser registrados e conferidos.                                                                           |
+
+**Tarefas**
+
+**Cenários de interação atuais:** Na passagem de turno, Camila toma conhecimento das condições operacionais e das ocorrências em aberto. Durante a rotina, acompanha os painéis de processo e troca informações com profissionais em campo. Diante de um alarme ou relato de incidente, verifica o que seus instrumentos e os procedimentos permitem afirmar, comunica as áreas responsáveis e mantém o acompanhamento da operação. Se houver evacuação, recebe atualizações pelos canais atualmente usados entre as equipes; não presume que um painel de processo informe automaticamente quem chegou ao ponto de encontro. Se a própria sala estiver na área afetada, segue o procedimento local de evacuação. Após o evento, registra e transmite a sequência conhecida à equipe seguinte. A autoridade para acionar alarmes, iniciar evacuação ou definir rotas **não foi estabelecida nos materiais do projeto**.
+
+**Interesses e hábitos relacionados ao processo:** Valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
+
+**Nível de letramento digital:** Alto para as ferramentas operacionais que usa no trabalho: lê indicadores e navega entre telas de processo com familiaridade. Isso não significa conhecer ou utilizar um sistema digital de rastreamento de pessoas, que não faz parte do processo atual descrito no TAPI.
+
+**Falas ilustrativas, não coletadas em entrevista**
+
+> “Preciso confirmar o que o alarme indica antes de repassar a ocorrência.”
+
+> “Enquanto converso com o campo, continuo acompanhando as condições do processo.”
+
+> “O painel mostra a condição da área, mas a conferência das pessoas vem da equipe responsável.”
+
+**Nível de letramento digital:**
+
+**Variações do público e limites da persona:**
+
+**Abrangência e variações do público:**
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
 
