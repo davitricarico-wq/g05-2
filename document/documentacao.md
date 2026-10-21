@@ -118,18 +118,26 @@ _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita
 
 Foram identificados os cinco Stackholders a seguir: Gerente de SSMA, Operador de Centro de Controle Operacional (CCO), Head de Infra e TI, Brigadista e Colaborador. Dentre eles, foram identificados três personas primárias (Gerente de SSMA, Operador de Centro de Controle Operacional (CCO) e Colaborador) e duas secundárias (Brigadista e Head de Infra e TI).
 
-#### 3.2.1.2. Persona - Colaborador
+#### 3.2.1.2. Persona - Técnico de Operação
 
 A persona colaborador corresponde a todos os colaboradores e funcionários que trabalham dentro do complexo industrial de Cubatão da Unipar.
 
-![alt text](image.png)
+<div align="center">
+  <sub>Figura 02: Técnico de Operação</sub>
+    </div>
+      <div align="center">
+       <img src="../assets/personaTecnicoOperacoes.png">
+      </div>
+    <div align="center">
+  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+</div>
 
 **Nome:** Gustavo Fring.
 
 **Dados demográficos**
 
 - Idade: 32 anos.
-- Ocupação: técnico de operação industrial em turno.
+- Ocupação: técnico de operação industrial.
 - Localização: Cubatão, São Paulo.
 - Escolaridade: técnico em Química.
 - Setor: operador de máquina industrial.
@@ -148,7 +156,12 @@ João trabalha há oito anos em ambiente industrial e conhece os procedimentos d
 
 **Tarefas**
 
-- Realiza a manutenção nos maquinários
+- Opera os equipamentos e acompanha as condições da máquina e da área em que está trabalhando.
+- Realiza as atividades de inspeção e manutenção dos maquinários previstas para sua função.
+- Utiliza os EPIs exigidos e segue os procedimentos de segurança e as orientações da liderança.
+- Participa de treinamentos e simulados para reconhecer os alarmes, as rotas de saída e os pontos de encontro.
+- Em uma emergência, interrompe a atividade conforme o procedimento, segue a orientação da brigada e se desloca ao ponto de encontro.
+- Comunica a necessidade de ajuda pelos meios disponíveis e informa sua chegada para a conferência presencial.
 
 **Cenários de interação atuais:** No início do turno, Gustavo Fring recebe orientações de segurança aplicáveis à sua atividade e utiliza o crachá de identificação e os EPIs exigidos para o local. Em um simulado, pratica as rotas e o deslocamento até o ponto de encontro. Em um alarme real, segue o procedimento da unidade e as orientações da brigada para evacuar a área afetada. Se não conseguir sair ou se alguém precisar de ajuda, busca contato pelos meios existentes. Ao chegar ao ponto de encontro, informa sua presença para a conferência manual por lista ou contagem. **Assim, atualmente não há um dispositivo individual de confirmação automática ou um aplicativo de evacuação em uso.**
 
@@ -172,6 +185,16 @@ João trabalha há oito anos em ambiente industrial e conhece os procedimentos d
 
 #### 3.2.1.3. Persona - Operador de Centro de Controle Operacional (CCO)
 
+<div align="center">
+  <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
+    </div>
+      <div align="center">
+       <img src="../assets/personaTecnicoOperacoes.png">
+      </div>
+    <div align="center">
+  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+</div>
+
 - Nome fictício: Marta Ferreira.
 - Idade: 38 anos.
 - Profissão: operadora de Centro de Controle Operacional (CCO).
@@ -181,7 +204,7 @@ João trabalha há oito anos em ambiente industrial e conhece os procedimentos d
 
 **Biografia**
 
-Camila trabalhou em funções de apoio à operação antes de passar para a sala de controle. No retrato fictício, atua em turnos, acompanha indicadores e alarmes operacionais e responsável por alarmar emergências e evacuações, recebe informações de quem está em campo e registra alterações relevantes para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e de passeios de bicicleta. Opera painéis, registrar alterações e informar lideranças e operadores. **Como o CCO da Unipar participa da resposta a emergências ainda precisa ser confirmado.**
+Marta trabalhou em funções de apoio à operação antes de passar para a sala de controle. No retrato fictício, atua em turnos, acompanha indicadores e alarmes operacionais e responsável por alarmar emergências e evacuações, recebe informações de quem está em campo e registra alterações relevantes para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e de passeios de bicicleta. Opera painéis, registrar alterações e informar lideranças e operadores. **Como o CCO da Unipar participa da resposta a emergências ainda precisa ser confirmado.**
 
 | Prioridade      | Dor ou necessidade atual                                                                                | Consequência na rotina                                                                                                                                            |
 | :-------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -193,11 +216,20 @@ Camila trabalhou em funções de apoio à operação antes de passar para a sala
 
 **Tarefas**
 
-**Cenários de interação atuais:** Na passagem de turno, Camila toma conhecimento das condições operacionais e das ocorrências em aberto. Durante a rotina, acompanha os painéis de processo e troca informações com profissionais em campo. Diante de um alarme ou relato de incidente, verifica o que seus instrumentos e os procedimentos permitem afirmar, comunica as áreas responsáveis e mantém o acompanhamento da operação. Se houver evacuação, recebe atualizações pelos canais atualmente usados entre as equipes; não presume que um painel de processo informe automaticamente quem chegou ao ponto de encontro. Se a própria sala estiver na área afetada, segue o procedimento local de evacuação. Após o evento, registra e transmite a sequência conhecida à equipe seguinte. A autoridade para acionar alarmes, iniciar evacuação ou definir rotas **não foi estabelecida nos materiais do projeto**.
+- Recebe informações sobre as condições operacionais e as ocorrências em aberto na passagem de turno.
+- Acompanha os painéis de processo e as câmeras disponíveis durante o turno.
+- Verifica alarmes e relatos de campo, consultando os procedimentos antes de caracterizar ou repassar uma ocorrência.
+- Analisa se aquela situação de incidência necessita de evacuação e, se necessita, indica quais grupos devem evacuar e informa à equipe de segurança do ocorrido.
+- Comunica as informações relevantes às áreas responsáveis e mantém contato com as equipes em campo pelos canais adotados pela unidade.
+- Em uma emergência, executa as ações de comunicação e acompanhamento atribuídas ao CCO pelos procedimentos da unidade, incluindo o acionamento de alarmes quando aplicável.
+- Acompanha atualizações da evacuação sem tratar informações de processo como confirmação da presença de pessoas nos pontos de encontro.
+- Registra alarmes, comunicações e providências para dar continuidade ao acompanhamento e transmitir as informações à equipe seguinte.
 
-**Interesses e hábitos relacionados ao processo:** Valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
+**Cenários de interação atuais:** Na passagem de turno, Camila toma conhecimento das condições operacionais e das ocorrências em aberto. Durante a rotina, acompanha os painéis de processo, monitora as câmeras do complexo e das salas operacionais, aciona o alarme de emergência e troca informações com profissionais em campo. Diante de um alarme ou relato de incidente, verifica o que seus instrumentos e os procedimentos permitem afirmar, comunica as áreas responsáveis e mantém o acompanhamento da operação. Se houver evacuação, recebe atualizações pelos canais atualmente usados entre as equipes; não presume que um painel de processo informe automaticamente quem chegou ao ponto de encontro. Se a própria sala estiver na área afetada, mantem-se atuando no monitoramento, afinal, fica em um bunker que a protege dos possíveis incidentes e acidentes. Após o evento, registra e transmite a sequência conhecida à equipe de segurança.
 
-**Nível de letramento digital:** Alto para as ferramentas operacionais que usa no trabalho: lê indicadores e navega entre telas de processo com familiaridade. Isso não significa conhecer ou utilizar um sistema digital de rastreamento de pessoas, que não faz parte do processo atual descrito no TAPI.
+**Interesses e hábitos relacionados ao processo:** Valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis e câmeras em tempo real, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
+
+**Nível de letramento digital:** Alto para as ferramentas operacionais que usa no trabalho: lê indicadores e navega entre telas de processo e câmeras com familiaridade.
 
 **Falas ilustrativas, não coletadas em entrevista**
 
@@ -207,11 +239,11 @@ Camila trabalhou em funções de apoio à operação antes de passar para a sala
 
 > “O painel mostra a condição da área, mas a conferência das pessoas vem da equipe responsável.”
 
-**Nível de letramento digital:**
+**Nível de letramento digital:** Alto no uso das ferramentas operacionais com as quais trabalha. Marta interpreta indicadores, acompanha alarmes e navega entre telas de processo e câmeras com familiaridade. Essa experiência não pressupõe domínio imediato de novos sistemas de apoio à evacuação: interfaces claras, identificação das fontes e dos horários das informações e treinamento específico são necessários para apoiar seu uso sob pressão. O perfil deve ser validado com os profissionais do CCO.
 
-**Variações do público e limites da persona:**
+**Variações do público e limites da persona:** Marta representa uma operadora de CCO habituada ao monitoramento de processos e à comunicação com equipes em campo. Não representa as atribuições do SSMA, da brigada ou dos trabalhadores em evacuação. Seu perfil é hipotético e não permite concluir que todo operador tenha autonomia para determinar uma evacuação, acionar alarmes ou confirmar a presença de pessoas. Essas responsabilidades e os limites de atuação do CCO precisam ser confirmados nos procedimentos da unidade e na pesquisa com seus profissionais.
 
-**Abrangência e variações do público:**
+**Abrangência e variações do público:** A persona reúne necessidades comuns aos profissionais de operação do CCO: interpretar alarmes, acionar evacuações, acompanhar as condições do processo, comunicar ocorrências e manter registros confiáveis entre turnos. Tempo de experiência, formação, turno, área monitorada, permissões de acesso, familiaridade com as ferramentas e necessidades de acessibilidade podem variar. A pesquisa deve contemplar essas diferenças, incluindo profissionais recém-integrados e experientes, para que a rotina atribuída a Marta não seja tomada como padrão de toda a equipe.
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
 
