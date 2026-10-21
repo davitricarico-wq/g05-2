@@ -167,6 +167,59 @@ A implementação da plataforma de balanço dinâmico de evacuação propicia be
 - Respeito à LGPD (Lei nº 13.709/2018): o tratamento de dados pessoais restringe-se estritamente à proteção da vida e incolumidade física dos trabalhadores (Artigo 7º, inciso VII), abstendo-se de métodos intrusivos de geolocalização contínua e garantindo a privacidade dos funcionários.
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
+
+A avaliação da eficácia da solução proposta estrutura-se em quatro critérios de sucesso técnicos e de negócio, quantificáveis e testáveis empiricamente no contexto da planta de Cubatão.
+
+1. Tempo de Confirmação Digital de Evacuação
+- Definição: Redução no tempo total despendido para registrar e validar com segurança a evacuação completa dos colaboradores nos Pontos de Encontro, operando dentro do teto temporal determinado pelo SLA de SSMA da Unipar.
+- Métrica / Indicador: Tempo Total de Apuração de Evacuação ($T_{apuracao}$).
+- Meta Numérica: Redução mínima de 60% no tempo total de apuração em comparação ao tempo médio do método manual por listas em pranchetas ($T_{manual}$), garantindo que o tempo da solução digital ($T_{digital}$) seja estritamente inferior ou igual a 10 minutos para a totalidade dos colaboradores presentes no Ponto de Encontro.
+- Expressão de Avaliação:
+
+$$\Delta T\% = \left( \frac{T_{manual} - T_{digital}}{T_{manual}} \right) \times 100 \ge 60\% \quad \text{e} \quad T_{digital} \le 10\text{ min}$$
+
+- Método de Validação Empírica: Cronometragem comparativa realizada durante simulados de abandono de área promovidos pela equipe de SSMA da planta de Cubatão, confrontando os tempos médios históricos de fechamento manual de pranchetas com os registros temporais emitidos automaticamente pelos nós IoT.
+
+2. Acurácia da Telemetria e Balanço de Pessoas
+- Definição: Fidelidade quantitativa entre o número real de colaboradores que transpõem os nós de sensoriamento nos acessos aos Pontos de Encontro e os registros consolidados de contagem processados pelo firmware e transmitidos ao sistema.
+- Métrica / Indicador: Taxa de Acurácia de Contagem ($TAC$).
+- Meta Numérica: Acurácia igual ou superior a 95% ($TAC \ge 95\%$) na contagem automatizada de passagens por ponto de controle sob condições de fluxo contínuo de pessoas em ambiente simulado.
+- Expressão de Avaliação:
+
+$$TAC = \left( 1 - \frac{|N_{real} - N_{detectado}|}{N_{real}} \right) \times 100 \ge 95\%$$
+
+onde $N_{real}$ representa o número efetivo de passagens auditadas no pórtico de controle e $N_{detectado}$ representa a contagem computada pelo nó sensor IoT.
+- Método de Validação Empírica: Realização de ensaios empíricos com grupos controlados de colaboradores passando pelo pórtico monitorado pelo nó ESP32 sob diferentes cadências de caminhada e espaçamentos físicos, confrontando os registros de telemetria com a contagem física auditada por gravação em vídeo e contadores manuais de controle.
+
+3. Latência de Atualização do Painel de SSMA/CCO
+- Definição: Intervalo de tempo transcorrido entre a detecção do evento físico de passagem no nó sensor de borda e a consequente atualização gráfica dos indicadores de balanço no painel de supervisão do CCO e de SSMA.
+- Métrica / Indicador: Latência Ponta a Ponta de Atualização do Painel ($L_{painel}$).
+- Meta Numérica: Latência ponta a ponta inferior a 3,0 segundos ($L_{painel} < 3,0\text{ s}$) para a renderização do saldo consolidado de evacuados e emissão de alertas na interface de supervisão.
+- Expressão de Avaliação:
+
+$$L_{painel} = t_{dashboard} - t_{sensor} < 3,0\text{ s}$$
+
+onde $t_{sensor}$ é o carimbo de data e hora (timestamp) gerado na borda no momento da detecção física pelo ESP32 e $t_{dashboard}$ é o instante da atualização visual correspondente no cliente web do CCO.
+- Método de Validação Empírica: Testes de telemetria instrumentados ponta a ponta com injeção de eventos com carimbos sincronizados via protocolo NTP (Network Time Protocol), calculando a diferença entre o disparo de passagem no nó IoT, o trânsito pelo broker MQTT e o processamento na camada de interface sob carga típica de rede industrial.
+
+4. Confiabilidade e Tolerância a Falhas do Nó IoT (Resiliência do Firmware da Sprint 1)
+- Definição: Capacidade do firmware do protótipo baseado em ESP32 de tratar ruídos elétricos, passagens consecutivas rápidas, obstruções acidentais e instabilidades de rede sem incorrer em contagens errôneas ou travamentos.
+- Métrica / Indicador: Taxa de Conformidade em Casos de Teste Estruturados ($TC_{CT}$).
+- Meta Numérica: 100% de aprovação na matriz de casos de teste CT01 a CT08 especificados para o protótipo da Sprint 1.
+- Matriz de Casos de Teste Abrangidos (CT01 a CT08):
+  - CT01: Detecção e incremento de passagem simples sob velocidade normal de marcha;
+  - CT02: Filtragem de ruído mecânico e elétrico (algoritmo de debounce) na transição de sinal do sensor de passagem;
+  - CT03: Discriminação precisa de passagens consecutivas em alta velocidade com espaçamento temporal mínimo de até 300 milissegundos;
+  - CT04: Bloqueio de leituras anômalas ou contagens espúrias em caso de obstrução estática contínua do sensor;
+  - CT05: Ativação instantânea do feedback visual luminescente e atualização da mensagem no display integrado;
+  - CT06: Persistência íntegra do acumulador de contagem local na memória do ESP32 durante perda transitória de conexão de rede Wi-Fi;
+  - CT07: Reconexão automática ao broker MQTT e envio sincronizado de mensagens de estado após o restabelecimento do sinal;
+  - CT08: Execução precisa de rotinas de reset e calibração de estado a partir de comandos remotos enviados pelo CCO.
+- Expressão de Avaliação:
+
+$$TC_{CT} = \left( \frac{CT_{aprovados}}{CT_{totais}} \right) \times 100 = 100\% \quad (CT_{totais} = 8)$$
+
+- Método de Validação Empírica: Execução formal e repetida da bateria de testes CT01 a CT08 tanto no simulador Wokwi quanto na bancada física com o hardware do protótipo, com registro e auditoria de logs na saída serial e nos tópicos de telemetria MQTT.
 	
 ### 3.1.4. Value Proposition Canvas (sprint 1)	
 
