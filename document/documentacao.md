@@ -217,6 +217,20 @@ Cada coluna da RTM vem de uma seção específica do documento, e nenhuma inform
 - A coluna **Evidência** aponta para a figura do caso de teste na seção 3.4.1, gerada a partir do [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353).
 - A coluna **Status** indica se a regra está coberta, coberta parcialmente ou pendente. Uma regra pendente é um elo quebrado conhecido, registrado junto com a sprint em que deve ser fechado.
 
+#### Matriz de rastreabilidade
+
+<div align="center">
+<p>Quadro X – Matriz de rastreabilidade de requisitos (RTM)</p>
+
+| Persona | RF | RN | Caso de teste | Evidência | Status |
+| --- | --- | --- | :---: | --- | :---: |
+| Maria Schrader (CCO) | RF004, RF005 | RN01 | CT01 | O acionamento do modo de monitoramento acende o LED vermelho e mantém `Total: 0`, então nenhuma passagem é contada antes do início do evento ([figura do CT01](../assets/casos_teste_prototipos/inicial/T01.png)). | Coberta |
+| Maria Schrader (CCO) | RF004, RF005 | RN01 | CT06 | A pausa do monitoramento encerra a contagem sem apagar o total já registrado ([figura do CT06](../assets/casos_teste_prototipos/inicial/T06.png)). | Coberta |
+| Maria Schrader (CCO) | RF004, RF005 | RN01 | CT07 | Uma leitura de 74 cm com o sistema pausado não altera o total, ou seja, a passagem fora de evento aberto não é tratada como chegada ([figura do CT07](../assets/casos_teste_prototipos/inicial/T07.png)). | Coberta |
+
+<p>Fonte: elaboração dos autores (2026).</p>
+</div>
+
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
