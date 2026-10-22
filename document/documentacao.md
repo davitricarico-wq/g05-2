@@ -248,7 +248,7 @@ Maria trabalhou em funções de apoio à operação antes de passar para a sala 
 #### 3.2.1.4 Persona - Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
 <div align="center">
-  <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
+  <sub>Figura 04: Gestor de SSMA </sub>
     </div>
       <div align="center">
        <img src="/assets/personaTucoSalamanca.png">
