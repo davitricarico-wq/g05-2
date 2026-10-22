@@ -183,6 +183,14 @@ As oportunidades partem dos benefícios e diferenciais já apontados nas seçõe
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
+#### Síntese e prioridades
+
+Olhando o conjunto, as ameaças mais críticas se concentram na própria contagem. R01, R02 e R03 ficam na faixa de impacto muito alto porque atacam diretamente os dois números do balanço, A e B, e um erro em qualquer um deles pode zerar o saldo pendente com pessoas ainda na área. Por isso, a prioridade da sprint 2 é validar a contagem no protótipo físico, com passagens simultâneas, repassagens e os dois sensores em sequência, antes de avançar para a integração com o painel.
+
+Em seguida vêm as dependências externas, R04 e R08, que não dependem só do grupo e precisam ser levadas à Unipar o quanto antes, e a alimentação do nó (R06), que é uma correção barata na BOM e elimina um ponto de falha no momento mais crítico da evacuação. Do lado das oportunidades, O01 e O02 reforçam o argumento central da proposta: a solução aproveita o que a planta já tem e devolve à SSMA a informação que permite proteger também quem faz o resgate.
+
+A matriz será revisada ao fim de cada sprint, junto com a matriz de rastreabilidade da seção 3.3.4, já que vários riscos só podem ser reclassificados depois dos testes com o protótipo físico e com a integração MQTT.
+
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
 _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
