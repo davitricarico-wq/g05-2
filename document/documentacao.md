@@ -202,13 +202,9 @@ _Nesta seção, detalhe a especificação da solução, de acordo com o disposto
 | ORG — Organizacionais    | ...       | ...                | ...           |
 
 
-### 3.3.4. Matriz de Rastreabilidade (RTM) (sprints 1 a 5)
+### 3.3.4. Matriz de Rastreabilidade (RTM)
 
-_A RTM consolida a rastreabilidade completa do sistema. Um elo quebrado invalida toda a cadeia — mantenha-a atualizada a cada sprint. Referencie os casos de testes a partir das tabelas definidas na seção 3.4.x_
-
-| Persona | RF    | RN   | Caso de Teste | Evidência        |
-|---------|-------|------|---------------|------------------|
-| ...     | RF001 | RN01 | CT02  | print, log, relatório de cobertura |
+A Matriz de Rastreabilidade de Requisitos (RTM) liga cada necessidade de uma persona ao requisito funcional que a atende, à regra de negócio que delimita esse requisito, ao caso de teste que o verifica e à evidência que comprova o resultado. A cadeia só se sustenta se todos os elos existirem: uma regra sem caso de teste não tem como ser comprovada, e um caso de teste sem regra associada não demonstra nada sobre o comportamento que a Unipar espera da solução. Por isso, a RTM também serve para mostrar o que ainda falta comprovar, e não apenas o que já foi testado. Isso também ajuda a controlar o risco R12 da matriz de riscos (seção 3.1.5), que trata do desalinhamento entre o escopo documentado e o protótipo, já que qualquer divergência entre requisitos, regras e testes aparece como um elo quebrado nesta matriz.
 
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
