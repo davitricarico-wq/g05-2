@@ -244,6 +244,28 @@ Cada coluna da RTM vem de uma seção específica do documento, e nenhuma inform
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
+#### Cobertura atual
+
+<div align="center">
+<p>Quadro X – Cobertura das regras de negócio ao fim da sprint 1</p>
+
+| Status | Regras de negócio | Quantidade |
+| --- | --- | :---: |
+| Coberta | RN01 | 1 |
+| Parcial | RN04, RN08 | 2 |
+| Pendente (sprint 3) | RN02, RN03, RN05, RN06, RN09, RN11 | 6 |
+| Pendente (sprint 4) | RN07, RN10 | 2 |
+
+<p>Fonte: elaboração dos autores (2026).</p>
+</div>
+
+Ao fim da sprint 1, os oito casos de teste do protótipo inicial estão ligados a alguma regra, mas só três das onze regras de negócio têm evidência, e apenas a RN01 está coberta por completo. Isso é esperado para o estágio do projeto, já que o protótipo inicial é um único nó de contagem sem rede, e a maior parte das regras trata do balanço entre portarias e pontos de encontro, da troca de mensagens MQTT e do painel. Ainda assim, vale apontar o que cada cobertura parcial deixa em aberto.
+
+- A RN04 está comprovada no nível do nó, porque os CT02 a CT05 mostram que só passagens válidas são contadas. A soma das chegadas de todos os pontos de encontro designados pela SSMA depende de mais de um nó enviando dados ao sistema central.
+- A RN08 está comprovada apenas na metade que evita o falso positivo, porque o CT08 mostra que a falta de leitura não vira chegada. A outra metade, que marca o balanço como inconclusivo e avisa a SSMA, depende do painel.
+
+Pelo lado dos requisitos, os casos executados exercitam cinco dos treze requisitos funcionais citados nas regras: RF001, RF004, RF005, RF006 e RF009. Os elos quebrados mais sensíveis são os da RN02 e da RN06, porque são eles que sustentam a base congelada B e o alerta dos 10 minutos, os dois pontos que a seção 3.1.3 apresenta como centrais para a decisão da SSMA sobre o acionamento da brigada.
+
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
