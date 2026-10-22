@@ -126,7 +126,7 @@ A persona colaborador corresponde a todos os colaboradores e funcionários que t
   <sub>Figura 02: Técnico de Operação</sub>
     </div>
       <div align="center">
-       <img src="/document/outros/personaGustavoFring.png">
+       <img src="/assets/personaGustavoFring.png">
       </div>
     <div align="center">
   <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
@@ -189,13 +189,13 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
   <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
     </div>
       <div align="center">
-       <img src="/document/outros/personaMartaFerreira.png">
+       <img src="/assets/personaMartaFerreira.png">
       </div>
     <div align="center">
   <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
 </div>
 
-- Nome fictício: Marta Ferreira.
+- Nome fictício: Maria Schrader.
 - Idade: 38 anos.
 - Profissão: operadora de Centro de Controle Operacional (CCO).
 - Localização: Cubatão, São Paulo.
@@ -204,7 +204,7 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
 
 **Biografia**
 
-Marta trabalhou em funções de apoio à operação antes de passar para a sala de controle. No retrato fictício, atua em turnos, acompanha indicadores e alarmes operacionais e responsável por alarmar emergências e evacuações, recebe informações de quem está em campo e registra alterações relevantes para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e de passeios de bicicleta. Opera painéis, registrar alterações e informar lideranças e operadores. **Como o CCO da Unipar participa da resposta a emergências ainda precisa ser confirmado.**
+Maria trabalhou em funções de apoio à operação antes de passar para a sala de controle. No retrato fictício, atua em turnos, acompanha indicadores e alarmes operacionais e responsável por alarmar emergências e evacuações, recebe informações de quem está em campo e registra alterações relevantes para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e de passeios de bicicleta. Opera painéis, registrar alterações e informar lideranças e operadores. **Como o CCO da Unipar participa da resposta a emergências ainda precisa ser confirmado.**
 
 | Prioridade      | Dor ou necessidade atual                                                                                | Consequência na rotina                                                                                                                                            |
 | :-------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -239,14 +239,23 @@ Marta trabalhou em funções de apoio à operação antes de passar para a sala 
 
 > “O painel mostra a condição da área, mas a conferência das pessoas vem da equipe responsável.”
 
-**Nível de letramento digital:** Alto no uso das ferramentas operacionais com as quais trabalha. Marta interpreta indicadores, acompanha alarmes e navega entre telas de processo e câmeras com familiaridade. Essa experiência não pressupõe domínio imediato de novos sistemas de apoio à evacuação: interfaces claras, identificação das fontes e dos horários das informações e treinamento específico são necessários para apoiar seu uso sob pressão. O perfil deve ser validado com os profissionais do CCO.
+**Nível de letramento digital:** Alto no uso das ferramentas operacionais com as quais trabalha. Maria interpreta indicadores, acompanha alarmes e navega entre telas de processo e câmeras com familiaridade. Essa experiência não pressupõe domínio imediato de novos sistemas de apoio à evacuação: interfaces claras, identificação das fontes e dos horários das informações e treinamento específico são necessários para apoiar seu uso sob pressão. O perfil deve ser validado com os profissionais do CCO.
 
-**Variações do público e limites da persona:** Marta representa uma operadora de CCO habituada ao monitoramento de processos e à comunicação com equipes em campo. Não representa as atribuições do SSMA, da brigada ou dos trabalhadores em evacuação. Seu perfil é hipotético e não permite concluir que todo operador tenha autonomia para determinar uma evacuação, acionar alarmes ou confirmar a presença de pessoas. Essas responsabilidades e os limites de atuação do CCO precisam ser confirmados nos procedimentos da unidade e na pesquisa com seus profissionais.
+**Variações do público e limites da persona:** Maria representa uma operadora de CCO habituada ao monitoramento de processos e à comunicação com equipes em campo. Não representa as atribuições do SSMA, da brigada ou dos trabalhadores em evacuação. Seu perfil é hipotético e não permite concluir que todo operador tenha autonomia para determinar uma evacuação, acionar alarmes ou confirmar a presença de pessoas. Essas responsabilidades e os limites de atuação do CCO precisam ser confirmados nos procedimentos da unidade e na pesquisa com seus profissionais.
 
-**Abrangência e variações do público:** A persona reúne necessidades comuns aos profissionais de operação do CCO: interpretar alarmes, acionar evacuações, acompanhar as condições do processo, comunicar ocorrências e manter registros confiáveis entre turnos. Tempo de experiência, formação, turno, área monitorada, permissões de acesso, familiaridade com as ferramentas e necessidades de acessibilidade podem variar. A pesquisa deve contemplar essas diferenças, incluindo profissionais recém-integrados e experientes, para que a rotina atribuída a Marta não seja tomada como padrão de toda a equipe.
+**Abrangência e variações do público:** A persona reúne necessidades comuns aos profissionais de operação do CCO: interpretar alarmes, acionar evacuações, acompanhar as condições do processo, comunicar ocorrências e manter registros confiáveis entre turnos. Tempo de experiência, formação, turno, área monitorada, permissões de acesso, familiaridade com as ferramentas e necessidades de acessibilidade podem variar. A pesquisa deve contemplar essas diferenças, incluindo profissionais recém-integrados e experientes, para que a rotina atribuída a Maria não seja tomada como padrão de toda a equipe.
 
 #### 3.2.1.4 Persona - Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
+<div align="center">
+  <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
+    </div>
+      <div align="center">
+       <img src="/assets/personaTucoSalamanca.png">
+      </div>
+    <div align="center">
+  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+</div>
 
 * **Nome:** Tuco Salamanca
 * **Idade:** 43 anos
