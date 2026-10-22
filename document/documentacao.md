@@ -73,7 +73,15 @@ _A entrega deve ser realizada no formato de quadrante (template), semelhante ao 
 	
 ### 3.1.4. Value Proposition Canvas
 
-O Value Proposition Canvas é uma ferramenta que organiza, de um lado, o perfil do cliente, com suas tarefas, dores e ganhos, e, do outro, o mapa de valor da solução, mostrando como ela responde a esse perfil (OSTERWALDER et al., 2014). Neste projeto, o canvas foi feito com base na solução descrita na seção 3.1.3.
+O Value Proposition Canvas é uma ferramenta que organiza, de um lado, o perfil do cliente, com suas tarefas, dores e ganhos, e, do outro, o mapa de valor da solução, mostrando como ela responde a esse perfil (OSTERWALDER et al., 2014). Neste projeto, o canvas foi feito com base na solução descrita na seção 3.1.3 e está apresentado na Figura X.
+
+<div align="center">
+<sub>Figura X – Value Proposition Canvas da solução</sub>
+
+<img src="../assets/value-proposition-canvas.png" width="100%">
+
+<sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026), com base em Osterwalder et al. (2014).</sup>
+</div>
 
 **Segmento de cliente**
 
@@ -107,41 +115,11 @@ O cliente considerado no canvas é o gestor de SSMA da fábrica de Cubatão, rep
 - Fechar a confirmação da evacuação dentro do prazo de 10 minutos;
 - Enviar a brigada só para as áreas onde há pendência real;
 - Ter o registro da evacuação com horários, para relatórios pós-incidente e para melhorar o PAE;
-- Trabalhar com a mesma informação que o CCO, em tempo real.  
+- Trabalhar com a mesma informação que o CCO, em tempo real.
 
 **Mapa de valor**
 
-A proposta de valor da solução é confirmar, em tempo real e sem listas em papel, quantas pessoas já chegaram aos pontos de encontro e quantas ainda faltam, para que a liderança de SSMA consiga decidir dentro do prazo de 10 minutos.
-
-*Produtos e serviços*
-
-- Registro da base de pessoas presentes na planta a partir das catracas das portarias P1 e P2, congelado no momento do alarme;
-- Dispositivos de contagem nos acessos dos pontos de encontro, com sinal luminoso e display que confirmam a chegada para quem passa;
-- Painel centralizado no CCO e na sala de SSMA, com o saldo de pessoas pendentes, o cronômetro de 10 minutos, alertas e a ocupação de cada ponto de encontro;
-- Registro com horário de cada passagem pelos pontos de encontro.
-
-*Aliviadores de dor*
-
-- A contagem nos pontos de encontro é automática, sem lista em papel e sem chamada;
-- O painel mostra em tempo real quantas pessoas ainda não chegaram, calculado pela diferença entre a base congelada e as chegadas registradas;
-- A base é congelada no momento do alarme, então a liberação das catracas não apaga a informação de quem estava na planta;
-- A base sai dos registros de acesso do próprio dia, incluindo terceiros e visitantes que passaram pelas portarias;
-- A confirmação aparece por sinal luminoso e no display, sem depender de chamada oral no meio do barulho;
-- As chegadas de todos os pontos de encontro são somadas no mesmo painel, evitando falsas ausências quando alguém vai para um ponto diferente do previsto;
-- Ao fim dos 10 minutos, o painel emite alerta com o número de pendentes e os setores das pessoas que estavam na planta, ajudando a priorizar a busca.
-
-*Criadores de ganho*
-
-- O painel mostra a contagem de chegadas em cada ponto de encontro;
-- O saldo de pendentes e os setores da base dão uma noção de quantas pessoas faltam e de onde elas trabalhavam;
-- O cronômetro de 10 minutos e os alertas progressivos ajudam a fechar a confirmação dentro do prazo;
-- Quando o saldo de pendentes chega a zero antes dos 10 minutos, a busca da brigada pode ser dispensada;
-- O histórico com horários de cada passagem serve para relatórios pós-incidente e para revisar o PAE;
-- O CCO e a liderança de SSMA acompanham a mesma informação, ao mesmo tempo.
-
-**Encaixe entre o perfil e o mapa de valor**
-
-A solução responde diretamente às principais dores do gestor de SSMA: a dependência de listas e chamadas, a perda de informação quando as catracas são liberadas e a demora para consolidar os dados antes de decidir sobre a brigada. Dois ganhos são atendidos em parte. Como a contagem nos pontos de encontro registra passagens sem identificar a pessoa, o painel informa quantas pessoas faltam e quem estava na planta no momento do alarme, mas não exatamente quem ainda não chegou. Pelo mesmo motivo, a localização das pessoas pendentes fica limitada aos setores em que elas trabalham, sem indicar onde estão no momento da emergência.
+A proposta de valor da solução é confirmar, em tempo real e sem listas em papel, quantas pessoas já chegaram aos pontos de encontro e quantas ainda faltam, para que a liderança de SSMA consiga decidir dentro do prazo de 10
 
 
 ### 3.1.5. Matriz de Riscos (sprint 1)	
