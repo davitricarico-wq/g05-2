@@ -81,134 +81,102 @@ _A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estã
 
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
-Esta política preliminar descreve o tratamento de dados pessoais previsto para o protótipo de monitoramento, orientação e confirmação de evacuações em emergências industriais. O documento foi elaborado com base no escopo atualmente disponível, na LGPD, nas orientações da ANPD, no Aviso de Privacidade da Unipar e, como referência estrutural, no gerador de política de privacidade da Nuvemshop [6][7][8][9][10][11]. O modelo da Nuvemshop foi utilizado apenas como apoio e adaptado às características do projeto, pois a própria ferramenta informa que seu conteúdo é informativo e não substitui avaliação jurídica [11]. Esta política deverá ser revista antes de qualquer teste com dados reais. As decisões ainda não definidas - como arquitetura final, fornecedores, local de hospedagem e prazos de retenção - estão identificadas expressamente e não devem ser implementadas sem validação da Unipar, do encarregado pelo tratamento de dados pessoais e das equipes responsáveis por Segurança da Informação e SSMA.
+Esta política preliminar considera exclusivamente o escopo do MVP definido até o momento: um protótipo de bancada com Arduino Uno, dois sensores ultrassônicos HC-SR04 para contar separadamente entradas e saídas, display LCD 16 × 2 para apresentar o total, botão para alternar entre os modos normal e emergência, LEDs verde e vermelho e buzzer para sinalização. Não fazem parte deste escopo cadastro de pessoas, crachá ou RFID, câmera, biometria, painel web, conexão de rede, banco de dados, nuvem ou rastreamento individual.
+
+Parte-se do pressuposto técnico de que cada HC-SR04 fornece apenas medições de distância usadas para detectar uma passagem, sem produzir imagem, áudio ou qualquer identificador da pessoa. Também se pressupõe que o firmware mantém somente a contagem agregada necessária ao funcionamento imediato e não grava histórico na memória EEPROM ou em outro meio persistente. Nessas condições, as informações do fluxo principal não se relacionam a uma pessoa natural identificada ou identificável e, portanto, não caracterizam dados pessoais para os fins da LGPD. Essa conclusão decorre dos conceitos de dado pessoal e dado anonimizado previstos nos arts. 5º e 12 da Lei nº 13.709/2018 [1]. Caso qualquer um desses pressupostos deixe de ser verdadeiro, a análise deverá ser refeita antes do teste ou da implantação.
 
 #### 3.1.6.1 Informações gerais sobre a empresa / organização
 
-O projeto é desenvolvido em parceria com a Unipar, grupo formado pela Unipar Carbocloro S.A. e suas sociedades controladas diretas e indiretas. A solução tem como público direto os gestores de Segurança, Saúde e Meio Ambiente (SSMA) e as equipes de resposta a emergências. Colaboradores e terceiros presentes nas plantas industriais são os potenciais titulares dos dados tratados pelo sistema.
+O projeto é desenvolvido pelo Inteli em parceria com a Unipar, denominação que abrange a Unipar Carbocloro S.A. e suas sociedades controladas diretas e indiretas, conforme o Aviso de Privacidade da empresa [3]. O MVP tem finalidade acadêmica e busca validar a lógica de contagem agregada de entradas e saídas e a sinalização local do protótipo; ele não representa, nesta etapa, um sistema industrial pronto para operação.
 
-Para a operação em ambiente real, deverão ser informados no aviso definitivo a razão social e o CNPJ da entidade do grupo Unipar responsável pela planta em que a solução será utilizada, seu endereço e seus canais institucionais. Essas informações dependem da definição da unidade do piloto e deverão ser confirmadas pela empresa.
-
-A Unipar deverá confirmar formalmente sua função e a dos demais participantes. Considerando que a empresa determinará as finalidades e os elementos essenciais do tratamento, a tendência é que atue como controladora. O Inteli somente será considerado operador se tratar dados pessoais reais em nome da Unipar e segundo suas instruções. Se a equipe acadêmica trabalhar exclusivamente com dados fictícios ou efetivamente anonimizados, não haverá tratamento de dados pessoais pelo Inteli nesse fluxo. A eventual atuação do Inteli e de fornecedores como operadores dependerá das responsabilidades efetivamente assumidas e deverá ser documentada em instrumento próprio, conforme as definições da LGPD e as orientações da ANPD [6][7].
+Como o fluxo descrito não trata dados pessoais, não há, para ele, a atribuição de papéis de controlador e operador. Se uma evolução passar a coletar informações identificáveis, a entidade da Unipar responsável pelas decisões sobre esse tratamento deverá ser indicada como controladora, e a participação do Inteli ou de terceiros deverá ser avaliada e documentada conforme as atividades efetivamente desempenhadas e as orientações da ANPD [2].
 
 #### 3.1.6.2 Informações sobre o tratamento de dados
 
-O tratamento abrangerá somente operações necessárias para identificar a situação de cada pessoa durante uma emergência simulada ou real, registrar sua passagem por zonas monitoradas, orientar a evacuação, confirmar sua chegada ao ponto de encontro e disponibilizar informações aos profissionais autorizados. O sistema não deve ser utilizado para controle geral de produtividade, avaliação de desempenho ou monitoramento contínuo fora das situações e testes de evacuação previamente definidos.
+Os sensores detectam passagens em dois pontos distintos. A sequência das detecções permite ao Arduino aumentar ou diminuir um contador agregado, cujo valor é exibido no LCD. O botão alterna o estado do protótipo entre os modos normal e emergência, os LEDs indicam o modo ativo e o buzzer fornece aviso sonoro durante as contagens. O sistema não identifica quem passou, não cria um registro por pessoa e não confirma a localização ou a situação individual de ninguém.
 
-Antes do piloto, a Unipar deverá elaborar o registro das operações de tratamento e confirmar a base legal aplicável a cada finalidade. A matriz preliminar abaixo orienta essa avaliação, mas não substitui a validação jurídica:
+A avaliação desta política depende dos seguintes pressupostos:
 
-| Finalidade | Hipótese legal potencial | Condição para utilização |
-|---|---|---|
-| Monitorar e orientar pessoas durante uma emergência real | Proteção da vida ou da incolumidade física do titular ou de terceiro (art. 7º, VII) | Aplicável somente quando o tratamento for necessário à resposta à emergência. |
-| Atender deveres de segurança e manter registros obrigatórios | Cumprimento de obrigação legal ou regulatória (art. 7º, II) | A obrigação e o prazo de guarda correspondentes devem ser identificados. |
-| Manter registros técnicos de segurança e prevenir uso indevido | Legítimo interesse (art. 7º, IX) | Exige teste de balanceamento, transparência, necessidade e salvaguardas aos titulares. |
-| Realizar testes acadêmicos e demonstrações | Não aplicável a dados fictícios ou efetivamente anonimizados | Dados pessoais reais somente poderão ser usados após autorização formal e definição de hipótese legal. |
+- os sensores não capturam imagens, áudio, biometria ou identificadores;
+- nenhuma detecção é associada a nome, matrícula, crachá, dispositivo ou perfil;
+- o circuito não está integrado a sistemas de controle de acesso ou bases corporativas;
+- não há comunicação por rede, painel remoto ou armazenamento persistente;
+- os ensaios são realizados em ambiente acadêmico controlado, e não em operação industrial real.
 
-O consentimento não deve ser considerado automaticamente, especialmente no contexto laboral, em que sua liberdade pode ser limitada. Como o tratamento envolve monitoramento de pessoas em ambiente industrial e pode apresentar risco elevado, recomenda-se a elaboração de Relatório de Impacto à Proteção de Dados Pessoais antes do uso real [6].
+Se o protótipo for utilizado em local ou configuração que permita combinar o horário da passagem com câmeras, registros de acesso ou outras fontes capazes de identificar a pessoa, o evento poderá se tornar dado pessoal por associação. Nesse caso, será necessário mapear o novo tratamento, definir finalidade, base legal, retenção, agentes e salvaguardas antes do uso.
 
 #### 3.1.6.3 Quais são os dados coletados
 
-De acordo com o escopo atual, o conjunto mínimo previsto é:
+O MVP processa somente dados operacionais do circuito:
 
-- identificador da pessoa, preferencialmente matrícula, código ou identificador pseudonimizado em vez do nome completo;
-- vínculo com a operação, distinguindo colaborador e terceiro somente quando necessário;
-- zona ou ponto de passagem detectado, sem localização indoor precisa, que está fora do escopo do projeto;
-- estado da evacuação, como “aguardando confirmação”, “em deslocamento” ou “confirmado no ponto de encontro”;
-- data e hora das detecções, confirmações, alertas e alterações de estado;
-- identificador do dispositivo, sensor, etiqueta ou cartão, caso seja necessário para associar tecnicamente a detecção à pessoa;
-- registros técnicos de acesso e operação do sistema, incluindo usuário responsável pela consulta ou alteração, data, hora, evento executado e resultado da tentativa de autenticação;
-- endereço IP, identificador e duração da sessão, tipo de dispositivo, navegador e sistema operacional, somente se essas informações forem geradas pela infraestrutura do painel e forem necessárias à autenticação, à segurança ou à investigação de incidentes.
+- medições de distância e pulsos de detecção gerados pelos dois sensores;
+- indicação de entrada ou saída derivada da sequência das detecções;
+- quantidade agregada calculada pelo Arduino;
+- estado selecionado pelo botão, normal ou emergência;
+- estados dos LEDs, do display e do buzzer.
 
-Não está prevista a coleta de CPF, RG, endereço residencial, dados bancários, conteúdo de comunicações, biometria, dados de saúde nem geolocalização precisa. O endereço IP e os demais metadados técnicos não deverão ser usados para publicidade, análise comportamental ou controle de produtividade. Caso alguma categoria adicional se torne necessária, sua inclusão dependerá de justificativa documentada, nova análise de necessidade e proporcionalidade e, quando aplicável, identificação da hipótese legal específica para dados pessoais sensíveis. Durante o desenvolvimento acadêmico, devem ser usados dados fictícios ou efetivamente anonimizados; dados reais de colaboradores ou terceiros não devem ser inseridos sem autorização formal da Unipar.
+Não são coletados nome, matrícula, CPF, RG, imagem, voz, biometria, dado de saúde, localização individual, identificador de crachá ou dispositivo, endereço IP ou credencial de acesso. Pelos pressupostos apresentados, as medições e a contagem agregada não permitem identificar as pessoas detectadas e não constituem dados pessoais. Também não se deve registrar manualmente informações que permitam associar as contagens a indivíduos durante os testes.
 
 #### 3.1.6.4 Onde os dados são coletados 
 
-No desenho atual, os dados poderão ser obtidos: (i) do cadastro mínimo autorizado pela Unipar; (ii) dos dispositivos ou pontos de detecção instalados nas áreas abrangidas pelo protótipo; (iii) da confirmação realizada no ponto de encontro; e (iv) das ações de usuários autorizados no painel de monitoramento. O TAPI informa que ainda não existem sensores, chips, antenas ou sistema digital dedicados e que a tecnologia será avaliada durante o projeto [4]. Portanto, dispositivos, fluxos de integração e locais exatos de coleta permanecem pendentes de definição técnica e aprovação da Unipar.
+As medições são geradas localmente no campo de alcance dos dois sensores instalados no protótipo de bancada, simulando um ponto de entrada e um ponto de saída. Como a documentação de escopo disponível não define unidade industrial, porta ou área real de instalação, pressupõe-se que os testes desta etapa ocorrerão apenas em ambiente acadêmico controlado. A escolha de um local real de operação está fora do escopo atual e exigirá nova avaliação, inclusive sobre a possibilidade de identificação indireta das pessoas.
 
 #### 3.1.6.5 Para quais finalidades os dados serão utilizados
 
-Os dados serão tratados exclusivamente para:
+Os dados operacionais são utilizados exclusivamente para:
 
-- acompanhar o progresso da evacuação durante testes autorizados e emergências;
-- indicar a última zona ou o último ponto de passagem detectado, sem prometer posicionamento indoor preciso;
-- orientar rotas e emitir alertas relacionados à evacuação;
-- confirmar a chegada das pessoas aos pontos de encontro;
-- apoiar gestores de SSMA e equipes de resposta na identificação de pessoas ainda não confirmadas;
-- manter rastreabilidade das ações realizadas durante o evento;
-- investigar falhas, testar o protótipo e aperfeiçoar o processo com dados fictícios, anonimizados ou agregados sempre que possível;
-- cumprir obrigações legais e permitir o exercício regular de direitos, quando aplicável.
+- detectar e diferenciar movimentos de entrada e saída no cenário simulado;
+- atualizar e exibir a quantidade agregada no LCD;
+- validar o funcionamento do botão e da sinalização visual e sonora;
+- avaliar erros de contagem e aperfeiçoar o firmware e a montagem do MVP.
 
-Qualquer uso incompatível com essas finalidades exigirá nova avaliação de privacidade e comunicação adequada aos titulares.
+O protótipo não deve ser usado para identificar pessoas, controlar acesso, registrar presença ou jornada, avaliar produtividade, acompanhar trajetórias ou tomar decisões sobre indivíduos. Essas finalidades não são necessárias para validar o MVP e representariam mudança de escopo.
 
 #### 3.1.6.6 Onde os dados ficam armazenados 
 
-O local e o provedor de armazenamento do protótipo ainda não foram definidos nos documentos consultados. Essa informação é obrigatória para a versão definitiva da política. Antes do tratamento de dados reais, a Unipar deverá aprovar a arquitetura e registrar, no mínimo:
+O escopo atual não inclui banco de dados, cartão de memória, serviço de nuvem ou conexão de rede. Assim, as medições são processadas localmente e de forma transitória pelo Arduino; apenas o valor corrente do contador e o estado do sistema permanecem na memória necessária à execução e são apresentados no LCD.
 
-- nome do sistema, banco de dados e provedor de hospedagem;
-- ambientes de desenvolvimento, teste, produção e cópia de segurança;
-- cidade ou país em que cada ambiente mantém ou processa os dados;
-- pessoas e perfis que podem acessar cada ambiente;
-- mecanismos de criptografia, cópia de segurança, recuperação e eliminação;
-- eventual utilização de suboperadores.
-
-Até que essas definições sejam aprovadas, o protótipo deverá utilizar somente dados fictícios ou efetivamente anonimizados. O repositório de código e os materiais acadêmicos não deverão conter dados pessoais reais, credenciais ou cópias da base operacional.
-
-Caso haja armazenamento ou acesso fora do Brasil, inclusive em uma implantação que integre unidades brasileiras e argentinas, deverá ser realizada análise específica de transferência internacional e adotado um dos mecanismos admitidos pela LGPD e pela regulamentação da ANPD [6].
+Pressupõe-se que o firmware não grave a contagem na EEPROM do Arduino. Esse comportamento deverá ser confirmado na revisão do código. Caso exista gravação persistente, o documento deverá informar o conteúdo gravado, a finalidade, o prazo e o procedimento de exclusão. O repositório poderá conter código-fonte e resultados agregados dos testes, mas não deve receber nomes, imagens, listas de presença, credenciais ou qualquer outro dado pessoal.
 
 #### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)
 
-O prazo de retenção ainda não foi estabelecido pela Unipar e não deve ser arbitrado pela equipe acadêmica. Essa informação é obrigatória antes do tratamento de dados reais. A Unipar deverá aprovar uma tabela de temporalidade que informe, para cada categoria, o prazo, o evento que inicia sua contagem, a justificativa e a forma de descarte:
+Cada medição de distância é descartada após ser usada no cálculo da detecção. A contagem agregada e o modo selecionado permanecem somente enquanto o protótipo está ligado ou até que o sistema seja reiniciado, conforme o pressuposto de ausência de gravação persistente. Portanto, não há prazo de retenção de dados pessoais a definir para o fluxo atual.
 
-| Categoria | Prazo | Marco inicial | Justificativa |
-|---|---|---|---|
-| Cadastro operacional mínimo | **A definir pela Unipar** | Inclusão ou encerramento do vínculo | Necessidade operacional e eventual obrigação aplicável. |
-| Zona ou ponto de passagem e estado da evacuação | **A definir pela Unipar** | Encerramento do evento ou teste | Resposta à emergência, auditoria e investigação do evento. |
-| Alertas e confirmações no ponto de encontro | **A definir pela Unipar** | Encerramento do evento ou teste | Comprovação e avaliação do procedimento de evacuação. |
-| Logs de acesso e segurança | **A definir pela Unipar** | Geração do registro | Segurança, prevenção de incidentes e exercício regular de direitos. |
-| Cópias de segurança | **A definir pela Unipar** | Criação da cópia | Continuidade e recuperação, respeitado o ciclo de sobrescrita ou eliminação. |
-| Dados fictícios de demonstração acadêmica | Até o encerramento do ciclo de testes | Término do teste | Avaliação acadêmica, seguida de eliminação quando não forem mais necessários. |
-
-Cada prazo deverá estar associado à finalidade, à base legal e a eventual obrigação legal, regulatória, contratual ou de defesa de direitos.
-
-Encerrada a finalidade e inexistindo hipótese legal de conservação, os dados deverão ser eliminados ou anonimizados de forma segura. Para demonstrações acadêmicas, os dados fictícios devem ser apagados ao fim do ciclo de testes quando não forem mais necessários. O aviso geral da Unipar também declara como diretriz a retenção pelo tempo necessário às finalidades informadas, com conservação adicional apenas para exigências legais e regulatórias, gestão de riscos e defesa de direitos [8].
+Resultados agregados, como número de acertos, falhas e contagens simuladas, podem ser mantidos no repositório pelo período necessário à avaliação acadêmica, pois não identificam participantes. Se os testes passarem a registrar horário detalhado, vídeo ou qualquer elemento que permita reconhecer alguém, deverá ser definida previamente uma tabela de retenção e descarte conforme a finalidade e a LGPD [1].
 
 #### 3.1.6.8 Uso de cookies e/ou tecnologias semelhantes
 
-O projeto ainda não possui interface web definida e, por isso, não há cookies ou tecnologias semelhantes confirmados. Se o painel utilizar cookies, armazenamento local, identificadores de sessão ou tecnologias equivalentes, deverão ser empregados apenas os recursos estritamente necessários para autenticação, manutenção da sessão, segurança e preferências essenciais. Cookies de análise, publicidade ou rastreamento não fazem parte do escopo atual e não deverão ser ativados sem avaliação, informação clara e mecanismo de escolha adequado. A versão final da interface deverá apresentar inventário com nome, fornecedor, finalidade, categoria, duração e informação sobre compartilhamento de cada tecnologia utilizada.
+O MVP não possui site, aplicativo, painel web ou conexão com a internet. Por isso, não utiliza cookies, armazenamento local de navegador, ferramentas de análise ou tecnologias semelhantes. A futura inclusão de uma interface conectada estará fora deste escopo e exigirá atualização desta política antes da coleta.
 
 #### 3.1.6.9 Com quem esses dados são compartilhados (parceiros, fornecedores, subcontratados)
 
-O acesso deverá ser limitado aos profissionais da Unipar que necessitem das informações para gerir a emergência, especialmente equipes de SSMA, brigada, liderança local, Tecnologia da Informação e Segurança da Informação. Durante o desenvolvimento, integrantes do Inteli só deverão acessar dados fictícios, anonimizados ou o mínimo de dados previamente autorizado.
+Não há compartilhamento de dados pessoais, pois o protótipo não os coleta. A equipe do Inteli, os avaliadores acadêmicos e os representantes da Unipar poderão acessar o valor agregado exibido e os resultados técnicos dos testes. O escopo não prevê fornecedores de nuvem, conectividade, banco de dados ou análise de dados.
 
-Não há fornecedores de nuvem, conectividade, sensores ou software definidos no material consultado. Se forem contratados, deverão ser identificados antes do tratamento real e vinculados por contrato que determine finalidade, instruções de tratamento, confidencialidade, controles de segurança, subcontratação, retenção, eliminação, apoio aos direitos dos titulares e comunicação de incidentes. Dados pessoais não serão vendidos. Compartilhamentos adicionais somente ocorrerão quando necessários à operação descrita, ao cumprimento de obrigação legal ou regulatória ou ao exercício regular de direitos, observados os princípios da necessidade e da transparência.
+Se uma evolução depender de terceiro ou de integração corporativa e envolver dados pessoais, os participantes e suas responsabilidades deverão ser identificados antes do tratamento, com regras de finalidade, acesso, segurança, retenção e exclusão.
 
 #### 3.1.6.10 Informações sobre medidas de segurança adotadas pela empresa
 
-O aviso geral da Unipar informa a adoção de anonimização, antivírus, criptografia, controle de acesso, *firewalls*, normas internas, procedimentos e ações de conscientização [8]. Para este projeto, os controles efetivamente aplicáveis deverão ser confirmados por avaliação técnica antes do piloto. Como requisitos mínimos, a solução deverá prever:
+Embora o fluxo atual não contenha dados pessoais, o projeto adota minimização desde a concepção: realiza a contagem sem criar identificadores individuais e mantém o processamento local. Também devem ser observadas as seguintes medidas:
 
-- minimização e pseudonimização dos identificadores exibidos e transmitidos;
-- criptografia em trânsito e, quando tecnicamente aplicável, em repouso;
-- autenticação individual, controle de acesso por função e revisão periódica de permissões;
-- registro e monitoramento de acessos e alterações relevantes;
-- segregação entre ambientes e proibição de dados reais em desenvolvimento sem autorização;
-- gestão segura de senhas, chaves e credenciais, sem armazenamento no código-fonte;
-- cópias de segurança protegidas e testes de restauração;
-- atualização de componentes, correção de vulnerabilidades e testes de segurança proporcionais ao risco;
-- procedimentos de resposta, registro e comunicação de incidentes;
-- eliminação segura de dados e mídias ao término da retenção;
-- treinamento e dever de confidencialidade para todas as pessoas com acesso.
+- limitar o acesso físico ao protótipo durante os testes;
+- revisar o firmware para confirmar que não há gravação na EEPROM, telemetria ou bibliotecas que enviem dados;
+- não conectar o circuito a bases, câmeras ou sistemas de controle de acesso;
+- não inserir credenciais, dados reais ou listas de pessoas no código e no repositório;
+- registrar a versão do firmware e os pressupostos usados em cada ensaio;
+- reiniciar o contador e apagar arquivos auxiliares quando deixarem de ser necessários;
+- utilizar apenas resultados agregados nas evidências acadêmicas.
 
-Essas medidas seguem o dever de segurança desde a concepção previsto nos arts. 46 a 49 da LGPD e as boas práticas recomendadas pela ANPD [6][9]. Incidentes que possam acarretar risco ou dano relevante deverão ser avaliados pelo controlador e comunicados à ANPD e aos titulares no prazo regulatório aplicável.
+Essas medidas reduzem o risco de uma mudança informal transformar a contagem anônima em acompanhamento individual. Se houver tratamento futuro de dados pessoais, deverão ser adotadas medidas técnicas e administrativas proporcionais ao risco, em conformidade com os arts. 46 a 49 da LGPD e com as orientações da ANPD [1][4].
 
 #### 3.1.6.11 Orientações sobre como a empresa/organização atende aos direitos dos usuários
 
-A Unipar deverá manter processo para receber, autenticar, registrar, analisar e responder às solicitações dos titulares. Nos limites da LGPD, o titular pode requerer confirmação e acesso; correção; anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade; portabilidade, quando regulamentada e aplicável; informação sobre compartilhamentos e sobre a possibilidade de negar consentimento; revogação do consentimento; oposição; e revisão de decisões tomadas unicamente com base em tratamento automatizado [6][10].
+Como o contador não registra nem identifica pessoas, a equipe não consegue localizar, consultar, corrigir ou excluir uma passagem atribuída a determinado indivíduo. Também não há decisão automatizada que produza efeito sobre uma pessoa. Isso não impede que alguém peça esclarecimentos sobre o funcionamento do protótipo ou informe suspeita de coleta indevida.
 
-O atendimento poderá exigir confirmação segura da identidade do solicitante para impedir acesso indevido. Alguns pedidos podem ser limitados por obrigação legal ou regulatória, necessidade de conservação para exercício regular de direitos ou outra hipótese prevista em lei; nesses casos, a justificativa deverá ser informada de maneira clara. O projeto não prevê decisões exclusivamente automatizadas que produzam efeitos sobre os titulares. Se essa funcionalidade for incluída, deverá ser avaliada e explicada previamente.
+Se o escopo passar a envolver dados pessoais, a organização responsável deverá assegurar os direitos previstos no art. 18 da LGPD, incluindo confirmação, acesso, correção, informação sobre compartilhamento e, quando aplicável, anonimização, bloqueio, portabilidade, oposição ou eliminação [1][5].
 
 #### 3.1.6.12 Informações sobre como o titular de dados pode solicitar e exercer os seus direitos
 
-O titular poderá encaminhar sua solicitação ao encarregado da Unipar pelo e-mail **lgpd-encarregado@unipar.com**, descrevendo o direito que deseja exercer e as informações necessárias para localizar o tratamento. Recomenda-se que a organização forneça protocolo ou confirmação de recebimento e mantenha registro da resposta. A solicitação deverá ser gratuita, e o titular poderá apresentar petição à ANPD caso não consiga exercer seu direito diretamente perante o controlador [7][8][10].
+Uma pessoa que queira esclarecer o uso do protótipo ou suspeite que houve coleta de dado pessoal poderá contatar o encarregado da Unipar pelo e-mail **lgpd-encarregado@unipar.com**, canal divulgado no Aviso de Privacidade da empresa [3]. O pedido deve indicar o contexto do teste e a dúvida ou o direito que se pretende exercer. Como a solução atual mantém apenas uma contagem anônima, pode não existir registro que permita vincular uma passagem ao solicitante; essa limitação deverá ser explicada com clareza na resposta.
 
 #### 3.1.6.13 Informações de contato do Data Protection Officer (DPO) ou encarregado de proteção de dados da organização
 
@@ -217,9 +185,9 @@ O canal oficial publicado pela Unipar para contato com seu Encarregado de Prote�
 - **E-mail:** lgpd-encarregado@unipar.com
 - **Aviso de Privacidade:** <https://unipar.com/aviso-de-privacidade>
 
-O nome da pessoa que exerce a função de encarregado não foi identificado no aviso público consultado. Por isso, esta política registra apenas o canal institucional confirmado [8].
+O nome da pessoa que exerce a função não é apresentado no aviso público consultado; por isso, registra-se somente o canal institucional confirmado [3].
 
-Para que a versão definitiva atenda integralmente ao art. 41, § 1º, da LGPD e à rubrica do projeto, a Unipar deverá confirmar se há identidade ou denominação institucional adicional do encarregado a ser divulgada, além do canal de contato acima [6].
+Esta política deverá ser revisada antes de qualquer alteração que inclua identificação por crachá ou RFID, cadastro, câmera, áudio, biometria, registro individual de horário ou localização, integração com sistemas corporativos, painel conectado, banco de dados, nuvem ou armazenamento persistente. Esses recursos não estão previstos no MVP analisado e não podem ser tratados como se já fizessem parte da solução.
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
 _BOM (Bill of Material) pode ser definido como uma lista completa de materiais, que detalha todos os itens necessários para construir, fabricar ou reparar um produto. Deve-se preencher o template fornecido.
@@ -382,24 +350,12 @@ _Escreva, de forma resumida, sobre os principais resultados do seu projeto e fa�
 
 ## <a name="c5"></a>5. Referências
 
-[1] UNIPAR. **Relatório de Sustentabilidade 2024**. São Paulo: Unipar, 2025. Disponível em: <https://unipar.com/sustentabilidade>. Acesso em: 20 out. 2026.
+[1] BRASIL. **Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais (LGPD)**. Brasília, DF: Presidência da República, 2018. Disponível em: <https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm>. Acesso em: 22 out. 2026.
 
-[2] UNIPAR. **Relações com Investidores: informações institucionais e indicadores da companhia**. Disponível em: <https://ri.unipar.com/>. Acesso em: 20 out. 2026.
+[2] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Guia orientativo para definições dos agentes de tratamento de dados pessoais e do encarregado**. Brasília, DF: ANPD, 2022. Disponível em: <https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-para-definicoes-dos-agentes-de-tratamento-de-dados-pessoais-e-do-encarregado>. Acesso em: 22 out. 2026.
 
-[3] UNIPAR. **Apresentação de onboarding do projeto**. Informação verbal fornecida pelos parceiros à equipe do projeto, 2026.
+[3] UNIPAR. **Aviso de Privacidade**. Disponível em: <https://unipar.com/aviso-de-privacidade>. Acesso em: 22 out. 2026.
 
-[4] UNIPAR. **TAPI: termo de abertura do projeto de digitalização do processo de evacuação**. Documento corporativo fornecido ao Inteli, 2026. Disponível em: [UNIPAR-TAPI.docx.pdf](../../Docs/UNIPAR-TAPI.docx.pdf).
+[4] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Guia orientativo sobre segurança da informação para agentes de tratamento de pequeno porte**. Brasília, DF: ANPD, 2021. Disponível em: <https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-sobre-seguranca-da-informacao-para-agentes-de-tratamento-de-pequeno-porte>. Acesso em: 22 out. 2026.
 
-[5] PORTER, Michael E. **The five competitive forces that shape strategy**. *Harvard Business Review*, v. 86, n. 1, p. 78-93, jan. 2008. Disponível em: <https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy>. Acesso em: 20 out. 2026.
-
-[6] BRASIL. **Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais (LGPD)**. Brasília, DF: Presidência da República, 2018. Disponível em: <https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm>. Acesso em: 20 out. 2026.
-
-[7] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Guia orientativo para definições dos agentes de tratamento de dados pessoais e do encarregado**. Brasília, DF: ANPD, 2022. Disponível em: <https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-para-definicoes-dos-agentes-de-tratamento-de-dados-pessoais-e-do-encarregado>. Acesso em: 20 out. 2026.
-
-[8] UNIPAR. **Aviso de Privacidade**. Disponível em: <https://unipar.com/aviso-de-privacidade>. Acesso em: 20 out. 2026.
-
-[9] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Guia orientativo sobre segurança da informação para agentes de tratamento de pequeno porte**. Brasília, DF: ANPD, 2021. Disponível em: <https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-sobre-seguranca-da-informacao-para-agentes-de-tratamento-de-pequeno-porte>. Acesso em: 20 out. 2026.
-
-[10] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Direito dos titulares**. Disponível em: <https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados/direito-dos-titulares>. Acesso em: 20 out. 2026.
-
-[11] NUVEMSHOP. **Gerador de política de privacidade**. Disponível em: <https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade>. Acesso em: 20 out. 2026.
+[5] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Direito dos titulares**. Disponível em: <https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados/direito-dos-titulares>. Acesso em: 22 out. 2026.
