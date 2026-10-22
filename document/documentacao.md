@@ -97,6 +97,22 @@ A probabilidade expressa a chance de o evento acontecer durante o projeto ou no 
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
+<div align="center">
+<p>Quadro X – Escala de impacto da matriz de riscos</p>
+
+| Nível | Interpretação no projeto |
+| --- | --- |
+| Muito baixo | O efeito não é percebido pelos usuários e não altera nenhuma entrega. |
+| Baixo | O evento exige um ajuste pontual em uma seção ou componente, sem atrasar a sprint. |
+| Moderado | O evento gera retrabalho ou atraso em uma entrega, sem comprometer o objetivo da solução. |
+| Alto | O evento compromete um dos critérios de sucesso da seção 3.1.3.5 ou impede o piloto em parte da planta. |
+| Muito alto | O evento pode levar a SSMA a tratar como segura uma situação em que ainda há pessoas não contabilizadas, ou atrasar o acionamento da brigada. |
+
+<p>Fonte: elaboração dos autores (2026).</p>
+</div>
+
+Para as oportunidades, a leitura é a mesma, com sinal invertido: o impacto mede o quanto o evento aproxima o projeto do seu objetivo, e não o quanto o afasta.
+
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
 _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
