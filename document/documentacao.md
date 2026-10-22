@@ -203,6 +203,8 @@ _Nesta seção, detalhe a especificação da solução, de acordo com o disposto
 
 ### 3.3.2. Regras de Negócio (sprint 1, refinar até sprint 5)
 
+As regras abaixo delimitam quando uma leitura pode participar do balanço de evacuação e como a SSMA deve interpretar o resultado. Elas tratam **apenas de emergências simuladas por vazamento de cloro** no recorte atual. A possibilidade de distribuir sensores por áreas internas, de orientar rotas e de identificar nominalmente pessoas ausentes permanece fora desta versão e dependerá de validação posterior.
+
 **Quadro 2 — Regras de negócio preliminares.**
 
 | ID | Nome | Regra e condição de aplicação | Consequência operacional se descumprida | Atores | RFs associados |
@@ -218,6 +220,8 @@ _Nesta seção, detalhe a especificação da solução, de acordo com o disposto
 | RN09 | Limite de identificação e localização | As contagens do MVP são agregadas por portaria e ponto de encontro. O sistema não atribui identidade a passagens anônimas, não indica quem precisa de resgate e não calcula posição precisa em ambiente interno. | O painel apresentaria inferências que o protótipo não sustenta. | A01, A02, A03 | RF003, RF005, RF006, RF007 |
 | RN10 | Uso autorizado e rastreável | A consulta gerencial e o registro da conclusão de um evento ficam restritos aos perfis autorizados; quando houver painel integrado, cada acesso e alteração devem estar vinculados a uma chave única de usuário. | Registros de emergência poderiam ser alterados sem responsabilização. | A01, A02, A04 | RF011, RF012, RF013 |
 | RN11 | Não duplicação de mensagem | Na integração MQTT, uma mesma mensagem de passagem, identificada por dispositivo e número sequencial, só pode incrementar o contador uma vez, mesmo que seja recebida novamente. Essa regra não identifica a mesma pessoa em duas passagens físicas distintas. | Retransmissões poderiam elevar artificialmente A ou B. | A04, A01 | RF005, RF010 |
+
+*Legenda do Quadro 2:* as condições delimitam a aplicação de cada RN; a consequência descreve o risco operacional a ser evitado. RN07 e RN08 impedem que uma igualdade numérica ou falha de dados seja apresentada como prova de segurança individual. As RN vinculadas a funcionalidades planejadas serão validadas com testes automatizados a partir da sprint 3, conforme o modelo deste artigo.
 
 ### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
 
