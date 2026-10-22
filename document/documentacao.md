@@ -863,6 +863,9 @@ Cada coluna da RTM vem de uma seção específica do documento, e nenhuma inform
 | Tuco Salamanca (Gestor de SSMA) | RF006, RF007 | RN05 | A definir | Caso de teste a ser registrado na seção 3.4.3, verificando que o painel exibe D = B − A enquanto A for menor que B. Depende do cálculo do balanço fora do nó. | Pendente (sprint 3) |
 | Tuco Salamanca (Gestor de SSMA) | RF003, RF005, RF006, RF007 | RN09 | A definir | Caso de teste a ser registrado na seção 3.4.3, verificando que o painel mostra apenas contagens agregadas por portaria e ponto de encontro, sem identidade nem posição. O firmware atual já não armazena identificador de pessoa, mas isso ainda não foi verificado por um teste. | Pendente (sprint 3) |
 | Tuco Salamanca (Gestor de SSMA) | RF005, RF010 | RN11 | A definir | Caso de teste a ser registrado na seção 3.4.3, reenviando a mesma mensagem MQTT, com o mesmo dispositivo e número sequencial, e verificando que o contador sobe uma única vez. | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA) | RF004, RF008 | RN06 | A definir | Caso de teste a ser registrado na seção 3.4.3, simulando um evento em que D continua positivo aos 10 minutos e verificando que o alerta chega à SSMA com a quantidade pendente, sem que o prazo reinicie a cada nova leitura. | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA) | RF006, RF012 | RN07 | A definir | Caso de teste a ser registrado na seção 3.4.4, verificando que a igualdade A = B aparece como convergência numérica e que o evento só é concluído por uma ação explícita da SSMA. | Pendente (sprint 4) |
+| Tuco Salamanca (Gestor de SSMA) e Maria Schrader (CCO) | RF011, RF012, RF013 | RN10 | A definir | Caso de teste a ser registrado na seção 3.4.4, verificando que apenas perfis autorizados consultam o painel e concluem um evento, e que cada acesso e alteração fica vinculado a um usuário. | Pendente (sprint 4) |
 
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
