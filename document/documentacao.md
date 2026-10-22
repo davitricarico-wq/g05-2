@@ -832,6 +832,14 @@ Pelo lado dos requisitos, os casos executados exercitam cinco dos três requisit
 #### Atualização da matriz
 
 A RTM é revisada ao final de cada sprint, junto com a matriz de riscos da seção 3.1.5. Na revisão, todo caso de teste novo das declarações 3.4.2 a 3.4.5 entra na matriz já ligada a uma regra e a uma evidência, e toda linha pendente cujo sprint previsto terminou precisa ser fechada com um caso de teste ou ter o atraso justificado. Para o sprint 2, a prioridade é ampliar a cobertura do RN04 no protótipo físico, com passagens simultâneas e repassagens, que são os cenários dos riscos R01 e R02. A partir do sprint 3, as regras pendentes passam a ter casos de teste automatizados, como pede a seção 3.3.2, e a coluna RF passa a indicar o requisito específico que cada caso exerce.
+Cada coluna da RTM vem de uma seção específica do documento, e nenhuma informação foi criada só para a matriz:
+
+- A coluna **Persona** usa as personas da seção 3.2.1 e indica quem é atendido pelo comportamento verificado. A brigada e a área de Infraestrutura e TI aparecem como stakeholders secundários, sem persona própria, por isso as linhas que os envolvem registram a persona primária que consome o resultado, normalmente o gestor de SSMA Tuco Salamanca.
+- A coluna **RF** reproduz os requisitos funcionais associados a cada regra no quadro de regras de negócio da seção 3.3.2. Quando a regra está ligada a mais de um requisito, todos são listados, e a coluna será refinada para o requisito específico exercitado por cada caso de teste à medida que a seção 3.3.1 for consolidada.
+- A coluna **RN** usa as regras de negócio RN01 a RN11 da seção 3.3.2.
+- A coluna **Caso de teste** usa os casos executados e documentados na seção 3.4.1, como orienta o template. Os casos planejados listados no critério de sucesso 4 da seção 3.1.3.5 entram na matriz à medida que forem executados e registrados nas seções 3.4.2 e 3.4.3.
+- A coluna **Evidência** aponta para a figura do caso de teste na seção 3.4.1, gerada a partir do [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353).
+- A coluna **Status** indica se a regra está coberta, coberta parcialmente ou pendente. Uma regra pendente é um elo quebrado conhecido, registrado junto com a sprint em que deve ser fechado.
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
