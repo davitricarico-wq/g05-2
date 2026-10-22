@@ -71,9 +71,43 @@ _A entrega deve ser realizada no formato de quadrante (template), semelhante ao 
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 	
-### 3.1.4. Value Proposition Canvas (sprint 1)	
+### 3.1.4. Value Proposition Canvas
 
-_O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._     
+O Value Proposition Canvas é uma ferramenta que organiza, de um lado, o perfil do cliente, com suas tarefas, dores e ganhos, e, do outro, o mapa de valor da solução, mostrando como ela responde a esse perfil (OSTERWALDER et al., 2014). Neste projeto, o canvas foi feito com base na solução descrita na seção 3.1.3.
+
+**Segmento de cliente**
+
+O cliente considerado no canvas é o gestor de SSMA da fábrica de Cubatão, representado pela persona Tuco Salamanca (seção 3.2). Ele lidera a prevenção de acidentes e a resposta a emergências na unidade e é quem decide quando e para onde acionar a brigada, por isso é o principal interessado em saber, rápido, se todas as pessoas chegaram aos pontos de encontro.
+
+**Perfil do cliente**
+
+*Tarefas*
+
+- Coordenar a resposta à emergência junto com o Centro de Controle Operacional (CCO);
+- Confirmar que todas as pessoas chegaram aos pontos de encontro em até 10 minutos após o alarme;
+- Decidir se e para onde a brigada deve ser enviada para busca e resgate;
+- Elaborar e revisar o Plano de Ação de Emergência (PAE);
+- Acompanhar os indicadores de SSMA da unidade.
+
+*Dores*
+
+- Depender de contagem visual e de chamada em papel nos pontos de encontro;
+- Não saber com precisão se ainda existem colaboradores ou terceiros em zonas de risco;
+- Perder registro de quem passa, porque as catracas são liberadas durante a emergência;
+- Trabalhar com listas impressas que não refletem visitantes, terceiros com crachá provisório e trocas de turno do dia;
+- Ter a chamada atrapalhada pelo barulho das sirenes e dos equipamentos;
+- Lidar com pessoas que vão para um ponto de encontro diferente do previsto, por causa da direção do vento, o que gera falsas ausências em um ponto e contagens duplicadas em outro;
+- Perder minutos para direcionar a brigada enquanto os dados da evacuação ainda estão sendo consolidados;
+- Expor os brigadistas a buscas em áreas de risco sem saber onde procurar, ou procurando pessoas que já saíram.
+
+*Ganhos*
+
+- Ter um painel que confirme digitalmente a presença das pessoas nos pontos de encontro;
+- Saber quantas pessoas ainda faltam e onde elas podem estar;
+- Fechar a confirmação da evacuação dentro do prazo de 10 minutos;
+- Enviar a brigada só para as áreas onde há pendência real;
+- Ter o registro da evacuação com horários, para relatórios pós-incidente e para melhorar o PAE;
+- Trabalhar com a mesma informação que o CCO, em tempo real.  
 
 ### 3.1.5. Matriz de Riscos (sprint 1)	
 
