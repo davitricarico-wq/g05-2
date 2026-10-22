@@ -113,6 +113,22 @@ A probabilidade expressa a chance de o evento acontecer durante o projeto ou no 
 
 Para as oportunidades, a leitura é a mesma, com sinal invertido: o impacto mede o quanto o evento aproxima o projeto do seu objetivo, e não o quanto o afasta.
 
+#### Ameaças
+
+As ameaças foram agrupadas em três blocos. O primeiro trata da contagem em si, ou seja, dos dois números que formam o balanço. O segundo trata da integração e da operação do nó de contagem na planta. O terceiro trata da validação, do uso da solução e da condução do projeto.
+
+<div align="center">
+<p>Quadro X – Ameaças identificadas no projeto</p>
+
+| ID | Ameaça | Probabilidade | Impacto | Justificativa |
+| --- | --- | :---: | :---: | --- |
+| R01 | Contagem incorreta quando várias pessoas passam juntas pelo acesso do ponto de encontro. | Alta (70%) | Muito alto | O HC-SR04 mede a distância até o objeto mais próximo em um único feixe, então duas pessoas lado a lado ou muito próximas tendem a ser contadas como uma. Os casos CT03 e CT04 (seção 3.4.1) mostram que o protótipo só libera uma nova contagem quando o sensor volta a ler mais de 200 cm, o que um fluxo denso e apressado de evacuação dificilmente permite. A meta de acurácia de 95% da seção 3.1.3.5 depende de separar essas passagens. |
+| R02 | Repassagens e passagens no sentido contrário somadas como chegadas. | Média (50%) | Muito alto | O protótipo conta qualquer aproximação, sem saber se a pessoa está entrando ou saindo do ponto de encontro. Quem volta para buscar um colega ou circula na entrada aumenta A sem que haja uma nova chegada, o que pode produzir a igualdade A = B antes da hora. É exatamente o cenário que a RN07 tenta conter ao exigir a conferência da SSMA. |
+| R03 | Base B diferente da população que de fato está na planta no momento do alarme. | Média (50%) | Muito alto | B vem do saldo de entradas e saídas das portarias P1 e P2 no instante do alarme (RN02). Saídas sem registro, crachás provisórios, visitantes e pessoas que passam juntas pela catraca deixam esse saldo errado, e a seção 3.1.3.1 já aponta as listas desatualizadas como uma das falhas do processo atual. Se B ficar menor que o real, o saldo pendente D pode chegar a zero com pessoas ainda na área. |
+
+<p>Fonte: elaboração dos autores (2026).</p>
+</div>
+
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
 _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
