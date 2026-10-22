@@ -195,6 +195,10 @@ A Figura X distribui as ameaças e as oportunidades dos quadros anteriores no te
 <sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026).</sup>
 </div>
 
+A cor de cada célula vem do produto entre o nível de probabilidade e o nível de impacto, ambos convertidos para uma escala de 1 a 5. Produtos a partir de 12 formam a zona alta, produtos de 5 a 11 formam a zona média e produtos até 4 formam a zona baixa. Nas ameaças, a zona alta pede ação imediata, e nas oportunidades ela indica o ganho que vale perseguir desde já.
+
+Isso significa que nove das treze ameaças estão na zona alta (R01 a R08 e R12), e a maior parte delas está na linha de probabilidade alta. A leitura aqui é que o projeto ainda está no começo: boa parte dos riscos vem de pontos que não foram testados ou de dependências que ainda não foram negociadas com a Unipar, e não de falhas já observadas. R10 merece atenção mesmo estando na zona média, porque tem o maior impacto possível e só não está na zona alta porque a RN07 reduz a sua probabilidade. R11 é a única ameaça na zona baixa, resultado das restrições de dados da seção 3.1.6. Nas oportunidades, O01 a O04 ficam na zona de ganho alto, e apenas O05, que depende de decisões futuras da Unipar, fica na zona média.
+
 #### Síntese e prioridades
 
 Olhando o conjunto, as ameaças mais críticas se concentram na própria contagem. R01, R02 e R03 ficam na faixa de impacto muito alto porque atacam diretamente os dois números do balanço, A e B, e um erro em qualquer um deles pode zerar o saldo pendente com pessoas ainda na área. Por isso, a prioridade da sprint 2 é validar a contagem no protótipo físico, com passagens simultâneas, repassagens e os dois sensores em sequência, antes de avançar para a integração com o painel.
