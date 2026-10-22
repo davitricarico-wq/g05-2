@@ -79,6 +79,24 @@ _O Canvas da proposta de valor deve ser feito considerando a solução que você
 
 A matriz de riscos reúne os eventos incertos que podem afetar o projeto, tanto os negativos, chamados de ameaças, quanto os positivos, chamados de oportunidades, e os distribui de acordo com a probabilidade de ocorrência e o impacto de cada um. O recorte é o mesmo das seções anteriores: o balanço de evacuação da fábrica de Cubatão, em que a população presente na planta no momento do alarme (B) é comparada às chegadas registradas nos pontos de encontro (A), como descrito na seção 3.1.3. Por isso, os riscos foram levantados a partir do que o projeto já definiu, como as regras de negócio (seção 3.3.2), a política de privacidade (seção 3.1.6), a BOM (seção 3.1.7) e os testes do protótipo inicial (seção 3.4.1), e não a partir de uma lista genérica de riscos de IoT.
 
+#### Critérios de classificação
+
+A probabilidade expressa a chance de o evento acontecer durante o projeto ou no piloto. O impacto expressa o efeito do evento sobre o objetivo central da solução, que é permitir que a SSMA saiba, dentro de 10 minutos após o alarme, quantas pessoas ainda não chegaram aos pontos de encontro. As duas escalas seguem os cinco níveis do template da turma e estão descritas nos quadros a seguir.
+
+<div align="center">
+<p>Quadro X – Escala de probabilidade da matriz de riscos</p>
+
+| Nível | Faixa | Interpretação no projeto |
+| --- | :---: | --- |
+| Muito baixa | 10% | O evento depende de uma combinação improvável de falhas ou do descumprimento deliberado de uma regra já definida. |
+| Baixa | 30% | O evento pode acontecer, mas já existe regra, restrição ou procedimento que reduz a chance. |
+| Média | 50% | O evento depende de condições que o grupo ainda não controla ou ainda não testou. |
+| Alta | 70% | Já existe indício concreto no projeto, como uma limitação conhecida de componente ou uma dependência externa sem prazo definido. |
+| Muito alta | 90% | O evento é praticamente certo se nada for feito. |
+
+<p>Fonte: elaboração dos autores (2026).</p>
+</div>
+
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
 _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
