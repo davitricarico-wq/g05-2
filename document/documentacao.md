@@ -139,6 +139,32 @@ As ameaças foram agrupadas em três blocos. O primeiro trata da contagem em si,
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
+#### Planos de resposta às ameaças
+
+Cada ameaça recebeu uma estratégia de resposta. **Evitar** significa mudar o escopo ou o desenho para que o risco deixe de existir, **mitigar** significa reduzir a probabilidade ou o impacto, e **aceitar** significa assumir o risco com um plano de contingência, porque o custo de tratá-lo é maior que o efeito esperado.
+
+<div align="center">
+<p>Quadro X – Planos de resposta às ameaças</p>
+
+| ID | Estratégia | Ação planejada |
+| --- | :---: | --- |
+| R01 | Mitigar | Estreitar o acesso do ponto de encontro para que a passagem aconteça em fila única e testar a contagem com grupos em diferentes cadências, como prevê o método de validação da seção 3.1.3.5. Se a acurácia ficar abaixo de 95%, avaliar sensores com outro princípio de detecção, como barreira de feixe ou sensor de tempo de voo. |
+| R02 | Mitigar | Usar em sequência os dois sensores ultrassônicos já previstos na BOM, para identificar o sentido da passagem e descontar as saídas do ponto de encontro. A conclusão do evento continua com a SSMA, conforme a RN07. |
+| R03 | Mitigar | Congelar B no instante do alarme (RN02), validar com a SSMA como visitantes e crachás provisórios entram no saldo e marcar o balanço como inconclusivo quando a referência das portarias for inválida (RN08). |
+| R04 | Mitigar | Desenvolver com uma base fictícia no mesmo formato esperado dos registros de portaria e levar à Unipar, na sprint 2, uma proposta de formato de integração, para que a troca pela base real não exija mudar a lógica do balanço. |
+| R05 | Mitigar | Guardar as passagens localmente no nó e reenviá-las ao reconectar, com identificador de dispositivo e número sequencial, que a RN11 já usa para evitar duplicidade. Enviar sinais periódicos de vida ao sistema central, para que a perda de um nó apareça no painel. |
+| R06 | Mitigar | Revisar a alimentação na BOM, trocando a pilha tipo moeda por uma fonte de 5 V com bateria recarregável de reserva, dimensionada para a duração de uma evacuação. |
+| R07 | Evitar | Restringir o piloto aos pontos de encontro, que por definição ficam em áreas seguras, e especificar gabinete e grau de proteção antes de qualquer instalação na planta. A certificação para áreas classificadas fica fora do escopo do módulo e será registrada como recomendação à Unipar. |
+| R08 | Mitigar | Solicitar à SSMA, ainda na sprint 2, uma data de simulado e, até lá, fazer ensaios controlados com cronometragem e gravação em vídeo, seguindo o método da seção 3.1.3.5. |
+| R09 | Mitigar | Validar um protótipo de baixa fidelidade do painel com os perfis de CCO e SSMA antes de implementá-lo, priorizando três informações: o saldo pendente, o cronômetro de 10 minutos e as chegadas por ponto de encontro. |
+| R10 | Mitigar | Exibir no painel a igualdade A = B como convergência numérica, nunca como evacuação confirmada, e manter a conclusão do evento como uma ação explícita da SSMA (RN07 e RN10). |
+| R11 | Evitar | Manter apenas dados fictícios ou anonimizados no repositório e nos testes, com pseudonimização dos identificadores, conforme a seção 3.1.6. |
+| R12 | Mitigar | Tratar a arquitetura da solução (seção 3.3.5) como fonte única de escopo e de hardware, e verificar na revisão de cada PR se a seção alterada continua coerente com as demais. |
+| R13 | Aceitar | Comprar os componentes no início da sprint 2, com unidades de reserva para os itens mais baratos, e manter o simulador Wokwi como contingência para os testes. |
+
+<p>Fonte: elaboração dos autores (2026).</p>
+</div>
+
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
 _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
