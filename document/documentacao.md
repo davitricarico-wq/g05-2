@@ -892,6 +892,10 @@ Ao fim da sprint 1, os oito casos de teste do protótipo inicial estão ligados 
 
 Pelo lado dos requisitos, os casos executados exercitam cinco dos treze requisitos funcionais citados nas regras: RF001, RF004, RF005, RF006 e RF009. Os elos quebrados mais sensíveis são os da RN02 e da RN06, porque são eles que sustentam a base congelada B e o alerta dos 10 minutos, os dois pontos que a seção 3.1.3 apresenta como centrais para a decisão da SSMA sobre o acionamento da brigada.
 
+#### Atualização da matriz
+
+A RTM é revisada ao fim de cada sprint, junto com a matriz de riscos da seção 3.1.5. Na revisão, todo caso de teste novo das seções 3.4.2 a 3.4.5 entra na matriz já ligado a uma regra e a uma evidência, e toda linha pendente cuja sprint prevista terminou precisa ser fechada com um caso de teste ou ter o atraso justificado. Para a sprint 2, a prioridade é ampliar a cobertura da RN04 no protótipo físico, com passagens simultâneas e repassagens, que são os cenários dos riscos R01 e R02. A partir da sprint 3, as regras pendentes passam a ter casos de teste automatizados, como pede a seção 3.3.2, e a coluna RF passa a indicar o requisito específico que cada caso exercita.
+
 
 >>>>>>> 84efdc6 (docs(#49): adiciona rastreabilidade da RN01 (CT01, CT06 e CT07))
 ### 3.3.5. Arquitetura da Solução (sprint 3)
