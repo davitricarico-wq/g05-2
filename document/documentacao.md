@@ -231,6 +231,7 @@ Cada coluna da RTM vem de uma seção específica do documento, e nenhuma inform
 | Tuco Salamanca (Gestor de SSMA) | RF001, RF004, RF005, RF006 | RN04 | CT03 | A permanência do mesmo objeto diante do sensor não gera contagens repetidas, e o total segue em `1` ([figura do CT03](../assets/casos_teste_prototipos/inicial/T03.png)). | Parcial |
 | Tuco Salamanca (Gestor de SSMA) | RF001, RF004, RF005, RF006 | RN04 | CT04 | A nova aproximação só é contada depois de o sensor voltar a ler acima de 200 cm, e o total passa para `2` ([figuras do CT04](../assets/casos_teste_prototipos/inicial/T04_1.png) e [aproximação seguinte](../assets/casos_teste_prototipos/inicial/T04_2.png)). | Parcial |
 | Tuco Salamanca (Gestor de SSMA) | RF001, RF004, RF005, RF006 | RN04 | CT05 | Uma leitura válida de 376 cm, fora da área de interesse, não altera o total nem aciona o buzzer ([figura do CT05](../assets/casos_teste_prototipos/inicial/T05.png)). | Parcial |
+| Tuco Salamanca (Gestor de SSMA) | RF006, RF009 | RN08 | CT08 | Com o fio `ECHO` desconectado, a leitura ausente é tratada como inválida, o total permanece em `0` e o sistema continua em execução, então a falta de leitura não vira chegada ([figura do CT08](../assets/casos_teste_prototipos/inicial/T08.png)). O protótipo ainda não marca o balanço como inconclusivo nem avisa a SSMA. | Parcial |
 
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
