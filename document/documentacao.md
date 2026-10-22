@@ -165,6 +165,24 @@ Cada ameaça recebeu uma estratégia de resposta. **Evitar** significa mudar o e
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
+#### Oportunidades
+
+As oportunidades partem dos benefícios e diferenciais já apontados nas seções 1.3 e 3.1.3.4. As estratégias usadas são **explorar**, quando o grupo age para garantir que a oportunidade aconteça, **melhorar**, quando age para aumentar a chance ou o benefício, e **compartilhar**, quando a oportunidade depende de outro ator para ser aproveitada.
+
+<div align="center">
+<p>Quadro X – Oportunidades identificadas no projeto</p>
+
+| ID | Oportunidade | Probabilidade | Impacto | Justificativa | Estratégia e ação |
+| --- | --- | :---: | :---: | --- | --- |
+| O01 | Aproveitar o crachá e as catracas que já existem na planta. | Alta (70%) | Alto | A base B usa a infraestrutura atual de controle de acesso, sem um dispositivo novo para o colaborador, o que a seção 1.3 aponta como diferencial, já que equipamentos que atrapalham o EPI tendem a ser abandonados. Isso reduz o custo de implantação e a resistência de uso de quem está na ponta, como o técnico de operação representado pela persona Gustavo Fring (seção 3.2.1). | Explorar: priorizar na integração o formato de dados que o controle de acesso da Unipar já produz. |
+| O02 | Reduzir a exposição da brigada a buscas sem direção. | Média (50%) | Muito alto | Com o saldo pendente e os setores das pessoas presentes na base congelada, a SSMA pode acionar a brigada apenas quando há pendência real (seção 3.1.3.3), evitando buscas com roupa de proteção química e ar limitado em áreas onde ninguém ficou. | Explorar: incluir no alerta dos 10 minutos (RN06) os setores das pessoas que estavam na planta no momento do alarme. |
+| O03 | Usar o histórico de passagens para melhorar o Plano de Ação de Emergência (PAE). | Alta (70%) | Moderado | Cada passagem é registrada com horário, e a seção 3.1.3.4 prevê usar a curva de esvaziamento para identificar rotas sobrecarregadas. Esse ganho aparece já nos simulados, sem depender de uma emergência real. | Melhorar: guardar os eventos com horário e ponto de encontro desde o primeiro ensaio. |
+| O04 | Replicar a solução nas outras plantas da Unipar. | Média (50%) | Alto | O TAPI já aponta Santo André, Camaçari e Bahía Blanca como unidades beneficiadas (UNIPAR, 2026), e a seção 1.3 destaca esse potencial. Como o balanço depende apenas de portarias e pontos de encontro, o modelo não fica preso ao layout de Cubatão. | Explorar: configurar dispositivos e locais de forma independente da planta, como já exige a RN03. |
+| O05 | Servir de base para etapas futuras com câmeras e drones. | Baixa (30%) | Moderado | No kickoff, a Unipar citou câmeras e drones como possíveis evoluções do processo (seção 1.3). Uma arquitetura com dispositivos identificados e mensagens MQTT permite somar novas fontes de contagem sem refazer o balanço. | Compartilhar: registrar a possibilidade nas recomendações da seção 4, para que a Unipar decida sobre a continuidade. |
+
+<p>Fonte: elaboração dos autores (2026).</p>
+</div>
+
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
 _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
