@@ -183,6 +183,18 @@ As oportunidades partem dos benefícios e diferenciais já apontados nas seçõe
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
+#### Matriz de riscos
+
+A Figura X distribui as ameaças e as oportunidades dos quadros anteriores no template da turma, cruzando a probabilidade com o impacto de cada item.
+
+<div align="center">
+<sub>Figura X – Matriz de riscos do projeto</sub>
+
+<img src="../assets/matriz-de-riscos.png" width="80%">
+
+<sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026).</sup>
+</div>
+
 #### Síntese e prioridades
 
 Olhando o conjunto, as ameaças mais críticas se concentram na própria contagem. R01, R02 e R03 ficam na faixa de impacto muito alto porque atacam diretamente os dois números do balanço, A e B, e um erro em qualquer um deles pode zerar o saldo pendente com pessoas ainda na área. Por isso, a prioridade da sprint 2 é validar a contagem no protótipo físico, com passagens simultâneas, repassagens e os dois sensores em sequência, antes de avançar para a integração com o painel.
