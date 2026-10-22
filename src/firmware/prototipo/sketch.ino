@@ -1,34 +1,48 @@
+
 #include <Wire.h>
 
 const int red = 12;
 const int green = 13;
-const int pontenciometro = A0;
-const int buzzer = 5;
-const int trig = 3;
-const int echo = 2;
-const int sda = A4;
-const int scl = A5;
+const int buzzer = 6;
+
+const int trigSaida = 3;
+const int echoSaida = 2;
+
+const int trigEntrada = 5;
+const int echoEntrada = 4;
 
 const int botao = 11;
+
 int emergencia = 1;
 bool estadoBotaoAnterior = HIGH;
+
+const int distanciaLimite = 200;
+const unsigned long tempoBloqueio = 1000;
+
+// 0 = nenhum sensor ativo
+// 1 = sensor de saida ativo
+// 2 = sensor de entrada ativo
+int sensorAtivo = 0;
+
+bool aguardandoLiberacao = false;
+unsigned long inicioBloqueio = 0;
 
 class ContadorPessoas {
 private:
   int total;
-  bool objetoDetectado;
 
 public:
-  ContadorPessoas() : total(0), objetoDetectado(false) {}
+  ContadorPessoas() : total(0) {}
 
-  void verificarDistancia(long duracao, float distancia, int limite) {
-    if (duracao > 0 && distancia > 0 && distancia < limite) {
-      if (!objetoDetectado) {
-        total++;
-        objetoDetectado = true;
-      }
-    } else {
-      objetoDetectado = false;
+  // Pessoa entrou: aumenta
+  void entrada() {
+    total++;
+  }
+
+  // Pessoa saiu: diminui
+  void saida() {
+    if (total > 0) {
+      total--;
     }
   }
 
@@ -38,8 +52,8 @@ public:
 };
 
 ContadorPessoas contador;
-const int distanciaLimite = 200;
 
+// LCD I2C
 const byte LCD_ADDR = 0x27;
 
 const byte RS = 0x01;
@@ -110,6 +124,33 @@ void atualizarContador() {
   texto(numero);
 }
 
+// Mede a distancia
+float medirDistancia(int trig, int echo) {
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+
+  digitalWrite(trig, LOW);
+
+  long duracao = pulseIn(echo, HIGH, 30000);
+
+  if (duracao == 0) {
+    return -1;
+  }
+
+  return duracao * 0.0343 / 2;
+}
+
+// Verifica se existe uma pessoa
+bool detectarPessoa(int trig, int echo) {
+  float distancia = medirDistancia(trig, echo);
+
+  return distancia > 0 &&
+         distancia < distanciaLimite;
+}
+
 void setup() {
   Serial.begin(9600);
   Wire.begin();
@@ -117,21 +158,30 @@ void setup() {
   pinMode(red, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(buzzer, OUTPUT);
-  pinMode(trig, OUTPUT);
-  pinMode(echo, INPUT);
+
+  pinMode(trigSaida, OUTPUT);
+  pinMode(echoSaida, INPUT);
+
+  pinMode(trigEntrada, OUTPUT);
+  pinMode(echoEntrada, INPUT);
 
   pinMode(botao, INPUT_PULLUP);
 
   iniciarLCD();
+
   posicao(0, 0);
   texto("CONTADOR PESSOAS");
+
   atualizarContador();
 }
 
 void loop() {
   bool estadoBotaoAtual = digitalRead(botao);
 
-  if (estadoBotaoAnterior == HIGH && estadoBotaoAtual == LOW) {
+  // Controle do botao
+  if (estadoBotaoAnterior == HIGH &&
+      estadoBotaoAtual == LOW) {
+
     delay(10);
 
     if (digitalRead(botao) == LOW) {
@@ -148,39 +198,92 @@ void loop() {
 
   estadoBotaoAnterior = digitalRead(botao);
 
-  int valorPot = analogRead(pontenciometro);
-
-  switch(emergencia) {
-    case 0: {
-      digitalWrite(green, LOW);
-      digitalWrite(red, HIGH);
-
-      digitalWrite(trig, LOW);
-      delayMicroseconds(2);
-      digitalWrite(trig, HIGH);
-      delayMicroseconds(10);
-      digitalWrite(trig, LOW);
-
-      long duracao = pulseIn(echo, HIGH, 30000);
-      float distancia = duracao * 0.0343 / 2;
-      Serial.print("Distancia em cm: ");
-      Serial.println(distancia);
-
-      int totalAnterior = contador.obterTotal();
-      contador.verificarDistancia(duracao, distancia, distanciaLimite);
-
-      if (contador.obterTotal() > totalAnterior) {
-        atualizarContador();
-
-        int frequencia = map(valorPot, 0, 1023, 200, 2000);
-        tone(buzzer, frequencia, 100);
-      }
-      break;
-    }
-    case 1:
-      noTone(buzzer);
-      digitalWrite(red, LOW);
-      digitalWrite(green, HIGH);
-      break;
+  // LEDs: normal ou emergencia
+  if (emergencia == 0) {
+    digitalWrite(red, HIGH);
+    digitalWrite(green, LOW);
   }
+  else {
+    digitalWrite(red, LOW);
+    digitalWrite(green, HIGH);
+  }
+
+  // Sensores funcionam nos dois modos
+
+  if (sensorAtivo == 0) {
+
+    // Sensor de saida: diminui
+    if (detectarPessoa(trigSaida, echoSaida)) {
+      sensorAtivo = 1;
+
+      contador.saida();
+      atualizarContador();
+
+      tone(buzzer, 1000, 100);
+
+      Serial.println("Pessoa saiu: -1");
+    }
+
+    // Sensor de entrada: aumenta
+    else if (detectarPessoa(trigEntrada, echoEntrada)) {
+      sensorAtivo = 2;
+
+      contador.entrada();
+      atualizarContador();
+
+      tone(buzzer, 1000, 100);
+
+      Serial.println("Pessoa entrou: +1");
+    }
+  }
+
+  // Sensor de saida ativo
+  else if (sensorAtivo == 1) {
+
+    bool detectou =
+      detectarPessoa(trigSaida, echoSaida);
+
+    if (detectou) {
+      aguardandoLiberacao = false;
+    }
+    else {
+      if (!aguardandoLiberacao) {
+        aguardandoLiberacao = true;
+        inicioBloqueio = millis();
+      }
+
+      if (millis() - inicioBloqueio >= tempoBloqueio) {
+        sensorAtivo = 0;
+        aguardandoLiberacao = false;
+
+        Serial.println("Sensores liberados");
+      }
+    }
+  }
+
+  // Sensor de entrada ativo
+  else if (sensorAtivo == 2) {
+
+    bool detectou =
+      detectarPessoa(trigEntrada, echoEntrada);
+
+    if (detectou) {
+      aguardandoLiberacao = false;
+    }
+    else {
+      if (!aguardandoLiberacao) {
+        aguardandoLiberacao = true;
+        inicioBloqueio = millis();
+      }
+
+      if (millis() - inicioBloqueio >= tempoBloqueio) {
+        sensorAtivo = 0;
+        aguardandoLiberacao = false;
+
+        Serial.println("Sensores liberados");
+      }
+    }
+  }
+
+  delay(20);
 }
