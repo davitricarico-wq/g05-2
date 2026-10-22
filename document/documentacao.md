@@ -200,7 +200,7 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
 - Profissão: operadora de Centro de Controle Operacional (CCO).
 - Localização: Cubatão, São Paulo.
 - Formação: curso técnico em Automação Industrial e treinamentos internos aplicáveis à operação.
-- Perfil socioeconômico: profissional assalariada de nível técnico, com renda familiar estável. Esses dados compõem um perfil plausível, não uma descrição de uma empregada real da Unipar.
+- Setor: Centro de Controle Operacional (CCO).
 
 **Biografia**
 
