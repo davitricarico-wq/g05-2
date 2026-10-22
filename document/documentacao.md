@@ -206,6 +206,17 @@ _Nesta seção, detalhe a especificação da solução, de acordo com o disposto
 
 A Matriz de Rastreabilidade de Requisitos (RTM) liga cada necessidade de uma persona ao requisito funcional que a atende, à regra de negócio que delimita esse requisito, ao caso de teste que o verifica e à evidência que comprova o resultado. A cadeia só se sustenta se todos os elos existirem: uma regra sem caso de teste não tem como ser comprovada, e um caso de teste sem regra associada não demonstra nada sobre o comportamento que a Unipar espera da solução. Por isso, a RTM também serve para mostrar o que ainda falta comprovar, e não apenas o que já foi testado. Isso também ajuda a controlar o risco R12 da matriz de riscos (seção 3.1.5), que trata do desalinhamento entre o escopo documentado e o protótipo, já que qualquer divergência entre requisitos, regras e testes aparece como um elo quebrado nesta matriz.
 
+#### Fontes e critérios de leitura
+
+Cada coluna da RTM vem de uma seção específica do documento, e nenhuma informação foi criada só para a matriz:
+
+- A coluna **Persona** usa as personas da seção 3.2.1 e indica quem é atendido pelo comportamento verificado. A brigada e a área de Infraestrutura e TI aparecem como stakeholders secundários, sem persona própria, por isso as linhas que os envolvem registram a persona primária que consome o resultado, normalmente o gestor de SSMA Tuco Salamanca.
+- A coluna **RF** reproduz os requisitos funcionais associados a cada regra no quadro de regras de negócio da seção 3.3.2. Quando a regra está ligada a mais de um requisito, todos são listados, e a coluna será refinada para o requisito específico exercitado por cada caso de teste à medida que a seção 3.3.1 for consolidada.
+- A coluna **RN** usa as regras de negócio RN01 a RN11 da seção 3.3.2.
+- A coluna **Caso de teste** usa os casos executados e documentados na seção 3.4.1, como orienta o template. Os casos planejados listados no critério de sucesso 4 da seção 3.1.3.5 entram na matriz à medida que forem executados e registrados nas seções 3.4.2 e 3.4.3.
+- A coluna **Evidência** aponta para a figura do caso de teste na seção 3.4.1, gerada a partir do [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353).
+- A coluna **Status** indica se a regra está coberta, coberta parcialmente ou pendente. Uma regra pendente é um elo quebrado conhecido, registrado junto com a sprint em que deve ser fechado.
+
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
