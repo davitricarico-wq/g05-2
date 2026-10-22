@@ -227,6 +227,10 @@ Cada coluna da RTM vem de uma seção específica do documento, e nenhuma inform
 | Maria Schrader (CCO) | RF004, RF005 | RN01 | CT01 | O acionamento do modo de monitoramento acende o LED vermelho e mantém `Total: 0`, então nenhuma passagem é contada antes do início do evento ([figura do CT01](../assets/casos_teste_prototipos/inicial/T01.png)). | Coberta |
 | Maria Schrader (CCO) | RF004, RF005 | RN01 | CT06 | A pausa do monitoramento encerra a contagem sem apagar o total já registrado ([figura do CT06](../assets/casos_teste_prototipos/inicial/T06.png)). | Coberta |
 | Maria Schrader (CCO) | RF004, RF005 | RN01 | CT07 | Uma leitura de 74 cm com o sistema pausado não altera o total, ou seja, a passagem fora de evento aberto não é tratada como chegada ([figura do CT07](../assets/casos_teste_prototipos/inicial/T07.png)). | Coberta |
+| Gustavo Fring (Técnico de Operação) | RF001, RF004, RF005, RF006 | RN04 | CT02 | Uma presença a 148 cm é contada uma única vez, com `Total: 1` no LCD e aviso sonoro, o que confirma a chegada para quem passa ([figura do CT02](../assets/casos_teste_prototipos/inicial/T02.png)). | Coberta |
+| Tuco Salamanca (Gestor de SSMA) | RF001, RF004, RF005, RF006 | RN04 | CT03 | A permanência do mesmo objeto diante do sensor não gera contagens repetidas, e o total segue em `1` ([figura do CT03](../assets/casos_teste_prototipos/inicial/T03.png)). | Coberta |
+| Tuco Salamanca (Gestor de SSMA) | RF001, RF004, RF005, RF006 | RN04 | CT04 | A nova aproximação só é contada depois de o sensor voltar a ler acima de 200 cm, e o total passa para `2` ([figuras do CT04](../assets/casos_teste_prototipos/inicial/T04_1.png) e [aproximação seguinte](../assets/casos_teste_prototipos/inicial/T04_2.png)). | Coberta |
+| Tuco Salamanca (Gestor de SSMA) | RF001, RF004, RF005, RF006 | RN04 | CT05 | Uma leitura válida de 376 cm, fora da área de interesse, não altera o total nem aciona o buzzer ([figura do CT05](../assets/casos_teste_prototipos/inicial/T05.png)). | Coberta |
 
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
