@@ -126,7 +126,7 @@ A persona colaborador corresponde a todos os colaboradores e funcionários que t
   <sub>Figura 02: Técnico de Operação</sub>
     </div>
       <div align="center">
-       <img src="../assets/personaTecnicoOperacoes.png">
+       <img src="/document/outros/personaGustavoFring.png">
       </div>
     <div align="center">
   <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
@@ -144,7 +144,7 @@ A persona colaborador corresponde a todos os colaboradores e funcionários que t
 
 **Biografia**
 
-João trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em uma zona diferente quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Chega ao trabalho com EPI e, tem como prioridade durante uma emergência, sair com segurança e saber que a equipe de resposta recebeu seu pedido de ajuda, caso precise.
+Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em uma zona diferente quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Chega ao trabalho com EPI e, tem como prioridade durante uma emergência, sair com segurança e saber que a equipe de resposta recebeu seu pedido de ajuda, caso precise.
 
 | Prioridade      | Dor ou necessidade                                                          | O que espera da solução(desejos)                                                                             |
 | :-------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
@@ -189,7 +189,7 @@ João trabalha há oito anos em ambiente industrial e conhece os procedimentos d
   <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
     </div>
       <div align="center">
-       <img src="../assets/personaTecnicoOperacoes.png">
+       <img src="/document/outros/personaMartaFerreira.png">
       </div>
     <div align="center">
   <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
