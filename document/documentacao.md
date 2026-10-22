@@ -189,7 +189,7 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
   <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
     </div>
       <div align="center">
-       <img src="/assets/personaMartaFerreira.png">
+       <img src="/assets/personaMariaSchrader.png">
       </div>
     <div align="center">
   <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
