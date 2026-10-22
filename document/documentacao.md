@@ -75,9 +75,9 @@ _A entrega deve ser realizada no formato de quadrante (template), semelhante ao 
 
 _O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._     
 
-### 3.1.5. Matriz de Riscos (sprint 1)	
+### 3.1.5. Matriz de Riscos
 
-_A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estão criando. Deve ser entregue no template disponível no drive da turma. Os alunos devem enumerar os riscos, distribuí-los na matriz e justificar suas decisões._     
+A matriz de riscos reúne os eventos incertos que podem afetar o projeto, tanto os negativos, chamados de ameaças, quanto os positivos, chamados de oportunidades, e os distribui de acordo com a probabilidade de ocorrência e o impacto de cada um. O recorte é o mesmo das seções anteriores: o balanço de evacuação da fábrica de Cubatão, em que a população presente na planta no momento do alarme (B) é comparada às chegadas registradas nos pontos de encontro (A), como descrito na seção 3.1.3. Por isso, os riscos foram levantados a partir do que o projeto já definiu, como as regras de negócio (seção 3.3.2), a política de privacidade (seção 3.1.6), a BOM (seção 3.1.7) e os testes do protótipo inicial (seção 3.4.1), e não a partir de uma lista genérica de riscos de IoT.
 
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
