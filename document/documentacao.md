@@ -43,13 +43,13 @@ _Faça uma breve defesa de sua proposta de solução, escreva sobre seus potenci
 
 _Descreva as etapas da metodologia RM-ODP que foram utilizadas para o desenvolvimento, citando o referencial teórico. Você deve apenas enunciar os métodos, sem dizer ainda como ele foi aplicado e quais resultados obtidos._
 
-# <a name="c3"></a>3. Desenvolvimento e Resultados
+# <a name="c3"></a>3. Desenvolvimento e Resultados 
 
 ## 3.1. Domínio de Fundamentos de Negócio
 
 _Link para os templates de negócios: https://drive.google.com/drive/folders/1lTqisJ_gxxtc5J5aXM8ula2kQ4MsII_M?usp=sharing_
 
-### 3.1.1. Contexto da Indústria (sprint 1)	
+### 3.1.1. Contexto da Indústria
 
 _O aluno deve fornecer informações sobre a concorrência (mínimo 3 competidores - 1 parágrafo; modelo de negócio - 1 parágrafo, e tendências - 1 parágrafo). Considere o setor do parceiro. Por exemplo, se o parceiro for a Rede Gazeta, o setor de Televisão.<br>
 <br>
@@ -70,8 +70,8 @@ _A entrega deve ser realizada no formato de quadrante (template), semelhante ao 
 #### 3.1.3.4 Quais os benefícios trazidos pela solução proposta
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
-
-### 3.1.4. Value Proposition Canvas (sprint 1)
+	
+### 3.1.4. Value Proposition Canvas
 
 _O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._     
 
@@ -214,9 +214,9 @@ Para a próxima fase do projeto, as prioridades estratégicas definidas pelo gru
 2. **Automação da Presença (R2 & O1):** Validação da leitura por RF na portaria para formação dinâmica da lista de colaboradores presentes na planta.
 3. **Resiliência de Comunicação (R4 & O2):** Uso do protocolo **ESP-NOW** para assegurar que a troca de informações entre as zonas continue funcionando mesmo se a rede Wi-Fi da fábrica for interrompida.
 
-### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)
+### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
-_A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
+_A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita considerando o projeto que os alunos estão criando. Os pontos a seguir precisam ser apresentados. O aluno pode utilizar  o Gerador de Política de Privacidade (https://www.nuvemshop.com.br/ferramentas/gerador-politica-de-privacidade), criado pela Nuvemshop e, de acordo com a empresa, já adaptado a LGPD para ter uma prévia e ajustar de acordo com o seu projeto._
 
 #### 3.1.6.1 Informações gerais sobre a empresa / organização
 
@@ -228,7 +228,7 @@ _A Política de privacidade para o projeto de acordo com a LGPD deve ser escrita
 
 #### 3.1.6.5 Para quais finalidades os dados serão utilizadas
 
-#### 3.1.6.6 Onde os dados ficam armazenados
+#### 3.1.6.6 Onde os dados ficam armazenados 
 
 #### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)
 
@@ -275,7 +275,7 @@ Esta BOM considera **uma unidade** do protótipo ilustrado, composta por Arduino
 
 > Observação: Todos os links de compra dos componentes foram acessados em 20/10/2026. Os preços e a disponibilidade podem variar em função do tempo.
 
-A coluna <i>Categoria</i> identifica a função do item no protótipo, enquanto <i>Quantidade</i> registra o número de unidades necessárias. A <i>Referência</i> descreve o componente empregado no circuito, e o <i>Código do componente</i> apresenta o modelo ou a especificação adotada. A coluna <i>Valor do componente</i> registra o valor estimado e disponibiliza o respectivo link de consulta. Nos itens vendidos por unidade, o custo total foi calculado pela multiplicação do valor unitário pela quantidade indicada.
+ A coluna <i>Categoria</i> identifica a função do item no protótipo, enquanto <i>Quantidade</i> registra o número de unidades necessárias. A <i>Referência</i> descreve o componente empregado no circuito, e o <i>Código do componente</i> apresenta o modelo ou a especificação adotada. A coluna <i>Valor do componente</i> registra o valor estimado e disponibiliza o respectivo link de consulta. Nos itens vendidos por unidade, o custo total foi calculado pela multiplicação do valor unitário pela quantidade indicada.
 
 O custo estimado da alternativa A é de R$ 133,46, considerando quatro jumpers macho-fêmea para o display LCD I²C e dezesseis jumpers macho-macho para as demais conexões. Na alternativa B, o custo estimado é de R$ 130,94, utilizando somente vinte jumpers macho-macho, caso todos os módulos possam ser conectados pela protoboard. Ambos os totais incluem uma pilha CR2023 de 3 V. A alternativa B é R$ 2,52 mais econômica e reduz a variedade de cabos necessária; contudo, a escolha deve respeitar o tipo de terminal presente nos componentes físicos.
 
@@ -289,11 +289,11 @@ Assim, a BOM consolida os materiais e as duas possibilidades de interconexão id
 
 ## 3.2. Domínio de Fundamentos de Experiência de Usuário 
 
-### 3.2.1. Personas (sprint 1)
+### 3.2.1. Personas (sprint 1)	
 
 _Coloque aqui suas Personas (seguindo as instruções na descrição do artefato)_
 
-### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
+### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)	
 
 _Coloque aqui seu Mapa de Jornada do Usuário (seguindo as instruções na descrição do artefato)_
 
@@ -314,7 +314,7 @@ _Nesta seção, detalhe a especificação da solução, de acordo com o disposto
 
 ### 3.3.2. Regras de Negócio (sprint 1, refinar até sprint 5)
 
-_Numere e redija as RN de forma implementável e testável. Toda RN deve ter pelo menos um teste automatizado associado a partir da sprint 3._
+*Numere e redija as RN de forma implementável e testável. Toda RN deve ter pelo menos um teste automatizado associado a partir da sprint 3.*
 
 | ID   | Descrição | RF associado |
 |------|-----------|--------------|
@@ -323,7 +323,7 @@ _Numere e redija as RN de forma implementável e testável. Toda RN deve ter pel
 
 ### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
 
-_Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métrica, limite ou critério concreto) ou justificativa explícita de ausência. Evolua do conceitual (sprint 2) ao técnico mensurável (sprint 5)._
+*Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métrica, limite ou critério concreto) ou justificativa explícita de ausência. Evolua do conceitual (sprint 2) ao técnico mensurável (sprint 5).*
 
 | Eixo                     | Requisito | Métrica / Critério | Justificativa |
 |--------------------------|-----------|--------------------|---------------|
@@ -335,6 +335,7 @@ _Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métr
 | CAP — Capacidade         | ...       | ...                | ...           |
 | REST — Restrições Design | ...       | ...                | ...           |
 | ORG — Organizacionais    | ...       | ...                | ...           |
+
 
 ### 3.3.4. Matriz de Rastreabilidade (RTM) (sprints 1 a 5)
 
@@ -353,8 +354,7 @@ _Descreva a arquitetura técnica da solução de forma detalhada (visão de arqu
 
 Justifique como a arquitetura suporta os requisitos funcionais e não funcionais.
 
-O diagrama de arquitetura deve:\_
-
+O diagrama de arquitetura deve:_
 - _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
 - _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
 - _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
@@ -367,9 +367,7 @@ O diagrama de arquitetura deve:\_
 
 _Vídeo de explicação sobre a arquitetura do protótipo físico: (coloque aqui o link do vídeo)_
 
-\_Descreva as tecnologias utilizadas de forma detalhada (visão de tecnologia).
-
-Descreva a arquitetura usando um diagrama de blocos similar à visão anterior, porém especificando as tecnologias utilizadas. O diagrama de arquitetura deve:\_
+_Descreva as tecnologias utilizadas de forma detalhada (visão de tecnologia).
 
 Descreva a arquitetura usando um diagrama de blocos similar à visão anterior, porém especificando as tecnologias utilizadas. O diagrama de arquitetura deve:_
 - _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
@@ -378,7 +376,7 @@ Descreva a arquitetura usando um diagrama de blocos similar à visão anterior, 
 - _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
 - _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
 - _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros._
-  _Faça uma tabela dos possíveis componentes utilizados. Todos os componentes devem estar presentes na arquitetura._
+_Faça uma tabela dos possíveis componentes utilizados. Todos os componentes devem estar presentes na arquitetura._
 
 | **Componente** | **Descrição** | **Tipo** | 
 |----------|----------|----------|
@@ -387,11 +385,12 @@ Descreva a arquitetura usando um diagrama de blocos similar à visão anterior, 
 
 ### 3.3.7. Arquitetura Refinada da Solução (sprint 5)	
 
-\_Descreva a revisão da arquitetura técnica da solução de forma detalhada (visão de arquitetura). <br>
+_Descreva a revisão da arquitetura técnica da solução de forma detalhada (visão de arquitetura). <br>
 
 Justifique como a arquitetura suporta os requisitos funcionais e não funcionais. <br>
 
-A revisão deverá incluir comentários sobre cada ponto levantado, mostrando como os ajustes foram realizados, além da descrição da arquitetura revisada.\_
+A revisão deverá incluir comentários sobre cada ponto levantado, mostrando como os ajustes foram realizados, além da descrição da arquitetura revisada._
+
 
 ## 3.4. Resultados	
 
@@ -408,7 +407,7 @@ Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esq
 |----------|----------|----------|----------|----------|----------|----------|
 |CT01|ex. medidor de umidade relativa do ar|ex. “sensor de umidade XPTO”| < 100 | ex. led amarelo | piscante em intervalo de 1s | quando a umidade está baixa, o led amarelo pisca
 
-### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)
+### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)	
 
 _Aqui você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema físico. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
 Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
@@ -426,7 +425,7 @@ Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esq
 |----------|----------|----------|----------|
 |CT21|ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização | 
 
-### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)
+### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)	
 
 _Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
 **Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
