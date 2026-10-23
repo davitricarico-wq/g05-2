@@ -616,16 +616,87 @@ A revisão deverá incluir comentários sobre cada ponto levantado, mostrando co
 
 _Nesta seção, detalhe os resultados obtidos com a implementação, de acordo com o disposto nas subseções._
 
-### 3.4.1.Protótipo Inicial do Projeto usando o Simulador Wokwi (sprint 1)
+### 3.4.1. Protótipo Inicial do Projeto usando o Simulador Wokwi (sprint 1)
 
-_Preencha aqui o link para o protótipo inicial no Wokwi_
+O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito estão armazenados no diretório [`src/firmware/prototipo`](../src/firmware/prototipo/).
 
-_Abaixo você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema no simulador. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do simulador e descreva os testes realizados para ilustrar o funcionamento do protótipo simulado. A tabela a seguir serve como exemplo._
+O protótipo consiste em um contador de pessoas desenvolvido com Arduino Uno e dois sensores ultrassônicos HC-SR04. Um dos sensores registra a entrada de pessoas e incrementa o contador, enquanto o segundo registra a saída e decrementa o total. O valor atualizado é apresentado em um display LCD 16x2 conectado por I2C. Cada entrada ou saída válida também aciona um buzzer na frequência de 1.000 Hz durante 100 ms.
 
-| **CT#** | **Bloco**                             | **Componente de entrada**    | **Leitura da entrada** | **Componente de saída** | **Leitura da saída**        | **Descrição**                                    |
-| ------- | ------------------------------------- | ---------------------------- | ---------------------- | ----------------------- | --------------------------- | ------------------------------------------------ |
-| CT01    | ex. medidor de umidade relativa do ar | ex. “sensor de umidade XPTO” | < 100                  | ex. led amarelo         | piscante em intervalo de 1s | quando a umidade está baixa, o led amarelo pisca |
+Uma pessoa é detectada quando a distância medida pelo sensor é maior que zero e menor que 200 cm. Depois de uma detecção, o sensor permanece bloqueado até deixar de detectar a pessoa e permanecer livre durante pelo menos um segundo. Esse mecanismo evita contagens repetidas causadas pela permanência de uma pessoa em frente ao sensor. Durante o bloqueio, leituras conflitantes do outro sensor são ignoradas. O contador também possui uma proteção que impede a apresentação de valores negativos.
+
+O botão alterna a sinalização visual entre os LEDs verde e vermelho sem interromper o funcionamento dos sensores. Dessa forma, o usuário recebe uma indicação visual do estado selecionado sem perder o monitoramento de entradas e saídas. Caso um sensor não retorne o pulso de eco dentro de 30 ms, a medição é considerada inválida e descartada sem alterar o contador ou acionar o buzzer.
+
+O software contém as funções obrigatórias `setup()` e `loop()`, além de funções auxiliares como `iniciarLCD()`, `atualizarContador()`, `medirDistancia()` e `detectarPessoa()`. Também foi definida a classe `ContadorPessoas`. A instância `contador` dessa classe é utilizada no `loop()` para registrar entradas, registrar saídas e consultar o total atual. O código foi executado no Wokwi sem erros de sintaxe ou compilação.
+
+#### Casos de teste
+
+Os testes CT01 a CT05 representam uma sequência completa de entrada e saída. Os testes seguintes verificam o botão e os LEDs, condições de limite, leituras simultâneas e falha de leitura. A simulação foi reiniciada quando necessário para isolar a situação avaliada.
+
+| **CT#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição e resultado observado** |
+|---|---|---|---|---|---|---|
+| CT01 | Inicialização | Arduino Uno | Simulação iniciada sem pessoas próximas aos sensores | LED verde e LCD 16x2 | LED verde aceso, LED vermelho apagado e `Total: 0` | O sistema inicializa com o contador zerado e fica pronto para receber leituras. **Aprovado.** |
+| CT02 | Entrada de pessoa | HC-SR04 de entrada | 2 cm, abaixo do limite de 200 cm | LCD 16x2, buzzer e monitor serial | `Total: 1`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa entrou: +1` | A pessoa é detectada pelo sensor de entrada e o contador é incrementado uma única vez. **Aprovado.** |
+| CT03 | Liberação do sensor de entrada | HC-SR04 de entrada | Distância alterada para 400 cm depois da entrada | LCD 16x2 | Total permanece em `1` | O afastamento não gera uma nova contagem. Após um segundo sem presença, os sensores são liberados para o próximo evento. **Aprovado.** |
+| CT04 | Saída de pessoa | HC-SR04 de saída | 43 cm, com o total anterior igual a `1` | LCD 16x2, buzzer e monitor serial | `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A pessoa é detectada pelo sensor de saída e o contador é reduzido em uma unidade. **Aprovado.** |
+| CT05 | Liberação do sensor de saída | HC-SR04 de saída | Distância alterada para 400 cm depois da saída | LCD 16x2 | Total permanece em `0` | O afastamento não gera outro decremento. Após um segundo sem presença, os sensores são liberados para a próxima leitura. **Aprovado.** |
+| CT06 | Sinalização vermelha | Botão | Um pressionamento válido | LEDs e LCD 16x2 | LED vermelho aceso, LED verde apagado e total preservado em `0` | O botão alterna a sinalização para o LED vermelho sem reiniciar ou modificar o contador. **Aprovado.** |
+| CT07 | Proteção contra valor negativo | HC-SR04 de saída | 6 cm com o contador já em `0` | LCD 16x2, buzzer e monitor serial | LCD permanece em `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A saída é detectada, mas o método `saida()` impede que o total seja reduzido abaixo de zero. **Aprovado.** |
+| CT08 | Objeto fora do alcance | HC-SR04 | 400 cm, acima do limite de detecção de 200 cm | LCD 16x2 e buzzer | Total permanece em `0` e buzzer não é acionado | O objeto fora do alcance definido não é interpretado como uma pessoa e não altera o contador. **Aprovado.** |
+| CT09 | Bloqueio de leituras conflitantes | HC-SR04 de entrada e HC-SR04 de saída | Entrada detectada a 2 cm e, antes da liberação, leitura de 86 cm no sensor de saída | LCD 16x2, buzzer e monitor serial | Apenas uma entrada é registrada e o total permanece em `1` | O sensor de entrada é processado primeiro e permanece ativo. A leitura do sensor de saída é ignorada até a liberação do sensor inicial, evitando alterações conflitantes ou contagens duplicadas. **Aprovado.** |
+| CT10 | Falha de leitura do sensor | HC-SR04 com o fio `ECHO` desconectado | Sensor configurado em 63 cm, mas sem pulso de retorno durante 30 ms | LCD 16x2 e buzzer | Total permanece em `0` e buzzer não é acionado | A função `medirDistancia()` devolve `-1` após o tempo limite. A leitura inválida é descartada e o sistema continua funcionando sem contabilizar uma pessoa incorretamente. **Aprovado.** |
+
+#### Evidências dos testes
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T01.png" alt="CT01: inicialização do sistema" width="85%"><br>
+  <i>Figura 1 — CT01: sistema inicializado, LED verde aceso e contador apresentado em zero.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T02.png" alt="CT02: entrada de pessoa" width="85%"><br>
+  <i>Figura 2 — CT02: pessoa detectada a 2 cm pelo sensor de entrada, elevando o total para um.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T03.png" alt="CT03: liberação do sensor de entrada" width="85%"><br>
+  <i>Figura 3 — CT03: afastamento para 400 cm libera o sensor de entrada e mantém o total em um.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T04.png" alt="CT04: saída de pessoa" width="85%"><br>
+  <i>Figura 4 — CT04: pessoa detectada a 43 cm pelo sensor de saída, reduzindo o total de um para zero.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T05.png" alt="CT05: liberação do sensor de saída" width="85%"><br>
+  <i>Figura 5 — CT05: afastamento para 400 cm libera o sensor de saída e mantém o total em zero.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T06.png" alt="CT06: LED vermelho acionado pelo botão" width="85%"><br>
+  <i>Figura 6 — CT06: o botão alterna a sinalização para o LED vermelho sem modificar o contador.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T07.png" alt="CT07: saída com contador zerado" width="85%"><br>
+  <i>Figura 7 — CT07: saída detectada a 6 cm; a proteção mantém o contador em zero.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T08.png" alt="CT08: objeto fora do alcance" width="85%"><br>
+  <i>Figura 8 — CT08: objeto posicionado a 400 cm, fora do limite de detecção, sem alteração no contador.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T09.1.png" alt="CT09: entrada registrada antes da leitura conflitante" width="42%">
+  <img src="../assets/casos_teste_prototipos/inicial/T09.2.png" alt="CT09: leitura conflitante ignorada" width="42%"><br>
+  <i>Figura 9 — CT09: o sensor de entrada registra uma pessoa e a leitura do sensor de saída é ignorada enquanto o primeiro sensor permanece ativo.</i>
+</p>
+
+<p align="center">
+  <img src="../assets/casos_teste_prototipos/inicial/T10.png" alt="CT10: falha de leitura do sensor" width="85%"><br>
+  <i>Figura 10 — CT10: com o fio ECHO desconectado, a leitura inválida é descartada e o contador permanece em zero.</i>
+</p>
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)
 
