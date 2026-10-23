@@ -77,135 +77,140 @@ _O Canvas da proposta de valor deve ser feito considerando a solução que você
 
 ### 3.1.5. Matriz de Riscos
 
-A matriz de riscos reúne os eventos incertos que podem afetar o projeto, tanto os negativos, chamados de ameaças, quanto os positivos, chamados de oportunidades, e os distribui de acordo com a probabilidade de ocorrência e o impacto de cada um. O recorte é o mesmo das seções anteriores: o balanço de evacuação da fábrica de Cubatão, em que a população presente na planta no momento do alarme (B) é comparada às chegadas registradas nos pontos de encontro (A), como descrito na seção 3.1.3. Por isso, os riscos foram levantados a partir do que o projeto já definiu, como as regras de negócio (seção 3.3.2), a política de privacidade (seção 3.1.6), a BOM (seção 3.1.7) e os testes do protótipo inicial (seção 3.4.1), e não a partir de uma lista genérica de riscos de IoT.
+A matriz de riscos reúne os eventos incertos que podem afetar o projeto do grupo **Synthetix**, divididos entre eventos negativos (ameaças) e positivos (oportunidades), distribuindo-os de acordo com a probabilidade de ocorrência e o nível de impacto de cada um.
 
-#### Critérios de classificação
+O escopo de análise considera a arquitetura da solução desenvolvida para evacuação industrial, composta por três componentes principais:
+1. **Chaveiros individuais:** Dispositivos portáteis fixados ao EPI do colaborador, dotados de botões de status/socorro, acelerômetro para detecção de ausência de movimento/queda e sinalização tátil/luminosa.
+2. **Caixas Fixas (Antenas por zona):** Módulos instalados em cada cômodo/zona e no Ponto de Encontro para triangulação de sinal de radiofrequência e confirmação automática de presença.
+3. **Painel Central (Dashboard):** Mapeamento dinâmico em tempo real exibindo a condição das zonas (azul = segura / vermelha = evacuar) e o status individual dos trabalhadores (OK, Pedido de Ajuda, Sem Movimento ou Sem Sinal).
 
-A probabilidade expressa a chance de o evento acontecer durante o projeto ou no piloto. O impacto expressa o efeito do evento sobre o objetivo central da solução, que é permitir que a SSMA saiba, dentro de 10 minutos após o alarme, quantas pessoas ainda não chegaram aos pontos de encontro. As duas escalas seguem os cinco níveis do template da turma e estão descritas nos quadros a seguir.
+Os riscos foram levantados diretamente a partir dos requisitos técnicos do MVP, das definições do grupo e das lacunas operacionais identificadas na fábrica.
+
+---
+
+#### Critérios de Classificação
+
+A probabilidade expressa a chance de o evento ocorrer durante os testes do protótipo ou na operação da planta piloto. O impacto mede o efeito do evento sobre o objetivo central da solução: **garantir a contagem precisa e em tempo real dos trabalhadores, orientar a rota de fuga e acelerar a resposta da brigada de emergência**.
 
 <div align="center">
-<p>Quadro X – Escala de probabilidade da matriz de riscos</p>
 
-| Nível | Faixa | Interpretação no projeto |
-| --- | :---: | --- |
-| Muito baixa | 10% | O evento depende de uma combinação improvável de falhas ou do descumprimento deliberado de uma regra já definida. |
-| Baixa | 30% | O evento pode acontecer, mas já existe regra, restrição ou procedimento que reduz a chance. |
-| Média | 50% | O evento depende de condições que o grupo ainda não controla ou ainda não testou. |
-| Alta | 70% | Já existe indício concreto no projeto, como uma limitação conhecida de componente ou uma dependência externa sem prazo definido. |
-| Muito alta | 90% | O evento é praticamente certo se nada for feito. |
+**Quadro 1 – Escala de probabilidade da matriz de riscos**
 
-<p>Fonte: elaboração dos autores (2026).</p>
+| Nível | Faixa | Interpretação no projeto Synthetix |
+| :--- | :---: | :--- |
+| **Muito baixa** | $10\%$ | O evento depende de uma combinação improvável de falhas ou de descumprimento deliberado de procedimentos. |
+| **Baixa** | $30\%$ | O evento pode acontecer, mas existem salvaguardas operacionais ou redundâncias técnicas que reduzem sua chance. |
+| **Média** | $50\%$ | O evento depende de condições operacionais e de infraestrutura que o grupo ainda não testou totalmente em campo. |
+| **Alta** | $70\%$ | Existe indício concreto de ocorrência, limitação inerente da tecnologia escolhida ou dependência de fatores externos. |
+| **Muito alta** | $90\%$ | O evento é iminente ou praticamente certo na ausência de ação corretiva imediata. |
+
+*Fonte: Elaboração do Grupo Synthetix (2026).*
+
 </div>
 
+<br>
+
 <div align="center">
-<p>Quadro X – Escala de impacto da matriz de riscos</p>
 
-| Nível | Interpretação no projeto |
-| --- | --- |
-| Muito baixo | O efeito não é percebido pelos usuários e não altera nenhuma entrega. |
-| Baixo | O evento exige um ajuste pontual em uma seção ou componente, sem atrasar a sprint. |
-| Moderado | O evento gera retrabalho ou atraso em uma entrega, sem comprometer o objetivo da solução. |
-| Alto | O evento compromete um dos critérios de sucesso da seção 3.1.3.5 ou impede o piloto em parte da planta. |
-| Muito alto | O evento pode levar a SSMA a tratar como segura uma situação em que ainda há pessoas não contabilizadas, ou atrasar o acionamento da brigada. |
+**Quadro 2 – Escala de impacto da matriz de riscos**
 
-<p>Fonte: elaboração dos autores (2026).</p>
+| Nível | Interpretação no projeto Synthetix |
+| :--- | :--- |
+| **Muito baixo** | O evento não altera o funcionamento do painel e passa despercebido pelos operadores. |
+| **Baixo** | Exige ajustes pontuais na calibração dos chaveiros ou na interface gráfica sem atrasar as entregas do projeto. |
+| **Moderado** | Gera retrabalho técnico ou elevação de custos de hardware, sem comprometer a segurança da evacuação. |
+| **Alto** | Compromete a precisão da localização por zonas ou distorce os dados de presença do painel central. |
+| **Muito alto** | Deixa o sistema inoperante na emergência, oculta vítimas não salvas ou atrasa diretamente o resgate da brigada. |
+
+*Fonte: Elaboração do Grupo Synthetix (2026).*
+
 </div>
 
-Para as oportunidades, a leitura é a mesma, com sinal invertido: o impacto mede o quanto o evento aproxima o projeto do seu objetivo, e não o quanto o afasta.
+---
 
-#### Ameaças
-
-As ameaças foram agrupadas em três blocos. O primeiro trata da contagem em si, ou seja, dos dois números que formam o balanço. O segundo trata da integração e da operação do nó de contagem na planta. O terceiro trata da validação, do uso da solução e da condução do projeto.
+#### Ameaças (Riscos Negativos)
 
 <div align="center">
-<p>Quadro X – Ameaças identificadas no projeto</p>
+
+**Quadro 3 – Ameaças identificadas no projeto Synthetix**
 
 | ID | Ameaça | Probabilidade | Impacto | Justificativa |
-| --- | --- | :---: | :---: | --- |
-| R01 | Contagem incorreta quando várias pessoas passam juntas pelo acesso do ponto de encontro. | Alta (70%) | Muito alto | O HC-SR04 mede a distância até o objeto mais próximo em um único feixe, então duas pessoas lado a lado ou muito próximas tendem a ser contadas como uma. Os casos CT03 e CT04 (seção 3.4.1) mostram que o protótipo só libera uma nova contagem quando o sensor volta a ler mais de 200 cm, o que um fluxo denso e apressado de evacuação dificilmente permite. A meta de acurácia de 95% da seção 3.1.3.5 depende de separar essas passagens. |
-| R02 | Repassagens e passagens no sentido contrário somadas como chegadas. | Média (50%) | Muito alto | O protótipo conta qualquer aproximação, sem saber se a pessoa está entrando ou saindo do ponto de encontro. Quem volta para buscar um colega ou circula na entrada aumenta A sem que haja uma nova chegada, o que pode produzir a igualdade A = B antes da hora. É exatamente o cenário que a RN07 tenta conter ao exigir a conferência da SSMA. |
-| R03 | Base B diferente da população que de fato está na planta no momento do alarme. | Média (50%) | Muito alto | B vem do saldo de entradas e saídas das portarias P1 e P2 no instante do alarme (RN02). Saídas sem registro, crachás provisórios, visitantes e pessoas que passam juntas pela catraca deixam esse saldo errado, e a seção 3.1.3.1 já aponta as listas desatualizadas como uma das falhas do processo atual. Se B ficar menor que o real, o saldo pendente D pode chegar a zero com pessoas ainda na área. |
-| R04 | Indisponibilidade dos dados do controle de acesso da Unipar para o projeto. | Alta (70%) | Alto | Sem os registros das portarias não existe B, e o painel passa a mostrar apenas as chegadas, sem o saldo pendente. O TAPI informa que ainda não há sistema digital dedicado ao processo de evacuação (UNIPAR, 2026), e a política da seção 3.1.6 restringe o projeto a dados fictícios até uma autorização formal, o que torna a integração real uma dependência externa sem prazo. |
-| R05 | Perda de comunicação entre o nó de contagem e o sistema central durante a emergência. | Média (50%) | Alto | O nó do ponto de encontro depende da rede para enviar as passagens ao broker MQTT, e uma emergência pode coincidir com queda de energia ou de rede na área. A RN08 impede que a ausência de leitura seja tratada como segurança e marca o balanço como inconclusivo, por isso o impacto é alto e não muito alto: a falha fica visível para a SSMA, mas retira a informação no momento em que ela mais importa. |
-| R06 | Alimentação do nó inadequada para operação autônoma. | Alta (70%) | Alto | A BOM (seção 3.1.7) prevê uma pilha de lítio tipo moeda de 3 V, ainda não implementada, enquanto o Arduino Uno e o HC-SR04 operam em 5 V e consomem mais corrente do que esse tipo de pilha consegue fornecer de forma contínua. Sem uma fonte adequada e com reserva, o nó pode desligar justamente quando a energia da área for cortada na emergência. |
-| R07 | Hardware inadequado para as condições do ambiente industrial. | Alta (70%) | Alto | Os componentes da BOM são de bancada, e a própria seção 3.1.7 registra que ainda faltam gabinete de proteção, fixação mecânica e grau de proteção compatível com a planta. Cubatão tem atmosfera corrosiva, exposição a chuva e zonas classificadas que exigem equipamentos certificados (seção 3.1.3), o que impede instalar o protótipo como está fora de áreas seguras. |
-| R08 | Validação dos critérios de sucesso sem um simulado real na planta. | Alta (70%) | Moderado | A redução de 60% no tempo de apuração e a latência abaixo de 3 s (seção 3.1.3.5) foram definidas para serem medidas em um simulado de abandono promovido pela SSMA de Cubatão. Se o simulado não couber no calendário do módulo, o grupo só consegue fazer ensaios controlados, e esses critérios ficam demonstrados de forma parcial. |
-| R09 | Painel difícil de interpretar sob pressão. | Baixa (30%) | Alto | As personas Maria Schrader, operadora do CCO, e Tuco Salamanca, gestor de SSMA (seção 3.2.1), pedem leitura em segundos e curva de aprendizado nula. Um painel com indicadores demais ou sem hierarquia clara atrasa a decisão sobre a brigada. A probabilidade é baixa porque o painel ainda vai ser desenhado, e já com esse requisito explícito. |
-| R10 | Igualdade A = B interpretada como confirmação individual de todos. | Baixa (30%) | Muito alto | A contagem é agregada e não identifica quem passou (RN09), e o Value Proposition Canvas (seção 3.1.4) reconhece que o ganho de saber quem falta é atendido só em parte. Se a liderança dispensar a conferência manual porque o painel zerou, um erro de contagem vira falsa sensação de segurança. A RN07 reduz a chance ao exigir a avaliação da SSMA antes de encerrar o evento. |
-| R11 | Uso indevido ou vazamento de dados pessoais de colaboradores e terceiros. | Muito baixa (10%) | Alto | A política da seção 3.1.6 proíbe dados reais no desenvolvimento e o uso do sistema para controle de produtividade, e a RN10 restringe o acesso a perfis autorizados, com registro das alterações. O impacto continua alto porque um vazamento expõe colaboradores e terceiros e compromete a confiança na solução. |
-| R12 | Desalinhamento entre o escopo documentado e o protótipo desenvolvido. | Alta (70%) | Moderado | A documentação está sendo escrita em paralelo por várias pessoas, e já existem diferenças entre seções, como o microcontrolador citado na descrição da solução (seção 3.1.3) e o usado na BOM e no protótipo (seções 3.1.7 e 3.4.1). Sem uma fonte única de escopo, requisitos, regras e testes deixam de se referir à mesma solução, o que gera retrabalho e quebra a rastreabilidade da seção 3.3.4. |
-| R13 | Atraso na entrega ou defeito nos componentes do protótipo físico. | Baixa (30%) | Moderado | O protótipo físico offline da sprint 2 (seção 3.4.2) depende da compra dos itens da BOM em marketplaces, sujeitos a prazo de entrega e a peças com defeito. Como os componentes são comuns e baratos, a chance é baixa, mas um atraso empurra os testes físicos para a sprint seguinte. |
+| :---: | :--- | :---: | :---: | :--- |
+| **R1** | **Falha de rede ou queda de energia durante a emergência** | Média ($50\%$) | Muito Alto | Incêndios e explosões frequentemente causam curto-circuito ou desligamento preventivo da rede elétrica da fábrica. Se as Caixas Fixas não possuírem alimentação autônoma por bateria, o sistema inteiro fica "cego" no momento em que mais precisa funcionar. |
+| **R2** | **Ausência de lista de presença diária na fábrica** | Alta ($70\%$) | Alto | Sem saber quem bateu o ponto ou entrou na fábrica no dia, a brigada de incêndio não consegue diferenciar quem falta no Ponto de Encontro de quem simplesmente não foi trabalhar (folga/atestado), mobilizando resgates desnecessários em áreas de risco. |
+| **R3** | **Fator humano no manuseio do chaveiro** | Média ($50\%$) | Moderado | Operadores podem esquecer o chaveiro no armário, a bateria do dispositivo pode descarregar ou visitantes podem entrar sem o equipamento. Embora o colaborador ainda possa evacuar fisicamente, os dados do painel ficam distorcidos. |
+| **R4** | **Interferência de RF por estruturas metálicas industriais** | Baixa ($30\%$) | Alto | Galpões metálicos, tubulações pesadas e motores elétricos geram atenuação e ruído de rádio. Se o sinal falhar ou atenuar demais, o algoritmo de sinal mais forte pode alocar a pessoa na zona errada do mapa. |
+| **R5** | **Inviabilidade por exigência de certificação à prova de explosão (Ex)** | Alta ($70\%$) | Moderado | Em áreas classificadas (com presença de gases ou poeiras inflamáveis), equipamentos exigem invólucros ou circuitos intrinsecamente seguros. Essa exigência eleva o custo e regulamentação do produto, exigindo delimitação de escopo no MVP. |
+| **R6** | **Retardo no acionamento do "Modo Emergência"** | Baixa ($30\%$) | Muito Alto | Se o sistema depender de acionamento manual no painel para alterar o mapa para "Modo Evacuação", falhas humanas ou pânico podem atrasar a sinalização das saídas e o rastreio automático. |
 
-<p>Fonte: elaboração dos autores (2026).</p>
+*Fonte: Elaboração do Grupo Synthetix (2026).*
+
 </div>
 
-#### Planos de resposta às ameaças
+---
 
-Cada ameaça recebeu uma estratégia de resposta. **Evitar** significa mudar o escopo ou o desenho para que o risco deixe de existir, **mitigar** significa reduzir a probabilidade ou o impacto, e **aceitar** significa assumir o risco com um plano de contingência, porque o custo de tratá-lo é maior que o efeito esperado.
+#### Planos de Resposta às Ameaças
 
 <div align="center">
-<p>Quadro X – Planos de resposta às ameaças</p>
 
-| ID | Estratégia | Ação planejada |
-| --- | :---: | --- |
-| R01 | Mitigar | Estreitar o acesso do ponto de encontro para que a passagem aconteça em fila única e testar a contagem com grupos em diferentes cadências, como prevê o método de validação da seção 3.1.3.5. Se a acurácia ficar abaixo de 95%, avaliar sensores com outro princípio de detecção, como barreira de feixe ou sensor de tempo de voo. |
-| R02 | Mitigar | Usar em sequência os dois sensores ultrassônicos já previstos na BOM, para identificar o sentido da passagem e descontar as saídas do ponto de encontro. A conclusão do evento continua com a SSMA, conforme a RN07. |
-| R03 | Mitigar | Congelar B no instante do alarme (RN02), validar com a SSMA como visitantes e crachás provisórios entram no saldo e marcar o balanço como inconclusivo quando a referência das portarias for inválida (RN08). |
-| R04 | Mitigar | Desenvolver com uma base fictícia no mesmo formato esperado dos registros de portaria e levar à Unipar, na sprint 2, uma proposta de formato de integração, para que a troca pela base real não exija mudar a lógica do balanço. |
-| R05 | Mitigar | Guardar as passagens localmente no nó e reenviá-las ao reconectar, com identificador de dispositivo e número sequencial, que a RN11 já usa para evitar duplicidade. Enviar sinais periódicos de vida ao sistema central, para que a perda de um nó apareça no painel. |
-| R06 | Mitigar | Revisar a alimentação na BOM, trocando a pilha tipo moeda por uma fonte de 5 V com bateria recarregável de reserva, dimensionada para a duração de uma evacuação. |
-| R07 | Evitar | Restringir o piloto aos pontos de encontro, que por definição ficam em áreas seguras, e especificar gabinete e grau de proteção antes de qualquer instalação na planta. A certificação para áreas classificadas fica fora do escopo do módulo e será registrada como recomendação à Unipar. |
-| R08 | Mitigar | Solicitar à SSMA, ainda na sprint 2, uma data de simulado e, até lá, fazer ensaios controlados com cronometragem e gravação em vídeo, seguindo o método da seção 3.1.3.5. |
-| R09 | Mitigar | Validar um protótipo de baixa fidelidade do painel com os perfis de CCO e SSMA antes de implementá-lo, priorizando três informações: o saldo pendente, o cronômetro de 10 minutos e as chegadas por ponto de encontro. |
-| R10 | Mitigar | Exibir no painel a igualdade A = B como convergência numérica, nunca como evacuação confirmada, e manter a conclusão do evento como uma ação explícita da SSMA (RN07 e RN10). |
-| R11 | Evitar | Manter apenas dados fictícios ou anonimizados no repositório e nos testes, com pseudonimização dos identificadores, conforme a seção 3.1.6. |
-| R12 | Mitigar | Tratar a arquitetura da solução (seção 3.3.5) como fonte única de escopo e de hardware, e verificar na revisão de cada PR se a seção alterada continua coerente com as demais. |
-| R13 | Aceitar | Comprar os componentes no início da sprint 2, com unidades de reserva para os itens mais baratos, e manter o simulador Wokwi como contingência para os testes. |
+**Quadro 4 – Planos de resposta às ameaças**
 
-<p>Fonte: elaboração dos autores (2026).</p>
+| ID | Estratégia | Ação planejada no projeto Synthetix |
+| :---: | :---: | :--- |
+| **R1** | **Mitigar** | Equipar cada Caixa Fixa com bateria de reserva (Li-Ion/Powerbank) dimensionada para manter a operação autônoma por no mínimo $4\text{ horas}$ sem rede elétrica. |
+| **R2** | **Mitigar** | Implementar leitor de radiofrequência na portaria da fábrica para cadastrar automaticamente a lista de presentes do dia no banco de dados assim que o chaveiro/crachá passa pela catraca. |
+| **R3** | **Mitigar** | Adicionar aviso sonoro/LEDs de checagem na portaria para alertar chaveiros descarregados e criar um protocolo obrigatório de entrega de chaveiros temporários para visitantes. |
+| **R4** | **Mitigar** | Executar testes de RSSI (indicador de força de sinal recebido) e implementar uma margem de histerese no algoritmo de decisão para evitar oscilações de zona entre antenas vizinhas. |
+| **R5** | **Evitar** | Restringir a instalação física das Caixas Fixas do MVP a zonas não classificadas (ex.: pontos de encontro, escritórios e rotas externas de passagem), tratando a certificação Ex como recomendação de evolução comercial. |
+| **R6** | **Evitar** | Conectar o painel central diretamente à saída de relé do sistema de alarme de incêndio predial já existente, garantindo disparo automático do "Modo Emergência". |
+
+*Fonte: Elaboração do Grupo Synthetix (2026).*
+
 </div>
 
-#### Oportunidades
+---
 
-As oportunidades partem dos benefícios e diferenciais já apontados nas seções 1.3 e 3.1.3.4. As estratégias usadas são **explorar**, quando o grupo age para garantir que a oportunidade aconteça, **melhorar**, quando age para aumentar a chance ou o benefício, e **compartilhar**, quando a oportunidade depende de outro ator para ser aproveitada.
+#### Oportunidades (Riscos Positivos)
 
 <div align="center">
-<p>Quadro X – Oportunidades identificadas no projeto</p>
 
-| ID | Oportunidade | Probabilidade | Impacto | Justificativa | Estratégia e ação |
-| --- | --- | :---: | :---: | --- | --- |
-| O01 | Aproveitar o crachá e as catracas que já existem na planta. | Alta (70%) | Alto | A base B usa a infraestrutura atual de controle de acesso, sem um dispositivo novo para o colaborador, o que a seção 1.3 aponta como diferencial, já que equipamentos que atrapalham o EPI tendem a ser abandonados. Isso reduz o custo de implantação e a resistência de uso de quem está na ponta, como o técnico de operação representado pela persona Gustavo Fring (seção 3.2.1). | Explorar: priorizar na integração o formato de dados que o controle de acesso da Unipar já produz. |
-| O02 | Reduzir a exposição da brigada a buscas sem direção. | Média (50%) | Muito alto | Com o saldo pendente e os setores das pessoas presentes na base congelada, a SSMA pode acionar a brigada apenas quando há pendência real (seção 3.1.3.3), evitando buscas com roupa de proteção química e ar limitado em áreas onde ninguém ficou. | Explorar: incluir no alerta dos 10 minutos (RN06) os setores das pessoas que estavam na planta no momento do alarme. |
-| O03 | Usar o histórico de passagens para melhorar o Plano de Ação de Emergência (PAE). | Alta (70%) | Moderado | Cada passagem é registrada com horário, e a seção 3.1.3.4 prevê usar a curva de esvaziamento para identificar rotas sobrecarregadas. Esse ganho aparece já nos simulados, sem depender de uma emergência real. | Melhorar: guardar os eventos com horário e ponto de encontro desde o primeiro ensaio. |
-| O04 | Replicar a solução nas outras plantas da Unipar. | Média (50%) | Alto | O TAPI já aponta Santo André, Camaçari e Bahía Blanca como unidades beneficiadas (UNIPAR, 2026), e a seção 1.3 destaca esse potencial. Como o balanço depende apenas de portarias e pontos de encontro, o modelo não fica preso ao layout de Cubatão. | Explorar: configurar dispositivos e locais de forma independente da planta, como já exige a RN03. |
-| O05 | Servir de base para etapas futuras com câmeras e drones. | Baixa (30%) | Moderado | No kickoff, a Unipar citou câmeras e drones como possíveis evoluções do processo (seção 1.3). Uma arquitetura com dispositivos identificados e mensagens MQTT permite somar novas fontes de contagem sem refazer o balanço. | Compartilhar: registrar a possibilidade nas recomendações da seção 4, para que a Unipar decida sobre a continuidade. |
+**Quadro 5 – Oportunidades identificadas no projeto Synthetix**
 
-<p>Fonte: elaboração dos autores (2026).</p>
+| ID | Oportunidade | Probabilidade | Impacto | Justificativa | Estratégia e Ação |
+| :---: | :--- | :---: | :---: | :--- | :--- |
+| **O1** | **Check-in automático na portaria via RF/Crachá** | Alta ($70\%$) | Muito Alto | A integração do chaveiro com as catracas de acesso resolve a falta de lista diária, preenchendo automaticamente o banco de dados de presentes na planta. | **Explorar:** Desenvolver o módulo de recepção de sinal de RF na entrada principal durante a próxima sprint. |
+| **O2** | **Comunicação mesh via protocolo ESP-NOW** | Média ($50\%$) | Alto | O protocolo ESP-NOW permite comunicação direta rádio-a-rádio entre as Caixas Fixas sem depender de roteadores Wi-Fi ou conexão com a internet. | **Explorar:** Implementar a topologia mesh nas Caixas Fixas para garantir autonomia total da rede física. |
+| **O3** | **Integração direta com o Alarme de Incêndio (BMS)** | Baixa ($30\%$) | Alto | O acionamento automático por relé elimina o fator humano e comuta o Dashboard e as luzes de rota instantaneamente ao soar a sirene. | **Melhorar:** Projetar uma entrada digital isolada (optocolada) no painel para recepção do sinal da central da fábrica. |
+
+*Fonte: Elaboração do Grupo Synthetix (2026).*
+
 </div>
 
-#### Matriz de riscos
+---
 
-A Figura X distribui as ameaças e as oportunidades dos quadros anteriores no template da turma, cruzando a probabilidade com o impacto de cada item.
+#### Matriz de Riscos (Distribuição Visual)
+
+
+<br>
 
 <div align="center">
 <sub>Figura X – Matriz de riscos do projeto</sub>
 
-<img src="../assets/matriz-de-riscos.png" width="80%">
+<img src="../assets/MatrizDeRisco.png" width="80%">
 
 <sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026).</sup>
 </div>
 
-A cor de cada célula vem do produto entre o nível de probabilidade e o nível de impacto, ambos convertidos para uma escala de 1 a 5. Produtos a partir de 12 formam a zona alta, produtos de 5 a 11 formam a zona média e produtos até 4 formam a zona baixa. Nas ameaças, a zona alta pede ação imediata, e nas oportunidades ela indica o ganho que vale perseguir desde já.
+---
 
-Isso significa que nove das treze ameaças estão na zona alta (R01 a R08 e R12), e a maior parte delas está na linha de probabilidade alta. A leitura aqui é que o projeto ainda está no começo: boa parte dos riscos vem de pontos que não foram testados ou de dependências que ainda não foram negociadas com a Unipar, e não de falhas já observadas. R10 merece atenção mesmo estando na zona média, porque tem o maior impacto possível e só não está na zona alta porque a RN07 reduz a sua probabilidade. R11 é a única ameaça na zona baixa, resultado das restrições de dados da seção 3.1.6. Nas oportunidades, O01 a O04 ficam na zona de ganho alto, e apenas O05, que depende de decisões futuras da Unipar, fica na zona média.
+### Síntese e Prioridades do Projeto
 
-#### Síntese e prioridades
+A análise da matriz revela que as ameaças de maior severidade do projeto Synthetix referem-se à **infraestrutura e alimentação elétrica na emergência (R1)**, à **gestão da lista inicial de presentes (R2)** e à **rapidez no acionamento do modo de emergência (R6)**.
 
-Olhando o conjunto, as ameaças mais críticas se concentram na própria contagem. R01, R02 e R03 ficam na faixa de impacto muito alto porque atacam diretamente os dois números do balanço, A e B, e um erro em qualquer um deles pode zerar o saldo pendente com pessoas ainda na área. Por isso, a prioridade da sprint 2 é validar a contagem no protótipo físico, com passagens simultâneas, repassagens e os dois sensores em sequência, antes de avançar para a integração com o painel.
-
-Em seguida vêm as dependências externas, R04 e R08, que não dependem só do grupo e precisam ser levadas à Unipar o quanto antes, e a alimentação do nó (R06), que é uma correção barata na BOM e elimina um ponto de falha no momento mais crítico da evacuação. Do lado das oportunidades, O01 e O02 reforçam o argumento central da proposta: a solução aproveita o que a planta já tem e devolve à SSMA a informação que permite proteger também quem faz o resgate.
-
-A matriz será revisada ao fim de cada sprint, junto com a matriz de rastreabilidade da seção 3.3.4, já que vários riscos só podem ser reclassificados depois dos testes com o protótipo físico e com a integração MQTT.
+Para a próxima fase do projeto, as prioridades estratégicas definidas pelo grupo são:
+1. **Garantia de Autonomia (R1):** Incorporação de baterias de backup em todas as Caixas Fixas.
+2. **Automação da Presença (R2 & O1):** Validação da leitura por RF na portaria para formação dinâmica da lista de colaboradores presentes na planta.
+3. **Resiliência de Comunicação (R4 & O2):** Uso do protocolo **ESP-NOW** para assegurar que a troca de informações entre as zonas continue funcionando mesmo se a rede Wi-Fi da fábrica for interrompida.
 
 ### 3.1.6. Política de Privacidade de acordo com a LGPD (sprint 1)	
 
