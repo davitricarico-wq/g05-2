@@ -155,7 +155,11 @@ Assim, a BOM consolida os materiais e as duas possibilidades de interconexão id
 
 ### 3.2.1. Personas
 
-Foram identificados os cinco Stackholders a seguir: Gerente de SSMA, Operador de Centro de Controle Operacional (CCO), Head de Infra e TI, Brigadista e Colaborador. Dentre eles, foram identificados três personas primárias (Gerente de SSMA, Operador de Centro de Controle Operacional (CCO) e Colaborador) e duas secundárias (Brigadista e Head de Infra e TI).
+Esta seção apresenta as **proto-personas** que orientam a compreensão inicial das necessidades dos públicos envolvidos no processo de evacuação do complexo industrial da Unipar em Cubatão. São perfis preliminares, elaborados com base nas informações disponíveis e nas hipóteses da equipe, ainda sem validação por pesquisa com os usuários. Os perfis organizam contextos de trabalho, dores, necessidades e tarefas para apoiar as decisões iniciais de experiência do usuário e a definição dos requisitos de uma solução de acompanhamento da evacuação e confirmação de presença nos pontos de encontro.
+
+O mapeamento inicial considera cinco grupos de partes interessadas: colaboradores, operadores do Centro de Controle Operacional (CCO), gestores de Segurança, Saúde e Meio Ambiente (SSMA), brigadistas e responsáveis por Infraestrutura e TI. Nesta seção, são detalhadas três personas primárias: Gustavo Fring, técnico de operação, representa a perspectiva de quem precisa evacuar e ter sua chegada reconhecida; Maria Schrader, operadora de CCO, reúne as necessidades de monitoramento operacional e comunicação durante uma ocorrência; e Tuco Salamanca, gestor de SSMA, representa a perspectiva de gestão da emergência e uso das informações consolidadas. Brigadistas e responsáveis por Infraestrutura e TI são considerados públicos secundários neste recorte, com participação na resposta em campo e no suporte tecnológico, mas ainda não possuem perfis detalhados nesta seção.
+
+Os três perfis apresentados — Gustavo Fring, Maria Schrader e Tuco Salamanca — são proto-personas, e não personas validadas. Nesta etapa, as referências a “personas” ao longo da seção devem ser entendidas nesse sentido preliminar. Seus dados biográficos e falas ilustrativas são fictícios e não devem ser interpretados como relatos de pessoas reais; as atribuições, os comportamentos e as necessidades descritos são parte hipóteses e parte informações obtidas por meio das reuniões de kick-off com os parceiros, a verificar com os profissionais da unidade. Entrevistas, reviews com os parceiros e validações com os públicos representados deverão orientar a revisão dos perfis e sua evolução para personas mais bem fundamentadas e validadas.
 
 #### 3.2.1.2. Persona - Técnico de Operação
 
@@ -239,7 +243,7 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
 - Profissão: operadora de Centro de Controle Operacional (CCO).
 - Localização: Cubatão, São Paulo.
 - Formação: curso técnico em Automação Industrial e treinamentos internos aplicáveis à operação.
-- Perfil socioeconômico: profissional assalariada de nível técnico, com renda familiar estável. Esses dados compõem um perfil plausível, não uma descrição de uma empregada real da Unipar.
+- Setor: Centro de Controle Operacional (CCO).
 
 **Biografia**
 
@@ -264,7 +268,7 @@ Maria trabalhou em funções de apoio à operação antes de passar para a sala 
 - Acompanha atualizações da evacuação sem tratar informações de processo como confirmação da presença de pessoas nos pontos de encontro.
 - Registra alarmes, comunicações e providências para dar continuidade ao acompanhamento e transmitir as informações à equipe seguinte.
 
-**Cenários de interação atuais:** Na passagem de turno, Camila toma conhecimento das condições operacionais e das ocorrências em aberto. Durante a rotina, acompanha os painéis de processo, monitora as câmeras do complexo e das salas operacionais, aciona o alarme de emergência e troca informações com profissionais em campo. Diante de um alarme ou relato de incidente, verifica o que seus instrumentos e os procedimentos permitem afirmar, comunica as áreas responsáveis e mantém o acompanhamento da operação. Se houver evacuação, recebe atualizações pelos canais atualmente usados entre as equipes; não presume que um painel de processo informe automaticamente quem chegou ao ponto de encontro. Se a própria sala estiver na área afetada, mantem-se atuando no monitoramento, afinal, fica em um bunker que a protege dos possíveis incidentes e acidentes. Após o evento, registra e transmite a sequência conhecida à equipe de segurança.
+**Cenários de interação atuais:** Na passagem de turno, Maria toma conhecimento das condições operacionais e das ocorrências em aberto. Durante a rotina, acompanha os painéis de processo, monitora as câmeras do complexo e das salas operacionais, aciona o alarme de emergência e troca informações com profissionais em campo. Diante de um alarme ou relato de incidente, verifica o que seus instrumentos e os procedimentos permitem afirmar, comunica as áreas responsáveis e mantém o acompanhamento da operação. Se houver evacuação, recebe atualizações pelos canais atualmente usados entre as equipes; não presume que um painel de processo informe automaticamente quem chegou ao ponto de encontro. Se a própria sala estiver na área afetada, mantem-se atuando no monitoramento, afinal, fica em um bunker que a protege dos possíveis incidentes e acidentes. Após o evento, registra e transmite a sequência conhecida à equipe de segurança.
 
 **Interesses e hábitos relacionados ao processo:** Valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis e câmeras em tempo real, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
 
@@ -296,12 +300,12 @@ Maria trabalhou em funções de apoio à operação antes de passar para a sala 
   <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
 </div>
 
-* **Nome:** Tuco Salamanca
-* **Idade:** 43 anos
-* **Ocupação:** Gerente / Gestor de Segurança, Saúde e Meio Ambiente (SSMA)
-* **Localização:** Santos / Cubatão, São Paulo
-* **Escolaridade:** Graduação em Engenharia Química com pós-graduação em Engenharia de Segurança do Trabalho
-* **Setor:** SSMAQ / Operações Industriais
+- **Nome:** Tuco Salamanca
+- **Idade:** 43 anos
+- **Ocupação:** Gerente / Gestor de Segurança, Saúde e Meio Ambiente (SSMA)
+- **Localização:** Santos / Cubatão, São Paulo
+- **Escolaridade:** Graduação em Engenharia Química com pós-graduação em Engenharia de Segurança do Trabalho
+- **Setor:** SSMAQ / Operações Industriais
 
 **Biografia**
 
@@ -309,28 +313,28 @@ Tuco trabalha há 18 anos no setor químico e petroquímico e atua há 6 anos na
 
 **Matriz de Dores, Necessidades e Desejos**
 
-| Prioridade | Dor ou Necessidade | O que espera da solução (Desejos) |
-| :--- | :--- | :--- |
-| **1 — Crítica** | Ter visibilidade em tempo real da contagem de pessoas nos pontos de encontro durante uma evacuação. | Deseja um dashboard unificado no Centro de Controle de Emergência (CCE) que confirme automaticamente a presença de cada colaborador. |
-| **2 — Crítica** | Identificar com rapidez se ainda existem colaboradores ou terceiros retidos em áreas fabris de risco. | Espera alertas e notificações automáticas de pendência para direcionar a brigada de emergência com precisão. |
-| **3 — Alta** | Tomar decisões ágeis no comando da crise sem depender de informações fragmentadas. | Precisa de uma interface simples, legível e "à prova de falhas" que consolide o status geral em instantes sob alta pressão. |
-| **4 — Alta** | Eliminar a lentidão e as falhas da contagem presencial por listas em papel. | Busca a substituição do processo manual por uma validação digital rastreável e imediata. |
-| **5 — Média** | Obter dados precisos do tempo de evacuação para análises e treinamentos pós-incidente. | Deseja relatórios históricos automatizados para comprovar a eficácia do plano em auditorias e aprimorar os simulados. |
+| Prioridade      | Dor ou Necessidade                                                                                                              | O que espera da solução (Desejos)                                                                                                    |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------- |
+| **1 — Crítica** | Ter visibilidade em tempo real da contagem de pessoas nos pontos de encontro durante uma evacuação.                             | Deseja um dashboard unificado no Centro de Controle de Emergência (CCE) que confirme automaticamente a presença de cada colaborador. |
+| **2 — Crítica** | Identificar com rapidez se ainda existem colaboradores ou terceiros retidos em áreas fabris de risco em situações de evacuação. | Espera alertas e notificações automáticas de pendência para direcionar a brigada de emergência com precisão.                         |
+| **3 — Alta**    | Tomar decisões ágeis no comando da crise sem depender de informações fragmentadas.                                              | Precisa de uma interface simples, legível e "à prova de falhas" que consolide o status geral em instantes sob alta pressão.          |
+| **4 — Alta**    | Eliminar a lentidão e as falhas da contagem presencial por listas em papel.                                                     | Busca a substituição do processo manual por uma validação digital rastreável e imediata.                                             |
+| **5 — Média**   | Obter dados precisos do tempo de evacuação para análises e treinamentos pós-incidente.                                          | Deseja relatórios históricos automatizados para comprovar a eficácia do plano em auditorias e aprimorar os simulados.                |
 
 ---
+
 **Tarefas e Responsabilidades**
 
-* Define, revisa e supervisiona os procedimentos do Plano de Ação de Emergência (PAE) e as rotas de evacuação da planta.
-* Acompanha os indicadores de SSMA e garante o cumprimento das normas regulamentadoras e da política de segurança da Unipar.
-* Planeja e coordena a execução de simulados periódicos de evacuação com as equipes operacionais e de brigada.
-* Em uma emergência, dirige-se ao Centro de Controle de Emergência (CCE) para comandar a resposta operacional e coordenar os brigadistas.
-* Consolida os dados recebidos via rádio sobre o contingente de pessoas que chegaram aos pontos de encontro.
-* Reporta os relatórios de simulados e ocorrências para a diretoria, liderança executiva e órgãos fiscalizadores.
-
+- Define, revisa e supervisiona os procedimentos do Plano de Ação de Emergência (PAE) e as rotas de evacuação da planta.
+- Acompanha os indicadores de SSMA e garante o cumprimento das normas regulamentadoras e da política de segurança da Unipar.
+- Planeja e coordena a execução de simulados periódicos de evacuação com as equipes operacionais e de brigada.
+- Em uma emergência, dirige-se ao Centro de Controle de Emergência (CCE) para comandar a resposta operacional e coordenar os brigadistas.
+- Consolida os dados recebidos via rádio sobre o contingente de pessoas que chegaram aos pontos de encontro.
+- Reporta os relatórios de simulados e ocorrências para a diretoria, liderança executiva e órgãos fiscalizadores.
 
 **Cenários de Interação Atuais**
 
-No início do turno, Tuco analisa os indicadores da fábrica e verifica as permissões de trabalho de alto risco em seu computador de mesa. Em um simulado ou alarme real, quando a sirene soa, ele assume o comando do CCE. Atualmente, aguarda que as equipes de brigada nos pontos de encontro realizem a conferência manual de cada pessoa utilizando papel e prancheta e repassem os números por rádio ruidoso. Esse processo gera atrasos, dúvidas sobre a precisão da contagem e perda de tempo na tomada de decisão sobre o resgate. 
+No início do turno, Tuco analisa os indicadores da fábrica e verifica as permissões de trabalho de alto risco em seu computador de mesa. Em um simulado ou alarme real, quando a sirene soa, ele assume o comando do CCE. Atualmente, aguarda que as equipes de brigada nos pontos de encontro realizem a conferência manual de cada pessoa utilizando papel e prancheta e repassem os números por rádio ruidoso. Esse processo gera atrasos, dúvidas sobre a precisão da contagem e perda de tempo na tomada de decisão sobre o resgate.
 
 > **Nota:** Atualmente não há um dispositivo individual de confirmação automática ou um dashboard digital de monitoramento em tempo real em uso no CCE.
 
@@ -342,21 +346,22 @@ Tuco valoriza confiabilidade absoluta dos dados, processos auditáveis, tecnolog
 
 **Classificação:** Avançado / Intermediário-Alto
 
-Utiliza regularmente sistemas corporativos como ERP (SAP), ferramentas de análise de dados (Power BI) e softwares de gestão de riscos. Compreende arquiteturas de tecnologia IoT, sensoriamento e automação industrial. Contudo, exige que o sistema de monitoramento de evacuação tenha uma curva de aprendizado nula e seja extremamente simples de operar durante situações de pânico ou emergência real.
+Utiliza regularmente sistemas corporativos como ERP (SAP), ferramentas de análise de dados (Power BI) e softwares de gestão de riscos. Compreende de forma geral arquiteturas de tecnologia IoT, sensoriamento e automação industrial. Contudo, exige que o sistema de monitoramento de evacuação tenha uma curva de aprendizado nula e seja extremamente simples de operar durante situações de pânico ou emergência real.
 
 **Citações Diretas (Falas Ilustrativas)**
 
-> *"Preciso bater o olho na tela do CCE e saber em segundos quantos evacuaram e se há alguém na área afetada."*
+> _"Preciso bater o olho na tela do CCE e saber em segundos quantos evacuaram e se há alguém na área afetada."_
 
-> *"A contagem manual em papel funcionou por décadas, mas não nos dá a velocidade necessária para salvar vidas em tempo real."*
+> _"A contagem manual em papel funcionou por décadas, mas não nos dá a velocidade necessária para salvar vidas em tempo real."_
 
-> *"A tecnologia IoT no CCE precisa ser indiscutível e direta; em uma emergência, não temos tempo para telas complexas ou sistemas lentos."*
-
+> _"A tecnologia IoT no CCE precisa ser indiscutível e direta; em uma emergência, não temos tempo para telas complexas ou sistemas lentos."_
 
 **Variações do Público, Limites e Abrangência**
 
-* **Limites da Persona:** Tuco Salamanca representa a perspectiva do gestor estratégico no CCE da unidade fabril de Cubatão. A sua visão difere da visão de um brigadista em campo (que precisa de mobilidade e alertas locais) ou de um operador (focado em sair com segurança). Além disso, as particularidades das plantas da Unipar na Argentina ou em outras localidades do Brasil podem demandar diferentes adaptações nos protocolos ou nos dashboards locais.
-* **Abrangência:** A persona do Gestor de SSMA canaliza os objetivos corporativos de toda a liderança e equipe de resposta a emergências: garantir visibilidade total do contingente, acelerar decisões de resgate e manter a conformidade com o compromisso de zero acidentes. Embora os colaboradores operacionais e terceiros interajam na ponta (sendo monitorados e confirmando presença), o Gestor de SSMA é o usuário final primário das informações consolidadas da solução tecnológica proposta.
+- **Limites da Persona:** Tuco Salamanca representa a perspectiva do gestor estratégico no CCE da unidade fabril de Cubatão. A sua visão difere da visão de um brigadista em campo (que precisa de mobilidade e alertas locais) ou de um operador (focado em sair com segurança). Além disso, as particularidades das plantas da Unipar na Argentina ou em outras localidades do Brasil podem demandar diferentes adaptações nos protocolos ou nos dashboards locais.
+- **Abrangência:** A persona do Gestor de SSMA canaliza os objetivos corporativos de toda a liderança e equipe de resposta a emergências: garantir visibilidade total do contingente, acelerar decisões de resgate e manter a conformidade com o compromisso de zero acidentes. Embora os colaboradores operacionais e terceiros interajam na ponta (sendo monitorados e confirmando presença), o Gestor de SSMA é o usuário final primário das informações consolidadas da solução tecnológica proposta.
+
+Em conjunto, as proto-personas Gustavo, Maria e Tuco conectam três perspectivas complementares da evacuação: a experiência de quem se desloca para um local seguro, o acompanhamento das condições operacionais e a gestão da resposta à emergência. A necessidade de Gustavo de ter sua chegada reconhecida se relaciona à necessidade de Maria de receber informações consistentes sobre o andamento da ocorrência e à de Tuco de acompanhar a conferência das pessoas e identificar pendências. Essa relação orienta o propósito do projeto: apoiar uma evacuação mais segura por meio de informações claras, ágeis e rastreáveis sobre a presença nos pontos de encontro, reduzindo a incerteza e o tempo necessário para consolidar os dados. As proto-personas, portanto, fornecem uma base inicial para orientar a pesquisa com usuários, propor prioridades de requisitos, elaborar jornadas e avaliar a solução em simulados, considerando tanto a experiência em campo quanto o uso das informações pelo CCO e pelo SSMA. Essas decisões deverão ser revistas à medida que as hipóteses dos perfis forem confirmadas ou corrigidas pela pesquisa. A confirmação de presença e as pendências de registro devem ser apresentadas de forma distinta, para que a ausência de confirmação não seja interpretada automaticamente como localização de uma pessoa em uma área de risco.
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
 
