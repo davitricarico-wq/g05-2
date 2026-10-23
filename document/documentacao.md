@@ -98,6 +98,16 @@ No mercado brasileiro, a ampliação dos investimentos em saneamento pode favore
 
 O modelo das Cinco Forças de Porter analisa como a rivalidade entre concorrentes, a ameaça de novos entrantes, a ameaça de produtos substitutos e os poderes de negociação de fornecedores e compradores afetam a atratividade e a rentabilidade de um setor (HARVARD BUSINESS SCHOOL, [s.d.]). A aplicação a seguir considera conjuntamente os mercados de cloro, soda cáustica e PVC. Como as condições competitivas variam entre esses produtos, as classificações representam uma síntese analítica do portfólio da Unipar, e não uma avaliação oficial divulgada pela companhia.
 
+A Figura 1 apresenta uma visão integrada da análise. A rivalidade ocupa a posição central porque resulta da interação com as outras quatro forças: barreiras de entrada, disponibilidade de substitutos e capacidade de fornecedores e compradores influenciarem custos, preços e condições comerciais. O quadro também antecipa a intensidade atribuída a cada força, permitindo comparar as pressões antes de examinar suas justificativas individualmente.
+
+<p align="center">
+  <img src="../assets/5ForcasDePorter.png" alt="Cinco Forças de Porter aplicadas à Unipar: rivalidade alta, novos entrantes com ameaça baixa, substitutos com ameaça moderada, fornecedores com poder moderado e compradores com poder moderado a alto" width="820">
+</p>
+
+<p align="center"><em>Figura 1 — Cinco Forças de Porter aplicadas à Unipar. Fonte: elaboração própria.</em></p>
+
+Em síntese, a figura indica que a rivalidade constitui a pressão central e mais intensa, enquanto o poder dos compradores aparece como moderado a alto. O poder dos fornecedores e a ameaça de substitutos possuem intensidade moderada, e a ameaça de novos entrantes é baixa. Essa representação funciona como síntese visual; os fatores que sustentam cada classificação são apresentados a seguir.
+
 ##### Rivalidade entre os concorrentes — alta
 
 A rivalidade é classificada como **alta**. A soda cáustica e o PVC seguem referências internacionais de preço e concorrem com importações, o que limita a capacidade de diferenciação e aumenta a pressão sobre custos. No cloro, a competição é mais regional, pois localização e logística têm maior peso. Em todos os mercados, escala produtiva, disponibilidade de matérias-primas e confiabilidade de fornecimento são fatores relevantes. A liderança da Unipar em cloro e soda cáustica e sua posição como segunda maior produtora de PVC da América do Sul fortalecem a empresa, mas não eliminam a pressão exercida por concorrentes locais e produtos importados (UNIPAR CARBOCLORO S.A., 2026).
@@ -110,9 +120,9 @@ A ameaça de novos entrantes é classificada como **baixa** para a instalação 
 
 A ameaça de produtos substitutos é classificada como **moderada**. Outros plásticos, metais, concreto e vidro podem cumprir funções semelhantes às do PVC em determinadas aplicações, enquanto outros produtos alcalinos podem substituir a soda cáustica em processos específicos. No tratamento de água, ozônio e radiação ultravioleta podem substituir ou complementar algumas aplicações do cloro; entretanto, essas tecnologias exigem condições próprias de instalação e operação e, isoladamente, não mantêm proteção residual na rede de distribuição (EPA, 2009). As alternativas, portanto, existem, mas não reproduzem simultaneamente o custo, o desempenho e a amplitude de usos dos principais produtos da Unipar.
 
-##### Poder de negociação dos fornecedores — moderado a alto
+##### Poder de negociação dos fornecedores — moderado
 
-O poder de negociação dos fornecedores é classificado como **moderado a alto**. Etileno, energia elétrica, sal, água, gás natural e vapor representam, em conjunto, cerca de 90% dos custos variáveis consolidados da companhia. A criticidade desses insumos e o impacto de eventuais interrupções aumentam a dependência operacional. Em contrapartida, contratos de longo prazo, acordos de compra de energia, autoprodução renovável e a possibilidade de adquirir sal no mercado nacional ou por importação reduzem parcialmente essa pressão. Assim, a força não é classificada como alta porque a Unipar dispõe de mecanismos contratuais e de diversificação, mas permanece relevante devido ao peso dos insumos na estrutura de custos (UNIPAR CARBOCLORO S.A., 2026).
+O poder de negociação dos fornecedores é classificado como **moderado**. Etileno, energia elétrica, sal, água, gás natural e vapor representam, em conjunto, cerca de 90% dos custos variáveis consolidados da companhia. A criticidade desses insumos e o impacto de eventuais interrupções aumentam a dependência operacional. Em contrapartida, contratos de longo prazo, acordos de compra de energia, autoprodução renovável e a possibilidade de adquirir sal no mercado nacional ou por importação reduzem essa pressão. Portanto, embora os insumos tenham peso elevado na estrutura de custos, os mecanismos contratuais e de diversificação impedem que o poder agregado dos fornecedores seja classificado como alto (UNIPAR CARBOCLORO S.A., 2026).
 
 ##### Poder de negociação dos compradores — moderado a alto
 
@@ -120,13 +130,7 @@ O poder de negociação dos compradores é classificado como **moderado a alto**
 
 ##### Conclusão
 
-A **rivalidade entre os concorrentes** representa a maior pressão competitiva sobre a Unipar, sobretudo nos mercados expostos a preços internacionais e importações. Os poderes de negociação dos **fornecedores** e dos **compradores** constituem pressões relevantes, classificadas como moderadas a altas: os fornecedores influenciam uma parcela elevada dos custos variáveis, enquanto determinados compradores possuem escala e alternativas de abastecimento. A ameaça de **produtos substitutos** é moderada, pois depende da aplicação e da relação entre custo e desempenho. A ameaça de **novos entrantes** é a força menos intensa, devido às barreiras financeiras, tecnológicas, regulatórias e logísticas. Para responder a esse cenário, a Unipar deve priorizar eficiência operacional, segurança e confiabilidade de fornecimento, disciplina de custos, proximidade dos mercados consumidores e redução da exposição a insumos críticos.
-
-<p align="center">
-  <img src="../assets/cinco-forcas-porter-unipar.svg" alt="Cinco Forças de Porter aplicadas aos mercados de cloro, soda cáustica e PVC da Unipar" width="820">
-</p>
-
-<p align="center"><em>Figura 1 — Cinco Forças de Porter aplicadas à Unipar. Fonte: elaboração própria.</em></p>
+A **rivalidade entre os concorrentes** representa a maior pressão competitiva sobre a Unipar, sobretudo nos mercados expostos a preços internacionais e importações. O poder de negociação dos **compradores** constitui uma pressão moderada a alta, principalmente entre clientes de grande volume com alternativas de abastecimento. O poder dos **fornecedores** e a ameaça de **produtos substitutos** são moderados: os insumos têm peso relevante nos custos, mas existem mecanismos de mitigação, enquanto a viabilidade dos substitutos varia conforme a aplicação. A ameaça de **novos entrantes** é a força menos intensa, devido às barreiras financeiras, tecnológicas, regulatórias e logísticas. Para responder a esse cenário, a Unipar deve priorizar eficiência operacional, segurança e confiabilidade de fornecimento, disciplina de custos, proximidade dos mercados consumidores e redução da exposição a insumos críticos.
 
 ### 3.1.2. Análise SWOT (sprint 1)	
 
