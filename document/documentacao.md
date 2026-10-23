@@ -502,6 +502,8 @@ _Nesta seção, detalhe a especificação da solução, de acordo com o disposto
 
 ### 3.3.1. Requisitos Funcionais (sprint 1, refinar e atualizar até sprint 5)
 
+Os requisitos funcionais descrevem as ações e os resultados que o sistema deve oferecer para apoiar a contagem de pessoas e o acompanhamento da evacuação. Esta lista preliminar foi elaborada com base nas reuniões e informações obtidas por meio das conversas com o parceiro, que inclusive permitiu a criação das personas. As funcionalidades ainda não implementadas ou dependentes de alinhamento com a Unipar estão identificadas na coluna “Situação”.
+
 Para leitura dos requisitos, **B** é a população de referência presente na planta quando o alarme é acionado, **A** é o total de passagens contabilizadas nas entradas dos Pontos de Encontro ativos desde esse instante e **D = B − A** é a diferença numérica estimada. **D = 0** indica apenas convergência dos totais, sujeita à conferência da equipe de Saúde, Segurança e Meio Ambiente (SSMA). Os códigos de atores **A01 a A05** estão definidos na seção 3.2.1.
 
 De forma geral, os atores e perfis operacionais referenciados nos requisitos funcionais são:
