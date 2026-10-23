@@ -76,11 +76,63 @@ _Link para os templates de negócios: https://drive.google.com/drive/folders/1lT
 
 ### 3.1.1. Contexto da Indústria (sprint 1)
 
-_O aluno deve fornecer informações sobre a concorrência (mínimo 3 competidores - 1 parágrafo; modelo de negócio - 1 parágrafo, e tendências - 1 parágrafo). Considere o setor do parceiro. Por exemplo, se o parceiro for a Rede Gazeta, o setor de Televisão.<br>
-<br>
-A análise de 5 forças deve ser feita considerando também o parceiro, o aluno deve preencher o template disponibilizado. No link a seguir há indicações de como avaliar as 5 forças: https://rockcontent.com/br/blog/5-forcas-de-porter/_
+#### Concorrência
 
-### 3.1.2. Análise SWOT (sprint 1)
+A Unipar atua na indústria química e petroquímica, com foco nos mercados de cloro, soda cáustica, policloreto de vinila (PVC) e derivados. De acordo com o Formulário de Referência 2026 da empresa, seus principais competidores no mercado interno incluem Braskem, Dow, Olin, Chemtrade, Katrium, Chlorum e CMPC. Essa relação deve ser interpretada no nível do portfólio: o documento não afirma que todas essas empresas disputam os mesmos produtos, clientes e regiões com a mesma intensidade. A soda cáustica e o PVC também estão expostos aos preços e estoques internacionais e à entrada de produtos importados. Segundo a própria companhia, os principais fatores de competitividade são a disponibilidade e o custo de matérias-primas, a escala de produção e a localização das unidades (UNIPAR CARBOCLORO S.A., 2026).
+
+#### Modelo de negócio
+
+A Unipar adota um modelo predominantemente *business-to-business* (B2B), baseado na produção e na comercialização, em grande escala, de insumos utilizados por outras organizações. A empresa atende setores como papel e celulose, alumínio, construção civil, infraestrutura, alimentos, siderurgia e metalurgia, tratamento de água, sabões, detergentes e produtos de limpeza. Essa diversidade reduz a exposição a um único mercado consumidor; em 2025, nenhum cliente respondeu por mais de 10% da receita líquida total da companhia (UNIPAR CARBOCLORO S.A., 2026).
+
+Trata-se de um modelo intensivo em capital, infraestrutura e energia, no qual a competitividade depende da escala, do controle dos custos e da continuidade das operações. A localização das unidades próximas a polos industriais e aos mercados consumidores reduz a distância logística e favorece a confiabilidade do abastecimento, aspecto especialmente relevante para o cloro, cujo transporte apresenta restrições técnicas e de segurança. A proximidade geográfica, associada aos contratos de fornecimento e à autoprodução de energia, contribui para proteger a posição competitiva da empresa, embora não elimine sua exposição aos custos de insumos e aos ciclos internacionais de soda cáustica e PVC (UNIPAR CARBOCLORO S.A., 2026).
+
+#### Tendências do setor
+
+Entre as principais tendências da indústria química e petroquímica estão a descarbonização, a eficiência energética, o uso de fontes renováveis, a modernização tecnológica e a economia circular. Essas tendências afetam tanto os custos operacionais quanto o acesso a capital, a conformidade ambiental e a preferência dos clientes industriais. Na Unipar, esse movimento aparece na substituição das tecnologias de mercúrio e diafragma por células de membrana na fábrica de Cubatão e na ampliação do uso de energia renovável. Em 2025, a companhia informou que 79% da energia elétrica consumida em suas operações veio de fontes renováveis (UNIPAR, 2026).
+
+A digitalização e a automação dos processos industriais e administrativos também se destacam. A Indústria 4.0 integra tecnologias como Internet das Coisas, análise de grandes volumes de dados, inteligência artificial, computação em nuvem e sistemas ciberfísicos para criar fábricas mais conectadas e apoiar a melhoria dos processos produtivos (INMETRO, 2026). Nesse contexto, a integração de sistemas, o uso de sensores, a análise de dados e a automatização de tarefas podem melhorar o monitoramento das operações, reduzir atividades repetitivas e apoiar a tomada de decisão.
+
+No mercado brasileiro, a ampliação dos investimentos em saneamento pode favorecer a demanda por cloro e PVC, utilizados, respectivamente, no tratamento de água e em componentes de infraestrutura. Ao mesmo tempo, a indústria permanece exposta às oscilações cambiais, aos preços internacionais, às importações e ao desenvolvimento de materiais e tecnologias alternativas. Esse conjunto de tendências exige investimentos contínuos em inovação, eficiência operacional e sustentabilidade (BRASIL, 2020; UNIPAR CARBOCLORO S.A., 2026).
+
+#### Cinco Forças de Porter
+
+O modelo das Cinco Forças de Porter analisa como a rivalidade entre concorrentes, a ameaça de novos entrantes, a ameaça de produtos substitutos e os poderes de negociação de fornecedores e compradores afetam a atratividade e a rentabilidade de um setor (HARVARD BUSINESS SCHOOL, [s.d.]). A aplicação a seguir considera conjuntamente os mercados de cloro, soda cáustica e PVC. Como as condições competitivas variam entre esses produtos, as classificações representam uma síntese analítica do portfólio da Unipar, e não uma avaliação oficial divulgada pela companhia.
+
+A Figura 1 apresenta uma visão integrada da análise. A rivalidade ocupa a posição central porque resulta da interação com as outras quatro forças: barreiras de entrada, disponibilidade de substitutos e capacidade de fornecedores e compradores influenciarem custos, preços e condições comerciais. O quadro também antecipa a intensidade atribuída a cada força, permitindo comparar as pressões antes de examinar suas justificativas individualmente.
+
+<p align="center">
+  <img src="../assets/5ForcasDePorter.png" alt="Cinco Forças de Porter aplicadas à Unipar: rivalidade alta, novos entrantes com ameaça baixa, substitutos com ameaça moderada, fornecedores com poder moderado e compradores com poder moderado a alto" width="820">
+</p>
+
+<p align="center"><em>Figura 1 — Cinco Forças de Porter aplicadas à Unipar. Fonte: elaboração própria.</em></p>
+
+Em síntese, a figura indica que a rivalidade constitui a pressão central e mais intensa, enquanto o poder dos compradores aparece como moderado a alto. O poder dos fornecedores e a ameaça de substitutos possuem intensidade moderada, e a ameaça de novos entrantes é baixa. Essa representação funciona como síntese visual; os fatores que sustentam cada classificação são apresentados a seguir.
+
+##### Rivalidade entre os concorrentes — alta
+
+A rivalidade é classificada como **alta**. A soda cáustica e o PVC seguem referências internacionais de preço e concorrem com importações, o que limita a capacidade de diferenciação e aumenta a pressão sobre custos. No cloro, a competição é mais regional, pois localização e logística têm maior peso. Em todos os mercados, escala produtiva, disponibilidade de matérias-primas e confiabilidade de fornecimento são fatores relevantes. A liderança da Unipar em cloro e soda cáustica e sua posição como segunda maior produtora de PVC da América do Sul fortalecem a empresa, mas não eliminam a pressão exercida por concorrentes locais e produtos importados (UNIPAR CARBOCLORO S.A., 2026).
+
+##### Ameaça de novos entrantes — baixa
+
+A ameaça de novos entrantes é classificada como **baixa** para a instalação de nova capacidade produtiva local. A entrada exige investimento elevado, escala mínima eficiente, tecnologia especializada, licenciamento ambiental, acesso contínuo a energia e matérias-primas e uma estrutura logística compatível com produtos químicos. O novo participante também precisa construir reputação de segurança e confiabilidade perante clientes que dependem de fornecimento contínuo. A entrada por importações, aquisições ou parcerias é mais viável do que a construção de uma nova planta, mas não elimina as barreiras industriais e regulatórias do setor (UNIPAR CARBOCLORO S.A., 2026).
+
+##### Ameaça de produtos substitutos — moderada
+
+A ameaça de produtos substitutos é classificada como **moderada**. Outros plásticos, metais, concreto e vidro podem cumprir funções semelhantes às do PVC em determinadas aplicações, enquanto outros produtos alcalinos podem substituir a soda cáustica em processos específicos. No tratamento de água, ozônio e radiação ultravioleta podem substituir ou complementar algumas aplicações do cloro; entretanto, essas tecnologias exigem condições próprias de instalação e operação e, isoladamente, não mantêm proteção residual na rede de distribuição (EPA, 2009). As alternativas, portanto, existem, mas não reproduzem simultaneamente o custo, o desempenho e a amplitude de usos dos principais produtos da Unipar.
+
+##### Poder de negociação dos fornecedores — moderado
+
+O poder de negociação dos fornecedores é classificado como **moderado**. Etileno, energia elétrica, sal, água, gás natural e vapor representam, em conjunto, cerca de 90% dos custos variáveis consolidados da companhia. A criticidade desses insumos e o impacto de eventuais interrupções aumentam a dependência operacional. Em contrapartida, contratos de longo prazo, acordos de compra de energia, autoprodução renovável e a possibilidade de adquirir sal no mercado nacional ou por importação reduzem essa pressão. Portanto, embora os insumos tenham peso elevado na estrutura de custos, os mecanismos contratuais e de diversificação impedem que o poder agregado dos fornecedores seja classificado como alto (UNIPAR CARBOCLORO S.A., 2026).
+
+##### Poder de negociação dos compradores — moderado a alto
+
+O poder de negociação dos compradores é classificado como **moderado a alto**. Grandes clientes industriais podem negociar preços, prazos, volumes e níveis de serviço e, nos mercados de soda cáustica e PVC, comparar a oferta doméstica com produtos importados. Entretanto, esse poder é limitado pela necessidade de fornecimento contínuo, pelos requisitos técnicos e logísticos e pela diversificação da carteira da Unipar. Em 2025, nenhum cliente representou mais de 10% da receita líquida total da companhia, o que reduz a dependência de compradores individuais. A classificação mais elevada aplica-se, portanto, principalmente aos clientes de grande volume que possuem alternativas viáveis de abastecimento (UNIPAR CARBOCLORO S.A., 2026).
+
+##### Conclusão
+
+A **rivalidade entre os concorrentes** representa a maior pressão competitiva sobre a Unipar, sobretudo nos mercados expostos a preços internacionais e importações. O poder de negociação dos **compradores** constitui uma pressão moderada a alta, principalmente entre clientes de grande volume com alternativas de abastecimento. O poder dos **fornecedores** e a ameaça de **produtos substitutos** são moderados: os insumos têm peso relevante nos custos, mas existem mecanismos de mitigação, enquanto a viabilidade dos substitutos varia conforme a aplicação. A ameaça de **novos entrantes** é a força menos intensa, devido às barreiras financeiras, tecnológicas, regulatórias e logísticas. Para responder a esse cenário, a Unipar deve priorizar eficiência operacional, segurança e confiabilidade de fornecimento, disciplina de custos, proximidade dos mercados consumidores e redução da exposição a insumos críticos.
+
+### 3.1.2. Análise SWOT (sprint 1)	
 
 A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que avalia quatro elementos: forças (fatores internos positivos), fraquezas (fatores internos negativos), oportunidades (fatores externos positivos) e ameaças (fatores externos negativos). Com base nisso, realizou-se a análise SWOT da Unipar, considerando suas características organizacionais, sua atuação no mercado e os fatores internos e externos que podem influenciar seu desempenho e sua competitividade, conforme apresentado na figura abaixo.
 
@@ -839,6 +891,10 @@ ELETROGATE. _Protoboard 400 pontos_. Disponível em: <https://www.eletrogate.com
 
 ESTADÃO CONTEÚDO. Unipar tem 2025 desafiado pelo ciclo petroquímico, com quarto trimestre mais crítico. UOL Economia, 19 mar. 2026. Disponível em: [https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm](https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm). Acesso em: 15 out. 2026.
 
+HARVARD BUSINESS SCHOOL. *The Five Forces*. Institute for Strategy and Competitiveness. Disponível em: [https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx](https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx). Acesso em: 23 out. 2026.
+
+INSTITUTO NACIONAL DE METROLOGIA, QUALIDADE E TECNOLOGIA (INMETRO). *Maturidade da Indústria 4.0*. Brasília, DF: Inmetro, 2026. Disponível em: [https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0](https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0). Acesso em: 23 out. 2026.
+
 INTELI. Projeto parceiro: Unipar — Sistema de IoT para Monitoramento, Orientação e Confirmação de Evacuação em Emergências Industriais. 2026. Disponível em: [https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true](https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true). Acesso em: 15 out. 2026. Material de apoio correspondente ao Módulo 4 do Ciclo Comum de Graduação do Instituto de Tecnologia e Liderança, 2026.
 
 MERCADO LIVRE. _Bateria Maxell CR2032 de lítio, 3 V, uma unidade_. Disponível em: <https://lista.mercadolivre.com.br/bateria-maxell-cr2032>. Acesso em: 22 out. 2026.
@@ -857,15 +913,17 @@ MERCADO LIVRE. _Módulo sensor ultrassônico de distância HC-SR04 para Arduino_
 
 SARAVATI. _Resistor 1 kΩ 5% 1/4 W_. Disponível em: <https://www.saravati.com.br/resistor-1k-5-1-4w.html?gad_source=1&gad_campaignid=23551463662&gbraid=0AAAAAC2QUl9NJxOJbt89j1o1regZh5Nz1&gclid=CjwKCAjwotzWBhBFEiwA1JhPoG38v08Hq-K_8VKXdxS8REO0qaNgkFziIwVTl9Rc2LXpGSD3o1KboRoCCEkQAvD_BwE>. Acesso em: 20 out. 2026.
 
+UNITED STATES ENVIRONMENTAL PROTECTION AGENCY (EPA). *Water systems, disinfection byproducts, and the use of monochloramine: other than chlorine and monochloramine, what options could water utilities consider?* Washington, DC: EPA, 2009. Disponível em: [https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf](https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf). Acesso em: 23 out. 2026.
+
 UNIPAR. Manual da marca. 2022. Disponível em: [https://drive.google.com/file/d/1_XkquJbTrDnP6CyCtCTjtASRwI4qLL2P/view?usp=sharing](https://drive.google.com/file/d/1_XkquJbTrDnP6CyCtCTjtASRwI4qLL2P/view?usp=sharing). Acesso em: 15 out. 2026. Material institucional da Unipar utilizado como referência no Módulo 4 do Ciclo Comum de Graduação do Instituto de Tecnologia e Liderança, 2026.
 
-UNIPAR. Perfil corporativo. Relações com Investidores. Disponível em: [https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/](https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/). Acesso em: 15 out. 2026.
+UNIPAR. *Perfil corporativo*. Relações com Investidores, [s.d.]a. Disponível em: [https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/](https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/). Acesso em: 23 out. 2026.
 
-UNIPAR. Produtos: cloro. Disponível em: [https://unipar.com/produtos/cloro](https://unipar.com/produtos/cloro). Acesso em: 15 out. 2026.
+UNIPAR. *Produtos: cloro*. [s.d.]b. Disponível em: [https://unipar.com/produtos/cloro](https://unipar.com/produtos/cloro). Acesso em: 15 out. 2026.
 
 UNIPAR. _Projeto parceiro Unipar_: sistema de IoT para monitoramento, orientação e confirmação de evacuação em emergências industriais. São Paulo: Inteli, 2026. Termo de Abertura do Projeto (TAPI), Turma 25, Módulo 4. Documento não publicado.
 
-UNIPAR. Relatório de sustentabilidade. Relações com Investidores, 2025. Disponível em: [https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/](https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/). Acesso em: 15 out. 2026.
+UNIPAR. *Relatório de Sustentabilidade 2025*. São Paulo: Unipar, 2026. Disponível em: [https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/](https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/). Acesso em: 23 out. 2026.
 
 UNIPAR. Sobre a Unipar. Disponível em: [https://unipar.com/sobre/](https://unipar.com/sobre/). Acesso em: 15 out. 2026.
 
@@ -875,7 +933,9 @@ UNIPAR CARBOCLORO. _Release de resultados 4T25_. São Paulo: Unipar Carbocloro, 
 
 UNIPAR CARBOCLORO S.A. Informações trimestrais (ITR): 31 de março de 2025. 2025. Disponível em: [https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1](https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1). Acesso em: 15 out. 2026.
 
-UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. _Movimento Econômico_, [s. l.], 4 abr. 2025. Disponível em: https://movimentoeconomico.com.br/estados/bahia/2025/04/04/unipar-carbocloro-inaugura-sua-1a-unidade-no-nordeste/. Acesso em: 19 out. 2026.
+UNIPAR CARBOCLORO S.A. *Formulário de Referência 2026*. Seções 1.4 — Produção, comercialização e mercados — e 1.5 — Principais clientes. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: [https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/](https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/). Acesso em: 23 out. 2026.
+
+UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. *Movimento Econômico*, [s. l.], 4 abr. 2025. Disponível em: https://movimentoeconomico.com.br/estados/bahia/2025/04/04/unipar-carbocloro-inaugura-sua-1a-unidade-no-nordeste/. Acesso em: 19 out. 2026.
 
 VAZAMENTO de gás em porto deixa 13 mortos e mais de 250 feridos na Jordânia; veja vídeo. _Folha de Pernambuco_, Recife, jun. 2022. Disponível em: https://www.folhape.com.br/noticias/vazamento-de-gas-em-porto-deixa-13-mortos-na-jordania/231857/. Acesso em: 20 out. 2026.
 
@@ -919,3 +979,20 @@ UNIPAR / INTELI. **Kickoff do projeto — unidade de Cubatão**. Realizado em 16
 UNIPAR / INTELI. **Termo de Abertura do Projeto de Inovação (TAPI) — Módulo 4**. Restrição de escopo informada no contexto do projeto: não contemplar rastreamento contínuo de alta precisão em ambientes internos. Versão, data e link interno pendentes de disponibilização; documento não consultado diretamente nesta revisão.
 
 EQUIPE DO PROJETO. **Protótipo inicial Wokwi e evidências CT01–CT10**. Disponível em: [simulação](https://wokwi.com/projects/478404642645348353), [firmware](../src/firmware/prototipo/sketch.ino), [circuito](../src/firmware/prototipo/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). Firmware, circuito e documentação das evidências consultados em 23 out. 2026; a simulação não foi reexecutada nesta revisão documental.
+[1] UNIPAR. **Relatório de Sustentabilidade 2024**. São Paulo: Unipar, 2025. Disponível em: <https://unipar.com/sustentabilidade>. Acesso em: 20 out. 2026.
+[1] UNIPAR. **Perfil corporativo**. Disponível em: <https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/>. Acesso em: 22 out. 2026.
+
+[2] UNIPAR. **Cloro: fabricação, transporte e aplicações**. Disponível em: <https://unipar.com/produtos/cloro>. Acesso em: 22 out. 2026.
+
+[3] UNIPAR. **Relações com Investidores: nossos números**. Disponível em: <https://ri.unipar.com/>. Acesso em: 22 out. 2026.
+
+[4] ASSOCIAÇÃO BRASILEIRA DA INDÚSTRIA DE ÁLCALIS, CLORO E DERIVADOS. **Produção brasileira de cloro cresce 5,4% entre janeiro e outubro de 2024**. 13 jan. 2025. Disponível em: <https://www.abiclor.com.br/producao-brasileira-de-cloro-cresce-54-entre-janeiro-e-outubro-de-2024/>. Acesso em: 22 out. 2026.
+
+[5] UNIPAR CARBOCLORO S.A. **Formulário de Referência 2026**, versão 1. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/396d9e64-cbbd-f172-97df-b409609b9c6b?origin=2>. Acesso em: 22 out. 2026.
+
+[6] BRASKEM S.A. **Annual Report 2025 (Form 20-F)**. Washington, DC: U.S. Securities and Exchange Commission, 2026. Disponível em: <https://www.sec.gov/Archives/edgar/data/1071438/000129281426002427/bakform20f_2025.htm>. Acesso em: 22 out. 2026.
+
+[7] UNIPAR CARBOCLORO S.A. **Release de Resultados 1T25**. São Paulo: Unipar, 2025. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/bc3d7aae-1800-44eb-9d21-2b8e87ea5466?origin=1>. Acesso em: 22 out. 2026.
+
+[8] BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL. **Novo marco legal do saneamento: impactos na cadeia de fornecedores — parte 2**. *BNDES Setorial*, Rio de Janeiro, v. 28, n. 55, p. 179–239, mar. 2022. Disponível em: <https://web.bndes.gov.br/bib/jspui/bitstream/1408/22426/3/PR_BS_v28_n55_Saneamento_parte%202_.pdf>. Acesso em: 22 out. 2026.
+WIRELESS, paperless tracking keeps employees safer. *Automation World*, [s. l.], [20--]. Disponível em: https://www.automationworld.com/article/technologies/sensors-process/wireless-paperless-tracking-keeps-employees-safer. Acesso em: 20 out. 2026.
