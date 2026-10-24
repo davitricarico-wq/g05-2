@@ -608,12 +608,23 @@ De forma geral, os atores e perfis operacionais referenciados nos requisitos fun
 
 ### 3.3.2. Regras de Negócio (sprint 1, refinar até sprint 5)
 
-*Numere e redija as RN de forma implementável e testável. Toda RN deve ter pelo menos um teste automatizado associado a partir da sprint 3.*
+**Quadro 2 — Regras de negócio preliminares.**
 
-| ID   | Descrição | RF associado |
-|------|-----------|--------------|
-| RN01 | ...       | RF001        |
-| RN02 | ...       | RF001        |
+| ID | Nome | Regra e condição de aplicação | Consequência operacional se descumprida | Atores | RFs associados |
+| --- | --- | --- | --- | --- | --- |
+| RN01 | Início do evento de cloro | O balanço de evacuação inicia somente após o acionamento do alarme ou do modo de emergência correspondente a vazamento de cloro. Uma passagem detectada fora de evento aberto não é chegada ao ponto de encontro. | Contagens de rotina seriam confundidas com evacuação. | A01, A03 | RF004, RF005 |
+| RN02 | Referência congelada no alarme | B corresponde ao total de pessoas dentro da planta calculado com as entradas e saídas das portarias P1 e P2 **no instante do alarme**. Alterações posteriores do fluxo nas portarias não modificam B desse evento. | O denominador variável impediria verificar quantas pessoas da população inicial chegaram aos pontos de encontro. | A01 | RF003, RF004, RF006 |
+| RN03 | Associação do dispositivo ao local | Uma leitura só integra o balanço se vier de dispositivo identificado e associado a uma única função e local: entrada/saída de portaria ou entrada de ponto de encontro. Leituras de locais distintos não podem ser trocadas. | Passagens seriam somadas ao lado errado do balanço. | A04, A01 | RF002, RF003, RF005, RF010 |
+| RN04 | Chegadas acumuladas após o alarme | A é a soma das passagens válidas registradas **após o início** do evento nos pontos de encontro designados pela SSMA para aquela ocorrência. A leitura representa quantidade de passagens, sem vincular crachá ou identidade a cada chegada. | Leituras de pontos não designados ou anteriores ao alarme distorceriam o balanço e poderiam sugerir confirmação individual sem evidência. | A01, A03 | RF001, RF004, RF005, RF006 |
+| RN05 | Diferença pendente | Enquanto os dados forem válidos e A for menor que B, a diferença D = B − A representa a quantidade ainda não contabilizada nos pontos de encontro e exige acompanhamento da SSMA. A diferença não identifica nominalmente essas pessoas nem sua posição. | Pessoas potencialmente não contabilizadas seriam ignoradas ou identificadas sem evidência. | A01, A02 | RF006, RF007 |
+| RN06 | Prazo para acionar brigadistas | Decorridos **dez minutos do alarme**, se os dados forem válidos e D ainda for positivo, a SSMA e os brigadistas devem receber alerta com a quantidade pendente. O prazo não reinicia a cada nova leitura; dados inconclusivos seguem a RN08. | A busca e o resgate poderiam ser retardados. | A01, A02 | RF004, RF008 |
+| RN07 | Igualdade sujeita a conferência | A igualdade A = B indica somente convergência numérica. A conclusão do evento depende da avaliação da SSMA e de sua conferência manual; ela não pode ser inferida como confirmação da presença individual de todos. | Repassagens ou leituras incorretas poderiam produzir falsa sensação de segurança. | A01 | RF006, RF012 |
+| RN08 | Contagem inconsistente ou indisponível | Se A superar B, se a referência de portaria for inválida ou se um dispositivo necessário deixar de fornecer dados, o balanço deve ser marcado inconclusivo e a SSMA deve ser avisada. A ausência de leitura não equivale a chegada ou segurança. | Uma falha de medição poderia ocultar pessoas não contabilizadas. | A01, A04 | RF006, RF009 |
+| RN09 | Limite de identificação e localização | As contagens do MVP são agregadas por portaria e ponto de encontro. O sistema não atribui identidade a passagens anônimas, não indica quem precisa de resgate e não calcula posição precisa em ambiente interno. | O painel apresentaria inferências que o protótipo não sustenta. | A01, A02, A03 | RF003, RF005, RF006, RF007 |
+| RN10 | Uso autorizado e rastreável | A consulta gerencial e o registro da conclusão de um evento ficam restritos aos perfis autorizados; quando houver painel integrado, cada acesso e alteração devem estar vinculados a uma chave única de usuário. | Registros de emergência poderiam ser alterados sem responsabilização. | A01, A02, A04 | RF011, RF012, RF013 |
+| RN11 | Não duplicação de mensagem | Na integração MQTT, uma mesma mensagem de passagem, identificada por dispositivo e número sequencial, só pode incrementar o contador uma vez, mesmo que seja recebida novamente. Essa regra não identifica a mesma pessoa em duas passagens físicas distintas. | Retransmissões poderiam elevar artificialmente A ou B. | A04, A01 | RF005, RF010 |
+
+*Legenda do Quadro 2:* as condições delimitam a aplicação de cada RN; a consequência descreve o risco operacional a ser evitado. RN07 e RN08 impedem que uma igualdade numérica ou falha de dados seja apresentada como prova de segurança individual. As Regras de Negócio vinculadas a funcionalidades planejadas serão validadas com testes automatizados a partir da sprint 3, conforme o modelo desta entrega (sprint 1).
 
 ### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
 
