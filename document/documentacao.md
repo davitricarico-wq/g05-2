@@ -1,10 +1,23 @@
 # Documentação IoTDoc - Módulo 4 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final_**
+> **Recorte desta entrega — Sprint 1:** C.R.I.S.I.S é o projeto de apoio à evacuação da Unipar, desenvolvido pelo grupo Synthetix. A entrega atual é o protótipo simulado de **contagem local e anônima de entradas e saídas em um ponto de encontro**, com Arduino Uno, dois HC-SR04, LCD, botão, LEDs e buzzer. O botão muda a sinalização e a contagem continua nos dois estados. As evidências CT01–CT10 documentam esse recorte; não comprovam identificação individual, evacuação industrial ou desempenho em campo. A referência ao protótipo desenvolvido e confirmado na Sprint 1 diz respeito a esse funcionamento documentado, sem equivaler a homologação industrial ou aceite formal do parceiro. Integrações e requisitos futuros são propostas preliminares, sujeitas a validação e expansão nas sprints seguintes.
+>
+> **Leitura dos artefatos:** a análise da indústria e a SWOT tratam da **Unipar**; o Canvas e a matriz de riscos tratam da **solução C.R.I.S.I.S**, distinguindo o protótipo atual e sua evolução planejada. A BOM descreve a montagem de referência do protótipo. A visão completa orienta o projeto, mas a integração de novas capacidades depende da análise de viabilidade, dos resultados dos ensaios e do avanço das próximas sprints.
 
-## Nome do Grupo
+## Synthetix
 
-#### Nomes dos integrantes do grupo
+### C.R.I.S.I.S - Controle e Resposta Inteligente em Situações de Incidente e Segurança
+
+#### Integrantes:
+
+- Davi Tricarico
+- Felipe Rabinovich
+- Gustavo Fantasia
+- Felipe Escobar
+- Lucas Oliveira
+- Pedro Negri
+- Vinicius Ramos
+- Arthur Rodrigues
 
 <img src="../assets/inteli.png">
 
@@ -40,29 +53,29 @@ Aumentar a rapidez, a precisão e a rastreabilidade da evacuação da fábrica d
 
 **Objetivos específicos**
 
-- Saber quantas pessoas estão em cada área da planta e quem são, sem precisar da posição exata delas dentro de cada área;
-- Continuar acompanhando quantas pessoas ainda estão em cada área durante a emergência, quando as catracas e portas são liberadas;
-- Confirmar a chegada das pessoas aos pontos de encontro sem depender de listas e da chamada feita pelos líderes;
-- Identificar quem ainda não chegou aos pontos de encontro em até 10 minutos após o alarme, prazo a partir do qual a Unipar considera a pessoa não identificada um caso crítico;
+- Melhorar a visibilidade sobre a população presente na planta e as pendências de conferência durante a evacuação;
+- Apoiar a apuração quantitativa mesmo quando as catracas e portas são liberadas durante a emergência;
+- Agilizar a conferência nos pontos de encontro, reduzindo o esforço manual sem dispensar a confirmação individual quando necessária;
+- Apoiar a apuração de pessoas ainda não confirmadas em até dez minutos após o alarme, conforme o prazo interno informado pela Unipar;
 - Avisar a sala de controle e as equipes de resposta sobre o andamento da evacuação, dando mais agilidade às decisões.
 
 ## 1.2 Proposta da solução
 
-A proposta usa o crachá de acesso dos funcionários e as catracas e portas entre as áreas da planta para saber quem está em cada área, inclusive durante uma emergência. A planta é dividida em áreas, e cada passagem entre elas tem uma catraca ou porta liberada pelo crachá.
+A proposta do C.R.I.S.I.S é apoiar a conferência da evacuação da Unipar em Cubatão por meio de contagem quantitativa nos acessos aos pontos de encontro. Na Sprint 1, o protótipo desenvolvido demonstra entradas e saídas simuladas, mantém um total local e oferece retorno visual e sonoro. Esse recorte permite estudar a lógica de contagem e suas falhas antes de ampliar a solução.
 
-No dia a dia, toda vez que alguém passa o crachá, o sistema registra em qual área essa pessoa entrou. Assim, ele sabe quantas pessoas estão em cada área e quem são, sem precisar da posição exata delas dentro de cada espaço.
+A contagem é anônima: informa quantas passagens foram reconhecidas e o saldo local estimado, mas não identifica quem chegou, quem falta ou onde uma pessoa está. A equipe continua responsável pela conferência humana e pelas decisões de emergência. O protótipo não orienta rotas nem controla catracas.
 
-Quando o alarme de emergência toca, as catracas e portas são liberadas para dar vazão, e as pessoas deixam de passar o crachá. Para não perder a contagem nesse momento, a proposta do grupo sugere um sensor que é ativado junto com o alarme, posicionado estratégicamente nas passagens principais, e conta as pessoas que atravessam, mesmo quando muitas passam ao mesmo tempo. Como o sistema já sabe quem estava em cada área antes do alarme, ele usa essa contagem para acompanhar quantas pessoas já saíram de cada área, quantas ainda faltam sair e quantas chegaram aos pontos de encontro.
+Na visão completa pensada para a solução, os registros de crachá e das portarias poderão fornecer a população de referência da planta. Os dispositivos dos pontos de encontro enviarão contagens para um painel compartilhado pelo CCO e pela SSMA, com ocupação por ponto, diferença quantitativa em relação à referência, tempo desde o alarme, alertas e histórico. Essa integração busca apoiar a conferência dentro do prazo interno de dez minutos.
 
-Essas informações vão para um painel na sala de controle, que mostra quantas pessoas ainda estão em cada área, quem estava presente nelas antes do alarme e quantas já chegaram aos pontos de encontro. Com isso, a equipe de emergência deixa de depender de listas e da chamada para saber quem pode ainda estar na planta e consegue agir dentro do prazo de 10 minutos definido pela Unipar.
-
-> Neste momento (Sprint 1), é certo afirmar que a proposta da solução engloba apenas a área de confirmação, sendo representada pela contagem de pessoas de maneira automatizada. Não foram definidas extensões para a solução que englobam os objetivos das áreas de monitoramento e orientação. A primeira proposta de solução simples foi adotada pela equipe para que, nas próximas sprints, fosse possível expandir a complexidade com mais precisão e evitar que houvesse retrabalho.
+Também se pretende analisar a viabilidade de aproveitar os registros de acesso entre áreas para informar a última área registrada antes do alarme. Esse dado seria uma referência histórica, não a localização atual de alguém nem prova de quem deixou de chegar ao ponto de encontro. Sua integração depende da disponibilidade dos dados, das permissões e da revisão de privacidade. Monitoramento por áreas, orientação durante a evacuação e contagem em fluxos simultâneos exigem análise e validação próprias antes de integrarem a implementação. Assim, a Sprint 1 demonstra o núcleo de contagem local, e as demais capacidades serão incorporadas progressivamente conforme a viabilidade e o avanço do projeto.
 
 ## 1.3 Justificativa
 
-Em uma fábrica que trabalha com cloro, a rapidez da evacuação pode salvar vidas. Em 2022, um vazamento de cloro no porto de Aqaba, na Jordânia, matou 13 pessoas e deixou mais de 250 feridos (VAZAMENTO..., 2022). Na Unipar, quem não é identificado em até 10 minutos após o alarme já é tratado como caso crítico (informação verbal)[^1], e hoje essa confirmação ainda depende de listas e chamada. A proposta mantém a contagem funcionando justamente no momento em que ela para hoje, quando as catracas são liberadas na emergência, e mostra à sala de controle quantas pessoas ainda estão em cada área e quem estava nelas. Com isso, a proposta busca entregar os benefícios que a Unipar espera do projeto: visibilidade, rastreabilidade e mais agilidade na decisão dos gestores de SSMA (UNIPAR, 2026). Esse tipo de ganho já aparece em outras indústrias: na Ferrero, a contagem com crachás eletrônicos ficou 70% mais rápida que o processo manual (DABROWSKA, 2024).
+A conferência manual e a perda de registros de passagem quando as catracas são liberadas dificultam a consolidação rápida de informações durante a evacuação, conforme o contexto informado no kickoff. A proposta atua sobre esse problema ao experimentar uma contagem local que continua funcionando nos dois estados de sinalização, preservando a verificação humana. O benefício esperado é reduzir o esforço de apuração quantitativa e oferecer um dado adicional à equipe responsável pelo ponto de encontro.
 
-A solução se diferencia em dois pontos. O primeiro é aproveitar o crachá que os funcionários já usam para entrar na planta, sem um dispositivo novo para carregar. No kickoff, a Unipar destacou que um equipamento que atrapalhe o uso do EPI ou seja desconfortável tende a ser deixado de lado pelas pessoas (informação verbal)[^1]. O segundo é trabalhar por áreas: o sistema mostra em que área cada pessoa estava, sem rastrear a posição exata, o que respeita a restrição do TAPI de não tratar localização precisa em ambientes internos (UNIPAR, 2026). Isso coloca a proposta entre as soluções que só contam as pessoas no ponto de encontro, como a da Ferrero (DABROWSKA, 2024), e as que rastreiam a localização dos funcionários na planta, como a usada pela Chevron Oronite em Singapura (WIRELESS..., [20--]). Como potencial, o mesmo modelo pode ser levado para as outras fábricas da Unipar no Brasil e na Argentina, que o TAPI já aponta como beneficiadas (UNIPAR, 2026), e servir de base para etapas futuras discutidas no kickoff, como o uso de câmeras e drones (informação verbal)[^1].
+O diferencial do recorte da Sprint 1 é dispensar dispositivos individuais e identificação pessoal no fluxo de contagem: a interação se resume à passagem pelo acesso simulado e à leitura do total local. Isso permite verificar entradas, saídas, bloqueio de repetição e falhas de leitura com uma montagem pequena e reproduzível. Não há comprovação, nesta etapa, de redução de tempo, acurácia em campo ou cumprimento do prazo de dez minutos. As metas e o protocolo de validação estão nas seções 3.1.3.5 e 3.4.1.1.
+
+A expansão para consolidação remota poderá melhorar a visibilidade do CCO/SSMA nas próximas sprints. O aproveitamento dos registros de acesso existentes poderá reduzir a necessidade de introduzir dispositivos pessoais adicionais, se a integração for viável. O acompanhamento agregado por pontos de encontro e a eventual consulta à última área registrada buscam oferecer contexto para a conferência, sem rastreamento contínuo de alta precisão. Esses diferenciais pertencem à visão planejada; a versão atual demonstra somente a contagem e a sinalização locais, mantendo a conferência nominal pelos procedimentos do parceiro.
 
 # <a name="c2"></a>2. Metodologia (sprint 3)
 
@@ -146,7 +159,7 @@ A análise das forças da Unipar evidencia sua experiência consolidada no setor
 
 **Fraquezas**
 
-Em relação às fraquezas, destacam-se limitações nos processos de monitoramento e confirmação de evacuação em situações de emergência. A conferência dos colaboradores nos pontos de encontro ainda depende de procedimentos manuais, como listas e contagens realizadas pelas equipes responsáveis. A ausência de monitoramento digital em tempo real dificulta o acompanhamento da evacuação e a identificação de pessoas que ainda não tiveram sua presença confirmada. Além disso, a falta de uma infraestrutura dedicada ao rastreamento, como sensores e dispositivos de identificação, limita a automatização desses processos. Essas dificuldades evidenciam a necessidade de aprimorar os mecanismos de acompanhamento e comunicação durante emergências industriais.
+Em relação às fraquezas, destacam-se as limitações do processo de conferência de evacuação descrito no kickoff: dependência de listas e contagens manuais nos pontos de encontro e perda de registros de passagem quando as catracas são liberadas. Na figura, “ausência de monitoramento digital em tempo real” e “falta de infraestrutura dedicada ao rastreamento” se referem a esse recorte de acompanhamento da evacuação, não à ausência de automação ou sistemas de identificação em toda a Unipar. Essas limitações motivam o protótipo de contagem local da Sprint 1 e a avaliação de consolidação remota nas sprints seguintes; não tornam necessário adotar rastreamento individual contínuo.
 
 **Oportunidades**
 
@@ -172,13 +185,13 @@ O cloro é tóxico, mais denso que o ar e não inflamável, embora seja um forte
 
 Propõe-se apoiar a SSMA com contagem quantitativa e anônima nos acessos aos PEs, sem rastreamento contínuo de alta precisão em ambientes internos. No modelo integrado futuro, o saldo das Portarias P1/P2 será congelado no alarme como população inicial `B`. Nesta documentação, **`A` significa a quantidade estimada de pessoas atualmente nos PEs: entradas somadas e saídas descontadas**, e não o total histórico de chegadas. O saldo `D = B - A` apoiará a apuração de pendências, preservando a conferência humana: igualdade numérica não identifica pessoas nem garante que todos estejam seguros.
 
-Na Sprint 1, o protótipo Wokwi utiliza Arduino Uno e **dois sensores HC-SR04**, um para entrada e outro para saída, LCD, buzzer e LEDs. O botão apenas alterna os LEDs e **não pausa a contagem**. A detecção usa sensores dedicados a cada sentido; não há algoritmo implementado de direção pela ordem de acionamento de dois feixes. A solução futura prevê ESP32. Dashboard, comunicação em rede, integração às portarias, registros de horário, histórico e alerta automático ao CCO/brigada ainda são funcionalidades futuras. A seção 3.3.8 detalha os limites e o modelo técnico; a seção 3.4.1 registra CT01–CT10.
+Na Sprint 1, o protótipo Wokwi utiliza Arduino Uno e **dois sensores HC-SR04**, um para entrada e outro para saída, LCD, buzzer e LEDs. O botão apenas alterna os LEDs e **não pausa a contagem**. A detecção usa sensores dedicados a cada sentido; não há algoritmo implementado de direção pela ordem de acionamento de dois feixes. A evolução futura poderá adotar ESP32, após definição de arquitetura. Dashboard, comunicação em rede, integração às portarias, registros de horário, histórico e alerta automático ao CCO/brigada ainda são funcionalidades futuras. A seção 3.3.8 detalha os limites e o modelo técnico; a seção 3.4.1 registra CT01–CT10.
 
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
 
 A jornada prevista compreende **cinco etapas**:
 
-1. **Rotina:** os registros de crachá nas portarias sustentam o saldo da planta; o controle agregado por zonas é uma integração prevista, sem localização contínua individual. O protótipo local permanece contando nos dois estados dos LEDs.
+1. **Rotina:** na visão futura, os registros das portarias poderão sustentar o saldo da planta; essa integração ainda depende de validação. O protótipo local permanece contando nos dois estados dos LEDs.
 2. **Alarme:** as catracas são liberadas conforme o procedimento da Unipar. No sistema integrado futuro, serão congelados `B` e o instante inicial do evento. O botão atual não inicia uma emergência nem zera o contador.
 3. **Chegada e saída nos PEs:** os líderes orientam as passagens pelos acessos monitorados. Cada entrada válida incrementa o total local e cada saída válida o reduz, com indicação no LCD e buzzer. A quantidade de acessos deve ser dimensionada para evitar retenção, conforme a seção 3.3.8.
 4. **Conferência e resposta:** atualmente, a leitura é local e a consolidação depende das equipes. Futuramente, o CCO acompanhará `D`; se `D > 0` aos dez minutos, haverá alerta automático para acionamento imediato da brigada conforme a regra interna. A SSMA coordena as ações. Baixo fluxo **pode indicar um problema que precisa ser investigado**, sem permitir concluir que uma rota está bloqueada.
@@ -190,152 +203,138 @@ Espera-se agilizar a apuração quantitativa, melhorar a visibilidade para SSMA/
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 
-Os critérios propostos são redução de pelo menos 60% no tempo de apuração quantitativa frente ao processo manual, capacidade para atender a população dentro do SLA e meta de acurácia por evento de pelo menos 99% em condições definidas. O protocolo, os limites de medição e o dimensionamento estão nas seções 3.3.8 e 3.4.1.1. Os dez casos funcionais documentados em Wokwi constituem evidência inicial de comportamento, sem comprovar essas metas. Resultado de 90% em estresse não aprova uso real.
+**Aceitação da Sprint 1:** o protótipo deve reproduzir CT01–CT10 com as entradas e saídas da seção 3.4.1, ter código e circuito versionados, funções `setup()` e `loop()`, ao menos duas funções auxiliares utilizadas e uma classe instanciada em uso. A medida é a quantidade de casos aprovados sobre dez, acompanhada das evidências e da versão ensaiada. A revisão do diagrama exige nova execução antes de confirmar a aprovação da versão corrigida.
+
+**Metas exploratórias das próximas sprints, ainda sujeitas ao parceiro:** os critérios propostos são redução de pelo menos 60% no tempo de apuração quantitativa frente ao processo manual, capacidade para atender a população dentro do SLA e meta de acurácia por evento de pelo menos 99% em condições definidas. O protocolo, os limites de medição e o dimensionamento estão nas seções 3.3.8 e 3.4.1.1. Os dez casos funcionais documentados em Wokwi constituem evidência inicial de comportamento, sem comprovar essas metas. Resultado de 90% em estresse não aprova uso real.
 
 ### 3.1.4. Value Proposition Canvas
 
-_O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._
+O Value Proposition Canvas organiza o perfil do cliente — tarefas, dores e ganhos — e o mapa de valor — produtos e serviços, aliviadores de dor e criadores de ganho (OSTERWALDER et al., 2014). Neste projeto, considera a visão da solução descrita nas seções 1.2 e 3.1.3. As necessidades representam o contexto reunido pela equipe e hipóteses das proto-personas; o mapa diferencia a entrega da Sprint 1 das integrações planejadas, cuja implementação depende de viabilidade e validação nas próximas sprints.
+
+<div align="center">
+<sub>Figura 3.1.4 — Value Proposition Canvas da solução</sub>
+
+<img src="../assets/value-proposition-canvas.png" alt="Value Proposition Canvas do C.R.I.S.I.S: perfil de SSMA e mapa de valor, com distinção entre protótipo da Sprint 1 e integrações planejadas" width="100%">
+
+<sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026), com base em Osterwalder et al. (2014).</sup>
+
+</div>
+
+**Segmento de cliente**
+
+O cliente considerado no Canvas é o gestor de SSMA da fábrica de Cubatão, representado pela proto-persona Tuco Salamanca (seção 3.2). Seu perfil reúne necessidades de coordenação da resposta e de conferência da evacuação junto ao CCO e à brigada. As atribuições e permissões específicas devem seguir os procedimentos do parceiro; a proto-persona não constitui comprovação individual dessas responsabilidades.
+
+**Perfil do cliente**
+
+_Tarefas_
+
+- Coordenar a resposta à emergência junto com o Centro de Controle Operacional (CCO);
+- Apurar as presenças e as pendências nos pontos de encontro dentro do prazo interno de dez minutos após o alarme;
+- Decidir se e para onde a brigada deve ser enviada para busca e resgate;
+- Elaborar e revisar o Plano de Ação de Emergência (PAE);
+- Acompanhar os indicadores de SSMA da unidade.
+
+_Dores_
+
+- Depender de contagem visual e de chamada em papel nos pontos de encontro;
+- Não saber com precisão se ainda existem colaboradores ou terceiros em zonas de risco;
+- Perder registro de quem passa, porque as catracas são liberadas durante a emergência;
+- Trabalhar com listas impressas que não refletem visitantes, terceiros com crachá provisório e trocas de turno do dia;
+- Ter a chamada atrapalhada pelo barulho das sirenes e dos equipamentos;
+- Lidar com pessoas que vão para um ponto de encontro diferente do previsto, por causa da direção do vento, o que gera falsas ausências em um ponto e contagens duplicadas em outro;
+- Perder minutos para direcionar a brigada enquanto os dados da evacuação ainda estão sendo consolidados;
+- Expor os brigadistas a buscas em áreas de risco sem saber onde procurar, ou procurando pessoas que já saíram.
+
+_Ganhos_
+
+- Consultar um painel com contagens consolidadas e pendências claramente diferenciadas de confirmações individuais;
+- Saber quantas pessoas ainda precisam de conferência e reunir informações complementares para orientar a resposta;
+- Dispor de informação útil dentro do prazo de dez minutos, inclusive quando a conferência estiver incompleta;
+- Apoiar o direcionamento da brigada com dados verificados e informações de campo;
+- Ter o registro da evacuação com horários, para relatórios pós-incidente e para melhorar o PAE;
+- Trabalhar com a mesma informação que o CCO, em tempo real.
+
+**Mapa de valor**
+
+A proposta de valor é agilizar a apuração quantitativa nos pontos de encontro e, na evolução integrada, consolidá-la para apoiar as decisões de SSMA/CCO dentro do prazo interno de dez minutos. A solução complementa a conferência humana: contagem anônima não substitui confirmação nominal, não localiza ausentes e não autoriza concluir a emergência automaticamente.
+
+_Produtos e serviços_
+
+- **Sprint 1:** protótipo simulado com sensores dedicados de entrada e saída, total local no LCD, buzzer por detecção e botão que alterna LEDs sem pausar a contagem. O LED não confirma uma chegada individual;
+- **Planejado:** população de referência das portarias P1/P2, reconciliada e congelada no alarme;
+- **Planejado:** dispositivos conectados e painel de CCO/SSMA com ocupação por ponto, saldo quantitativo pendente, tempo desde o alarme e alertas;
+- **Planejado:** histórico dos eventos de contagem com horários. Eventual consulta aos crachás e às últimas áreas registradas será avaliada separadamente.
+
+_Aliviadores de dor_
+
+- **Sprint 1:** o total local é atualizado por detecções simuladas, reduzindo a necessidade de somar manualmente cada evento no ensaio;
+- **Sprint 1:** o bloqueio de repetição e o descarte de eco inválido evitam alguns registros espúrios; permanecem limitações de fluxo e possíveis perdas, conforme a matriz de riscos;
+- **Sprint 1:** o LCD oferece leitura visual do saldo, enquanto o buzzer sinaliza detecção; a legibilidade e a audibilidade em campo ainda precisam ser testadas;
+- **Planejado:** a referência congelada preservará a base quantitativa do início do alarme, desde que os registros de acesso estejam completos e reconciliados, inclusive para terceiros e visitantes;
+- **Planejado:** a consolidação somará a ocupação dos PEs designados, com entradas e saídas, apoiando a reconciliação de transferências sem prometer eliminar erros;
+- **Planejado:** o painel indicará pendência ou dados inconclusivos aos dez minutos e apoiará a conferência e o acionamento da brigada conforme o procedimento do parceiro.
+
+_Criadores de ganho_
+
+- **Sprint 1:** saldo local visível e cenários reproduzíveis para estudar contagem e falhas, sem identificação pessoal no fluxo;
+- **Planejado:** visão compartilhada da ocupação estimada por PE e da atualização dos dispositivos, facilitando a comunicação entre CCO e SSMA;
+- **Planejado:** cronômetro e alerta no prazo interno para apoiar decisões, sem promessa de que toda a evacuação será concluída nesse intervalo;
+- **Planejado:** histórico para analisar simulados e revisar procedimentos, com metas de desempenho medidas em etapas posteriores;
+- **Possibilidade a avaliar:** consulta autorizada aos registros de acesso como contexto complementar. Última área registrada ou setor de trabalho não equivale à localização atual de uma pessoa pendente;
+- **Limite permanente:** saldo zero representa convergência numérica e exige conferência. Não dispensa automaticamente busca, brigada ou confirmação nominal.
+
+**Encaixe entre o perfil e o mapa de valor**
+
+A entrega atual se relaciona à necessidade de apuração quantitativa por meio de RF001 e CT02/CT04, à sinalização local por RF014 e CT01/CT06 e ao tratamento de repetição e leitura inválida por RF015 e CT03/CT05/CT09/CT10. A consolidação remota e os alertas dependem de RF003–RF010 e RF016, ainda planejados. A solução busca reduzir esforço e incerteza, mas esses ganhos ainda precisam ser medidos. Nem o saldo anônimo nem uma eventual lista de pessoas presentes no alarme permitem identificar, por subtração, quem falta ou localizar ausentes. A conferência individual e as informações de campo permanecem necessárias.
 
 ### 3.1.5. Matriz de Riscos
 
-A matriz de riscos reúne os eventos incertos que podem afetar o projeto do grupo **Synthetix**, divididos entre eventos negativos (ameaças) e positivos (oportunidades), distribuindo-os de acordo com a probabilidade de ocorrência e o nível de impacto de cada um.
+A matriz considera o protótipo de contagem local da Sprint 1 e as dependências de sua eventual evolução. Chaveiros, acelerômetros, triangulação por antenas e rede mesh não fazem parte da solução confirmada. Os riscos abaixo foram revistos a partir do firmware, do circuito e dos testes registrados, sem atribuir ocorrências em campo que não foram observadas.
 
-O escopo de análise considera a arquitetura da solução desenvolvida para evacuação industrial, composta por três componentes principais:
+#### Critérios de classificação
 
-1. **Chaveiros individuais:** Dispositivos portáteis fixados ao EPI do colaborador, dotados de botões de status/socorro, acelerômetro para detecção de ausência de movimento/queda e sinalização tátil/luminosa.
-2. **Caixas Fixas (Antenas por zona):** Módulos instalados em cada cômodo/zona e no Ponto de Encontro para triangulação de sinal de radiofrequência e confirmação automática de presença.
-3. **Painel Central (Dashboard):** Mapeamento dinâmico em tempo real exibindo a condição das zonas (azul = segura / vermelha = evacuar) e o status individual dos trabalhadores (OK, Pedido de Ajuda, Sem Movimento ou Sem Sinal).
+Probabilidade e impacto usam escala ordinal de 1 a 5. A probabilidade é uma estimativa qualitativa da equipe, não frequência medida: muito baixa (1), baixa (2), média (3), alta (4) e muito alta (5). O impacto sobre a validade da contagem e da entrega é muito baixo (1, ajuste editorial), baixo (2, ajuste local), moderado (3, retrabalho), alto (4, resultado ou entrega comprometidos) e muito alto (5, informação capaz de induzir decisão insegura se usada fora do ensaio). A prioridade `P × I` é baixa de 1 a 4, média de 5 a 9, alta de 10 a 15 e crítica de 16 a 25. Não representa uma análise formal de segurança industrial.
 
-Os riscos foram levantados diretamente a partir dos requisitos técnicos do MVP, das definições do grupo e das lacunas operacionais identificadas na fábrica.
+| ID  | Evento e escopo                                                                            |   P |   I | Prioridade  | Justificativa e resposta planejada                                                                                                                                                                | Responsável proposto / verificação                  |
+| --- | ------------------------------------------------------------------------------------------ | --: | --: | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| R01 | Perda de passagens próximas ou em sentidos opostos — atual                                 |   4 |   5 | 20, crítica | O bloqueio é compartilhado e exige 1 s livre; CT09 mostra saída ignorada. Medir vazão e ensaiar duplas, respeitando a evasão; rever lógica antes de uso físico.                                   | Firmware e testes / campanha da seção 3.4.1.1       |
+| R02 | Saldo divergente por saída sem entrada inicial, reinício ou passagem não detectada — atual |   4 |   4 | 16, crítica | O total começa em zero e não persiste; CT07 mascara saldo negativo. Reconciliar a ocupação e registrar reinícios/erros.                                                                           | Testes / CT07 e ensaio de reinicialização planejado |
+| R03 | Eco ausente ou sensor desconectado parecer ausência de pessoas — atual                     |   3 |   5 | 15, alta    | CT10 descarta a leitura, mas não identifica falha nem alerta o operador. Planejar diagnóstico e conferência manual.                                                                               | Firmware / CT10; RF009 futuro                       |
+| R04 | Igualdade de totais ser tomada como confirmação nominal — atual e futuro                   |   3 |   5 | 15, alta    | Contagem anônima não identifica ausentes nem detecta erros compensados. Explicitar limites na interface e manter conferência da SSMA.                                                             | Negócios e UX / RN07, RN09                          |
+| R05 | Montagem física incompatível com diagrama/BOM — transição à bancada                        |   4 |   4 | 16, crítica | Foram identificados alimentação invertida do sensor de entrada, protoboard cotada menor que a simulada e buzzer a conferir. Corrigir circuito, recotar itens e conferir pinos antes de energizar. | Hardware / checklist elétrico e nova simulação      |
+| R06 | Botão e LEDs serem interpretados como alarme, pausa ou indicação de segurança — atual      |   3 |   4 | 12, alta    | O botão só alterna LEDs. Rotular a demonstração e verificar entendimento com os usuários.                                                                                                         | UX / RF014, CT06                                    |
+| R07 | Ruído acústico, geometria ou múltiplas pessoas invalidarem a detecção — bancada futura     |   3 |   5 | 15, alta    | O Wokwi não comprova cobertura física nem discriminação humana. Ensaiar posição, reflexões e fluxo; revisar sensores se necessário.                                                               | Hardware e testes / seção 3.3.8                     |
+| R08 | População B incorreta ou ausência de integração com portarias — futuro                     |   3 |   5 | 15, alta    | Sem referência válida, D não permite estimar pendências. Validar origem, congelamento e reconciliação de B.                                                                                       | Integração e SSMA / RF003, RF004                    |
+| R09 | Rede indisponível ou retransmissão distorcer consolidação — futuro                         |   3 |   4 | 12, alta    | Comunicação não existe na Sprint 1. Planejar conectividade explícita, mensagens identificadas e estado de desatualização.                                                                         | Integração / RF010, RF016                           |
+| R10 | Expansão introduzir dados pessoais sem política adequada — futuro                          |   3 |   4 | 12, alta    | Conta de usuário e eventual crachá mudam o tratamento. Revisar agentes, finalidade, base legal, retenção e acesso antes da coleta.                                                                | Gestão e privacidade / RF011, RF013                 |
+| R11 | Extrapolação de bancada para instalação industrial inadequada — futuro                     |   3 |   5 | 15, alta    | Não há validação de alimentação, proteção ambiental, vazão ou classificação de área. Submeter a localização e os equipamentos à avaliação técnica do parceiro.                                    | Hardware e SSMA / seção 3.3.8                       |
+| R12 | Documentação, evidências e firmware divergirem — atual                                     |   4 |   4 | 16, crítica | A revisão encontrou RTM de outra lógica, links inexistentes e riscos de outra arquitetura. Manter baseline, revisar RF/RN/CT e repetir testes após alterações.                                    | Documentação e testes / RTM e conferência documental |
 
----
-
-#### Critérios de Classificação
-
-A probabilidade expressa a chance de o evento ocorrer durante os testes do protótipo ou na operação da planta piloto. O impacto mede o efeito do evento sobre o objetivo central da solução: **garantir a contagem precisa e em tempo real dos trabalhadores, orientar a rota de fuga e acelerar a resposta da brigada de emergência**.
-
-<div align="center">
-
-**Quadro 1 – Escala de probabilidade da matriz de riscos**
-
-| Nível           | Faixa  | Interpretação no projeto Synthetix                                                                                    |
-| :-------------- | :----: | :-------------------------------------------------------------------------------------------------------------------- |
-| **Muito baixa** | $10\%$ | O evento depende de uma combinação improvável de falhas ou de descumprimento deliberado de procedimentos.             |
-| **Baixa**       | $30\%$ | O evento pode acontecer, mas existem salvaguardas operacionais ou redundâncias técnicas que reduzem sua chance.       |
-| **Média**       | $50\%$ | O evento depende de condições operacionais e de infraestrutura que o grupo ainda não testou totalmente em campo.      |
-| **Alta**        | $70\%$ | Existe indício concreto de ocorrência, limitação inerente da tecnologia escolhida ou dependência de fatores externos. |
-| **Muito alta**  | $90\%$ | O evento é iminente ou praticamente certo na ausência de ação corretiva imediata.                                     |
-
-_Fonte: Elaboração do Grupo Synthetix (2026)._
-
-</div>
-
-<br>
+#### Distribuição na matriz
 
 <div align="center">
+<sub>Figura 3.1.5 — Matriz de riscos do C.R.I.S.I.S</sub>
 
-**Quadro 2 – Escala de impacto da matriz de riscos**
+<img src="../assets/MatrizDeRisco.png" alt="Matriz de ameaças R01 a R12 e oportunidades O01 a O03, por probabilidade e impacto em escala ordinal de 1 a 5" width="100%">
 
-| Nível           | Interpretação no projeto Synthetix                                                                              |
-| :-------------- | :-------------------------------------------------------------------------------------------------------------- |
-| **Muito baixo** | O evento não altera o funcionamento do painel e passa despercebido pelos operadores.                            |
-| **Baixo**       | Exige ajustes pontuais na calibração dos chaveiros ou na interface gráfica sem atrasar as entregas do projeto.  |
-| **Moderado**    | Gera retrabalho técnico ou elevação de custos de hardware, sem comprometer a segurança da evacuação.            |
-| **Alto**        | Compromete a precisão da localização por zonas ou distorce os dados de presença do painel central.              |
-| **Muito alto**  | Deixa o sistema inoperante na emergência, oculta vítimas não salvas ou atrasa diretamente o resgate da brigada. |
-
-_Fonte: Elaboração do Grupo Synthetix (2026)._
-
+<sup>Fonte: elaboração com auxílio de inteligência artificial (2026), adaptada ao formato de ameaças e oportunidades do template da turma.</sup>
 </div>
 
----
+A figura usa posições, sem codificação de prioridade por cor. Na metade das ameaças, o impacto cresce da esquerda para a direita; na metade das oportunidades, a ordem é espelhada. A escala ordinal evita apresentar estimativas qualitativas como probabilidades percentuais medidas. As prioridades e justificativas estão no quadro anterior.
 
-#### Ameaças (Riscos Negativos)
+#### Oportunidades
 
-<div align="center">
+| ID  | Evento positivo                                                         |   P |   I | Justificativa / ação proposta                                                                               |
+| --- | ----------------------------------------------------------------------- | --: | --: | ----------------------------------------------------------------------------------------------------------- |
+| O01 | Reuso dos casos simulados reduzir retrabalho em bancada                 |   4 |   3 | CT01–CT10 fornecem entradas e saídas; reproduzi-los no hardware físico e comparar os resultados.            |
+| O02 | Contagem agregada reduzir necessidade de dados pessoais                 |   4 |   4 | Não há identidade no fluxo atual; preservar essa minimização ao avaliar a consolidação remota.              |
+| O03 | Retorno de SSMA/CCO melhorar a legibilidade e o processo de conferência |   3 |   4 | As proto-personas ainda precisam de validação; apresentar LCD e limites antes de especificar telas futuras. |
 
-**Quadro 3 – Ameaças identificadas no projeto Synthetix**
+As oportunidades usam a mesma escala com impacto entendido como benefício: O01 em (P4,I3), O02 em (P4,I4) e O03 em (P3,I4). Sua distribuição é separada das ameaças para não confundir benefício com severidade. Os responsáveis são papéis propostos, sujeitos à divisão de tarefas do grupo. As prioridades imediatas são R01, R02, R05 e R12; as demais serão reavaliadas a cada sprint. Nenhuma resposta planejada deve ser interpretada como mitigação já testada.
 
-|   ID   | Ameaça                                                                   | Probabilidade  |  Impacto   | Justificativa                                                                                                                                                                                                                                                 |
-| :----: | :----------------------------------------------------------------------- | :------------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **R1** | **Falha de rede ou queda de energia durante a emergência**               | Média ($50\%$) | Muito Alto | Incêndios e explosões frequentemente causam curto-circuito ou desligamento preventivo da rede elétrica da fábrica. Se as Caixas Fixas não possuírem alimentação autônoma por bateria, o sistema inteiro fica "cego" no momento em que mais precisa funcionar. |
-| **R2** | **Ausência de lista de presença diária na fábrica**                      | Alta ($70\%$)  |    Alto    | Sem saber quem bateu o ponto ou entrou na fábrica no dia, a brigada de incêndio não consegue diferenciar quem falta no Ponto de Encontro de quem simplesmente não foi trabalhar (folga/atestado), mobilizando resgates desnecessários em áreas de risco.      |
-| **R3** | **Fator humano no manuseio do chaveiro**                                 | Média ($50\%$) |  Moderado  | Operadores podem esquecer o chaveiro no armário, a bateria do dispositivo pode descarregar ou visitantes podem entrar sem o equipamento. Embora o colaborador ainda possa evacuar fisicamente, os dados do painel ficam distorcidos.                          |
-| **R4** | **Interferência de RF por estruturas metálicas industriais**             | Baixa ($30\%$) |    Alto    | Galpões metálicos, tubulações pesadas e motores elétricos geram atenuação e ruído de rádio. Se o sinal falhar ou atenuar demais, o algoritmo de sinal mais forte pode alocar a pessoa na zona errada do mapa.                                                 |
-| **R5** | **Inviabilidade por exigência de certificação à prova de explosão (Ex)** | Alta ($70\%$)  |  Moderado  | Em áreas classificadas (com presença de gases ou poeiras inflamáveis), equipamentos exigem invólucros ou circuitos intrinsecamente seguros. Essa exigência eleva o custo e regulamentação do produto, exigindo delimitação de escopo no MVP.                  |
-| **R6** | **Retardo no acionamento do "Modo Emergência"**                          | Baixa ($30\%$) | Muito Alto | Se o sistema depender de acionamento manual no painel para alterar o mapa para "Modo Evacuação", falhas humanas ou pânico podem atrasar a sinalização das saídas e o rastreio automático.                                                                     |
+### 3.1.6. Política de privacidade do projeto (Sprint 1)
 
-_Fonte: Elaboração do Grupo Synthetix (2026)._
-
-</div>
-
----
-
-#### Planos de Resposta às Ameaças
-
-<div align="center">
-
-**Quadro 4 – Planos de resposta às ameaças**
-
-|   ID   | Estratégia  | Ação planejada no projeto Synthetix                                                                                                                                                                                       |
-| :----: | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **R1** | **Mitigar** | Equipar cada Caixa Fixa com bateria de reserva (Li-Ion/Powerbank) dimensionada para manter a operação autônoma por no mínimo $4\text{ horas}$ sem rede elétrica.                                                          |
-| **R2** | **Mitigar** | Implementar leitor de radiofrequência na portaria da fábrica para cadastrar automaticamente a lista de presentes do dia no banco de dados assim que o chaveiro/crachá passa pela catraca.                                 |
-| **R3** | **Mitigar** | Adicionar aviso sonoro/LEDs de checagem na portaria para alertar chaveiros descarregados e criar um protocolo obrigatório de entrega de chaveiros temporários para visitantes.                                            |
-| **R4** | **Mitigar** | Executar testes de RSSI (indicador de força de sinal recebido) e implementar uma margem de histerese no algoritmo de decisão para evitar oscilações de zona entre antenas vizinhas.                                       |
-| **R5** | **Evitar**  | Restringir a instalação física das Caixas Fixas do MVP a zonas não classificadas (ex.: pontos de encontro, escritórios e rotas externas de passagem), tratando a certificação Ex como recomendação de evolução comercial. |
-| **R6** | **Evitar**  | Conectar o painel central diretamente à saída de relé do sistema de alarme de incêndio predial já existente, garantindo disparo automático do "Modo Emergência".                                                          |
-
-_Fonte: Elaboração do Grupo Synthetix (2026)._
-
-</div>
-
----
-
-#### Oportunidades (Riscos Positivos)
-
-<div align="center">
-
-**Quadro 5 – Oportunidades identificadas no projeto Synthetix**
-
-|   ID   | Oportunidade                                         | Probabilidade  |  Impacto   | Justificativa                                                                                                                                            | Estratégia e Ação                                                                                                       |
-| :----: | :--------------------------------------------------- | :------------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| **O1** | **Check-in automático na portaria via RF/Crachá**    | Alta ($70\%$)  | Muito Alto | A integração do chaveiro com as catracas de acesso resolve a falta de lista diária, preenchendo automaticamente o banco de dados de presentes na planta. | **Explorar:** Desenvolver o módulo de recepção de sinal de RF na entrada principal durante a próxima sprint.            |
-| **O2** | **Comunicação mesh via protocolo ESP-NOW**           | Média ($50\%$) |    Alto    | O protocolo ESP-NOW permite comunicação direta rádio-a-rádio entre as Caixas Fixas sem depender de roteadores Wi-Fi ou conexão com a internet.           | **Explorar:** Implementar a topologia mesh nas Caixas Fixas para garantir autonomia total da rede física.               |
-| **O3** | **Integração direta com o Alarme de Incêndio (BMS)** | Baixa ($30\%$) |    Alto    | O acionamento automático por relé elimina o fator humano e comuta o Dashboard e as luzes de rota instantaneamente ao soar a sirene.                      | **Melhorar:** Projetar uma entrada digital isolada (optocolada) no painel para recepção do sinal da central da fábrica. |
-
-_Fonte: Elaboração do Grupo Synthetix (2026)._
-
-</div>
-
----
-
-#### Matriz de Riscos (Distribuição Visual)
-
-<br>
-
-<div align="center">
-<sub>Figura X – Matriz de riscos do projeto</sub>
-
-<img src="../assets/MatrizDeRisco.png" width="80%">
-
-<sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026).</sup>
-
-</div>
-
----
-
-### Síntese e Prioridades do Projeto
-
-A análise da matriz revela que as ameaças de maior severidade do projeto Synthetix referem-se à **infraestrutura e alimentação elétrica na emergência (R1)**, à **gestão da lista inicial de presentes (R2)** e à **rapidez no acionamento do modo de emergência (R6)**.
-
-Para a próxima fase do projeto, as prioridades estratégicas definidas pelo grupo são:
-
-1. **Garantia de Autonomia (R1):** Incorporação de baterias de backup em todas as Caixas Fixas.
-2. **Automação da Presença (R2 & O1):** Validação da leitura por RF na portaria para formação dinâmica da lista de colaboradores presentes na planta.
-3. **Resiliência de Comunicação (R4 & O2):** Uso do protocolo **ESP-NOW** para assegurar que a troca de informações entre as zonas continue funcionando mesmo se a rede Wi-Fi da fábrica for interrompida.
-
-Esta política preliminar considera exclusivamente o escopo do MVP definido até o momento: um protótipo de bancada com Arduino Uno, dois sensores ultrassônicos HC-SR04 para contar separadamente entradas e saídas, display LCD 16 × 2 para apresentar o total, botão para alternar entre os modos normal e emergência, LEDs verde e vermelho e buzzer para sinalização. Não fazem parte deste escopo cadastro de pessoas, crachá ou RFID, câmera, biometria, painel web, conexão de rede, banco de dados, nuvem ou rastreamento individual.
+Esta política preliminar considera exclusivamente o escopo do MVP definido até o momento: um protótipo de bancada com Arduino Uno, dois sensores ultrassônicos HC-SR04 para contar separadamente entradas e saídas, display LCD 16 × 2 para apresentar o total, botão para alternar a sinalização verde/vermelha sem pausar a contagem, LEDs verde e vermelho e buzzer para sinalização. Não fazem parte deste escopo cadastro de pessoas, crachá ou RFID, câmera, biometria, painel web, conexão de rede, banco de dados, nuvem ou rastreamento individual.
 
 Parte-se do pressuposto técnico de que cada HC-SR04 fornece apenas medições de distância usadas para detectar uma passagem, sem produzir imagem, áudio ou qualquer identificador da pessoa. Também se pressupõe que o firmware mantém somente a contagem agregada necessária ao funcionamento imediato e não grava histórico na memória EEPROM ou em outro meio persistente. Nessas condições, as informações do fluxo principal não se relacionam a uma pessoa natural identificada ou identificável e, portanto, não caracterizam dados pessoais para os fins da LGPD. Essa conclusão decorre dos conceitos de dado pessoal e dado anonimizado previstos nos arts. 5º e 12 da Lei nº 13.709/2018 [1]. Caso qualquer um desses pressupostos deixe de ser verdadeiro, a análise deverá ser refeita antes do teste ou da implantação.
 
@@ -347,7 +346,7 @@ Como o fluxo descrito não trata dados pessoais, não há, para ele, a atribuiç
 
 #### 3.1.6.2 Informações sobre o tratamento de dados
 
-Os sensores detectam passagens em dois pontos distintos. A sequência das detecções permite ao Arduino aumentar ou diminuir um contador agregado, cujo valor é exibido no LCD. O botão alterna o estado do protótipo entre os modos normal e emergência, os LEDs indicam o modo ativo e o buzzer fornece aviso sonoro durante as contagens. O sistema não identifica quem passou, não cria um registro por pessoa e não confirma a localização ou a situação individual de ninguém.
+Os sensores detectam passagens em dois pontos distintos. O sensor dedicado acionado determina se o Arduino aumenta ou diminui um contador agregado, cujo valor é exibido no LCD. O botão alterna a sinalização verde/vermelha sem abrir evento de emergência, os LEDs indicam o estado selecionado e o buzzer fornece aviso sonoro durante as contagens. O sistema não identifica quem passou, não cria um registro por pessoa e não confirma a localização ou a situação individual de ninguém.
 
 A avaliação desta política depende dos seguintes pressupostos:
 
@@ -364,16 +363,16 @@ Se o protótipo for utilizado em local ou configuração que permita combinar o 
 O MVP processa somente dados operacionais do circuito:
 
 - medições de distância e pulsos de detecção gerados pelos dois sensores;
-- indicação de entrada ou saída derivada da sequência das detecções;
+- indicação de entrada ou saída determinada pelo sensor dedicado acionado;
 - quantidade agregada calculada pelo Arduino;
-- estado selecionado pelo botão, normal ou emergência;
+- estado visual selecionado pelo botão, verde ou vermelho;
 - estados dos LEDs, do display e do buzzer.
 
 Não são coletados nome, matrícula, CPF, RG, imagem, voz, biometria, dado de saúde, localização individual, identificador de crachá ou dispositivo, endereço IP ou credencial de acesso. Pelos pressupostos apresentados, as medições e a contagem agregada não permitem identificar as pessoas detectadas e não constituem dados pessoais. Também não se deve registrar manualmente informações que permitam associar as contagens a indivíduos durante os testes.
 
 #### 3.1.6.4 Onde os dados são coletados
 
-As medições são geradas localmente no campo de alcance dos dois sensores instalados no protótipo de bancada, simulando um ponto de entrada e um ponto de saída. Como a documentação de escopo disponível não define unidade industrial, porta ou área real de instalação, pressupõe-se que os testes desta etapa ocorrerão apenas em ambiente acadêmico controlado. A escolha de um local real de operação está fora do escopo atual e exigirá nova avaliação, inclusive sobre a possibilidade de identificação indireta das pessoas.
+As medições são geradas localmente no campo de alcance dos dois sensores instalados no protótipo de bancada, simulando um ponto de entrada e um ponto de saída. O contexto de negócio é a unidade de Cubatão, mas nenhum acesso real foi homologado: os testes desta etapa são simulados e a montagem física ficará em ambiente acadêmico controlado. A escolha de um local real de operação está fora do escopo atual e exigirá nova avaliação, inclusive sobre a possibilidade de identificação indireta das pessoas.
 
 #### 3.1.6.5 Para quais finalidades os dados serão utilizados
 
@@ -390,7 +389,7 @@ O protótipo não deve ser usado para identificar pessoas, controlar acesso, reg
 
 O escopo atual não inclui banco de dados, cartão de memória, serviço de nuvem ou conexão de rede. Assim, as medições são processadas localmente e de forma transitória pelo Arduino; apenas o valor corrente do contador e o estado do sistema permanecem na memória necessária à execução e são apresentados no LCD.
 
-Pressupõe-se que o firmware não grave a contagem na EEPROM do Arduino. Esse comportamento deverá ser confirmado na revisão do código. Caso exista gravação persistente, o documento deverá informar o conteúdo gravado, a finalidade, o prazo e o procedimento de exclusão. O repositório poderá conter código-fonte e resultados agregados dos testes, mas não deve receber nomes, imagens, listas de presença, credenciais ou qualquer outro dado pessoal.
+A inspeção de `sketch.ino` nesta revisão não encontrou gravação em EEPROM, arquivos ou rede. O código emite mensagens no monitor serial, que podem aparecer nas capturas acadêmicas; isso não constitui histórico persistente implementado no dispositivo. Qualquer gravação futura exigirá especificar conteúdo, finalidade, prazo e exclusão. As evidências de teste devem conter apenas código, circuito e resultados simulados, sem dados pessoais de participantes, listas de presença ou credenciais. Os nomes e links profissionais dos autores no README são créditos acadêmicos separados do fluxo de contagem; sua publicação deve ser validada pela equipe.
 
 #### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)
 
@@ -400,11 +399,11 @@ Resultados agregados, como número de acertos, falhas e contagens simuladas, pod
 
 #### 3.1.6.8 Uso de cookies e/ou tecnologias semelhantes
 
-O MVP não possui site, aplicativo, painel web ou conexão com a internet. Por isso, não utiliza cookies, armazenamento local de navegador, ferramentas de análise ou tecnologias semelhantes. A futura inclusão de uma interface conectada estará fora deste escopo e exigirá atualização desta política antes da coleta.
+O firmware do MVP não possui site, painel web ou conexão com a internet e não utiliza cookies. O Wokwi e o GitLab são serviços externos usados para desenvolvimento e publicação; contas, IPs, cookies e registros de uso dessas plataformas são tratados conforme suas próprias políticas, separadamente do fluxo do circuito. A presente política não afirma ausência de tratamento pelas plataformas. A futura inclusão de uma interface conectada estará fora deste escopo e exigirá atualização desta política antes da coleta.
 
 #### 3.1.6.9 Com quem esses dados são compartilhados (parceiros, fornecedores, subcontratados)
 
-Não há compartilhamento de dados pessoais, pois o protótipo não os coleta. A equipe do Inteli, os avaliadores acadêmicos e os representantes da Unipar poderão acessar o valor agregado exibido e os resultados técnicos dos testes. O escopo não prevê fornecedores de nuvem, conectividade, banco de dados ou análise de dados.
+Não há compartilhamento de dados pessoais, pois o protótipo não os coleta. A equipe do Inteli, os avaliadores acadêmicos e os representantes da Unipar poderão acessar o valor agregado exibido e os resultados técnicos dos testes. O circuito não envia telemetria a fornecedores. Código e capturas simuladas são disponibilizados pelo Wokwi e pelo repositório GitLab, conforme as permissões desses serviços; o compartilhamento de evidências deve excluir dados identificáveis de participantes.
 
 Se uma evolução depender de terceiro ou de integração corporativa e envolver dados pessoais, os participantes e suas responsabilidades deverão ser identificados antes do tratamento, com regras de finalidade, acesso, segurança, retenção e exclusão.
 
@@ -441,16 +440,16 @@ O canal oficial publicado pela Unipar para contato com seu Encarregado de Prote�
 
 O nome da pessoa que exerce a função não é apresentado no aviso público consultado; por isso, registra-se somente o canal institucional confirmado [3].
 
-Esta política deverá ser revisada antes de qualquer alteração que inclua identificação por crachá ou RFID, cadastro, câmera, áudio, biometria, registro individual de horário ou localização, integração com sistemas corporativos, painel conectado, banco de dados, nuvem ou armazenamento persistente. Esses recursos não estão previstos no MVP analisado e não podem ser tratados como se já fizessem parte da solução.
+Esta política deverá ser revisada antes de qualquer alteração que inclua identificação por crachá ou RFID, cadastro, câmera, áudio, biometria, registro individual de horário ou localização, integração com sistemas corporativos, painel conectado, banco de dados, nuvem ou armazenamento persistente. Esses recursos não estão previstos no MVP analisado e não podem ser tratados como se já fizessem parte da entrega da Sprint 1. O contato institucional da Unipar foi conferido no aviso público nesta revisão; ele não comprova a designação do encarregado para tratamentos acadêmicos do Inteli, cuja responsabilidade deverá ser definida se houver pesquisa identificável.
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
 
-A Bill of Materials (BOM) apresenta os componentes necessários para a montagem do protótipo físico do MVP. O levantamento reúne os itens de processamento, sensoriamento, interação, sinalização, visualização e interconexão utilizados no circuito, permitindo a rastreabilidade dos materiais e apoiando o planejamento de aquisição.
+A Bill of Materials (BOM) apresenta o levantamento de materiais para uma montagem de bancada baseada no protótipo simulado da Sprint 1. Não é uma lista de equipamentos industriais homologados. A revisão documental não altera o circuito nem o firmware; as decisões de montagem serão verificadas pela equipe antes da etapa física.
 
-Esta BOM considera **uma unidade** do protótipo ilustrado, composta por Arduino Uno, dois sensores ultrassônicos, elementos de sinalização visual e sonora, display LCD, botão para alternância entre os modos normal e emergência, e materiais de montagem. Os valores foram levantados em fornecedores brasileiros para apoiar uma estimativa inicial de custo; eles não incluem frete, impostos adicionais ou materiais de reposição.
+Esta BOM considera **uma unidade** do protótipo ilustrado, com Arduino Uno, dois sensores ultrassônicos, sinalização visual e sonora, display LCD, botão para alternância dos LEDs e materiais de montagem. Os preços abaixo são do levantamento original da equipe, sujeitos a atualização; não incluem frete, impostos adicionais ou reposição. O quadro preserva esse levantamento, enquanto a reconciliação logo abaixo identifica os itens que precisam ser especificados e recotados. Seu total não deve ser usado como orçamento fechado de aquisição.
 
 <div align="center">
-<p>Quadro X — Bill of Materials do MVP</p>
+<p>Quadro 3.1.7 — Levantamento inicial de materiais e preços da Sprint 1, sujeito às correções abaixo</p>
 
 | Categoria                 | Quantidade | Referência do componente no protótipo/PCI                      | Código do componente (fabricante)                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Valor do componente (R$) |
 | ------------------------- | ---------: | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -471,19 +470,34 @@ Esta BOM considera **uma unidade** do protótipo ilustrado, composta por Arduino
 <p>Fonte: elaboração dos autores (2026).</p>
 </div>
 
-> Observação: Todos os links de compra dos componentes foram acessados em 20/10/2026. Os preços e a disponibilidade podem variar em função do tempo.
+> **Origem dos valores:** datas de consulta e preços foram informados no levantamento original, com referências de 20 a 22/10/2026. Não representam nova cotação nesta revisão. Os valores unitários rateados de kits não equivalem necessariamente ao desembolso para comprar os kits completos.
 
 A coluna <i>Categoria</i> identifica a função do item no protótipo, enquanto <i>Quantidade</i> registra o número de unidades necessárias. A <i>Referência</i> descreve o componente empregado no circuito, e o <i>Código do componente</i> apresenta o modelo ou a especificação adotada. A coluna <i>Valor do componente</i> registra o valor estimado e disponibiliza o respectivo link de consulta. Nos itens vendidos por unidade, o custo total foi calculado pela multiplicação do valor unitário pela quantidade indicada.
 
-O custo estimado da alternativa A é de R$ 133,46, considerando quatro jumpers macho-fêmea para o display LCD I²C e dezesseis jumpers macho-macho para as demais conexões. Na alternativa B, o custo estimado é de R$ 130,94, utilizando somente vinte jumpers macho-macho, caso todos os módulos possam ser conectados pela protoboard. Ambos os totais incluem uma pilha CR2023 de 3 V. A alternativa B é R$ 2,52 mais econômica e reduz a variedade de cabos necessária; contudo, a escolha deve respeitar o tipo de terminal presente nos componentes físicos.
+**Reconciliação com o protótipo e correções para a próxima cotação**
+
+| Item / referência no diagrama | Quantidade | Especificação a considerar | Situação do orçamento |
+| --- | ---: | --- | --- |
+| Processamento — uno | 1 | Placa compatível com Arduino Uno R3; confirmar se a oferta inclui a placa e o cabo, pois o título do link original menciona cabo USB. | R$ 39,54 é referência histórica; confirmar conteúdo do anúncio. |
+| Sensoriamento — ultrasonic1 e ultrasonic2 | 2 | HC-SR04, um dedicado à saída e outro à entrada. | R$ 15,00 por unidade; subtotal histórico R$ 30,00. |
+| Interação — btn1 | 1 | Botão momentâneo; muda a sinalização, sem pausar a contagem. | R$ 1,21 por unidade rateada; conferir lote mínimo. |
+| Sinalização — led1 e led2 | 2 | Um LED vermelho e um verde. | R$ 0,15 por unidade; subtotal histórico R$ 0,30. |
+| Sinalização sonora — bz1 | 1 | Transdutor compatível com frequência controlada pelo firmware; avaliar buzzer passivo e corrente necessária antes da montagem. | O preço de R$ 2,90 refere-se ao buzzer ativo do levantamento; não comprova equivalência ao simulado. Recotar após revisão. |
+| Visualização — lcd1 | 1 | LCD 16 × 2 com interface I²C e endereço compatível com o firmware. | R$ 25,55 no levantamento original. |
+| Resistores — r1 e r2 | 2 | 1 kΩ, 1/4 W, tolerância de 5%; a tensão de alimentação não é o valor do resistor. | R$ 0,12 por unidade; subtotal R$ 0,24. |
+| Montagem — bb1 | 1 | Protoboard que comporte o layout ilustrado, a conferir como modelo de 830 pontos. | O link de 400 pontos não reproduz a disposição atual. Recotar. |
+| Interconexão | 20 | Alternativa A: 16 macho-macho e 4 macho-fêmea; alternativa B: 20 macho-macho, dependendo dos terminais e da montagem final. | A: R$ 10,92; B: R$ 8,40, por rateio histórico. |
+| Alimentação/programação | 1 conjunto | Cabo USB compatível e alimentação de bancada adequada ao Uno e periféricos; confirmar cabo incluído na placa e fonte disponível. | Custo não confirmado separadamente; não assumir item gratuito. |
+
+Os totais originais de R$ 133,46 (A) e R$ 130,94 (B) incluem R$ 13,90 de pilha que não integra o circuito. Sua exclusão resulta em **subtotais históricos de R$ 119,56 (A) e R$ 117,04 (B)**. Esses valores ainda precisam incorporar as correções da placa/cabo, protoboard, buzzer e alimentação, além do custo efetivo dos kits. A diferença histórica entre as alternativas de jumpers é R$ 2,52. Portanto, o **custo total de uma montagem física validada permanece a confirmar**, sem substituir preços ausentes por zero.
 
 No protótipo, o Arduino Uno realiza o processamento das entradas e controla as saídas. Dois sensores ultrassônicos HC-SR04 identificam separadamente a entrada e a saída de pessoas, e o total é apresentado no display LCD 16 × 2 conectado por I²C. O botão alterna a sinalização entre os LEDs verde e vermelho, enquanto o buzzer fornece o aviso sonoro das contagens. Os dois resistores de 1 kΩ limitam a corrente dos LEDs. A protoboard e os jumpers viabilizam a montagem e as conexões do circuito sem a necessidade de solda.
 
-A pilha CR2023 de 3 V foi incluída na BOM como item de alimentação planejado, porém ainda não foi implementada no protótipo apresentado.
+A referência correta do anúncio da pilha é **CR2032**, e não CR2023. Ela foi uma hipótese do levantamento inicial, não foi implementada e não constitui alimentação validada para o conjunto Uno e periféricos. Fica excluída da montagem de referência e dos subtotais reconciliados. Qualquer solução de autonomia será dimensionada em etapa futura.
 
 A lista apresentada é adequada ao protótipo de bancada, mas não caracteriza, por si só, uma solução pronta para uso no ambiente industrial. Para uma futura implantação, será necessário especificar itens adicionais, como gabinete de proteção, alimentação apropriada, conectores, cabeamento, fixação mecânica e componentes com grau de proteção compatível com as condições de operação da Unipar.
 
-Assim, a BOM consolida os materiais e as duas possibilidades de interconexão identificadas para a implementação do MVP. A versão final deverá validar as especificações ainda pendentes e confirmar a alternativa de jumpers que será utilizada antes da aquisição dos componentes.
+Assim, a BOM preserva o levantamento inicial, explicita suas correções e identifica os componentes do diagrama. Antes da aquisição, a equipe deverá consolidar a revisão elétrica, a opção de interconexão e as cotações no template de materiais da turma. Esta documentação não declara essa montagem física executada ou aprovada.
 
 ## 3.2. Domínio de Fundamentos de Experiência de Usuário
 
@@ -493,20 +507,26 @@ Esta seção apresenta as **proto-personas** que orientam a compreensão inicial
 
 O mapeamento inicial considera cinco grupos de partes interessadas: colaboradores, operadores do Centro de Controle Operacional (CCO), gestores de Segurança, Saúde e Meio Ambiente (SSMA), brigadistas e responsáveis por Infraestrutura e TI. Nesta seção, são detalhadas três personas primárias: Gustavo Fring, técnico de operação, representa a perspectiva de quem precisa evacuar e ter sua chegada reconhecida; Maria Schrader, operadora de CCO, reúne as necessidades de monitoramento operacional e comunicação durante uma ocorrência; e Tuco Salamanca, gestor de SSMA, representa a perspectiva de gestão da emergência e uso das informações consolidadas. Brigadistas e responsáveis por Infraestrutura e TI são considerados públicos secundários neste recorte, com participação na resposta em campo e no suporte tecnológico, mas ainda não possuem perfis detalhados nesta seção.
 
-Os três perfis apresentados — Gustavo Fring, Maria Schrader e Tuco Salamanca — são proto-personas, e não personas validadas. Nesta etapa, as referências a “personas” ao longo da seção devem ser entendidas nesse sentido preliminar. Seus dados biográficos e falas ilustrativas são fictícios e não devem ser interpretados como relatos de pessoas reais; as atribuições, os comportamentos e as necessidades descritos são parte hipóteses e parte informações obtidas por meio das reuniões de kick-off com os parceiros, a verificar com os profissionais da unidade. Entrevistas, reviews com os parceiros e validações com os públicos representados deverão orientar a revisão dos perfis e sua evolução para personas mais bem fundamentadas e validadas.
+Os três perfis apresentados — Gustavo Fring, Maria Schrader e Tuco Salamanca — são **proto-personas**. Não houve entrevistas com usuários. A equipe obteve informações em reuniões de kickoff e reviews, no TAPI, no estudo de caso e nos demais materiais de contexto do projeto. Esses insumos apoiam hipóteses sobre necessidades e responsabilidades; não equivalem à observação direta ou à validação dos perfis com os trabalhadores. As referências a “personas” nos títulos e nas imagens devem ser entendidas nesse sentido preliminar.
+
+**Processo de construção:** a equipe reuniu os relatos e materiais disponíveis sobre evacuação, conferência e comunicação; organizou as necessidades por papel; e sintetizou três perfis em um template com apresentação, demografia, biografia, dores, necessidades, desejos, tarefas, cenários e letramento digital. Nomes, idades, famílias, hábitos e falas são elementos fictícios de representação. Informações específicas sobre rotinas, permissões e infraestrutura permanecem hipóteses quando não há registro que as sustente. A evolução dos perfis deverá incorporar o retorno das próximas reviews e, se viável, pesquisa direta com os públicos representados.
+
+**Uso de inteligência artificial:** as imagens foram produzidas com apoio do ChatGPT, conforme suas legendas. Nesta revisão, a IA também auxiliou a organização textual e a verificação de coerência com os requisitos e o protótipo. Não foram produzidas entrevistas, depoimentos reais ou evidências de validação por IA. O uso anterior de IA além do registrado nas legendas não está detalhado nos materiais disponíveis.
+
+**Relação com a entrega:** as imagens retratam necessidades e aspirações da solução completa, não uma lista de funcionalidades já entregues. Confirmação individual, localização, painel e pedidos de ajuda não são capacidades do contador da Sprint 1. Os cenários abaixo distinguem a rotina considerada, a interação com o protótipo e as possibilidades de integração futura.
 
 #### 3.2.1.2. Persona - Técnico de Operação
 
-A persona colaborador corresponde a todos os colaboradores e funcionários que trabalham dentro do complexo industrial de Cubatão da Unipar.
+A proto-persona colaborador representa necessidades iniciais de trabalhadores operacionais do complexo de Cubatão, sem pressupor que um único perfil descreva todos os vínculos, turnos e necessidades de acessibilidade.
 
 <div align="center">
   <sub>Figura 02: Técnico de Operação</sub>
     </div>
       <div align="center">
-       <img src="/assets/personaGustavoFring.png">
+       <img src="../assets/personaGustavoFring.png" alt="Proto-persona Gustavo Fring, técnico de operação; perfil fictício e necessidades da solução planejada">
       </div>
     <div align="center">
-  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+  <sub>Fonte: imagem produzida com auxílio de IA no ChatGPT, 2026.</sub>
 </div>
 
 **Nome:** Gustavo Fring.
@@ -521,7 +541,7 @@ A persona colaborador corresponde a todos os colaboradores e funcionários que t
 
 **Biografia**
 
-Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em uma zona diferente quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Chega ao trabalho com EPI e, tem como prioridade durante uma emergência, sair com segurança e saber que a equipe de resposta recebeu seu pedido de ajuda, caso precise.
+No perfil fictício, Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em outra zona quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Usa os EPIs exigidos e prioriza sair com segurança e conseguir comunicar a necessidade de ajuda pelos meios previstos no procedimento local.
 
 | Prioridade      | Dor ou necessidade                                                          | O que espera da solução(desejos)                                                                             |
 | :-------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
@@ -554,7 +574,7 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
 
 > “Se eu estiver em outra área, quero reconhecer rapidamente o caminho previsto para sair.”
 
-**Nível de letramento digital:** Intermediário. Usa aplicativos comuns e ferramentas de trabalho, mas o processo de evacuação atual que foi documentado para o projeto depende principalmente de sinais físicos, instruções da equipe e confirmação presencial. Não se pressupõe uso de telefone pessoal em área operacional.
+**Interação com o projeto:** na demonstração da Sprint 1, uma aproximação simulada representa a entrada ou saída de Gustavo, alterando o total no LCD e acionando o buzzer. Não é necessário crachá ou aplicativo para esse ensaio, e a detecção não confirma sua identidade. Nas próximas sprints, a equipe avaliará passagens físicas, acessibilidade e entendimento do retorno local, além da integração das contagens ao painel.
 
 **Variações do público e limites da persona:** Gustavo Fring representa um trabalhador habitual de área operacional, não todas as pessoas presentes na planta. Terceirizados, equipes de manutenção, visitantes, pessoas com deficiência e novos colaboradores podem conhecer menos as rotas, ter vínculos de identificação diferentes ou precisar de outro tipo de apoio. Essas diferenças precisam ser investigadas antes de generalizar a persona para todo o complexo.
 
@@ -566,10 +586,10 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
   <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
     </div>
       <div align="center">
-       <img src="/assets/personaMariaSchrader.png">
+       <img src="../assets/personaMariaSchrader.png" alt="Proto-persona Maria Schrader, operadora de CCO; perfil fictício e necessidades da solução planejada">
       </div>
     <div align="center">
-  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+  <sub>Fonte: imagem produzida com auxílio de IA no ChatGPT, 2026.</sub>
 </div>
 
 - Nome fictício: Maria Schrader.
@@ -581,7 +601,7 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
 
 **Biografia**
 
-Maria trabalhou em funções de apoio à operação antes de passar para a sala de controle. No retrato fictício, atua em turnos, acompanha indicadores e alarmes operacionais e responsável por alarmar emergências e evacuações, recebe informações de quem está em campo e registra alterações relevantes para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e de passeios de bicicleta. Opera painéis, registrar alterações e informar lideranças e operadores. **Como o CCO da Unipar participa da resposta a emergências ainda precisa ser confirmado.**
+No retrato fictício, Maria trabalhou em funções de apoio antes de passar para a sala de controle. Atua em turnos, acompanha indicadores e alarmes, recebe informações de campo e registra alterações para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e passeios de bicicleta. Sua participação no acionamento de alarmes e na resposta à emergência deve respeitar os procedimentos da unidade, cujas permissões específicas ainda precisam ser detalhadas com o parceiro.
 
 | Prioridade      | Dor ou necessidade atual                                                                                | Consequência na rotina                                                                                                                                            |
 | :-------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -602,11 +622,11 @@ Maria trabalhou em funções de apoio à operação antes de passar para a sala 
 - Acompanha atualizações da evacuação sem tratar informações de processo como confirmação da presença de pessoas nos pontos de encontro.
 - Registra alarmes, comunicações e providências para dar continuidade ao acompanhamento e transmitir as informações à equipe seguinte.
 
-**Cenários de interação atuais:** Na passagem de turno, Maria toma conhecimento das condições operacionais e das ocorrências em aberto. Durante a rotina, acompanha os painéis de processo, monitora as câmeras do complexo e das salas operacionais, aciona o alarme de emergência e troca informações com profissionais em campo. Diante de um alarme ou relato de incidente, verifica o que seus instrumentos e os procedimentos permitem afirmar, comunica as áreas responsáveis e mantém o acompanhamento da operação. Se houver evacuação, recebe atualizações pelos canais atualmente usados entre as equipes; não presume que um painel de processo informe automaticamente quem chegou ao ponto de encontro. Se a própria sala estiver na área afetada, mantem-se atuando no monitoramento, afinal, fica em um bunker que a protege dos possíveis incidentes e acidentes. Após o evento, registra e transmite a sequência conhecida à equipe de segurança.
+**Cenários de interação atuais:** no cenário hipotético, Maria toma conhecimento das ocorrências na passagem de turno e acompanha os instrumentos disponíveis. Diante de um alarme ou relato de incidente, verifica os sinais e os procedimentos, comunica as áreas responsáveis e executa as ações autorizadas. Durante a evacuação, recebe atualizações de campo sem presumir que um painel de processo confirme presenças no PE. Se a sala de controle for afetada, segue o procedimento aplicável; não se pressupõe proteção absoluta do local. Após o evento, registra e transmite as informações à equipe de segurança.
 
 **Interesses e hábitos relacionados ao processo:** Valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis e câmeras em tempo real, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
 
-**Nível de letramento digital:** Alto para as ferramentas operacionais que usa no trabalho: lê indicadores e navega entre telas de processo e câmeras com familiaridade.
+**Interação com o projeto:** na Sprint 1, Maria pode avaliar a clareza da demonstração e receber o saldo comunicado por quem lê o LCD; não existe painel remoto conectado. Na visão planejada, consultará ocupação por PE, pendências, tempo e validade dos dados no dashboard, apoiando a comunicação com SSMA. Essa interface e seu uso sob pressão ainda serão avaliados.
 
 **Falas ilustrativas, não coletadas em entrevista**
 
@@ -628,10 +648,10 @@ Maria trabalhou em funções de apoio à operação antes de passar para a sala 
   <sub>Figura 04: Gestor de SSMA </sub>
     </div>
       <div align="center">
-       <img src="/assets/personaTucoSalamanca.png">
+       <img src="../assets/personaTucoSalamanca.png" alt="Proto-persona Tuco Salamanca, gestor de SSMA; necessidades desejadas, sem comprovação de identificação ou localização pelo protótipo">
       </div>
     <div align="center">
-  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+  <sub>Fonte: imagem produzida com auxílio de IA no ChatGPT, 2026.</sub>
 </div>
 
 - **Nome:** Tuco Salamanca
@@ -682,7 +702,7 @@ Tuco valoriza confiabilidade absoluta dos dados, processos auditáveis, tecnolog
 
 Utiliza regularmente sistemas corporativos como ERP (SAP), ferramentas de análise de dados (Power BI) e softwares de gestão de riscos. Compreende de forma geral arquiteturas de tecnologia IoT, sensoriamento e automação industrial. Contudo, exige que o sistema de monitoramento de evacuação tenha uma curva de aprendizado nula e seja extremamente simples de operar durante situações de pânico ou emergência real.
 
-**Citações Diretas (Falas Ilustrativas)**
+**Falas ilustrativas, não coletadas em entrevista**
 
 > _"Preciso bater o olho na tela do CCE e saber em segundos quantos evacuaram e se há alguém na área afetada."_
 
@@ -693,6 +713,9 @@ Utiliza regularmente sistemas corporativos como ERP (SAP), ferramentas de análi
 **Variações do Público, Limites e Abrangência**
 
 - **Limites da Persona:** Tuco Salamanca representa a perspectiva do gestor estratégico no CCE da unidade fabril de Cubatão. A sua visão difere da visão de um brigadista em campo (que precisa de mobilidade e alertas locais) ou de um operador (focado em sair com segurança). Além disso, as particularidades das plantas da Unipar na Argentina ou em outras localidades do Brasil podem demandar diferentes adaptações nos protocolos ou nos dashboards locais.
+
+**Interação com o projeto:** na Sprint 1, Tuco representa quem avalia se o total local e os cenários simulados ajudam a compreender a apuração quantitativa. Não há confirmação individual no protótipo. Na evolução planejada, poderá consultar a consolidação dos PEs, o balanço e os alertas, confrontando-os com a conferência humana. Identificar ou localizar pessoas ausentes permanece uma necessidade não atendida pela contagem anônima; saldo zero não dispensa a brigada. CCE designa aqui o contexto hipotético de coordenação da emergência, cuja organização efetiva deve ser confirmada com a Unipar.
+
 - **Abrangência:** A persona do Gestor de SSMA canaliza os objetivos corporativos de toda a liderança e equipe de resposta a emergências: garantir visibilidade total do contingente, acelerar decisões de resgate e manter a conformidade com o compromisso de zero acidentes. Embora os colaboradores operacionais e terceiros interajam na ponta (sendo monitorados e confirmando presença), o Gestor de SSMA é o usuário final primário das informações consolidadas da solução tecnológica proposta.
 
 Em conjunto, as proto-personas Gustavo, Maria e Tuco conectam três perspectivas complementares da evacuação: a experiência de quem se desloca para um local seguro, o acompanhamento das condições operacionais e a gestão da resposta à emergência. A necessidade de Gustavo de ter sua chegada reconhecida se relaciona à necessidade de Maria de receber informações consistentes sobre o andamento da ocorrência e à de Tuco de acompanhar a conferência das pessoas e identificar pendências. Essa relação orienta o propósito do projeto: apoiar uma evacuação mais segura por meio de informações claras, ágeis e rastreáveis sobre a presença nos pontos de encontro, reduzindo a incerteza e o tempo necessário para consolidar os dados. As proto-personas, portanto, fornecem uma base inicial para orientar a pesquisa com usuários, propor prioridades de requisitos, elaborar jornadas e avaliar a solução em simulados, considerando tanto a experiência em campo quanto o uso das informações pelo CCO e pelo SSMA. Essas decisões deverão ser revistas à medida que as hipóteses dos perfis forem confirmadas ou corrigidas pela pesquisa. A confirmação de presença e as pendências de registro devem ser apresentadas de forma distinta, para que a ausência de confirmação não seja interpretada automaticamente como localização de uma pessoa em uma área de risco.
@@ -707,59 +730,58 @@ _Coloque aqui seu Storyboard (seguindo as instruções na descrição do artefat
 
 _Nesta seção, detalhe a especificação da solução, de acordo com o disposto nas subseções._
 
-### 3.3.1. Requisitos Funcionais (sprint 1, refinar e atualizar até sprint 5)
+### 3.3.1. Requisitos Funcionais (Sprint 1, refinar nas próximas sprints)
 
-Os requisitos funcionais descrevem as ações e os resultados que o sistema deve oferecer para apoiar a contagem de pessoas e o acompanhamento da evacuação. Esta lista preliminar foi elaborada com base nas reuniões e informações obtidas por meio das conversas com o parceiro, que inclusive permitiu a criação das personas. As funcionalidades ainda não implementadas ou dependentes de alinhamento com a Unipar estão identificadas na coluna “Situação”.
+Esta especificação distingue a entrega local demonstrada dos requisitos preliminares da solução futura. A documentação de Wi-Fi, MQTT, cadastro de dispositivos, acesso ao dashboard e representação gráfica atende à abrangência solicitada no ART. 4; **não amplia a implementação ou o escopo confirmado da Sprint 1**. Esses itens dependem de decisão e validação nas sprints seguintes.
 
-Para leitura dos requisitos, **B** é a população de referência presente na planta quando o alarme é acionado, **A** é o total de passagens contabilizadas nas entradas dos Pontos de Encontro ativos desde esse instante e **D = B − A** é a diferença numérica estimada. **D = 0** indica apenas convergência dos totais, sujeita à conferência da equipe de Saúde, Segurança e Meio Ambiente (SSMA). Os códigos de atores **A01 a A05** estão definidos na seção 3.2.1.
+**Atores:** A01 — Tuco, gestor de SSMA; A02 — brigadistas e responsáveis pela conferência no PE (público secundário, sem proto-persona própria); A03 — Gustavo, técnico de operação; A04 — Infraestrutura/TI (público secundário); A05 — Maria, operadora de CCO. As responsabilidades específicas da unidade permanecem sujeitas à pesquisa descrita em 3.2.1.
 
-De forma geral, os atores e perfis operacionais referenciados nos requisitos funcionais são:
+**Vocabulário único:** `B` é a população de referência congelada no alarme; `A` é a **ocupação atual estimada dos PEs**, incluindo ocupação inicial reconciliada, entradas somadas e saídas descontadas; `D = B − A`. Não se confunde `A` com chegadas acumuladas. Na Sprint 1 existe somente o contador local; `B`, `D`, evento e painel ainda não existem no firmware.
 
-- **A01 — Gestor de SSMA | Público principal — proto-persona Tuco Salamanca:** acompanha o balanço de evacuação, coordena a conferência complementar em campo e utiliza os dados para apoiar as decisões sobre a emergência.
-- **A02 — Brigadistas / Equipe de Emergência | Público secundário — sem proto-persona elaborada:** orientam a evacuação, verificam os Pontos de Encontro e comunicam informações de campo à gestão da emergência.
-- **A03 — Técnico de Operação / Colaborador | Público principal — proto-persona Gustavo Fring:** representa quem precisa receber o alerta, evacuar e ser contabilizado ao passar pelo acesso monitorado, sem identificação nominal pelo sensor.
-- **A04 — Responsável por Infraestrutura e TI | Público secundário — sem proto-persona elaborada:** configura os dispositivos e locais monitorados e apoia a conectividade e a integração da solução.
-- **A05 — Operador do Centro de Controle Operacional (CCO) | Público principal — proto-persona Maria Schrader:** acompanha indicadores e alarmes, recebe relatos de campo e consulta o painel para apoiar a comunicação com a SSMA e as equipes responsáveis.
+| ID    | Funcionalidade e critério verificável                                                                                                                                                                                                                                                                                        | Atores        | Origem / RN                     | Situação                                                                                            |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------- | --------------------------------------------------------------------------------------------------- |
+| RF001 | Contar localmente: com sensor livre e `0 < distância < 200 cm`, entrada incrementa 1 e saída decrementa 1 sem total negativo; atualizar LCD e emitir 1.000 Hz por 100 ms. Em saída com zero, manter zero e emitir buzzer/mensagem de detecção. Funciona com LED verde ou vermelho.                                           | A01, A02, A03 | 3.1.3; 3.4.1 / RN12, RN13       | Implementado; CT01–CT05, CT07 registrados; repetir no diagrama corrigido                            |
+| RF002 | Cadastrar cada dispositivo futuro com `device_id` único, PE/portaria, sensores e sentidos; rejeitar evento de nó desconhecido, desativado ou associado a local incompatível.                                                                                                                                                 | A04           | 3.1.3 / RN03                    | Preliminar, futuro                                                                                  |
+| RF003 | Consolidar entradas menos saídas das portarias P1/P2 e permitir reconciliar a referência antes de utilizá-la, sem inferir localização interna. A fonte real dos dados depende do parceiro.                                                                                                                                   | A01, A04, A05 | Kickoff; 3.1.3 / RN02           | Preliminar, futuro                                                                                  |
+| RF004 | Abrir evento com identificador, `t0`, PEs designados e `B` congelado. Mudanças posteriores nas portarias não alteram `B`; iniciar tempo decorrido sem reinício por passagem. O botão da Sprint 1 não executa essa função.                                                                                                    | A01, A05      | 1.1; 3.1.3 / RN01, RN02         | Preliminar, futuro                                                                                  |
+| RF005 | Consolidar `A` a partir da ocupação inicial reconciliada de cada PE, entradas e saídas válidas durante o evento. Transferências exigem saída na origem e entrada no destino; não identificar pessoas.                                                                                                                        | A01, A05      | 3.3.8 / RN03, RN04, RN09        | Preliminar, futuro                                                                                  |
+| RF006 | Calcular `D = B − A` com dados válidos; diferenciar pendência (`D > 0`), convergência sujeita a conferência (`D = 0`) e inconsistência (`D < 0`). Nunca concluir segurança individual pela igualdade.                                                                                                                        | A01, A02, A05 | 3.1.3 / RN05, RN07, RN08        | Preliminar, futuro                                                                                  |
+| RF007 | Exibir no dashboard `B`, `A`, `D`, tempo desde o alarme, gráfico da ocupação por PE ao longo do tempo, estado dos dispositivos e última atualização. Dados ausentes/desatualizados devem aparecer como inconclusivos, sem serem convertidos em zero.                                                                         | A01, A05      | 1.1; ART. 4 / RN05, RN08, RN09  | Preliminar, futuro                                                                                  |
+| RF008 | Ao atingir 600 s desde `t0`, com dados válidos e `D > 0`, emitir alerta visual e sonoro no painel com quantidade pendente para SSMA/CCO, apoiando acionamento da brigada. Dados inválidos seguem RF009.                                                                                                                      | A01, A02, A05 | Prazo interno do kickoff / RN06 | Preliminar, futuro                                                                                  |
+| RF009 | Sinalizar balanço inconclusivo diante de `A > B`, referência inválida, sensor/nó indisponível ou dados atrasados. Não mostrar evacuação concluída; indicar a origem da falha para conferência humana. Timeout do HC-SR04 isolado não comprova diagnóstico de defeito.                                                        | A01, A04, A05 | R02, R03, R08, R09 / RN08       | Preliminar, futuro                                                                                  |
+| RF010 | Publicar telemetria MQTT estruturada com `device_id`, local, função, `event_id`, `session_id`, `seq_id`, instante e `delta` (+1 entrada/−1 saída), além de heartbeat. Deduplicar pela combinação dispositivo/sessão/sequência; rejeitar campos inválidos e evento incompatível. Formato detalhado será definido na Sprint 3. | A04           | ART. 4; 3.3.8 / RN03, RN11      | Preliminar, futuro                                                                                  |
+| RF011 | Avaliar consulta autorizada ao sistema de crachás já existente, somente se a Unipar aprovar acesso, finalidade e viabilidade. A contagem dos PEs continua anônima e não identifica quem chegou.                                                                                                                              | A01, A04, A05 | 3.1.6 / RN09, RN10              | Possibilidade a validar; fora da Sprint 1                                                           |
+| RF012 | Registrar eventual conclusão do evento somente por usuário autorizado da SSMA após conferência, com usuário, instante e justificativa. `D = 0` não encerra o evento automaticamente.                                                                                                                                         | A01           | 3.1.3 / RN07, RN10              | Proposta documental para futura validação                                                           |
+| RF013 | Autenticar usuários do dashboard com chave única `user_id`, perfil e permissões. Negar consultas/alterações não autorizadas e registrar acessos e ações; credenciais não podem constar no firmware ou repositório. Dados de usuários exigem atualização da política antes da coleta.                                         | A01, A04, A05 | ART. 4; 3.1.6 / RN10            | Proposta documental para futura validação                                                           |
+| RF014 | Alternar verde/vermelho por pressionamento válido no botão D11, com verificação após 10 ms. Preservar o total e continuar contando em ambos os estados. Inicializar verde; não gerar alarme remoto, pausa ou zeragem.                                                                                                        | A01, A02      | 3.4.1; R06 / RN14               | Implementado; CT01/CT06 registrados; retorno ao verde e robustez do botão ainda a ensaiar           |
+| RF015 | Bloquear novos eventos enquanto o sensor ativo detectar presença; rearmar após ao menos 1.000 ms sem detecção. Ignorar o outro sensor durante o bloqueio; no ciclo livre priorizar saída. Descartar eco ausente após 30 ms. Não diagnosticar automaticamente defeito nem garantir ausência de perdas.                        | A01, A04      | 3.3.8; 3.4.1 / RN13             | Implementado; CT03/CT05/CT08–CT10 registrados; fronteiras e simultaneidade no mesmo ciclo a ensaiar |
+| RF016 | Na versão conectada, configurar conexão Wi-Fi, informar estado conectado/desconectado e tentar reconexão após perda sem reiniciar o total local. Comunicar indisponibilidade ao painel quando cessar heartbeat; não apresentar dado antigo como atual.                                                                       | A04, A05      | ART. 4; R09 / RN08, RN15        | Proposta documental para futura validação                                                           |
 
-**Quadro 1 — Requisitos funcionais do sistema de apoio à contagem e balanço de evacuação.**
+RF001, RF014 e RF015 são os requisitos implementados no recorte atual, com cobertura experimental limitada aos casos existentes. Os outros 13 requisitos são preliminares. RF012/RF013, antes reservados, e RF016 explicitam lacunas da rubrica e precisam de validação do grupo antes de compromisso de implementação. Arduino Uno não possui Wi-Fi nativo; o hardware da etapa conectada será definido posteriormente. Nenhuma credencial, broker ou plataforma foi configurada nesta revisão.
 
-| ID    | Nome                                                                             | Descrição verificável                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Tipo                     | Prioridade | Atores        | Origem                                                        | Situação                                                 |
-| ----- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------- | ------------- | ------------------------------------------------------------- | -------------------------------------------------------- |
-| RF001 | Contagem local de passagens no Ponto de Encontro                                 | Quando o modo de monitoramento estiver ativo, o dispositivo local (Arduino Uno R3 com sensor ultrassônico HC-SR04) deve detectar a presença de uma pessoa atravessando o acesso em distância inferior a 200 cm, incrementar em uma unidade o contador local, atualizar imediatamente o total no visor LCD 16x2 I2C (`Total: X`) e emitir um pulso sonoro de 100 ms no buzzer ativo.                                                                                                                                                                                         | Sensoriamento            | Alta       | A01, A02, A03 | Seção 1.2; Seção 3.1.3; BOM 3.1.7; Protótipo 3.4.1            | Simulado no Wokwi (Sprint 1); validação física planejada |
-| RF002 | Identificação e configuração de função dos dispositivos                          | A solução integrada deve associar a cada nó de sensoriamento um identificador único (`device_id`), o local físico monitorado (Portaria P1, Portaria P2 ou Ponto de Encontro específico) e a regra direcional dos sensores (incremento de entrada ou decremento/descarte de saída a partir do par de sensores ultrassônicos).                                                                                                                                                                                                                                                | Configuração             | Alta       | A04           | Seção 3.1.3; BOM 3.1.7; RN03                                  | Planejado                                                |
-| RF003 | Consolidação da população de referência nas portarias                            | A solução integrada deve contabilizar as entradas e subtrair as saídas registradas nas Portarias P1 e P2 durante a operação de rotina para manter atualizado o saldo estimado de pessoas presentes no interior da planta, sem rastrear a divisão por setores internos.                                                                                                                                                                                                                                                                                                      | Processamento            | Alta       | A01, A04, A05 | Kickoff Unipar; Seção 1.2; Seção 3.1.3.2; RN02                | Planejado                                                |
-| RF004 | Abertura do evento de emergência e congelamento de B                             | Ao receber o comando de início de emergência ou simulado de vazamento de cloro, a solução deve registrar o carimbo de tempo inicial (`t = 0`), habilitar os Pontos de Encontro designados para a ocorrência, congelar o saldo corrente das Portarias P1 e P2 como a população de referência **B** e iniciar a contagem regressiva do prazo interno de 10 minutos definido pela SSMA da Unipar.                                                                                                                                                                              | Controle                 | Alta       | A01, A03, A05 | Kickoff Unipar; Seção 1.1; Seção 3.1.3.3; RN01; RN02          | Planejado                                                |
-| RF005 | Totalização anônima de passagens nos Pontos de Encontro (A)                      | Enquanto houver um evento de emergência ativo, a solução deve somar na variável **A** todas as passagens válidas de entrada registradas pelos dispositivos dos Pontos de Encontro ativos a partir do instante do alarme, tratando cada leitura de forma estritamente numérica e anônima (sem associação a crachá, nome, vínculo ou setor).                                                                                                                                                                                                                                  | Processamento            | Alta       | A01, A03, A05 | TAPI Unipar; Seção 3.1.3.2; Seção 3.1.6 (LGPD); RN04; RN09    | Planejado                                                |
-| RF006 | Cálculo dinâmico e classificação do balanço de evacuação                         | A solução deve calcular continuamente o saldo estimado de pendentes pela fórmula **D = B − A** e exibir conjuntamente **B**, **A**, **D** e o tempo decorrido desde o alarme, classificando explicitamente três estados operacionais: (i) pendência numérica (**D > 0**), (ii) convergência numérica sujeita à conferência da SSMA (**D = 0**, isto é, **A = B**) e (iii) inconsistência por sobrecontagem (**A > B**, isto é, **D < 0**).                                                                                                                                  | Processamento / Consulta | Alta       | A01, A02, A05 | Seção 1.1; Seção 3.1.3.2; RN05; RN07; RN08                    | Planejado                                                |
-| RF007 | Painel centralizado de acompanhamento (Dashboard CCO/SSMA)                       | O painel de supervisão deve apresentar em tempo real os indicadores consolidados (**B**, **A**, **D** e cronômetro de 10 minutos), a evolução temporal das passagens contabilizadas por Ponto de Encontro, o estado de conectividade de cada dispositivo e o horário da última atualização recebida.                                                                                                                                                                                                                                                                        | Visualização             | Alta       | A01, A02, A05 | TAPI Unipar; Seção 3.1.3.2; RN05; RN09                        | Planejado                                                |
-| RF008 | Emissão de alerta crítico ao atingir o prazo interno de 10 minutos               | Caso os dados do balanço estejam válidos e o saldo estimado **D** permaneça estritamente positivo (**D > 0**) ao se completarem 10 minutos desde o disparo do alarme, a solução deve emitir alerta visual e sonoro de alta prioridade no painel para a SSMA, o CCO e os brigadistas, destacando a quantidade total não contabilizada e a distribuição de chegadas por Ponto de Encontro.                                                                                                                                                                                    | Alerta                   | Alta       | A01, A02, A05 | Kickoff Unipar; Seção 1.1; Seção 3.1.3.3; RN06                | Planejado                                                |
-| RF009 | Sinalização de balanço inconclusivo e falhas operacionais                        | A solução deve classificar e sinalizar imediatamente o balanço como **inconclusivo** para a SSMA e o CCO quando ocorrer qualquer uma das seguintes anomalias: (i) passagens contabilizadas superiores à referência (**A > B**), (ii) falha de leitura ou indisponibilidade de sensor em Ponto de Encontro ativo, (iii) perda de comunicação de rede de um dispositivo ou (iv) base de referência **B** das portarias marcada como inválida, impedindo que o sistema apresente a evacuação como concluída.                                                                   | Alerta / Confiabilidade  | Alta       | A01, A04, A05 | Seção 3.1.3.3; Matriz de Riscos 3.1.5; RN08                   | Planejado                                                |
-| RF010 | Transmissão de telemetria IoT via MQTT com idempotência                          | Na etapa conectada do protótipo, cada dispositivo deve publicar os eventos de passagem e sinais periódicos de integridade (heartbeat) em broker MQTT por meio de mensagem estruturada contendo identificador do dispositivo (`device_id`), local, função, identificador do evento ativo, carimbo de tempo, número sequencial (`seq_id`) e valor do incremento, garantindo que mensagens retransmitidas com o mesmo `seq_id` sejam descartadas sem duplicar a contagem.                                                                                                      | Integração               | Alta       | A04           | Seção 3.1.3.5; RN03; RN11                                     | Planejado para próximas sprints                          |
-| RF011 | Possível integração com o sistema existente de crachás                           | A solução deve prever a possibilidade de integração com o sistema de controle de acesso individual por crachá já utilizado nas catracas da Unipar. Se a integração for autorizada e tecnicamente viável, em uma emergência os responsáveis autorizados poderão consultar os dados pessoais já vinculados aos crachás nesse sistema. A contagem por sensores nos Pontos de Encontro permanece anônima; ela não identifica, por si só, quem chegou ou quem falta. Os dados disponíveis, as permissões de consulta e a forma de integração dependem de validação com a Unipar. | Integração / Consulta    | Média      | A01, A04, A05 | Informação da equipe; Seção 3.1.6 (LGPD)                      | Possibilidade a validar com a Unipar                     |
-| RF014 | Controle local de ativação e pausa do monitoramento no dispositivo               | O dispositivo de Ponto de Encontro deve permitir ao operador/líder local alternar entre o modo de espera (pausado) e o modo de monitoramento ativo por meio de botão físico com tratamento de ruído (debounce): quando pausado, deve manter o LED verde aceso, o LED vermelho apagado e ignorar aproximações no sensor HC-SR04 preservando o total acumulado no visor LCD 16x2; quando ativo, deve manter o LED vermelho aceso e o LED verde apagado.                                                                                                                       | Controle Local           | Alta       | A01, A02      | BOM 3.1.7; Protótipo 3.4.1 (CT01, CT06, CT07); RN01           | Simulado no Wokwi (Sprint 1); validação física planejada |
-| RF015 | Bloqueio de duplicidade por permanência e descarte de leitura inválida no sensor | O firmware do dispositivo local deve manter trava lógica de presença ocupada enquanto o objeto ou pessoa permanecer a menos de 200 cm do sensor HC-SR04 (liberando novo incremento somente após leitura igual ou superior a 200 cm) e deve descartar leituras nulas decorrentes de falha ou desconexão do pino `ECHO` (timeout de 30 ms), evitando contagens repetidas ou falsos positivos no visor LCD 16x2.                                                                                                                                                               | Confiabilidade Local     | Alta       | A01, A04      | Seção 3.1.3.3; Protótipo 3.4.1 (CT03, CT04, CT05, CT08); RN08 | Simulado no Wokwi (Sprint 1); validação física planejada |
+### 3.3.2. Regras de Negócio (Sprint 1, refinar nas próximas sprints)
 
-**Nota do Quadro 1:** A classificação "Simulado no Wokwi (Sprint 1); validação física planejada" identifica os requisitos funcionais locais já implementados no código-fonte da Sprint 1 e verificados nos casos de teste CT01 a CT08 em ambiente virtual (seção 3.4.1), restando sua validação física em bancada nas etapas seguintes. O status "Planejado" indica capacidades necessárias à arquitetura integrada das próximas sprints. O RF011 registra uma possibilidade de integração a validar com a Unipar, sem afirmar que ela já foi aprovada ou implementada. Os identificadores RF012 e RF013 foram reservados, pois os temas anteriormente descritos neles ainda não haviam sido pensados pela equipe; não integram, por ora, o escopo aprovado de requisitos. Como a Lista de Materiais (seção 3.1.7) da Sprint 1 adota a placa Arduino Uno R3 (ATmega328P), que não dispõe de interface Wi-Fi nativa, a conectividade MQTT prevista no RF010 será implementada nas sprints subsequentes mediante módulo de comunicação serial/ ponte de rede ou atualização de hardware conforme definido na arquitetura técnica (seção 3.3.5).
+As regras RN01–RN11 e RN15 delimitam a visão integrada futura. RN12–RN14 registram as regras operacionais do protótipo atual e permitem rastrear os testes sem atribuir à simulação regras de negócio ainda não implementadas.
 
-### 3.3.2. Regras de Negócio (sprint 1, refinar até sprint 5)
+| ID   | Regra e condição                                                                                                                                                                     | Consequência se descumprida                                | RFs associados / estágio                                                        |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| RN01 | Balanço de emergência só existe em evento aberto, com `t0` e PEs designados. A contagem local de rotina não abre evento.                                                             | Misturar rotina com evacuação.                             | RF004, RF005 / futuro                                                           |
+| RN02 | Congelar `B` no alarme, após validar a referência das portarias; fluxo posterior não altera a base daquele evento.                                                                   | Comparar quantidades com referência variável.              | RF003, RF004, RF006 / futuro                                                    |
+| RN03 | Aceitar somente dispositivos cadastrados, com local, sentido e evento compatíveis; PE admite entrada e saída.                                                                        | Somar eventos ao local ou sentido errado.                  | RF002, RF003, RF005, RF010 / futuro                                             |
+| RN04 | `A` é ocupação inicial reconciliada mais entradas menos saídas dos PEs designados. Não é total histórico de chegadas nem identificação individual.                                   | Sobrecontar retornos ou omitir pessoas já presentes.       | RF004, RF005, RF006 / futuro                                                    |
+| RN05 | Com dados válidos, `D > 0` representa pendência quantitativa a conferir; não indica identidade ou posição.                                                                           | Inferir resgate nominal sem evidência.                     | RF006, RF007 / futuro                                                           |
+| RN06 | Aos dez minutos desde o alarme, pendência válida exige alerta para SSMA/CCO e acionamento da brigada conforme procedimento informado; o prazo não reinicia por leitura.              | Retardar resposta.                                         | RF004, RF008 / futuro                                                           |
+| RN07 | `A = B` exige conferência; só SSMA autorizada pode registrar conclusão. Igualdade não comprova segurança individual.                                                                 | Encerramento indevido.                                     | RF006, RF012 / futuro                                                           |
+| RN08 | Referência inválida, `A > B`, sensor/nó indisponível ou dados desatualizados tornam o balanço inconclusivo e exigem conferência humana.                                              | Interpretar ausência de dado como segurança.               | RF006, RF007, RF009, RF016 / futuro                                             |
+| RN09 | Não atribuir identidade ou localização a passagens anônimas. Eventual consulta ao controle de acesso é separada e depende de revisão da política.                                    | Inferências indevidas e mudança de privacidade.            | RF003, RF005, RF006, RF007, RF011 / futuro; minimização já observável no código |
+| RN10 | Restringir painel e alterações por perfil vinculado a `user_id`; conclusão exige perfil SSMA e registro da ação.                                                                     | Acesso ou alteração sem responsabilização.                 | RF011, RF012, RF013 / futuro                                                    |
+| RN11 | Uma mensagem identificada por dispositivo, sessão e sequência só altera a contagem uma vez, inclusive após retransmissão. Isso não reconhece a mesma pessoa em duas passagens.       | Duplicação de eventos de rede.                             | RF005, RF010 / futuro                                                           |
+| RN12 | Total local inicia em zero, entrada soma 1 e saída subtrai 1 sem negatividade; LCD e buzzer refletem a detecção. A inicialização deve corresponder ao cenário do ensaio.             | Saldo local inválido.                                      | RF001 / atual                                                                   |
+| RN13 | Contar somente distância válida em sensor livre, respeitar bloqueio/rearme de 1 s e prioridade da saída. Eco inválido não é passagem; falhas e eventos perdidos exigem investigação. | Duplicidade ou interpretação incorreta de ausência de eco. | RF001, RF015 / atual                                                            |
+| RN14 | Botão e LEDs representam apenas o estado visual da demonstração; contagem continua e não há confirmação de segurança ou abertura de emergência.                                      | Uso incorreto dos indicadores.                             | RF014 / atual                                                                   |
+| RN15 | Perda de Wi-Fi não deve zerar a contagem nem produzir falso estado de atualização remota. Configuração e segredo de rede devem ser protegidos.                                       | Perda de saldo ou dado antigo tratado como atual.          | RF016 / futuro                                                                  |
 
-**Quadro 2 — Regras de negócio preliminares.**
-
-| ID | Nome | Regra e condição de aplicação | Consequência operacional se descumprida | Atores | RFs associados |
-| --- | --- | --- | --- | --- | --- |
-| RN01 | Início do evento de cloro | O balanço de evacuação inicia somente após o acionamento do alarme ou do modo de emergência correspondente a vazamento de cloro. Uma passagem detectada fora de evento aberto não é chegada ao ponto de encontro. | Contagens de rotina seriam confundidas com evacuação. | A01, A03 | RF004, RF005 |
-| RN02 | Referência congelada no alarme | B corresponde ao total de pessoas dentro da planta calculado com as entradas e saídas das portarias P1 e P2 **no instante do alarme**. Alterações posteriores do fluxo nas portarias não modificam B desse evento. | O denominador variável impediria verificar quantas pessoas da população inicial chegaram aos pontos de encontro. | A01 | RF003, RF004, RF006 |
-| RN03 | Associação do dispositivo ao local | Uma leitura só integra o balanço se vier de dispositivo identificado e associado a uma única função e local: entrada/saída de portaria ou entrada de ponto de encontro. Leituras de locais distintos não podem ser trocadas. | Passagens seriam somadas ao lado errado do balanço. | A04, A01 | RF002, RF003, RF005, RF010 |
-| RN04 | Chegadas acumuladas após o alarme | A é a soma das passagens válidas registradas **após o início** do evento nos pontos de encontro designados pela SSMA para aquela ocorrência. A leitura representa quantidade de passagens, sem vincular crachá ou identidade a cada chegada. | Leituras de pontos não designados ou anteriores ao alarme distorceriam o balanço e poderiam sugerir confirmação individual sem evidência. | A01, A03 | RF001, RF004, RF005, RF006 |
-| RN05 | Diferença pendente | Enquanto os dados forem válidos e A for menor que B, a diferença D = B − A representa a quantidade ainda não contabilizada nos pontos de encontro e exige acompanhamento da SSMA. A diferença não identifica nominalmente essas pessoas nem sua posição. | Pessoas potencialmente não contabilizadas seriam ignoradas ou identificadas sem evidência. | A01, A02 | RF006, RF007 |
-| RN06 | Prazo para acionar brigadistas | Decorridos **dez minutos do alarme**, se os dados forem válidos e D ainda for positivo, a SSMA e os brigadistas devem receber alerta com a quantidade pendente. O prazo não reinicia a cada nova leitura; dados inconclusivos seguem a RN08. | A busca e o resgate poderiam ser retardados. | A01, A02 | RF004, RF008 |
-| RN07 | Igualdade sujeita a conferência | A igualdade A = B indica somente convergência numérica. A conclusão do evento depende da avaliação da SSMA e de sua conferência manual; ela não pode ser inferida como confirmação da presença individual de todos. | Repassagens ou leituras incorretas poderiam produzir falsa sensação de segurança. | A01 | RF006, RF012 |
-| RN08 | Contagem inconsistente ou indisponível | Se A superar B, se a referência de portaria for inválida ou se um dispositivo necessário deixar de fornecer dados, o balanço deve ser marcado inconclusivo e a SSMA deve ser avisada. A ausência de leitura não equivale a chegada ou segurança. | Uma falha de medição poderia ocultar pessoas não contabilizadas. | A01, A04 | RF006, RF009 |
-| RN09 | Limite de identificação e localização | As contagens do MVP são agregadas por portaria e ponto de encontro. O sistema não atribui identidade a passagens anônimas, não indica quem precisa de resgate e não calcula posição precisa em ambiente interno. | O painel apresentaria inferências que o protótipo não sustenta. | A01, A02, A03 | RF003, RF005, RF006, RF007 |
-| RN10 | Uso autorizado e rastreável | A consulta gerencial e o registro da conclusão de um evento ficam restritos aos perfis autorizados; quando houver painel integrado, cada acesso e alteração devem estar vinculados a uma chave única de usuário. | Registros de emergência poderiam ser alterados sem responsabilização. | A01, A02, A04 | RF011, RF012, RF013 |
-| RN11 | Não duplicação de mensagem | Na integração MQTT, uma mesma mensagem de passagem, identificada por dispositivo e número sequencial, só pode incrementar o contador uma vez, mesmo que seja recebida novamente. Essa regra não identifica a mesma pessoa em duas passagens físicas distintas. | Retransmissões poderiam elevar artificialmente A ou B. | A04, A01 | RF005, RF010 |
-
-*Legenda do Quadro 2:* as condições delimitam a aplicação de cada RN; a consequência descreve o risco operacional a ser evitado. RN07 e RN08 impedem que uma igualdade numérica ou falha de dados seja apresentada como prova de segurança individual. As Regras de Negócio vinculadas a funcionalidades planejadas serão validadas com testes automatizados a partir da sprint 3, conforme o modelo desta entrega (sprint 1).
+Essas regras de projeto não substituem o procedimento de emergência da Unipar. A validação futura deve ligar cada regra ao teste específico e à versão da implementação.
 
 ### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
 
@@ -778,79 +800,44 @@ _Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métr
 
 ### 3.3.4. Matriz de Rastreabilidade (RTM)
 
-A Matriz de Rastreabilidade de Requisitos (RTM) liga cada necessidade de uma persona ao requisito funcional que a atende, à regra de negócio que delimita esse requisito, ao caso de teste que o verifica e à evidência que comprova o resultado. A cadeia só se sustenta se todos os elos existirem: uma regra sem caso de teste não tem como ser comprovada, e um caso de teste sem regra associada não demonstra nada sobre o comportamento que a Unipar espera da solução. Por isso, a RTM também serve para mostrar o que ainda falta comprovar, e não apenas o que já foi testado. Isso também ajuda a controlar o risco R12 da matriz de riscos (seção 3.1.5), que trata do desalinhamento entre o escopo documentado e o protótipo, já que qualquer divergência entre requisitos, regras e testes aparece como um elo quebrado nesta matriz.
+A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa resultado informado no ensaio original da seção 3.4.1, com imagem existente; não significa nova execução nesta revisão. A correção do circuito requer repetir a bateria. **Planejado** significa critério de aceitação futuro, sem resultado executado. A relação com uma persona indica a necessidade atendida, não participação dessa pessoa fictícia no teste.
 
-#### Fontes e critérios de leitura
+| Caso | Necessidade / persona                      | RF           | RN         | Evidência e alcance                                                                                                                                                                                                   | Status                                  |
+| ---- | ------------------------------------------ | ------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| CT01 | Leitura inicial compreensível / Tuco       | RF001, RF014 | RN12, RN14 | [T01](../assets/casos_teste_prototipos/inicial/T01.png): total 0, verde aceso.                                                                                                                                        | Registrado; repetir                     |
+| CT02 | Passagem contabilizada / Gustavo           | RF001        | RN12, RN13 | [T02](../assets/casos_teste_prototipos/inicial/T02.png): entrada a 2 cm, total 1.                                                                                                                                     | Registrado; repetir                     |
+| CT03 | Não duplicar ao afastar / Tuco             | RF015        | RN13       | [T03](../assets/casos_teste_prototipos/inicial/T03.png): entrada afastada a 400 cm, total 1; imagem não mede sozinha 1 s.                                                                                             | Registrado; repetir                     |
+| CT04 | Descontar saída / Tuco                     | RF001        | RN12, RN13 | [T04](../assets/casos_teste_prototipos/inicial/T04.png): saída a 43 cm, de 1 para 0.                                                                                                                                  | Registrado; repetir                     |
+| CT05 | Rearmar sem novo decremento / Tuco         | RF015        | RN13       | [T05](../assets/casos_teste_prototipos/inicial/T05.png): saída a 400 cm, total 0.                                                                                                                                     | Registrado; repetir                     |
+| CT06 | Compreender o estado visual / Maria        | RF014        | RN14       | [T06](../assets/casos_teste_prototipos/inicial/T06.png): vermelho aceso, total preservado; não prova pausa.                                                                                                           | Registrado; repetir                     |
+| CT07 | Evitar saldo negativo / Tuco               | RF001        | RN12       | [T07](../assets/casos_teste_prototipos/inicial/T07.png): saída a 6 cm com zero preservado.                                                                                                                            | Registrado; repetir                     |
+| CT08 | Descartar alvo fora do limiar / Gustavo    | RF015        | RN13       | [T08](../assets/casos_teste_prototipos/inicial/T08.png): 400 cm não altera total.                                                                                                                                     | Registrado; repetir                     |
+| CT09 | Entender conflito entre acessos / Tuco     | RF015        | RN13       | [T09.1](../assets/casos_teste_prototipos/inicial/T09.1.png), [T09.2](../assets/casos_teste_prototipos/inicial/T09.2.png): entrada primeiro, saída ignorada durante bloqueio. Não prova simultaneidade no mesmo ciclo. | Registrado para essa sequência; repetir |
+| CT10 | Leitura inválida não gerar contagem / Tuco | RF015        | RN13       | [T10](../assets/casos_teste_prototipos/inicial/T10.png): ECHO desconectado; não comprova diagnóstico remoto do RF009.                                                                                                 | Registrado; repetir                     |
 
-Cada coluna da RTM vem de uma seção específica do documento, e nenhuma informação foi criada apenas para a matriz:
+#### Rastreabilidade preliminar da evolução
 
-- A coluna **Persona** usa as personas da seção 3.2.1 e indica quem é atendido pelo comportamento selecionado. A brigada e a área de Infraestrutura e TI aparecem como stakeholders secundários, sem pessoa própria, por isso as linhas que os envolvem registram a pessoa primária que consome o resultado, normalmente o gestor da SSMA Tuco Salamanca.
-- A coluna **RF** reproduz os requisitos funcionais associados a cada regra no quadro de regras de negócio da seção 3.3.2. Quando a regra está ligada a mais de um requisito, todos são listados, a coluna será refinada para o requisito específico exercitado para cada caso de teste à medida que a seção 3.3.1 for consolidada.
-- A coluna **RN** usa as regras de negócio RN01 a RN11 da seção 3.3.2.
-- A coluna **Caso de teste** usa os casos executados e documentados na seção 3.4.1, como orienta o template. Os casos planejados listados no seleções de sucesso 4 da seção 3.1.3.5 entram na matriz à medida que foram executados e registrados nas seções 3.4.2 e 3.4.3.
-- A coluna **Evidência** aponta para a figura do caso de teste na seção 3.4.1, gerada a partir do [ projeto publicado no Wokwi ](https://wokwi.com/projects/478404642645348353) .
-- A coluna **Status** indica se a regra está coberta, parcialmente coberta ou pendente. Uma regra pendente é um elo quebrado conhecido, registrado junto com a sprint em que deve ser fechado.
+Os identificadores **PV** abaixo são propostas de validação, não casos CT executados. Serão detalhados e convertidos em novos CT quando a respectiva implementação existir.
 
-#### Matriz de rastreabilidade
+| Validação proposta           | RF           | RN                           | Persona beneficiada | Entrada / resultado esperado                                                                                              | Etapa proposta         |
+| ---------------------------- | ------------ | ---------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| PV01 — Dispositivos          | RF002        | RN03                         | Tuco / apoio de TI  | Cadastrar um nó; rejeitar ID duplicado e evento de nó desconhecido.                                                       | Sprints 3–4            |
+| PV02 — Referência e evento   | RF003, RF004 | RN01, RN02                   | Maria, Tuco         | Base fictícia 10, abrir alarme, nova entrada na portaria; B continua 10 e t0 não muda.                                    | Sprint 3               |
+| PV03 — Ocupação e balanço    | RF005, RF006 | RN03, RN04, RN05, RN07, RN08 | Tuco                | B=10, A inicial=2, +3 entradas e −1 saída: A=4, D=6; A=10 pede conferência, A=11 é inconclusivo.                          | Sprint 3               |
+| PV04 — Representação gráfica | RF007        | RN05, RN08, RN09             | Maria, Tuco         | Eventos em dois PEs geram série temporal por local, total e horário; nó parado aparece desatualizado.                     | Sprints 3–4            |
+| PV05 — Prazo                 | RF008        | RN06                         | Maria, Tuco         | D positivo com dados válidos aos 600 s gera alerta; nova passagem não reinicia relógio.                                   | Sprint 3               |
+| PV06 — Falhas                | RF009        | RN08                         | Maria, Tuco         | Invalidar B, interromper heartbeat ou simular sensor indisponível: balanço inconclusivo sem conclusão automática.         | Sprints 3–4            |
+| PV07 — MQTT                  | RF010        | RN03, RN11                   | Tuco / apoio de TI  | Enviar delta +1 e −1, repetir mesma chave, alterar sessão, omitir campo obrigatório: aceitar só eventos válidos únicos.   | Sprint 3               |
+| PV08 — Crachás, se aprovado  | RF011        | RN09, RN10                   | Maria, Tuco         | Consulta autorizada a base fictícia; leitura anônima do PE não deve ganhar identidade por inferência.                     | A decidir com parceiro |
+| PV09 — Conclusão             | RF012        | RN07, RN10                   | Tuco                | A=B não encerra; ação autorizada registra usuário, instante e justificativa; perfil sem permissão é recusado.             | Sprint 4               |
+| PV10 — Acesso ao painel      | RF013        | RN10                         | Maria, Tuco         | Chaves de usuários distintas, login válido/inválido e perfis diferentes; negar alteração não autorizada e registrar ação. | Sprint 4               |
+| PV11 — Wi-Fi                 | RF016        | RN08, RN15                   | Maria / apoio de TI | Conectar, derrubar rede e restabelecer: preservar total local, sinalizar desatualização e recuperar conexão.              | Sprints 3–4            |
 
-<div  align= "center" >
-<p> Quadro X – Matriz de rastreabilidade de requisitos (RTM) </p>
+#### Cobertura e atualização
 
-| Pessoa                                                 | RF                         | RN   | Caso de teste | Evidência                                                                                                                                                                                                                                                                                                                          |       Estado        |
-| ------------------------------------------------------ | -------------------------- | ---- | :-----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------------: |
-| Maria Schrader (CCO)                                   | RF004, RF005               | RN01 |     CT01      | O acionamento do modo de monitoramento acende o LED vermelho e mantém `Total: 0` , então nenhuma passagem é contada antes do início do evento ( [ figura do CT01 ](../assets/casos_teste_prototipos/inicial/T01.png) ).                                                                                                            |       Coberta       |
-| Maria Schrader (CCO)                                   | RF004, RF005               | RN01 |     CT06      | A pausa do monitoramento encerra a contagem sem apagar o total já registrado ( [ figura do CT06 ](../assets/casos_teste_prototipos/inicial/T06.png) ).                                                                                                                                                                             |       Coberta       |
-| Maria Schrader (CCO)                                   | RF004, RF005               | RN01 |     CT07      | Uma leitura de 74 cm com o sistema pausado não altera o total, ou seja, a passagem fora de evento aberto não é tratada como chegada ( [ figura do CT07 ](../assets/casos_teste_prototipos/inicial/T07.png) ).                                                                                                                      |       Coberta       |
-| Gustavo Fring (Técnico de Operação)                    | RF001, RF004, RF005, RF006 | RN04 |     CT02      | Uma presença a 148 cm é contada uma única vez, com `Total: 1` no LCD e aviso sonoro, o que confirma a chegada para quem passa ( [ figura do CT02 ](../assets/casos_teste_prototipos/inicial/T02.png) ).                                                                                                                            |       Parcial       |
-| Tuco Salamanca (Gestor de SSMA)                        | RF001, RF004, RF005, RF006 | RN04 |     CT03      | A permanência do mesmo objeto diante do sensor não gera contagens repetidas, e o total segue em `1` ( [ figura do CT03 ](../assets/casos_teste_prototipos/inicial/T03.png) ).                                                                                                                                                      |       Parcial       |
-| Tuco Salamanca (Gestor de SSMA)                        | RF001, RF004, RF005, RF006 | RN04 |     CT04      | A nova aproximação só é contada depois de o sensor voltar a ler acima de 200 cm, e o total passa para `2` ( [ figuras do CT04 ](../assets/casos_teste_prototipos/inicial/T04_1.png) e [ aproximação seguinte ](../assets/casos_teste_prototipos/inicial/T04_2.png) ).                                                              |       Parcial       |
-| Tuco Salamanca (Gestor de SSMA)                        | RF001, RF004, RF005, RF006 | RN04 |     CT05      | Uma leitura válida de 376 cm, fora da área de interesse, não altera o total nem aciona o buzzer ( [ figura do CT05 ](../assets/casos_teste_prototipos/inicial/T05.png) ).                                                                                                                                                          |       Parcial       |
-| Tuco Salamanca (Gestor de SSMA)                        | RF006, RF009               | RN08 |     CT08      | Com o fio `ECHO` desconectado, a leitura ausente é tratada como inválida, o total permanece em `0` e o sistema continua em execução, então a falta de leitura não vira chegada ( [ figura do CT08 ](../assets/casos_teste_prototipos/inicial/T08.png) ). O protótipo ainda não marca o balanço como inconclusivo nem avisa a SSMA. |       Parcial       |
-| Tuco Salamanca (Gestor de SSMA)                        | RF003, RF004, RF006        | RN02 |   A definir   | Caso seja testado na seção 3.4.3, verificando que B está congelado no instante do alarme e não muda com passagens posteriores pelas portas P1 e P2. Depende da base de portaria, ainda que fictícia.                                                                                                                               | Pendente (sprint 3) |
-| Tuco Salamanca (Gestor de SSMA)                        | RF002, RF003, RF005, RF010 | RN03 |   A definir   | Caso seja testado na seção 3.4.3, verificando se uma leitura só entra no balanço se vier de um dispositivo identificado e associado a um único local. Depende de mais de um nó publicando no broker MQTT.                                                                                                                          | Pendente (sprint 3) |
-| Tuco Salamanca (Gestor de SSMA)                        | RF006, RF007               | RN05 |   A definir   | Caso de teste seja registrado na seção 3.4.3, verificando que o painel exibe D = B − A enquanto A para menor que B. Depende do cálculo do balanço fora do nó.                                                                                                                                                                      | Pendente (sprint 3) |
-| Tuco Salamanca (Gestor de SSMA)                        | RF003, RF005, RF006, RF007 | RN09 |   A definir   | Caso de teste seja registrado na seção 3.4.3, verificando que o painel mostra apenas contagens agregadas por portaria e ponto de encontro, sem identidade nem posição. O firmware atual já não armazena identificador de pessoa, mas isso ainda não foi verificado por um teste.                                                   | Pendente (sprint 3) |
-| Tuco Salamanca (Gestor de SSMA)                        | RF005, RF010               | RN11 |   A definir   | Caso de teste a ser registrado na seção 3.4.3, reenviando a mesma mensagem MQTT, com o mesmo dispositivo e número sequencial, e verificando que o contador sobe uma única vez.                                                                                                                                                     | Pendente (sprint 3) |
-| Tuco Salamanca (Gestor de SSMA)                        | RF004, RF008               | RN06 |   A definir   | Caso de teste seja registrado na seção 3.4.3, simulando um evento em que D continua positivo aos 10 minutos e verificando que o alerta chega à SSMA com a quantidade pendente, sem que o prazo reinicie a cada nova leitura.                                                                                                       | Pendente (sprint 3) |
-| Tuco Salamanca (Gestor de SSMA)                        | RF006, RF012               | RN07 |   A definir   | Caso de teste a ser registrado na seção 3.4.4, verificando que a igualdade A = B aparece como convergência numérica e que o evento só é concluído por uma ação explícita da SSMA.                                                                                                                                                  | Pendente (sprint 4) |
-| Tuco Salamanca (Gestor de SSMA) e Maria Schrader (CCO) | RF011, RF012, RF013        | RN10 |   A definir   | Caso seja testado na seção 3.4.4, verificando se apenas perfis autorizados consultam o painel e concluem um evento, e que cada acesso e alteração ficam vinculados a um usuário.                                                                                                                                                   | Pendente (sprint 4) |
+Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. Há **15 RNs**: RN12–RN14 possuem evidência parcial nos CTs; as outras 12 dependem de implementação/validação futura. RN09 também é apoiada pela inspeção de ausência de identificadores no firmware, sem validar integração futura.
 
-<p> Fonte: elaboração dos autores (2026). </p>
-</div>
-
-#### Cobertura atual
-
-<div  align= "center" >
-<p> Quadro X – Cobertura das regras de negócio ao fim da sprint 1 </p>
-
-| Estado              | Regras de negócio                  | Quantidade |
-| ------------------- | ---------------------------------- | :--------: |
-| Coberta             | RN01                               |     1      |
-| Parcial             | RN04, RN08                         |     2      |
-| Pendente (sprint 3) | RN02, RN03, RN05, RN06, RN09, RN11 |     6      |
-| Pendente (sprint 4) | RN07, RN10                         |     2      |
-
-<p> Fonte: elaboração dos autores (2026). </p>
-</div>
-
-Ao final do sprint 1, os oito casos de teste do protótipo inicial estão ligados a alguma regra, mas apenas três das onze regras de negócio têm evidência, e apenas o RN01 está coberto por completo. Isso é esperado para o estágio do projeto, já que o protótipo inicial é um único nó de contagem sem rede, e a maior parte das regras trata do balanço entre portarias e pontos de encontro, da troca de mensagens MQTT e do painel. Ainda assim, vale apontar o que cada cobertura parcial deixa em aberto.
-
-- A RN04 está comprovada no nível do nó, porque os CT02 a CT05 mostram que apenas passagens válidas são contadas. A soma das chegadas de todos os pontos de reunião designados pela SSMA depende mais de um nó de envio de dados ao sistema central.
-- A RN08 está comprovada apenas na metade que evita o falso positivo, porque o CT08 mostra que a falta de leitura não vira chegada. A outra metade, que marca o balanço como inconclusivo e avisa o SSMA, depende do painel.
-
-Pelo lado dos requisitos, os casos executados exercitam cinco dos três requisitos funcionais citados nas regras: RF001, RF004, RF005, RF006 e RF009. Os elos quebrados mais sensíveis são os da RN02 e da RN06, porque são eles que sustentam a base congelada B e o alerta dos 10 minutos, os dois pontos que a seção 3.1.3 apresenta como centrais para a decisão da SSMA sobre o acionamento da brigada.
-
-#### Atualização da matriz
-
-A RTM é revisada ao final de cada sprint, junto com a matriz de riscos da seção 3.1.5. Na revisão, todo caso de teste novo das declarações 3.4.2 a 3.4.5 entra na matriz já ligada a uma regra e a uma evidência, e toda linha pendente cujo sprint previsto terminou precisa ser fechada com um caso de teste ou ter o atraso justificado. Para o sprint 2, a prioridade é ampliar a cobertura do RN04 no protótipo físico, com passagens simultâneas e repassagens, que são os cenários dos riscos R01 e R02. A partir do sprint 3, as regras pendentes passam a ter casos de teste automatizados, como pede a seção 3.3.2, e a coluna RF passa a indicar o requisito específico que cada caso exerce.
-Cada coluna da RTM vem de uma seção específica do documento, e nenhuma informação foi criada só para a matriz:
-
-- A coluna **Persona** usa as personas da seção 3.2.1 e indica quem é atendido pelo comportamento verificado. A brigada e a área de Infraestrutura e TI aparecem como stakeholders secundários, sem persona própria, por isso as linhas que os envolvem registram a persona primária que consome o resultado, normalmente o gestor de SSMA Tuco Salamanca.
-- A coluna **RF** reproduz os requisitos funcionais associados a cada regra no quadro de regras de negócio da seção 3.3.2. Quando a regra está ligada a mais de um requisito, todos são listados, e a coluna será refinada para o requisito específico exercitado por cada caso de teste à medida que a seção 3.3.1 for consolidada.
-- A coluna **RN** usa as regras de negócio RN01 a RN11 da seção 3.3.2.
-- A coluna **Caso de teste** usa os casos executados e documentados na seção 3.4.1, como orienta o template. Os casos planejados listados no critério de sucesso 4 da seção 3.1.3.5 entram na matriz à medida que forem executados e registrados nas seções 3.4.2 e 3.4.3.
-- A coluna **Evidência** aponta para a figura do caso de teste na seção 3.4.1, gerada a partir do [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353).
-- A coluna **Status** indica se a regra está coberta, coberta parcialmente ou pendente. Uma regra pendente é um elo quebrado conhecido, registrado junto com a sprint em que deve ser fechado.
+A próxima revisão do circuito ficará a cargo da equipe e deverá ser seguida de nova execução da bateria, identificando versão/commit, responsável, entradas, saídas e resultado real. Esta etapa é exclusivamente documental, sem execução do protótipo. A cada sprint, atualizar RFs, RNs, riscos e testes juntos. Um caso só muda para aprovado após execução e evidência; planejamento não é cobertura experimental.
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
@@ -941,7 +928,7 @@ A soma da capacidade não basta se uma fila ficar sobrecarregada. Para cada PE c
 
 #### Evoluções previstas
 
-ESP32, comunicação em rede/MQTT, integração P1/P2, congelamento automático de `B`, sincronização de horário, dashboard, registros temporais persistentes, histórico e alertas remotos são planejados. As mensagens atuais no monitor serial não constituem histórico persistente com data/hora. O controle agregado por zonas com crachás integra a visão futura; a Sprint 1 se restringe à contagem local nos PEs e aos testes CT01–CT10, sem indoor tracking.
+Comunicação em rede/MQTT, integração P1/P2, congelamento de `B`, sincronização de horário, dashboard, registros persistentes e alertas remotos são propostas para avaliação futura; a adoção de ESP32 depende da arquitetura a definir. As mensagens atuais no monitor serial não constituem histórico persistente com data/hora. Eventual controle por zonas com crachás exigiria nova decisão de escopo; a Sprint 1 se restringe à contagem local nos PEs e aos testes CT01–CT10, sem indoor tracking.
 
 ## 3.4. Resultados
 
@@ -957,7 +944,13 @@ Uma pessoa é detectada quando a distância medida pelo sensor é maior que zero
 
 O botão alterna a sinalização visual entre os LEDs verde e vermelho sem interromper o funcionamento dos sensores. Dessa forma, o usuário recebe uma indicação visual do estado selecionado sem perder o monitoramento de entradas e saídas. Caso um sensor não retorne o pulso de eco dentro de 30 ms, a medição é considerada inválida e descartada sem alterar o contador ou acionar o buzzer.
 
-O software contém as funções obrigatórias `setup()` e `loop()`, além de funções auxiliares como `iniciarLCD()`, `atualizarContador()`, `medirDistancia()` e `detectarPessoa()`. Também foi definida a classe `ContadorPessoas`. A instância `contador` dessa classe é utilizada no `loop()` para registrar entradas, registrar saídas e consultar o total atual. O código foi executado no Wokwi sem erros de sintaxe ou compilação.
+O software contém as funções obrigatórias `setup()` e `loop()`, além de funções auxiliares como `iniciarLCD()`, `atualizarContador()`, `medirDistancia()` e `detectarPessoa()`. Também foi definida a classe `ContadorPessoas`. A instância `contador` dessa classe é utilizada no `loop()` para registrar entradas, registrar saídas e consultar o total atual. A documentação original informa execução no Wokwi sem erros de sintaxe ou compilação. Nesta revisão, foi feita inspeção do código; a versão do circuito corrigida ainda deve ser reexecutada no simulador.
+
+#### Preparação e reprodução
+
+Na próxima execução, usar juntos os arquivos locais `sketch.ino` e `diagram.json` em um projeto Arduino Uno no Wokwi. Para reproduzir CT01, preparar ambos os sensores em 400 cm e manter o botão solto. O diagrama recebeu ajustes locais na etapa anterior desta revisão, mas sua conferência elétrica e a execução ficaram pendentes para a equipe. Nenhuma alteração no circuito ou no firmware foi feita nesta etapa documental. As capturas abaixo pertencem ao ensaio registrado anteriormente e não comprovam nova execução da versão local.
+
+Antes de cada caso isolado, restaurar o ECHO e as conexões normais, afastar ambos os sensores e aguardar pelo menos 1 s livre; quando houver reinício, o saldo esperado é zero. CT01–CT05 são sequenciais. CT06–CT10 requerem preparação própria indicada na tabela; CT09 começa com zero e detecta a entrada antes da saída. Para CT10, manter o sensor não testado em 400 cm e desconectar apenas o ECHO do sensor testado. Não restaurar conexões de alimentação invertidas para imitar a captura antiga.
 
 #### Casos de teste
 
@@ -1031,7 +1024,7 @@ Os testes CT01 a CT05 representam uma sequência completa de entrada e saída. O
 
 #### 3.4.1.1. Alcance dos resultados e protocolo de validação futura
 
-**Evidência disponível:** CT01–CT10 são dez cenários funcionais com resultados e imagens registrados acima. A numeração e as descrições de referência são: CT01 — Inicialização; CT02 — Entrada de pessoa; CT03 — Liberação do sensor de entrada; CT04 — Saída de pessoa; CT05 — Liberação do sensor de saída; CT06 — Sinalização vermelha; CT07 — Proteção contra valor negativo; CT08 — Objeto fora do alcance; CT09 — Bloqueio de leituras conflitantes; CT10 — Falha de leitura do sensor. A conformidade reportada é `10/10` nos cenários documentados, com a ressalva de sequência do CT09. Isso não significa acurácia de 100% por passagem nem validação física/industrial. Não foram fornecidas séries de medições de tempo ou amostras auditadas de passagens que comprovem 60% de redução ou 99% de acurácia.
+**Evidência disponível:** CT01–CT10 são dez cenários funcionais com resultados e imagens registrados acima. A numeração e as descrições de referência são: CT01 — Inicialização; CT02 — Entrada de pessoa; CT03 — Liberação do sensor de entrada; CT04 — Saída de pessoa; CT05 — Liberação do sensor de saída; CT06 — Sinalização vermelha; CT07 — Proteção contra valor negativo; CT08 — Objeto fora do alcance; CT09 — Bloqueio de leituras conflitantes; CT10 — Falha de leitura do sensor. A conformidade **reportada no ensaio original** é `10/10` nos cenários documentados, com a ressalva de sequência do CT09. A aprovação da versão corrigida permanece pendente de nova execução. Isso não significa acurácia de 100% por passagem nem validação física/industrial. Não foram fornecidas séries de medições de tempo ou amostras auditadas de passagens que comprovem 60% de redução ou 99% de acurácia.
 
 **Redução do tempo de apuração quantitativa — meta ainda não validada:** utilizar o mesmo grupo e condições equivalentes nos dois métodos. O início da medição será o sinal de liberação da primeira pessoa de um grupo posicionado na mesma linha de chegada ao acesso do PE. O fim será a disponibilização, ao mesmo responsável pela conferência, do total quantitativo de todas as pessoas do grupo: no manual, após chamada, anotação e soma final; no protótipo, após atualização do LCD e comunicação do total ao responsável. Se houver erro, o relógio continua até a correção e disponibilização do total correto. Registrar separadamente o instante da última passagem e o tempo de reconciliação. A confirmação nominal continua sendo uma atividade complementar; contagem anônima e chamada nominal não entregam a mesma informação.
 
@@ -1080,9 +1073,13 @@ Também inclua figuras da versão final do protótipo físico e dashboards, alé
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
-_Escreva, de forma resumida, sobre os principais resultados do seu projeto e faça recomendações formais ao seu parceiro de projeto em relação ao uso dessa solução. Você pode aproveitar este espaço para comentar sobre possíveis materiais extras._
+Na Sprint 1, o C.R.I.S.I.S consolidou o entendimento inicial do problema de conferência da evacuação, a proposta de valor, três proto-personas e os requisitos preliminares da solução. O protótipo simulado explora a contagem local anônima de entradas e saídas, com apresentação do total no LCD e sinalização por LEDs e buzzer. Os dez casos documentados registram situações de uso e de falha, mas suas capturas não comprovam desempenho industrial, identificação individual ou validação da montagem física.
+
+Recomenda-se utilizar essa entrega como base para os próximos experimentos, mantendo a conferência humana e os procedimentos de emergência do parceiro. Antes da evolução física, será necessário revisar a montagem, consolidar a BOM e repetir os testes com identificação da versão e registro dos resultados. A consolidação remota, o dashboard e as possíveis integrações com registros de acesso permanecem planejados e dependem de viabilidade técnica, validação com o parceiro e revisão das condições de privacidade. A expansão nas próximas sprints deverá ser orientada por essas evidências; a contagem local, isoladamente, não permite afirmar que todas as pessoas estão seguras.
 
 ## <a name="c5"></a>5. Referências
+
+OSTERWALDER, Alexander; PIGNEUR, Yves; BERNARDA, Greg; SMITH, Alan. **Value Proposition Design: How to Create Products and Services Customers Want**. Hoboken: John Wiley & Sons, 2014. Apresentação da obra disponível em: <https://www.strategyzer.com/library/value-proposition-design>. Acesso em: 23 out. 2026.
 
 BRASIL. Lei nº 14.026, de 15 de julho de 2020. Atualiza o marco legal do saneamento básico. Brasília, DF: Presidência da República, 2020. Disponível em: [https://www.planalto.gov.br/ccivil_03/\_ato2019-2022/2020/lei/l14026.htm](https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14026.htm). Acesso em: 15 out. 2026.
 
@@ -1193,20 +1190,20 @@ UNIPAR / INTELI. **Kickoff do projeto — unidade de Cubatão**. Realizado em 16
 UNIPAR / INTELI. **Termo de Abertura do Projeto de Inovação (TAPI) — Módulo 4**. Restrição de escopo informada no contexto do projeto: não contemplar rastreamento contínuo de alta precisão em ambientes internos. Versão, data e link interno pendentes de disponibilização; documento não consultado diretamente nesta revisão.
 
 EQUIPE DO PROJETO. **Protótipo inicial Wokwi e evidências CT01–CT10**. Disponível em: [simulação](https://wokwi.com/projects/478404642645348353), [firmware](../src/firmware/prototipo/sketch.ino), [circuito](../src/firmware/prototipo/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). Firmware, circuito e documentação das evidências consultados em 23 out. 2026; a simulação não foi reexecutada nesta revisão documental.
-[1] UNIPAR. **Relatório de Sustentabilidade 2024**. São Paulo: Unipar, 2025. Disponível em: <https://unipar.com/sustentabilidade>. Acesso em: 20 out. 2026.
-[1] UNIPAR. **Perfil corporativo**. Disponível em: <https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/>. Acesso em: 22 out. 2026.
+UNIPAR. **Relatório de Sustentabilidade 2024**. São Paulo: Unipar, 2025. Disponível em: <https://unipar.com/sustentabilidade>. Acesso em: 20 out. 2026.
 
-[2] UNIPAR. **Cloro: fabricação, transporte e aplicações**. Disponível em: <https://unipar.com/produtos/cloro>. Acesso em: 22 out. 2026.
+UNIPAR. **Perfil corporativo**. Disponível em: <https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/>. Acesso em: 22 out. 2026.
 
-[3] UNIPAR. **Relações com Investidores: nossos números**. Disponível em: <https://ri.unipar.com/>. Acesso em: 22 out. 2026.
+UNIPAR. **Cloro: fabricação, transporte e aplicações**. Disponível em: <https://unipar.com/produtos/cloro>. Acesso em: 22 out. 2026.
 
-[4] ASSOCIAÇÃO BRASILEIRA DA INDÚSTRIA DE ÁLCALIS, CLORO E DERIVADOS. **Produção brasileira de cloro cresce 5,4% entre janeiro e outubro de 2024**. 13 jan. 2025. Disponível em: <https://www.abiclor.com.br/producao-brasileira-de-cloro-cresce-54-entre-janeiro-e-outubro-de-2024/>. Acesso em: 22 out. 2026.
+UNIPAR. **Relações com Investidores: nossos números**. Disponível em: <https://ri.unipar.com/>. Acesso em: 22 out. 2026.
 
-[5] UNIPAR CARBOCLORO S.A. **Formulário de Referência 2026**, versão 1. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/396d9e64-cbbd-f172-97df-b409609b9c6b?origin=2>. Acesso em: 22 out. 2026.
+ASSOCIAÇÃO BRASILEIRA DA INDÚSTRIA DE ÁLCALIS, CLORO E DERIVADOS. **Produção brasileira de cloro cresce 5,4% entre janeiro e outubro de 2024**. 13 jan. 2025. Disponível em: <https://www.abiclor.com.br/producao-brasileira-de-cloro-cresce-54-entre-janeiro-e-outubro-de-2024/>. Acesso em: 22 out. 2026.
 
-[6] BRASKEM S.A. **Annual Report 2025 (Form 20-F)**. Washington, DC: U.S. Securities and Exchange Commission, 2026. Disponível em: <https://www.sec.gov/Archives/edgar/data/1071438/000129281426002427/bakform20f_2025.htm>. Acesso em: 22 out. 2026.
+UNIPAR CARBOCLORO S.A. **Formulário de Referência 2026**, versão 1. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/396d9e64-cbbd-f172-97df-b409609b9c6b?origin=2>. Acesso em: 22 out. 2026.
 
-[7] UNIPAR CARBOCLORO S.A. **Release de Resultados 1T25**. São Paulo: Unipar, 2025. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/bc3d7aae-1800-44eb-9d21-2b8e87ea5466?origin=1>. Acesso em: 22 out. 2026.
+BRASKEM S.A. **Annual Report 2025 (Form 20-F)**. Washington, DC: U.S. Securities and Exchange Commission, 2026. Disponível em: <https://www.sec.gov/Archives/edgar/data/1071438/000129281426002427/bakform20f_2025.htm>. Acesso em: 22 out. 2026.
 
-[8] BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL. **Novo marco legal do saneamento: impactos na cadeia de fornecedores — parte 2**. _BNDES Setorial_, Rio de Janeiro, v. 28, n. 55, p. 179–239, mar. 2022. Disponível em: <https://web.bndes.gov.br/bib/jspui/bitstream/1408/22426/3/PR_BS_v28_n55_Saneamento_parte%202_.pdf>. Acesso em: 22 out. 2026.
-WIRELESS, paperless tracking keeps employees safer. _Automation World_, [s. l.], [20--]. Disponível em: https://www.automationworld.com/article/technologies/sensors-process/wireless-paperless-tracking-keeps-employees-safer. Acesso em: 20 out. 2026.
+UNIPAR CARBOCLORO S.A. **Release de Resultados 1T25**. São Paulo: Unipar, 2025. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/bc3d7aae-1800-44eb-9d21-2b8e87ea5466?origin=1>. Acesso em: 22 out. 2026.
+
+BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL. **Novo marco legal do saneamento: impactos na cadeia de fornecedores — parte 2**. _BNDES Setorial_, Rio de Janeiro, v. 28, n. 55, p. 179–239, mar. 2022. Disponível em: <https://web.bndes.gov.br/bib/jspui/bitstream/1408/22426/3/PR_BS_v28_n55_Saneamento_parte%202_.pdf>. Acesso em: 22 out. 2026.
