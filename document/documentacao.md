@@ -191,10 +191,86 @@ Espera-se agilizar a apuração quantitativa, melhorar a visibilidade para SSMA/
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 
 Os critérios propostos são redução de pelo menos 60% no tempo de apuração quantitativa frente ao processo manual, capacidade para atender a população dentro do SLA e meta de acurácia por evento de pelo menos 99% em condições definidas. O protocolo, os limites de medição e o dimensionamento estão nas seções 3.3.8 e 3.4.1.1. Os dez casos funcionais documentados em Wokwi constituem evidência inicial de comportamento, sem comprovar essas metas. Resultado de 90% em estresse não aprova uso real.
-
+	
 ### 3.1.4. Value Proposition Canvas
 
-_O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._
+O Value Proposition Canvas é uma ferramenta que organiza, de um lado, o perfil do cliente, com suas tarefas, dores e ganhos, e, do outro, o mapa de valor da solução, mostrando como ela responde a esse perfil (OSTERWALDER et al., 2014). Neste projeto, o canvas foi feito com base na solução descrita na seção 3.1.3 e está apresentado na Figura X.
+
+<div align="center">
+<sub>Figura X – Value Proposition Canvas da solução</sub>
+
+<img src="../assets/value-proposition-canvas.png" width="100%">
+
+<sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026), com base em Osterwalder et al. (2014).</sup>
+</div>
+
+**Segmento de cliente**
+
+O cliente considerado no canvas é o gestor de SSMA da fábrica de Cubatão, representado pela persona Tuco Salamanca (seção 3.2). Ele lidera a prevenção de acidentes e a resposta a emergências na unidade e é quem decide quando e para onde acionar a brigada, por isso é o principal interessado em saber, rápido, se todas as pessoas chegaram aos pontos de encontro.
+
+**Perfil do cliente**
+
+*Tarefas*
+
+- Coordenar a resposta à emergência junto com o Centro de Controle Operacional (CCO);
+- Confirmar que todas as pessoas chegaram aos pontos de encontro em até 10 minutos após o alarme;
+- Decidir se e para onde a brigada deve ser enviada para busca e resgate;
+- Elaborar e revisar o Plano de Ação de Emergência (PAE);
+- Acompanhar os indicadores de SSMA da unidade.
+
+*Dores*
+
+- Depender de contagem visual e de chamada em papel nos pontos de encontro;
+- Não saber com precisão se ainda existem colaboradores ou terceiros em zonas de risco;
+- Perder registro de quem passa, porque as catracas são liberadas durante a emergência;
+- Trabalhar com listas impressas que não refletem visitantes, terceiros com crachá provisório e trocas de turno do dia;
+- Ter a chamada atrapalhada pelo barulho das sirenes e dos equipamentos;
+- Lidar com pessoas que vão para um ponto de encontro diferente do previsto, por causa da direção do vento, o que gera falsas ausências em um ponto e contagens duplicadas em outro;
+- Perder minutos para direcionar a brigada enquanto os dados da evacuação ainda estão sendo consolidados;
+- Expor os brigadistas a buscas em áreas de risco sem saber onde procurar, ou procurando pessoas que já saíram.
+
+*Ganhos*
+
+- Ter um painel que confirme digitalmente a presença das pessoas nos pontos de encontro;
+- Saber quantas pessoas ainda faltam e onde elas podem estar;
+- Fechar a confirmação da evacuação dentro do prazo de 10 minutos;
+- Enviar a brigada só para as áreas onde há pendência real;
+- Ter o registro da evacuação com horários, para relatórios pós-incidente e para melhorar o PAE;
+- Trabalhar com a mesma informação que o CCO, em tempo real.
+
+**Mapa de valor**
+
+A proposta de valor da solução é confirmar, em tempo real e sem listas em papel, quantas pessoas já chegaram aos pontos de encontro e quantas ainda faltam, para que a liderança de SSMA consiga decidir dentro do prazo de 10 minutos.
+
+*Produtos e serviços*
+
+- Registro da base de pessoas presentes na planta a partir das catracas das portarias P1 e P2, congelado no momento do alarme;
+- Dispositivos de contagem nos acessos dos pontos de encontro, com sinal luminoso e display que confirmam a chegada para quem passa;
+- Painel centralizado no CCO e na sala de SSMA, com o saldo de pessoas pendentes, o cronômetro de 10 minutos, alertas e a ocupação de cada ponto de encontro;
+- Registro com horário de cada passagem pelos pontos de encontro.
+
+*Aliviadores de dor*
+
+- A contagem nos pontos de encontro é automática, sem lista em papel e sem chamada;
+- O painel mostra em tempo real quantas pessoas ainda não chegaram, calculado pela diferença entre a base congelada e as chegadas registradas;
+- A base é congelada no momento do alarme, então a liberação das catracas não apaga a informação de quem estava na planta;
+- A base sai dos registros de acesso do próprio dia, incluindo terceiros e visitantes que passaram pelas portarias;
+- A confirmação aparece por sinal luminoso e no display, sem depender de chamada oral no meio do barulho;
+- As chegadas de todos os pontos de encontro são somadas no mesmo painel, evitando falsas ausências quando alguém vai para um ponto diferente do previsto;
+- Ao fim dos 10 minutos, o painel emite alerta com o número de pendentes e os setores das pessoas que estavam na planta, ajudando a priorizar a busca.
+
+*Criadores de ganho*
+
+- O painel mostra a contagem de chegadas em cada ponto de encontro;
+- O saldo de pendentes e os setores da base dão uma noção de quantas pessoas faltam e de onde elas trabalhavam;
+- O cronômetro de 10 minutos e os alertas progressivos ajudam a fechar a confirmação dentro do prazo;
+- Quando o saldo de pendentes chega a zero antes dos 10 minutos, a busca da brigada pode ser dispensada;
+- O histórico com horários de cada passagem serve para relatórios pós-incidente e para revisar o PAE;
+- O CCO e a liderança de SSMA acompanham a mesma informação, ao mesmo tempo.
+
+**Encaixe entre o perfil e o mapa de valor**
+
+A solução responde diretamente às principais dores do gestor de SSMA: a dependência de listas e chamadas, a perda de informação quando as catracas são liberadas e a demora para consolidar os dados antes de decidir sobre a brigada. Dois ganhos são atendidos em parte. Como a contagem nos pontos de encontro registra passagens sem identificar a pessoa, o painel informa quantas pessoas faltam e quem estava na planta no momento do alarme, mas não exatamente quem ainda não chegou. Pelo mesmo motivo, a localização das pessoas pendentes fica limitada aos setores em que elas trabalham, sem indicar onde estão no momento da emergência.
 
 ### 3.1.5. Matriz de Riscos
 
@@ -1091,9 +1167,12 @@ BRASIL. Ministério do Trabalho e Emprego. Normas Regulamentadoras (NR). Brasíl
 DABROWSKA, Magda. Emergency mustering solution. _IoT Now_, [s. l.], 12 jan. 2024. Disponível em: https://iot-now.com/2024/01/12/141842-emergency-mustering-solution/. Acesso em: 20 out. 2026.
 
 ELETROGATE. _Buzzer ativo 5 V_. Disponível em: <https://www.eletrogate.com/buzzer-ativo-5v?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=1&gad_campaignid=20223015315&gbraid=0AAAAADqxjs_RKxEA4lB8OTz9kzOy_b2y9&gclid=CjwKCAjwotzWBhBFEiwA1JhPoLPBf6mtcZizCQRpZRRLmGNgwewSSuaihP1VIORbIt2h8imNmBty9RoCrG8QAvD_BwE>. Acesso em: 20 out. 2026.
+
 MERCADO LIVRE. _Cabo USB compatível com placa de desenvolvimento Arduino Uno R3 ATmega328P CH340_. Disponível em: <https://www.mercadolivre.com.br/cabo-usb-compativel-com-placa-de-desenvolvimento-arduino-uno-r3-atmega328p-ch340/p/MLB44072268?pdp_filters=item_id%3AMLB5229650730&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735125422&matt_product_id=MLB44072268-product&matt_product_partition_id=2495059736147&matt_target_id=pla-2495059736147&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoJRuM1jdBvwQsy-JbDuO2GqZUVevX9I5SgDqMi81aZh_Pusf2a-KQhoC7PwQAvD_BwE>. Acesso em: 20 out. 2026.
 
 MERCADO LIVRE. _Módulo sensor ultrassônico de distância HC-SR04 para Arduino_. Disponível em: <https://www.mercadolivre.com.br/modulo-sensor-ultrassonico-distancia-hc-sr04-para-arduino/p/MLB64164978?pdp_filters=item_id%3AMLB5130062737&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735128761&matt_product_id=MLB64164978-product&matt_product_partition_id=2495059736347&matt_target_id=pla-2495059736347&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoIQ9ytYCHxi7QMFA-RU1aROmSXUtXE3xD1biz_vwK9s3dwk-8Ro6oxoCIOoQAvD_BwE>. Acesso em: 20 out. 2026.
+
+ELETROGATE. *Protoboard 400 pontos*. Disponível em: <https://www.eletrogate.com/protoboard-400-pontos?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=4&gad_campaignid=20223015315&gbraid=0AAAAADqxjs--_IDti_OP_PomQr4wJeFmq&gclid=CjwKCAjwotzWBhBFEiwA1JhPoPlT3_2SAg4EbLjDVCFA_2Gb0qBCgwXD5npVhSjZdn-yagDte4bg4BoCZoMQAvD_BwE>. Acesso em: 20 out. 2026.
 
 MERCADO LIVRE. _Conjunto de 50 botões de pressão para placa de circuito_. Disponível em: <https://www.mercadolivre.com.br/conjunto-de-50-botoes-de-pressao-para-placa-de-circuito/p/MLB2052130334?matt_tool=18956390&utm_source=google_shopping&utm_medium=organic&pdp_filters=item_id%3AMLB7635767930&from=gshop>. Acesso em: 20 out. 2026.
 
@@ -1101,9 +1180,17 @@ ELETROGATE. _LED difuso 5 mm verde_. Disponível em: <https://www.eletrogate.com
 
 ELETROGATE. _LED difuso 5 mm vermelho_. Disponível em: <https://www.eletrogate.com/led-difuso-5mm-vermelho?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=1&gad_campaignid=20223015315&gbraid=0AAAAADqxjs_RKxEA4lB8OTz9kzOy_b2y9&gclid=CjwKCAjwotzWBhBFEiwA1JhPoN-apmwJkkXYYznxTECGwrAfUUdQMOGaQL_4-m8zeFGfzU6AOYhiNxoCqJgQAvD_BwE>. Acesso em: 20 out. 2026.
 
-ELETROGATE. _Protoboard 400 pontos_. Disponível em: <https://www.eletrogate.com/protoboard-400-pontos?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=4&gad_campaignid=20223015315&gbraid=0AAAAADqxjs--_IDti_OP_PomQr4wJeFmq&gclid=CjwKCAjwotzWBhBFEiwA1JhPoPlT3_2SAg4EbLjDVCFA_2Gb0qBCgwXD5npVhSjZdn-yagDte4bg4BoCZoMQAvD_BwE>. Acesso em: 20 out. 2026.
-
 ESTADÃO CONTEÚDO. Unipar tem 2025 desafiado pelo ciclo petroquímico, com quarto trimestre mais crítico. UOL Economia, 19 mar. 2026. Disponível em: [https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm](https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm). Acesso em: 15 out. 2026.
+
+MERCADO LIVRE. *Cabo jumper macho-macho 20 cm para Arduino e protoboard*. Disponível em: <https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281>. Acesso em: 20 out. 2026.
+
+MERCADO LIVRE. *Display LCD 16 × 2 1602 com módulo I²C soldado*. Disponível em: <https://www.mercadolivre.com.br/display-lcd-16x2-1602-fundo-azul-com-modulo-i2c-soldado/up/MLBU4549779439?pdp_filters=item_id%3AMLB7321088826&from=gshop&matt_tool=56885173&matt_word=&matt_source=google&matt_campaign_id=22090354256&matt_ad_group_id=192555051054&matt_match_type=&matt_network=g&matt_device=c&matt_creative=799032781561&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=119897001&matt_product_id=MLBU4549779439&matt_product_partition_id=2498613880064&matt_target_id=pla-2498613880064&cq_src=google_ads&cq_cmp=22090354256&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22090354256&gbraid=0AAAAAD93qcAf98DVye3WhOkZqJU1o3eSE&gclid=CjwKCAjwotzWBhBFEiwA1JhPoMgiK21_IFmDbVmbNMgDC3o03ZARpy4oBINxyPna8AsDNp4ISmYalRoCR_MQAvD_BwE>. Acesso em: 20 out. 2026.
+
+MERCADO LIVRE. *Kit de cabos jumper macho-fêmea 20 cm*. Disponível em: <https://www.mercadolivre.com.br/20pcs-jumper-mxf-20cm--20pcs-jumper-fxf-20cm/up/MLBU2370810037?pdp_filters=item_id%3AMLB4078036044&from=gshop&matt_tool=19390443&matt_word=&matt_source=google&matt_campaign_id=22090354205&matt_ad_group_id=191786774561&matt_match_type=&matt_network=g&matt_device=c&matt_creative=782869962440&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=5458938305&matt_product_id=MLBU2370810037&matt_product_partition_id=2495493043879&matt_target_id=pla-2495493043879&cq_src=google_ads&cq_cmp=22090354205&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090354205&gbraid=0AAAAAD93qcBWh7S0-tQRtyURYUhdok1-w&gclid=CjwKCAjwotzWBhBFEiwA1JhPoO4nhPq-F2KwwBsDI-Hn3A0iwomUAHbI1TRcldDnimZUYjGi7kAF6xoCG5oQAvD_BwE>. Acesso em: 20 out. 2026.
+
+OSTERWALDER, Alexander; PIGNEUR, Yves; BERNARDA, Gregory; SMITH, Alan. *Value proposition design*: how to create products and services customers want. Hoboken: John Wiley & Sons, 2014.
+
+SARAVATI. *Resistor 1 kΩ 5% 1/4 W*. Disponível em: <https://www.saravati.com.br/resistor-1k-5-1-4w.html?gad_source=1&gad_campaignid=23551463662&gbraid=0AAAAAC2QUl9NJxOJbt89j1o1regZh5Nz1&gclid=CjwKCAjwotzWBhBFEiwA1JhPoG38v08Hq-K_8VKXdxS8REO0qaNgkFziIwVTl9Rc2LXpGSD3o1KboRoCCEkQAvD_BwE>. Acesso em: 20 out. 2026.
 
 HARVARD BUSINESS SCHOOL. _The Five Forces_. Institute for Strategy and Competitiveness. Disponível em: [https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx](https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx). Acesso em: 23 out. 2026.
 
@@ -1112,20 +1199,6 @@ INSTITUTO NACIONAL DE METROLOGIA, QUALIDADE E TECNOLOGIA (INMETRO). _Maturidade 
 INTELI. Projeto parceiro: Unipar — Sistema de IoT para Monitoramento, Orientação e Confirmação de Evacuação em Emergências Industriais. 2026. Disponível em: [https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true](https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true). Acesso em: 15 out. 2026. Material de apoio correspondente ao Módulo 4 do Ciclo Comum de Graduação do Instituto de Tecnologia e Liderança, 2026.
 
 MERCADO LIVRE. _Bateria Maxell CR2032 de lítio, 3 V, uma unidade_. Disponível em: <https://lista.mercadolivre.com.br/bateria-maxell-cr2032>. Acesso em: 22 out. 2026.
-
-MERCADO LIVRE. _Cabo jumper macho-macho 20 cm para Arduino e protoboard_. Disponível em: <https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Cabo USB compatível com placa de desenvolvimento Arduino Uno R3 ATmega328P CH340_. Disponível em: <https://www.mercadolivre.com.br/cabo-usb-compativel-com-placa-de-desenvolvimento-arduino-uno-r3-atmega328p-ch340/p/MLB44072268?pdp_filters=item_id%3AMLB5229650730&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735125422&matt_product_id=MLB44072268-product&matt_product_partition_id=2495059736147&matt_target_id=pla-2495059736147&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoJRuM1jdBvwQsy-JbDuO2GqZUVevX9I5SgDqMi81aZh_Pusf2a-KQhoC7PwQAvD_BwE>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Conjunto de 50 botões de pressão para placa de circuito_. Disponível em: <https://www.mercadolivre.com.br/conjunto-de-50-botoes-de-pressao-para-placa-de-circuito/p/MLB2052130334?matt_tool=18956390&utm_source=google_shopping&utm_medium=organic&pdp_filters=item_id%3AMLB7635767930&from=gshop>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Display LCD 16 × 2 1602 com módulo I²C soldado_. Disponível em: <https://www.mercadolivre.com.br/display-lcd-16x2-1602-fundo-azul-com-modulo-i2c-soldado/up/MLBU4549779439?pdp_filters=item_id%3AMLB7321088826&from=gshop&matt_tool=56885173&matt_word=&matt_source=google&matt_campaign_id=22090354256&matt_ad_group_id=192555051054&matt_match_type=&matt_network=g&matt_device=c&matt_creative=799032781561&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=119897001&matt_product_id=MLBU4549779439&matt_product_partition_id=2498613880064&matt_target_id=pla-2498613880064&cq_src=google_ads&cq_cmp=22090354256&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22090354256&gbraid=0AAAAAD93qcAf98DVye3WhOkZqJU1o3eSE&gclid=CjwKCAjwotzWBhBFEiwA1JhPoMgiK21_IFmDbVmbNMgDC3o03ZARpy4oBINxyPna8AsDNp4ISmYalRoCR_MQAvD_BwE>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Kit de cabos jumper macho-fêmea 20 cm_. Disponível em: <https://www.mercadolivre.com.br/20pcs-jumper-mxf-20cm--20pcs-jumper-fxf-20cm/up/MLBU2370810037?pdp_filters=item_id%3AMLB4078036044&from=gshop&matt_tool=19390443&matt_word=&matt_source=google&matt_campaign_id=22090354205&matt_ad_group_id=191786774561&matt_match_type=&matt_network=g&matt_device=c&matt_creative=782869962440&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=5458938305&matt_product_id=MLBU2370810037&matt_product_partition_id=2495493043879&matt_target_id=pla-2495493043879&cq_src=google_ads&cq_cmp=22090354205&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090354205&gbraid=0AAAAAD93qcBWh7S0-tQRtyURYUhdok1-w&gclid=CjwKCAjwotzWBhBFEiwA1JhPoO4nhPq-F2KwwBsDI-Hn3A0iwomUAHbI1TRcldDnimZUYjGi7kAF6xoCG5oQAvD_BwE>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Módulo sensor ultrassônico de distância HC-SR04 para Arduino_. Disponível em: <https://www.mercadolivre.com.br/modulo-sensor-ultrassonico-distancia-hc-sr04-para-arduino/p/MLB64164978?pdp_filters=item_id%3AMLB5130062737&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735128761&matt_product_id=MLB64164978-product&matt_product_partition_id=2495059736347&matt_target_id=pla-2495059736347&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoIQ9ytYCHxi7QMFA-RU1aROmSXUtXE3xD1biz_vwK9s3dwk-8Ro6oxoCIOoQAvD_BwE>. Acesso em: 20 out. 2026.
-
-SARAVATI. _Resistor 1 kΩ 5% 1/4 W_. Disponível em: <https://www.saravati.com.br/resistor-1k-5-1-4w.html?gad_source=1&gad_campaignid=23551463662&gbraid=0AAAAAC2QUl9NJxOJbt89j1o1regZh5Nz1&gclid=CjwKCAjwotzWBhBFEiwA1JhPoG38v08Hq-K_8VKXdxS8REO0qaNgkFziIwVTl9Rc2LXpGSD3o1KboRoCCEkQAvD_BwE>. Acesso em: 20 out. 2026.
 
 UNITED STATES ENVIRONMENTAL PROTECTION AGENCY (EPA). _Water systems, disinfection byproducts, and the use of monochloramine: other than chlorine and monochloramine, what options could water utilities consider?_ Washington, DC: EPA, 2009. Disponível em: [https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf](https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf). Acesso em: 23 out. 2026.
 
@@ -1147,7 +1220,7 @@ UNIPAR CARBOCLORO. _Release de resultados 4T25_. São Paulo: Unipar Carbocloro, 
 
 UNIPAR CARBOCLORO S.A. Informações trimestrais (ITR): 31 de março de 2025. 2025. Disponível em: [https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1](https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1). Acesso em: 15 out. 2026.
 
-UNIPAR CARBOCLORO S.A. _Formulário de Referência 2026_. Seções 1.4 — Produção, comercialização e mercados — e 1.5 — Principais clientes. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: [https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/](https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/). Acesso em: 23 out. 2026.
+[5] UNIPAR CARBOCLORO S.A. **Formulário de Referência 2026**, versão 1. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/396d9e64-cbbd-f172-97df-b409609b9c6b?origin=2>. Acesso em: 22 out. 2026.
 
 UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. _Movimento Econômico_, [s. l.], 4 abr. 2025. Disponível em: https://movimentoeconomico.com.br/estados/bahia/2025/04/04/unipar-carbocloro-inaugura-sua-1a-unidade-no-nordeste/. Acesso em: 19 out. 2026.
 
@@ -1166,19 +1239,6 @@ WIRELESS, paperless tracking keeps employees safer. _Automation World_, [s. l.],
 [4] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Guia orientativo sobre segurança da informação para agentes de tratamento de pequeno porte**. Brasília, DF: ANPD, 2021. Disponível em: <https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-sobre-seguranca-da-informacao-para-agentes-de-tratamento-de-pequeno-porte>. Acesso em: 22 out. 2026.
 
 [5] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Direito dos titulares**. Disponível em: <https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados/direito-dos-titulares>. Acesso em: 22 out. 2026.
-ELETROGATE. _Buzzer ativo 5 V_. Disponível em: <https://www.eletrogate.com/buzzer-ativo-5v?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=1&gad_campaignid=20223015315&gbraid=0AAAAADqxjs_RKxEA4lB8OTz9kzOy_b2y9&gclid=CjwKCAjwotzWBhBFEiwA1JhPoLPBf6mtcZizCQRpZRRLmGNgwewSSuaihP1VIORbIt2h8imNmBty9RoCrG8QAvD_BwE>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Display LCD 16 × 2 1602 com módulo I²C soldado_. Disponível em: <https://www.mercadolivre.com.br/display-lcd-16x2-1602-fundo-azul-com-modulo-i2c-soldado/up/MLBU4549779439?pdp_filters=item_id%3AMLB7321088826&from=gshop&matt_tool=56885173&matt_word=&matt_source=google&matt_campaign_id=22090354256&matt_ad_group_id=192555051054&matt_match_type=&matt_network=g&matt_device=c&matt_creative=799032781561&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=119897001&matt_product_id=MLBU4549779439&matt_product_partition_id=2498613880064&matt_target_id=pla-2498613880064&cq_src=google_ads&cq_cmp=22090354256&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22090354256&gbraid=0AAAAAD93qcAf98DVye3WhOkZqJU1o3eSE&gclid=CjwKCAjwotzWBhBFEiwA1JhPoMgiK21_IFmDbVmbNMgDC3o03ZARpy4oBINxyPna8AsDNp4ISmYalRoCR_MQAvD_BwE>. Acesso em: 20 out. 2026.
-
-SARAVATI. _Resistor 1 kΩ 5% 1/4 W_. Disponível em: <https://www.saravati.com.br/resistor-1k-5-1-4w.html?gad_source=1&gad_campaignid=23551463662&gbraid=0AAAAAC2QUl9NJxOJbt89j1o1regZh5Nz1&gclid=CjwKCAjwotzWBhBFEiwA1JhPoG38v08Hq-K_8VKXdxS8REO0qaNgkFziIwVTl9Rc2LXpGSD3o1KboRoCCEkQAvD_BwE>. Acesso em: 20 out. 2026.
-
-ELETROGATE. _Protoboard 400 pontos_. Disponível em: <https://www.eletrogate.com/protoboard-400-pontos?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=4&gad_campaignid=20223015315&gbraid=0AAAAADqxjs--_IDti_OP_PomQr4wJeFmq&gclid=CjwKCAjwotzWBhBFEiwA1JhPoPlT3_2SAg4EbLjDVCFA_2Gb0qBCgwXD5npVhSjZdn-yagDte4bg4BoCZoMQAvD_BwE>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Bateria Maxell CR2032 de lítio, 3 V, uma unidade_. Disponível em: <https://lista.mercadolivre.com.br/bateria-maxell-cr2032>. Acesso em: 22 out. 2026.
-
-MERCADO LIVRE. _Kit de cabos jumper macho-fêmea 20 cm_. Disponível em: <https://www.mercadolivre.com.br/20pcs-jumper-mxf-20cm--20pcs-jumper-fxf-20cm/up/MLBU2370810037?pdp_filters=item_id%3AMLB4078036044&from=gshop&matt_tool=19390443&matt_word=&matt_source=google&matt_campaign_id=22090354205&matt_ad_group_id=191786774561&matt_match_type=&matt_network=g&matt_device=c&matt_creative=782869962440&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=5458938305&matt_product_id=MLBU2370810037&matt_product_partition_id=2495493043879&matt_target_id=pla-2495493043879&cq_src=google_ads&cq_cmp=22090354205&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090354205&gbraid=0AAAAAD93qcBWh7S0-tQRtyURYUhdok1-w&gclid=CjwKCAjwotzWBhBFEiwA1JhPoO4nhPq-F2KwwBsDI-Hn3A0iwomUAHbI1TRcldDnimZUYjGi7kAF6xoCG5oQAvD_BwE>. Acesso em: 20 out. 2026.
-
-MERCADO LIVRE. _Cabo jumper macho-macho 20 cm para Arduino e protoboard_. Disponível em: <https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281>. Acesso em: 20 out. 2026.
 
 BRASIL. Ministério do Trabalho e Emprego. **NR-20 — Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis**. Texto atualizado em 2025, itens 20.1 e 20.2. Disponível em: [PDF oficial da NR-20](https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-20-atualizada-2025.pdf). Acesso em: 23 out. 2026.
 
@@ -1193,20 +1253,15 @@ UNIPAR / INTELI. **Kickoff do projeto — unidade de Cubatão**. Realizado em 16
 UNIPAR / INTELI. **Termo de Abertura do Projeto de Inovação (TAPI) — Módulo 4**. Restrição de escopo informada no contexto do projeto: não contemplar rastreamento contínuo de alta precisão em ambientes internos. Versão, data e link interno pendentes de disponibilização; documento não consultado diretamente nesta revisão.
 
 EQUIPE DO PROJETO. **Protótipo inicial Wokwi e evidências CT01–CT10**. Disponível em: [simulação](https://wokwi.com/projects/478404642645348353), [firmware](../src/firmware/prototipo/sketch.ino), [circuito](../src/firmware/prototipo/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). Firmware, circuito e documentação das evidências consultados em 23 out. 2026; a simulação não foi reexecutada nesta revisão documental.
-[1] UNIPAR. **Relatório de Sustentabilidade 2024**. São Paulo: Unipar, 2025. Disponível em: <https://unipar.com/sustentabilidade>. Acesso em: 20 out. 2026.
-[1] UNIPAR. **Perfil corporativo**. Disponível em: <https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/>. Acesso em: 22 out. 2026.
 
-[2] UNIPAR. **Cloro: fabricação, transporte e aplicações**. Disponível em: <https://unipar.com/produtos/cloro>. Acesso em: 22 out. 2026.
+[1] UNIPAR. **Relatório de Sustentabilidade 2024**. São Paulo: Unipar, 2025. Disponível em: <https://unipar.com/sustentabilidade>. Acesso em: 20 out. 2026.
 
 [3] UNIPAR. **Relações com Investidores: nossos números**. Disponível em: <https://ri.unipar.com/>. Acesso em: 22 out. 2026.
 
 [4] ASSOCIAÇÃO BRASILEIRA DA INDÚSTRIA DE ÁLCALIS, CLORO E DERIVADOS. **Produção brasileira de cloro cresce 5,4% entre janeiro e outubro de 2024**. 13 jan. 2025. Disponível em: <https://www.abiclor.com.br/producao-brasileira-de-cloro-cresce-54-entre-janeiro-e-outubro-de-2024/>. Acesso em: 22 out. 2026.
-
-[5] UNIPAR CARBOCLORO S.A. **Formulário de Referência 2026**, versão 1. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/396d9e64-cbbd-f172-97df-b409609b9c6b?origin=2>. Acesso em: 22 out. 2026.
 
 [6] BRASKEM S.A. **Annual Report 2025 (Form 20-F)**. Washington, DC: U.S. Securities and Exchange Commission, 2026. Disponível em: <https://www.sec.gov/Archives/edgar/data/1071438/000129281426002427/bakform20f_2025.htm>. Acesso em: 22 out. 2026.
 
 [7] UNIPAR CARBOCLORO S.A. **Release de Resultados 1T25**. São Paulo: Unipar, 2025. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/bc3d7aae-1800-44eb-9d21-2b8e87ea5466?origin=1>. Acesso em: 22 out. 2026.
 
 [8] BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL. **Novo marco legal do saneamento: impactos na cadeia de fornecedores — parte 2**. _BNDES Setorial_, Rio de Janeiro, v. 28, n. 55, p. 179–239, mar. 2022. Disponível em: <https://web.bndes.gov.br/bib/jspui/bitstream/1408/22426/3/PR_BS_v28_n55_Saneamento_parte%202_.pdf>. Acesso em: 22 out. 2026.
-WIRELESS, paperless tracking keeps employees safer. _Automation World_, [s. l.], [20--]. Disponível em: https://www.automationworld.com/article/technologies/sensors-process/wireless-paperless-tracking-keeps-employees-safer. Acesso em: 20 out. 2026.
