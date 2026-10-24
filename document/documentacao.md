@@ -74,7 +74,7 @@ _Descreva as etapas da metodologia RM-ODP que foram utilizadas para o desenvolvi
 
 _Link para os templates de negócios: https://drive.google.com/drive/folders/1lTqisJ_gxxtc5J5aXM8ula2kQ4MsII_M?usp=sharing_
 
-### 3.1.1. Contexto da Indústria (sprint 1)
+### 3.1.1. Contexto da Indústria
 
 #### Concorrência
 
@@ -192,13 +192,148 @@ Espera-se agilizar a apuração quantitativa, melhorar a visibilidade para SSMA/
 
 Os critérios propostos são redução de pelo menos 60% no tempo de apuração quantitativa frente ao processo manual, capacidade para atender a população dentro do SLA e meta de acurácia por evento de pelo menos 99% em condições definidas. O protocolo, os limites de medição e o dimensionamento estão nas seções 3.3.8 e 3.4.1.1. Os dez casos funcionais documentados em Wokwi constituem evidência inicial de comportamento, sem comprovar essas metas. Resultado de 90% em estresse não aprova uso real.
 	
-### 3.1.4. Value Proposition Canvas (sprint 1)
+### 3.1.4. Value Proposition Canvas
 
 _O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._
 
-### 3.1.5. Matriz de Riscos (sprint 1)
+### 3.1.5. Matriz de Riscos
 
-_A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estão criando. Deve ser entregue no template disponível no drive da turma. Os alunos devem enumerar os riscos, distribuí-los na matriz e justificar suas decisões._
+A matriz de riscos reúne os eventos incertos que podem afetar o projeto do grupo **Synthetix**, divididos entre eventos negativos (ameaças) e positivos (oportunidades), distribuindo-os de acordo com a probabilidade de ocorrência e o nível de impacto de cada um.
+
+O escopo de análise considera a arquitetura da solução desenvolvida para evacuação industrial, composta por três componentes principais:
+
+1. **Chaveiros individuais:** Dispositivos portáteis fixados ao EPI do colaborador, dotados de botões de status/socorro, acelerômetro para detecção de ausência de movimento/queda e sinalização tátil/luminosa.
+2. **Caixas Fixas (Antenas por zona):** Módulos instalados em cada cômodo/zona e no Ponto de Encontro para triangulação de sinal de radiofrequência e confirmação automática de presença.
+3. **Painel Central (Dashboard):** Mapeamento dinâmico em tempo real exibindo a condição das zonas (azul = segura / vermelha = evacuar) e o status individual dos trabalhadores (OK, Pedido de Ajuda, Sem Movimento ou Sem Sinal).
+
+Os riscos foram levantados diretamente a partir dos requisitos técnicos do MVP, das definições do grupo e das lacunas operacionais identificadas na fábrica.
+
+---
+
+#### Critérios de Classificação
+
+A probabilidade expressa a chance de o evento ocorrer durante os testes do protótipo ou na operação da planta piloto. O impacto mede o efeito do evento sobre o objetivo central da solução: **garantir a contagem precisa e em tempo real dos trabalhadores, orientar a rota de fuga e acelerar a resposta da brigada de emergência**.
+
+<div align="center">
+
+**Quadro 1 – Escala de probabilidade da matriz de riscos**
+
+| Nível           | Faixa  | Interpretação no projeto Synthetix                                                                                    |
+| :-------------- | :----: | :-------------------------------------------------------------------------------------------------------------------- |
+| **Muito baixa** | $10\%$ | O evento depende de uma combinação improvável de falhas ou de descumprimento deliberado de procedimentos.             |
+| **Baixa**       | $30\%$ | O evento pode acontecer, mas existem salvaguardas operacionais ou redundâncias técnicas que reduzem sua chance.       |
+| **Média**       | $50\%$ | O evento depende de condições operacionais e de infraestrutura que o grupo ainda não testou totalmente em campo.      |
+| **Alta**        | $70\%$ | Existe indício concreto de ocorrência, limitação inerente da tecnologia escolhida ou dependência de fatores externos. |
+| **Muito alta**  | $90\%$ | O evento é iminente ou praticamente certo na ausência de ação corretiva imediata.                                     |
+
+_Fonte: Elaboração do Grupo Synthetix (2026)._
+
+</div>
+
+<br>
+
+<div align="center">
+
+**Quadro 2 – Escala de impacto da matriz de riscos**
+
+| Nível           | Interpretação no projeto Synthetix                                                                              |
+| :-------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **Muito baixo** | O evento não altera o funcionamento do painel e passa despercebido pelos operadores.                            |
+| **Baixo**       | Exige ajustes pontuais na calibração dos chaveiros ou na interface gráfica sem atrasar as entregas do projeto.  |
+| **Moderado**    | Gera retrabalho técnico ou elevação de custos de hardware, sem comprometer a segurança da evacuação.            |
+| **Alto**        | Compromete a precisão da localização por zonas ou distorce os dados de presença do painel central.              |
+| **Muito alto**  | Deixa o sistema inoperante na emergência, oculta vítimas não salvas ou atrasa diretamente o resgate da brigada. |
+
+_Fonte: Elaboração do Grupo Synthetix (2026)._
+
+</div>
+
+---
+
+#### Ameaças (Riscos Negativos)
+
+<div align="center">
+
+**Quadro 3 – Ameaças identificadas no projeto Synthetix**
+
+|   ID   | Ameaça                                                                   | Probabilidade  |  Impacto   | Justificativa                                                                                                                                                                                                                                                 |
+| :----: | :----------------------------------------------------------------------- | :------------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **R1** | **Falha de rede ou queda de energia durante a emergência**               | Média ($50\%$) | Muito Alto | Incêndios e explosões frequentemente causam curto-circuito ou desligamento preventivo da rede elétrica da fábrica. Se as Caixas Fixas não possuírem alimentação autônoma por bateria, o sistema inteiro fica "cego" no momento em que mais precisa funcionar. |
+| **R2** | **Ausência de lista de presença diária na fábrica**                      | Alta ($70\%$)  |    Alto    | Sem saber quem bateu o ponto ou entrou na fábrica no dia, a brigada de incêndio não consegue diferenciar quem falta no Ponto de Encontro de quem simplesmente não foi trabalhar (folga/atestado), mobilizando resgates desnecessários em áreas de risco.      |
+| **R3** | **Fator humano no manuseio do chaveiro**                                 | Média ($50\%$) |  Moderado  | Operadores podem esquecer o chaveiro no armário, a bateria do dispositivo pode descarregar ou visitantes podem entrar sem o equipamento. Embora o colaborador ainda possa evacuar fisicamente, os dados do painel ficam distorcidos.                          |
+| **R4** | **Interferência de RF por estruturas metálicas industriais**             | Baixa ($30\%$) |    Alto    | Galpões metálicos, tubulações pesadas e motores elétricos geram atenuação e ruído de rádio. Se o sinal falhar ou atenuar demais, o algoritmo de sinal mais forte pode alocar a pessoa na zona errada do mapa.                                                 |
+| **R5** | **Inviabilidade por exigência de certificação à prova de explosão (Ex)** | Alta ($70\%$)  |  Moderado  | Em áreas classificadas (com presença de gases ou poeiras inflamáveis), equipamentos exigem invólucros ou circuitos intrinsecamente seguros. Essa exigência eleva o custo e regulamentação do produto, exigindo delimitação de escopo no MVP.                  |
+| **R6** | **Retardo no acionamento do "Modo Emergência"**                          | Baixa ($30\%$) | Muito Alto | Se o sistema depender de acionamento manual no painel para alterar o mapa para "Modo Evacuação", falhas humanas ou pânico podem atrasar a sinalização das saídas e o rastreio automático.                                                                     |
+
+_Fonte: Elaboração do Grupo Synthetix (2026)._
+
+</div>
+
+---
+
+#### Planos de Resposta às Ameaças
+
+<div align="center">
+
+**Quadro 4 – Planos de resposta às ameaças**
+
+|   ID   | Estratégia  | Ação planejada no projeto Synthetix                                                                                                                                                                                       |
+| :----: | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **R1** | **Mitigar** | Equipar cada Caixa Fixa com bateria de reserva (Li-Ion/Powerbank) dimensionada para manter a operação autônoma por no mínimo $4\text{ horas}$ sem rede elétrica.                                                          |
+| **R2** | **Mitigar** | Implementar leitor de radiofrequência na portaria da fábrica para cadastrar automaticamente a lista de presentes do dia no banco de dados assim que o chaveiro/crachá passa pela catraca.                                 |
+| **R3** | **Mitigar** | Adicionar aviso sonoro/LEDs de checagem na portaria para alertar chaveiros descarregados e criar um protocolo obrigatório de entrega de chaveiros temporários para visitantes.                                            |
+| **R4** | **Mitigar** | Executar testes de RSSI (indicador de força de sinal recebido) e implementar uma margem de histerese no algoritmo de decisão para evitar oscilações de zona entre antenas vizinhas.                                       |
+| **R5** | **Evitar**  | Restringir a instalação física das Caixas Fixas do MVP a zonas não classificadas (ex.: pontos de encontro, escritórios e rotas externas de passagem), tratando a certificação Ex como recomendação de evolução comercial. |
+| **R6** | **Evitar**  | Conectar o painel central diretamente à saída de relé do sistema de alarme de incêndio predial já existente, garantindo disparo automático do "Modo Emergência".                                                          |
+
+_Fonte: Elaboração do Grupo Synthetix (2026)._
+
+</div>
+
+---
+
+#### Oportunidades (Riscos Positivos)
+
+<div align="center">
+
+**Quadro 5 – Oportunidades identificadas no projeto Synthetix**
+
+|   ID   | Oportunidade                                         | Probabilidade  |  Impacto   | Justificativa                                                                                                                                            | Estratégia e Ação                                                                                                       |
+| :----: | :--------------------------------------------------- | :------------: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| **O1** | **Check-in automático na portaria via RF/Crachá**    | Alta ($70\%$)  | Muito Alto | A integração do chaveiro com as catracas de acesso resolve a falta de lista diária, preenchendo automaticamente o banco de dados de presentes na planta. | **Explorar:** Desenvolver o módulo de recepção de sinal de RF na entrada principal durante a próxima sprint.            |
+| **O2** | **Comunicação mesh via protocolo ESP-NOW**           | Média ($50\%$) |    Alto    | O protocolo ESP-NOW permite comunicação direta rádio-a-rádio entre as Caixas Fixas sem depender de roteadores Wi-Fi ou conexão com a internet.           | **Explorar:** Implementar a topologia mesh nas Caixas Fixas para garantir autonomia total da rede física.               |
+| **O3** | **Integração direta com o Alarme de Incêndio (BMS)** | Baixa ($30\%$) |    Alto    | O acionamento automático por relé elimina o fator humano e comuta o Dashboard e as luzes de rota instantaneamente ao soar a sirene.                      | **Melhorar:** Projetar uma entrada digital isolada (optocolada) no painel para recepção do sinal da central da fábrica. |
+
+_Fonte: Elaboração do Grupo Synthetix (2026)._
+
+</div>
+
+---
+
+#### Matriz de Riscos (Distribuição Visual)
+
+<br>
+
+<div align="center">
+<sub>Figura X – Matriz de riscos do projeto</sub>
+
+<img src="../assets/MatrizDeRisco.png" width="80%">
+
+<sup>Fonte: elaborado pelos autores com auxílio de inteligência artificial (2026).</sup>
+
+</div>
+
+---
+
+### Síntese e Prioridades do Projeto
+
+A análise da matriz revela que as ameaças de maior severidade do projeto Synthetix referem-se à **infraestrutura e alimentação elétrica na emergência (R1)**, à **gestão da lista inicial de presentes (R2)** e à **rapidez no acionamento do modo de emergência (R6)**.
+
+Para a próxima fase do projeto, as prioridades estratégicas definidas pelo grupo são:
+
+1. **Garantia de Autonomia (R1):** Incorporação de baterias de backup em todas as Caixas Fixas.
+2. **Automação da Presença (R2 & O1):** Validação da leitura por RF na portaria para formação dinâmica da lista de colaboradores presentes na planta.
+3. **Resiliência de Comunicação (R4 & O2):** Uso do protocolo **ESP-NOW** para assegurar que a troca de informações entre as zonas continue funcionando mesmo se a rede Wi-Fi da fábrica for interrompida.
 
 Esta política preliminar considera exclusivamente o escopo do MVP definido até o momento: um protótipo de bancada com Arduino Uno, dois sensores ultrassônicos HC-SR04 para contar separadamente entradas e saídas, display LCD 16 × 2 para apresentar o total, botão para alternar entre os modos normal e emergência, LEDs verde e vermelho e buzzer para sinalização. Não fazem parte deste escopo cadastro de pessoas, crachá ou RFID, câmera, biometria, painel web, conexão de rede, banco de dados, nuvem ou rastreamento individual.
 
