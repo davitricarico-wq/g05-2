@@ -82,7 +82,7 @@ A Unipar atua na indústria química e petroquímica, com foco nos mercados de c
 
 #### Modelo de negócio
 
-A Unipar adota um modelo predominantemente *business-to-business* (B2B), baseado na produção e na comercialização, em grande escala, de insumos utilizados por outras organizações. A empresa atende setores como papel e celulose, alumínio, construção civil, infraestrutura, alimentos, siderurgia e metalurgia, tratamento de água, sabões, detergentes e produtos de limpeza. Essa diversidade reduz a exposição a um único mercado consumidor; em 2025, nenhum cliente respondeu por mais de 10% da receita líquida total da companhia (UNIPAR CARBOCLORO S.A., 2026).
+A Unipar adota um modelo predominantemente _business-to-business_ (B2B), baseado na produção e na comercialização, em grande escala, de insumos utilizados por outras organizações. A empresa atende setores como papel e celulose, alumínio, construção civil, infraestrutura, alimentos, siderurgia e metalurgia, tratamento de água, sabões, detergentes e produtos de limpeza. Essa diversidade reduz a exposição a um único mercado consumidor; em 2025, nenhum cliente respondeu por mais de 10% da receita líquida total da companhia (UNIPAR CARBOCLORO S.A., 2026).
 
 Trata-se de um modelo intensivo em capital, infraestrutura e energia, no qual a competitividade depende da escala, do controle dos custos e da continuidade das operações. A localização das unidades próximas a polos industriais e aos mercados consumidores reduz a distância logística e favorece a confiabilidade do abastecimento, aspecto especialmente relevante para o cloro, cujo transporte apresenta restrições técnicas e de segurança. A proximidade geográfica, associada aos contratos de fornecimento e à autoprodução de energia, contribui para proteger a posição competitiva da empresa, embora não elimine sua exposição aos custos de insumos e aos ciclos internacionais de soda cáustica e PVC (UNIPAR CARBOCLORO S.A., 2026).
 
@@ -132,7 +132,7 @@ O poder de negociação dos compradores é classificado como **moderado a alto**
 
 A **rivalidade entre os concorrentes** representa a maior pressão competitiva sobre a Unipar, sobretudo nos mercados expostos a preços internacionais e importações. O poder de negociação dos **compradores** constitui uma pressão moderada a alta, principalmente entre clientes de grande volume com alternativas de abastecimento. O poder dos **fornecedores** e a ameaça de **produtos substitutos** são moderados: os insumos têm peso relevante nos custos, mas existem mecanismos de mitigação, enquanto a viabilidade dos substitutos varia conforme a aplicação. A ameaça de **novos entrantes** é a força menos intensa, devido às barreiras financeiras, tecnológicas, regulatórias e logísticas. Para responder a esse cenário, a Unipar deve priorizar eficiência operacional, segurança e confiabilidade de fornecimento, disciplina de custos, proximidade dos mercados consumidores e redução da exposição a insumos críticos.
 
-### 3.1.2. Análise SWOT (sprint 1)	
+### 3.1.2. Análise SWOT (sprint 1)
 
 A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que avalia quatro elementos: forças (fatores internos positivos), fraquezas (fatores internos negativos), oportunidades (fatores externos positivos) e ameaças (fatores externos negativos). Com base nisso, realizou-se a análise SWOT da Unipar, considerando suas características organizacionais, sua atuação no mercado e os fatores internos e externos que podem influenciar seu desempenho e sua competitividade, conforme apresentado na figura abaixo.
 
@@ -156,7 +156,7 @@ A crescente demanda do mercado por práticas industriais sustentáveis pode ince
 
 Por fim, as ameaças estão relacionadas às condições externas do mercado e às exigências regulatórias que afetam a indústria química. A concorrência no mercado químico internacional pode pressionar os preços e a competitividade da Unipar, enquanto as oscilações nos custos de energia e matérias-primas podem elevar suas despesas de produção. Além disso, as exigências regulatórias e ambientais rigorosas demandam investimentos contínuos em segurança, conformidade e modernização das instalações industriais. A esses fatores somam-se a instabilidade econômica e as variações cambiais nos países em que a empresa atua, que podem impactar seus custos operacionais, seus resultados financeiros e sua competitividade no mercado.
 
-### 3.1.3. Descrição da Solução a ser Desenvolvida (sprint 1)	
+### 3.1.3. Descrição da Solução a ser Desenvolvida (sprint 1)
 
 #### 3.1.3.1 Qual é o problema a ser resolvido
 
@@ -191,7 +191,7 @@ Espera-se agilizar a apuração quantitativa, melhorar a visibilidade para SSMA/
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 
 Os critérios propostos são redução de pelo menos 60% no tempo de apuração quantitativa frente ao processo manual, capacidade para atender a população dentro do SLA e meta de acurácia por evento de pelo menos 99% em condições definidas. O protocolo, os limites de medição e o dimensionamento estão nas seções 3.3.8 e 3.4.1.1. Os dez casos funcionais documentados em Wokwi constituem evidência inicial de comportamento, sem comprovar essas metas. Resultado de 90% em estresse não aprova uso real.
-	
+
 ### 3.1.4. Value Proposition Canvas
 
 _O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._
@@ -765,13 +765,73 @@ _Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métr
 | REST — Restrições Design | ...       | ...                | ...           |
 | ORG — Organizacionais    | ...       | ...                | ...           |
 
-### 3.3.4. Matriz de Rastreabilidade (RTM) (sprints 1 a 5)
+### 3.3.4. Matriz de Rastreabilidade (RTM)
 
-_A RTM consolida a rastreabilidade completa do sistema. Um elo quebrado invalida toda a cadeia — mantenha-a atualizada a cada sprint. Referencie os casos de testes a partir das tabelas definidas na seção 3.4.x_
+A Matriz de Rastreabilidade de Requisitos (RTM) liga cada necessidade de uma persona ao requisito funcional que a atende, à regra de negócio que delimita esse requisito, ao caso de teste que o verifica e à evidência que comprova o resultado. A cadeia só se sustenta se todos os elos existirem: uma regra sem caso de teste não tem como ser comprovada, e um caso de teste sem regra associada não demonstra nada sobre o comportamento que a Unipar espera da solução. Por isso, a RTM também serve para mostrar o que ainda falta comprovar, e não apenas o que já foi testado. Isso também ajuda a controlar o risco R12 da matriz de riscos (seção 3.1.5), que trata do desalinhamento entre o escopo documentado e o protótipo, já que qualquer divergência entre requisitos, regras e testes aparece como um elo quebrado nesta matriz.
 
-| Persona | RF    | RN   | Caso de Teste | Evidência                          |
-| ------- | ----- | ---- | ------------- | ---------------------------------- |
-| ...     | RF001 | RN01 | CT02          | print, log, relatório de cobertura |
+#### Fontes e critérios de leitura
+
+Cada coluna da RTM vem de uma seção específica do documento, e nenhuma informação foi criada apenas para a matriz:
+
+- A coluna **Persona** usa as personas da seção 3.2.1 e indica quem é atendido pelo comportamento selecionado. A brigada e a área de Infraestrutura e TI aparecem como stakeholders secundários, sem pessoa própria, por isso as linhas que os envolvem registram a pessoa primária que consome o resultado, normalmente o gestor da SSMA Tuco Salamanca.
+- A coluna **RF** reproduz os requisitos funcionais associados a cada regra no quadro de regras de negócio da seção 3.3.2. Quando a regra está ligada a mais de um requisito, todos são listados, a coluna será refinada para o requisito específico exercitado para cada caso de teste à medida que a seção 3.3.1 for consolidada.
+- A coluna **RN** usa as regras de negócio RN01 a RN11 da seção 3.3.2.
+- A coluna **Caso de teste** usa os casos executados e documentados na seção 3.4.1, como orienta o template. Os casos planejados listados no seleções de sucesso 4 da seção 3.1.3.5 entram na matriz à medida que foram executados e registrados nas seções 3.4.2 e 3.4.3.
+- A coluna **Evidência** aponta para a figura do caso de teste na seção 3.4.1, gerada a partir do [ projeto publicado no Wokwi ](https://wokwi.com/projects/478404642645348353) .
+- A coluna **Status** indica se a regra está coberta, parcialmente coberta ou pendente. Uma regra pendente é um elo quebrado conhecido, registrado junto com a sprint em que deve ser fechado.
+
+#### Matriz de rastreabilidade
+
+<div  align= "center" >
+<p> Quadro X – Matriz de rastreabilidade de requisitos (RTM) </p>
+
+| Pessoa                                                 | RF                         | RN   | Caso de teste | Evidência                                                                                                                                                                                                                                                                                                                          |       Estado        |
+| ------------------------------------------------------ | -------------------------- | ---- | :-----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------------: |
+| Maria Schrader (CCO)                                   | RF004, RF005               | RN01 |     CT01      | O acionamento do modo de monitoramento acende o LED vermelho e mantém `Total: 0` , então nenhuma passagem é contada antes do início do evento ( [ figura do CT01 ](../assets/casos_teste_prototipos/inicial/T01.png) ).                                                                                                            |       Coberta       |
+| Maria Schrader (CCO)                                   | RF004, RF005               | RN01 |     CT06      | A pausa do monitoramento encerra a contagem sem apagar o total já registrado ( [ figura do CT06 ](../assets/casos_teste_prototipos/inicial/T06.png) ).                                                                                                                                                                             |       Coberta       |
+| Maria Schrader (CCO)                                   | RF004, RF005               | RN01 |     CT07      | Uma leitura de 74 cm com o sistema pausado não altera o total, ou seja, a passagem fora de evento aberto não é tratada como chegada ( [ figura do CT07 ](../assets/casos_teste_prototipos/inicial/T07.png) ).                                                                                                                      |       Coberta       |
+| Gustavo Fring (Técnico de Operação)                    | RF001, RF004, RF005, RF006 | RN04 |     CT02      | Uma presença a 148 cm é contada uma única vez, com `Total: 1` no LCD e aviso sonoro, o que confirma a chegada para quem passa ( [ figura do CT02 ](../assets/casos_teste_prototipos/inicial/T02.png) ).                                                                                                                            |       Parcial       |
+| Tuco Salamanca (Gestor de SSMA)                        | RF001, RF004, RF005, RF006 | RN04 |     CT03      | A permanência do mesmo objeto diante do sensor não gera contagens repetidas, e o total segue em `1` ( [ figura do CT03 ](../assets/casos_teste_prototipos/inicial/T03.png) ).                                                                                                                                                      |       Parcial       |
+| Tuco Salamanca (Gestor de SSMA)                        | RF001, RF004, RF005, RF006 | RN04 |     CT04      | A nova aproximação só é contada depois de o sensor voltar a ler acima de 200 cm, e o total passa para `2` ( [ figuras do CT04 ](../assets/casos_teste_prototipos/inicial/T04_1.png) e [ aproximação seguinte ](../assets/casos_teste_prototipos/inicial/T04_2.png) ).                                                              |       Parcial       |
+| Tuco Salamanca (Gestor de SSMA)                        | RF001, RF004, RF005, RF006 | RN04 |     CT05      | Uma leitura válida de 376 cm, fora da área de interesse, não altera o total nem aciona o buzzer ( [ figura do CT05 ](../assets/casos_teste_prototipos/inicial/T05.png) ).                                                                                                                                                          |       Parcial       |
+| Tuco Salamanca (Gestor de SSMA)                        | RF006, RF009               | RN08 |     CT08      | Com o fio `ECHO` desconectado, a leitura ausente é tratada como inválida, o total permanece em `0` e o sistema continua em execução, então a falta de leitura não vira chegada ( [ figura do CT08 ](../assets/casos_teste_prototipos/inicial/T08.png) ). O protótipo ainda não marca o balanço como inconclusivo nem avisa a SSMA. |       Parcial       |
+| Tuco Salamanca (Gestor de SSMA)                        | RF003, RF004, RF006        | RN02 |   A definir   | Caso seja testado na seção 3.4.3, verificando que B está congelado no instante do alarme e não muda com passagens posteriores pelas portas P1 e P2. Depende da base de portaria, ainda que fictícia.                                                                                                                               | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA)                        | RF002, RF003, RF005, RF010 | RN03 |   A definir   | Caso seja testado na seção 3.4.3, verificando se uma leitura só entra no balanço se vier de um dispositivo identificado e associado a um único local. Depende de mais de um nó publicando no broker MQTT.                                                                                                                          | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA)                        | RF006, RF007               | RN05 |   A definir   | Caso de teste seja registrado na seção 3.4.3, verificando que o painel exibe D = B − A enquanto A para menor que B. Depende do cálculo do balanço fora do nó.                                                                                                                                                                      | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA)                        | RF003, RF005, RF006, RF007 | RN09 |   A definir   | Caso de teste seja registrado na seção 3.4.3, verificando que o painel mostra apenas contagens agregadas por portaria e ponto de encontro, sem identidade nem posição. O firmware atual já não armazena identificador de pessoa, mas isso ainda não foi verificado por um teste.                                                   | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA)                        | RF005, RF010               | RN11 |   A definir   | Caso de teste a ser registrado na seção 3.4.3, reenviando a mesma mensagem MQTT, com o mesmo dispositivo e número sequencial, e verificando que o contador sobe uma única vez.                                                                                                                                                     | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA)                        | RF004, RF008               | RN06 |   A definir   | Caso de teste seja registrado na seção 3.4.3, simulando um evento em que D continua positivo aos 10 minutos e verificando que o alerta chega à SSMA com a quantidade pendente, sem que o prazo reinicie a cada nova leitura.                                                                                                       | Pendente (sprint 3) |
+| Tuco Salamanca (Gestor de SSMA)                        | RF006, RF012               | RN07 |   A definir   | Caso de teste a ser registrado na seção 3.4.4, verificando que a igualdade A = B aparece como convergência numérica e que o evento só é concluído por uma ação explícita da SSMA.                                                                                                                                                  | Pendente (sprint 4) |
+| Tuco Salamanca (Gestor de SSMA) e Maria Schrader (CCO) | RF011, RF012, RF013        | RN10 |   A definir   | Caso seja testado na seção 3.4.4, verificando se apenas perfis autorizados consultam o painel e concluem um evento, e que cada acesso e alteração ficam vinculados a um usuário.                                                                                                                                                   | Pendente (sprint 4) |
+
+<p> Fonte: elaboração dos autores (2026). </p>
+</div>
+
+#### Cobertura atual
+
+<div  align= "center" >
+<p> Quadro X – Cobertura das regras de negócio ao fim da sprint 1 </p>
+
+| Estado              | Regras de negócio                  | Quantidade |
+| ------------------- | ---------------------------------- | :--------: |
+| Coberta             | RN01                               |     1      |
+| Parcial             | RN04, RN08                         |     2      |
+| Pendente (sprint 3) | RN02, RN03, RN05, RN06, RN09, RN11 |     6      |
+| Pendente (sprint 4) | RN07, RN10                         |     2      |
+
+<p> Fonte: elaboração dos autores (2026). </p>
+</div>
+
+Ao final do sprint 1, os oito casos de teste do protótipo inicial estão ligados a alguma regra, mas apenas três das onze regras de negócio têm evidência, e apenas o RN01 está coberto por completo. Isso é esperado para o estágio do projeto, já que o protótipo inicial é um único nó de contagem sem rede, e a maior parte das regras trata do balanço entre portarias e pontos de encontro, da troca de mensagens MQTT e do painel. Ainda assim, vale apontar o que cada cobertura parcial deixa em aberto.
+
+- A RN04 está comprovada no nível do nó, porque os CT02 a CT05 mostram que apenas passagens válidas são contadas. A soma das chegadas de todos os pontos de reunião designados pela SSMA depende mais de um nó de envio de dados ao sistema central.
+- A RN08 está comprovada apenas na metade que evita o falso positivo, porque o CT08 mostra que a falta de leitura não vira chegada. A outra metade, que marca o balanço como inconclusivo e avisa o SSMA, depende do painel.
+
+Pelo lado dos requisitos, os casos executados exercitam cinco dos três requisitos funcionais citados nas regras: RF001, RF004, RF005, RF006 e RF009. Os elos quebrados mais sensíveis são os da RN02 e da RN06, porque são eles que sustentam a base congelada B e o alerta dos 10 minutos, os dois pontos que a seção 3.1.3 apresenta como centrais para a decisão da SSMA sobre o acionamento da brigada.
+
+#### Atualização da matriz
+
+A RTM é revisada ao final de cada sprint, junto com a matriz de riscos da seção 3.1.5. Na revisão, todo caso de teste novo das declarações 3.4.2 a 3.4.5 entra na matriz já ligada a uma regra e a uma evidência, e toda linha pendente cujo sprint previsto terminou precisa ser fechada com um caso de teste ou ter o atraso justificado. Para o sprint 2, a prioridade é ampliar a cobertura do RN04 no protótipo físico, com passagens simultâneas e repassagens, que são os cenários dos riscos R01 e R02. A partir do sprint 3, as regras pendentes passam a ter casos de teste automatizados, como pede a seção 3.3.2, e a coluna RF passa a indicar o requisito específico que cada caso exerce.
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
@@ -849,12 +909,12 @@ Seja `s` o intervalo efetivo entre contagens corretas, incluindo passagem e rear
 
 $$k_{min} = \left\lceil \frac{755\,s}{600 - t_{desloc}} \right\rceil$$
 
-| Intervalo efetivo assumido `s` | Vazão por acesso | Acessos mínimos com 600 s disponíveis | Acessos mínimos com 420 s disponíveis (180 s reservados ao deslocamento) |
-|---|---|---|---|
-| 1 s (limite idealizado, sem ocupação/processamento) | 60 pessoas/min | 2 | 2 |
-| 1,5 s | 40 pessoas/min | 2 | 3 |
-| 2 s | 30 pessoas/min | 3 | 4 |
-| 3 s | 20 pessoas/min | 4 | 6 |
+| Intervalo efetivo assumido `s`                      | Vazão por acesso | Acessos mínimos com 600 s disponíveis | Acessos mínimos com 420 s disponíveis (180 s reservados ao deslocamento) |
+| --------------------------------------------------- | ---------------- | ------------------------------------- | ------------------------------------------------------------------------ |
+| 1 s (limite idealizado, sem ocupação/processamento) | 60 pessoas/min   | 2                                     | 2                                                                        |
+| 1,5 s                                               | 40 pessoas/min   | 2                                     | 3                                                                        |
+| 2 s                                                 | 30 pessoas/min   | 3                                     | 4                                                                        |
+| 3 s                                                 | 20 pessoas/min   | 4                                     | 6                                                                        |
 
 Esses cenários são cálculos, não vazões medidas. Por exemplo, com `s = 2 s` e três minutos de deslocamento, são necessários **pelo menos quatro acessos independentes**. Para uma reserva adicional de 20% da capacidade nesse cenário, `ceil(755 × 2 / (0,8 × 420)) = 5` acessos. Esses parâmetros ainda precisam ser medidos e aprovados com a SSMA; não há número definitivo de acessos de implantação.
 
@@ -884,18 +944,18 @@ O software contém as funções obrigatórias `setup()` e `loop()`, além de fun
 
 Os testes CT01 a CT05 representam uma sequência completa de entrada e saída. Os testes seguintes verificam o botão e os LEDs, condições de limite, leituras simultâneas e falha de leitura. A simulação foi reiniciada quando necessário para isolar a situação avaliada.
 
-| **CT#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição e resultado observado** |
-|---|---|---|---|---|---|---|
-| CT01 | Inicialização | Arduino Uno | Simulação iniciada sem pessoas próximas aos sensores | LED verde e LCD 16x2 | LED verde aceso, LED vermelho apagado e `Total: 0` | O sistema inicializa com o contador zerado e fica pronto para receber leituras. **Aprovado.** |
-| CT02 | Entrada de pessoa | HC-SR04 de entrada | 2 cm, abaixo do limite de 200 cm | LCD 16x2, buzzer e monitor serial | `Total: 1`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa entrou: +1` | A pessoa é detectada pelo sensor de entrada e o contador é incrementado uma única vez. **Aprovado.** |
-| CT03 | Liberação do sensor de entrada | HC-SR04 de entrada | Distância alterada para 400 cm depois da entrada | LCD 16x2 | Total permanece em `1` | O afastamento não gera uma nova contagem. Após um segundo sem presença, os sensores são liberados para o próximo evento. **Aprovado.** |
-| CT04 | Saída de pessoa | HC-SR04 de saída | 43 cm, com o total anterior igual a `1` | LCD 16x2, buzzer e monitor serial | `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A pessoa é detectada pelo sensor de saída e o contador é reduzido em uma unidade. **Aprovado.** |
-| CT05 | Liberação do sensor de saída | HC-SR04 de saída | Distância alterada para 400 cm depois da saída | LCD 16x2 | Total permanece em `0` | O afastamento não gera outro decremento. Após um segundo sem presença, os sensores são liberados para a próxima leitura. **Aprovado.** |
-| CT06 | Sinalização vermelha | Botão | Um pressionamento válido | LEDs e LCD 16x2 | LED vermelho aceso, LED verde apagado e total preservado em `0` | O botão alterna a sinalização para o LED vermelho sem reiniciar ou modificar o contador. **Aprovado.** |
-| CT07 | Proteção contra valor negativo | HC-SR04 de saída | 6 cm com o contador já em `0` | LCD 16x2, buzzer e monitor serial | LCD permanece em `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A saída é detectada, mas o método `saida()` impede que o total seja reduzido abaixo de zero. **Aprovado.** |
-| CT08 | Objeto fora do alcance | HC-SR04 | 400 cm, acima do limite de detecção de 200 cm | LCD 16x2 e buzzer | Total permanece em `0` e buzzer não é acionado | O objeto fora do alcance definido não é interpretado como uma pessoa e não altera o contador. **Aprovado.** |
-| CT09 | Bloqueio de leituras conflitantes | HC-SR04 de entrada e HC-SR04 de saída | Entrada detectada a 2 cm e, antes da liberação, leitura de 86 cm no sensor de saída | LCD 16x2, buzzer e monitor serial | Apenas uma entrada é registrada e o total permanece em `1` | Neste ensaio, a entrada foi acionada antes da saída e permanece ativa. A leitura do sensor de saída é ignorada até a liberação do sensor inicial. Se ambos já estiverem detectando no início do mesmo ciclo, o firmware dá prioridade à saída; esse cenário não é comprovado por esta evidência. **Aprovado para a sequência ensaiada.** |
-| CT10 | Falha de leitura do sensor | HC-SR04 com o fio `ECHO` desconectado | Sensor configurado em 63 cm, mas sem pulso de retorno durante 30 ms | LCD 16x2 e buzzer | Total permanece em `0` e buzzer não é acionado | A função `medirDistancia()` devolve `-1` após o tempo limite. A leitura inválida é descartada e o sistema continua funcionando sem contabilizar uma pessoa incorretamente. **Aprovado.** |
+| **CT#** | **Bloco**                         | **Componente de entrada**             | **Leitura da entrada**                                                              | **Componente de saída**           | **Leitura da saída**                                                                          | **Descrição e resultado observado**                                                                                                                                                                                                                                                                                                      |
+| ------- | --------------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CT01    | Inicialização                     | Arduino Uno                           | Simulação iniciada sem pessoas próximas aos sensores                                | LED verde e LCD 16x2              | LED verde aceso, LED vermelho apagado e `Total: 0`                                            | O sistema inicializa com o contador zerado e fica pronto para receber leituras. **Aprovado.**                                                                                                                                                                                                                                            |
+| CT02    | Entrada de pessoa                 | HC-SR04 de entrada                    | 2 cm, abaixo do limite de 200 cm                                                    | LCD 16x2, buzzer e monitor serial | `Total: 1`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa entrou: +1`                | A pessoa é detectada pelo sensor de entrada e o contador é incrementado uma única vez. **Aprovado.**                                                                                                                                                                                                                                     |
+| CT03    | Liberação do sensor de entrada    | HC-SR04 de entrada                    | Distância alterada para 400 cm depois da entrada                                    | LCD 16x2                          | Total permanece em `1`                                                                        | O afastamento não gera uma nova contagem. Após um segundo sem presença, os sensores são liberados para o próximo evento. **Aprovado.**                                                                                                                                                                                                   |
+| CT04    | Saída de pessoa                   | HC-SR04 de saída                      | 43 cm, com o total anterior igual a `1`                                             | LCD 16x2, buzzer e monitor serial | `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1`                  | A pessoa é detectada pelo sensor de saída e o contador é reduzido em uma unidade. **Aprovado.**                                                                                                                                                                                                                                          |
+| CT05    | Liberação do sensor de saída      | HC-SR04 de saída                      | Distância alterada para 400 cm depois da saída                                      | LCD 16x2                          | Total permanece em `0`                                                                        | O afastamento não gera outro decremento. Após um segundo sem presença, os sensores são liberados para a próxima leitura. **Aprovado.**                                                                                                                                                                                                   |
+| CT06    | Sinalização vermelha              | Botão                                 | Um pressionamento válido                                                            | LEDs e LCD 16x2                   | LED vermelho aceso, LED verde apagado e total preservado em `0`                               | O botão alterna a sinalização para o LED vermelho sem reiniciar ou modificar o contador. **Aprovado.**                                                                                                                                                                                                                                   |
+| CT07    | Proteção contra valor negativo    | HC-SR04 de saída                      | 6 cm com o contador já em `0`                                                       | LCD 16x2, buzzer e monitor serial | LCD permanece em `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A saída é detectada, mas o método `saida()` impede que o total seja reduzido abaixo de zero. **Aprovado.**                                                                                                                                                                                                                               |
+| CT08    | Objeto fora do alcance            | HC-SR04                               | 400 cm, acima do limite de detecção de 200 cm                                       | LCD 16x2 e buzzer                 | Total permanece em `0` e buzzer não é acionado                                                | O objeto fora do alcance definido não é interpretado como uma pessoa e não altera o contador. **Aprovado.**                                                                                                                                                                                                                              |
+| CT09    | Bloqueio de leituras conflitantes | HC-SR04 de entrada e HC-SR04 de saída | Entrada detectada a 2 cm e, antes da liberação, leitura de 86 cm no sensor de saída | LCD 16x2, buzzer e monitor serial | Apenas uma entrada é registrada e o total permanece em `1`                                    | Neste ensaio, a entrada foi acionada antes da saída e permanece ativa. A leitura do sensor de saída é ignorada até a liberação do sensor inicial. Se ambos já estiverem detectando no início do mesmo ciclo, o firmware dá prioridade à saída; esse cenário não é comprovado por esta evidência. **Aprovado para a sequência ensaiada.** |
+| CT10    | Falha de leitura do sensor        | HC-SR04 com o fio `ECHO` desconectado | Sensor configurado em 63 cm, mas sem pulso de retorno durante 30 ms                 | LCD 16x2 e buzzer                 | Total permanece em `0` e buzzer não é acionado                                                | A função `medirDistancia()` devolve `-1` após o tempo limite. A leitura inválida é descartada e o sistema continua funcionando sem contabilizar uma pessoa incorretamente. **Aprovado.**                                                                                                                                                 |
 
 #### Evidências dos testes
 
@@ -1026,9 +1086,9 @@ ELETROGATE. _Protoboard 400 pontos_. Disponível em: <https://www.eletrogate.com
 
 ESTADÃO CONTEÚDO. Unipar tem 2025 desafiado pelo ciclo petroquímico, com quarto trimestre mais crítico. UOL Economia, 19 mar. 2026. Disponível em: [https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm](https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm). Acesso em: 15 out. 2026.
 
-HARVARD BUSINESS SCHOOL. *The Five Forces*. Institute for Strategy and Competitiveness. Disponível em: [https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx](https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx). Acesso em: 23 out. 2026.
+HARVARD BUSINESS SCHOOL. _The Five Forces_. Institute for Strategy and Competitiveness. Disponível em: [https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx](https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx). Acesso em: 23 out. 2026.
 
-INSTITUTO NACIONAL DE METROLOGIA, QUALIDADE E TECNOLOGIA (INMETRO). *Maturidade da Indústria 4.0*. Brasília, DF: Inmetro, 2026. Disponível em: [https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0](https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0). Acesso em: 23 out. 2026.
+INSTITUTO NACIONAL DE METROLOGIA, QUALIDADE E TECNOLOGIA (INMETRO). _Maturidade da Indústria 4.0_. Brasília, DF: Inmetro, 2026. Disponível em: [https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0](https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0). Acesso em: 23 out. 2026.
 
 INTELI. Projeto parceiro: Unipar — Sistema de IoT para Monitoramento, Orientação e Confirmação de Evacuação em Emergências Industriais. 2026. Disponível em: [https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true](https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true). Acesso em: 15 out. 2026. Material de apoio correspondente ao Módulo 4 do Ciclo Comum de Graduação do Instituto de Tecnologia e Liderança, 2026.
 
@@ -1048,17 +1108,17 @@ MERCADO LIVRE. _Módulo sensor ultrassônico de distância HC-SR04 para Arduino_
 
 SARAVATI. _Resistor 1 kΩ 5% 1/4 W_. Disponível em: <https://www.saravati.com.br/resistor-1k-5-1-4w.html?gad_source=1&gad_campaignid=23551463662&gbraid=0AAAAAC2QUl9NJxOJbt89j1o1regZh5Nz1&gclid=CjwKCAjwotzWBhBFEiwA1JhPoG38v08Hq-K_8VKXdxS8REO0qaNgkFziIwVTl9Rc2LXpGSD3o1KboRoCCEkQAvD_BwE>. Acesso em: 20 out. 2026.
 
-UNITED STATES ENVIRONMENTAL PROTECTION AGENCY (EPA). *Water systems, disinfection byproducts, and the use of monochloramine: other than chlorine and monochloramine, what options could water utilities consider?* Washington, DC: EPA, 2009. Disponível em: [https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf](https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf). Acesso em: 23 out. 2026.
+UNITED STATES ENVIRONMENTAL PROTECTION AGENCY (EPA). _Water systems, disinfection byproducts, and the use of monochloramine: other than chlorine and monochloramine, what options could water utilities consider?_ Washington, DC: EPA, 2009. Disponível em: [https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf](https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf). Acesso em: 23 out. 2026.
 
 UNIPAR. Manual da marca. 2022. Disponível em: [https://drive.google.com/file/d/1_XkquJbTrDnP6CyCtCTjtASRwI4qLL2P/view?usp=sharing](https://drive.google.com/file/d/1_XkquJbTrDnP6CyCtCTjtASRwI4qLL2P/view?usp=sharing). Acesso em: 15 out. 2026. Material institucional da Unipar utilizado como referência no Módulo 4 do Ciclo Comum de Graduação do Instituto de Tecnologia e Liderança, 2026.
 
-UNIPAR. *Perfil corporativo*. Relações com Investidores, [s.d.]a. Disponível em: [https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/](https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/). Acesso em: 23 out. 2026.
+UNIPAR. _Perfil corporativo_. Relações com Investidores, [s.d.]a. Disponível em: [https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/](https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/). Acesso em: 23 out. 2026.
 
-UNIPAR. *Produtos: cloro*. [s.d.]b. Disponível em: [https://unipar.com/produtos/cloro](https://unipar.com/produtos/cloro). Acesso em: 15 out. 2026.
+UNIPAR. _Produtos: cloro_. [s.d.]b. Disponível em: [https://unipar.com/produtos/cloro](https://unipar.com/produtos/cloro). Acesso em: 15 out. 2026.
 
 UNIPAR. _Projeto parceiro Unipar_: sistema de IoT para monitoramento, orientação e confirmação de evacuação em emergências industriais. São Paulo: Inteli, 2026. Termo de Abertura do Projeto (TAPI), Turma 25, Módulo 4. Documento não publicado.
 
-UNIPAR. *Relatório de Sustentabilidade 2025*. São Paulo: Unipar, 2026. Disponível em: [https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/](https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/). Acesso em: 23 out. 2026.
+UNIPAR. _Relatório de Sustentabilidade 2025_. São Paulo: Unipar, 2026. Disponível em: [https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/](https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/). Acesso em: 23 out. 2026.
 
 UNIPAR. Sobre a Unipar. Disponível em: [https://unipar.com/sobre/](https://unipar.com/sobre/). Acesso em: 15 out. 2026.
 
@@ -1068,9 +1128,9 @@ UNIPAR CARBOCLORO. _Release de resultados 4T25_. São Paulo: Unipar Carbocloro, 
 
 UNIPAR CARBOCLORO S.A. Informações trimestrais (ITR): 31 de março de 2025. 2025. Disponível em: [https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1](https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1). Acesso em: 15 out. 2026.
 
-UNIPAR CARBOCLORO S.A. *Formulário de Referência 2026*. Seções 1.4 — Produção, comercialização e mercados — e 1.5 — Principais clientes. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: [https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/](https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/). Acesso em: 23 out. 2026.
+UNIPAR CARBOCLORO S.A. _Formulário de Referência 2026_. Seções 1.4 — Produção, comercialização e mercados — e 1.5 — Principais clientes. São Paulo: Comissão de Valores Mobiliários, 2026. Disponível em: [https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/](https://ri.unipar.com/informacoes-aos-investidores/documentos-cvm/). Acesso em: 23 out. 2026.
 
-UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. *Movimento Econômico*, [s. l.], 4 abr. 2025. Disponível em: https://movimentoeconomico.com.br/estados/bahia/2025/04/04/unipar-carbocloro-inaugura-sua-1a-unidade-no-nordeste/. Acesso em: 19 out. 2026.
+UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. _Movimento Econômico_, [s. l.], 4 abr. 2025. Disponível em: https://movimentoeconomico.com.br/estados/bahia/2025/04/04/unipar-carbocloro-inaugura-sua-1a-unidade-no-nordeste/. Acesso em: 19 out. 2026.
 
 VAZAMENTO de gás em porto deixa 13 mortos e mais de 250 feridos na Jordânia; veja vídeo. _Folha de Pernambuco_, Recife, jun. 2022. Disponível em: https://www.folhape.com.br/noticias/vazamento-de-gas-em-porto-deixa-13-mortos-na-jordania/231857/. Acesso em: 20 out. 2026.
 
@@ -1129,5 +1189,5 @@ EQUIPE DO PROJETO. **Protótipo inicial Wokwi e evidências CT01–CT10**. Dispo
 
 [7] UNIPAR CARBOCLORO S.A. **Release de Resultados 1T25**. São Paulo: Unipar, 2025. Disponível em: <https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/bc3d7aae-1800-44eb-9d21-2b8e87ea5466?origin=1>. Acesso em: 22 out. 2026.
 
-[8] BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL. **Novo marco legal do saneamento: impactos na cadeia de fornecedores — parte 2**. *BNDES Setorial*, Rio de Janeiro, v. 28, n. 55, p. 179–239, mar. 2022. Disponível em: <https://web.bndes.gov.br/bib/jspui/bitstream/1408/22426/3/PR_BS_v28_n55_Saneamento_parte%202_.pdf>. Acesso em: 22 out. 2026.
-WIRELESS, paperless tracking keeps employees safer. *Automation World*, [s. l.], [20--]. Disponível em: https://www.automationworld.com/article/technologies/sensors-process/wireless-paperless-tracking-keeps-employees-safer. Acesso em: 20 out. 2026.
+[8] BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL. **Novo marco legal do saneamento: impactos na cadeia de fornecedores — parte 2**. _BNDES Setorial_, Rio de Janeiro, v. 28, n. 55, p. 179–239, mar. 2022. Disponível em: <https://web.bndes.gov.br/bib/jspui/bitstream/1408/22426/3/PR_BS_v28_n55_Saneamento_parte%202_.pdf>. Acesso em: 22 out. 2026.
+WIRELESS, paperless tracking keeps employees safer. _Automation World_, [s. l.], [20--]. Disponível em: https://www.automationworld.com/article/technologies/sensors-process/wireless-paperless-tracking-keeps-employees-safer. Acesso em: 20 out. 2026.
