@@ -118,9 +118,41 @@ Sob o aspecto físico-químico e normativo, o cloro gasoso é tóxico por inala�
 
 #### 3.1.3.2 Qual a solução proposta (visão de negócios)
 
-Propõe-se apoiar a SSMA com contagem quantitativa e anônima nos acessos aos PEs, sem rastreamento contínuo de alta precisão em ambientes internos. No modelo integrado futuro, o saldo das Portarias P1/P2 será congelado no alarme como população inicial `B`. Nesta documentação, **`A` significa a quantidade estimada de pessoas atualmente nos PEs: entradas somadas e saídas descontadas**, e não o total histórico de chegadas. O saldo `D = B - A` apoiará a apuração de pendências, preservando a conferência humana: igualdade numérica não identifica pessoas nem garante que todos estejam seguros.
+A solução proposta pela equipe Synthetix (Grupo G05) integra **três tipos de dispositivos baseados em ESP32** a uma **aplicação web centralizada** para apoiar o monitoramento e a confirmação da evacuação em emergências industriais na planta de Cubatão, respeitando a restrição do TAPI de não realizar localização contínua precisa em ambientes internos e sem substituir os procedimentos institucionais de emergência da Unipar. A implantação real poderá demandar múltiplas unidades físicas de cada tipo de dispositivo, conforme a quantidade de portarias, portas de zonas e pontos de encontro monitorados.
 
-Na Sprint 1, o protótipo Wokwi utiliza Arduino Uno e **dois sensores HC-SR04**, um para entrada e outro para saída, LCD, buzzer e LEDs. O botão apenas alterna os LEDs e **não pausa a contagem**. A detecção usa sensores dedicados a cada sentido; não há algoritmo implementado de direção pela ordem de acionamento de dois feixes. A solução futura prevê ESP32. Dashboard, comunicação em rede, integração às portarias, registros de horário, histórico e alerta automático ao CCO/brigada ainda são funcionalidades futuras. A seção 3.3.8 detalha os limites e o modelo técnico; a seção 3.4.1 registra CT01–CT10.
+Os três módulos de hardware e a camada de software que compõem a arquitetura proposta são:
+
+1. **Dispositivo de controle de entradas e saídas da planta (Portarias / Catracas):**
+   - Utiliza **dois sensores ultrassônicos HC-SR04** (um dedicado ao registro de passagens de entrada e outro ao de saída) acoplados a um microcontrolador (evoluindo do protótipo inicial em Arduino Uno da Sprint 1 para **ESP32** na versão final conectada via Wi-Fi e MQTT) para calcular continuamente uma estimativa da quantidade de pessoas na planta, $P(t)$.
+   - Como os sensores ultrassônicos não leem crachás, a contagem das portarias é **estritamente anônima e quantitativa**, servindo como referência numérica, mas sujeita a erros de medição (especialmente quando as catracas estão liberadas e múltiplas pessoas passam simultaneamente ou quando ocorre falha de leitura), não informando nominalmente quem está na planta.
+
+2. **Dispositivo de monitoramento por zonas (Acessos às Zonas Monitoradas):**
+   - Utiliza **ESP32** e **leitores RFID RC522** compatíveis com **tags MIFARE de 13,56 MHz**, instalando-se um nó junto ao leitor de cada porta monitorada (no protótipo acadêmico pode-se simular mais de uma porta, o que não comprova por si só a viabilidade física em locais distantes na fábrica).
+   - A leitura válida de uma tag atualiza o estado da pessoa na zona correspondente por lógica de alternância: a primeira leitura no acesso registra a entrada na zona e a leitura seguinte registra a saída. Quando uma tag é lida em uma nova zona, a aplicação web encerra automaticamente a associação ativa à zona anterior e registra a nova zona. De modo análogo, a confirmação posterior em um Ponto de Encontro encerra a associação ativa à zona, preservando o histórico permitido para o evento.
+   - Esse modelo atende à restrição do TAPI: o sistema registra apenas a **última passagem detectada em porta de zona**, sem acompanhar a trajetória da pessoa entre leitores nem determinar sua posição exata no interior do ambiente.
+
+3. **Dispositivo de confirmação nos Pontos de Encontro (Totens nos PEs):**
+   - Os Pontos de Encontro são áreas abertas situadas entre as portarias de entrada da planta e as zonas monitoradas; como não possuem leitores de zona em seus acessos, as pessoas nesses espaços abertos compõem o contingente não associado a nenhuma zona monitorada.
+   - Cada Ponto de Encontro contará com um **totem baseado em ESP32 e leitor RFID** compatível com as tags adotadas, além de sinalização local por LED e buzzer (que confirmam unicamente o registro da leitura do crachá, e não a segurança física da pessoa).
+   - Durante a evacuação, cada pessoa aproxima seu crachá RFID do totem para confirmar sua chegada, permitindo à aplicação associar o identificador ao cadastro correspondente. Caso ocorra falha de conexão de rede, o totem pode ser ativado por botão local e armazena as leituras em memória local para sincronização automática assim que a conectividade for restabelecida.
+
+4. **Aplicação Web e Modelo de Indicadores do Balanço ($P(t)$, $B_0$, $Z(t)$, $M(t)$ e $G(t)$):**
+   - A aplicação web reúne os dados dos três tipos de dispositivos e apresenta à SSMA, ao CCO e aos brigadistas a estimativa de pessoas na planta, as pessoas com última zona registrada, as confirmações nos Pontos de Encontro e o horário da última atualização.
+   - Para fundamentar a interpretação operacional e explicitar seus limites, o modelo considera cinco variáveis:
+     - $P(t)$: estimativa anônima da quantidade de pessoas dentro da planta no instante $t$, calculada pelos sensores ultrassônicos das portarias;
+     - $B_0$: estimativa anônima de pessoas na planta no início da emergência, congelada no instante do alarme ($t_0$);
+     - $Z(t)$: conjunto de identificadores RFID distintos associados ativamente a uma zona monitorada no instante $t$;
+     - $M(t)$: conjunto de identificadores RFID distintos com confirmação registrada em Ponto de Encontro ativo no instante $t$;
+     - $G(t)$: estimativa de pessoas dentro da planta que não estão associadas a uma zona monitorada ("gap" em áreas abertas/circulação), dada por:
+
+$$G(t) = P(t) - |Z(t)|$$
+
+   - Como os Pontos de Encontro situam-se fora das zonas monitoradas, as pessoas que neles se encontram integram $G(t)$ até que confirmem presença no totem. Sendo os registros ativos de zona e de Ponto de Encontro mutuamente exclusivos no mesmo instante $t$, a expressão $G(t) - |M(t)|$ estima quantas pessoas permanecem sem associação ativa a uma zona e sem confirmação em Ponto de Encontro.
+   - Complementarmente, $B_0 - |M(t)|$ indica quantas pessoas da população de referência inicial ainda não foram confirmadas em um Ponto de Encontro (sem identificá-las nominalmente por si só e podendo incluir quem saiu da planta sem passar por um PE), enquanto $B_0 - |Z(t)|$ indica quantas pessoas da referência inicial não estão associadas ativamente a uma zona monitorada.
+
+**Separação entre o escopo implementado na Sprint 1 e a solução final proposta:**
+- **Implementado e testado na Sprint 1:** foi construído e verificado no simulador Wokwi (seção 3.4.1, casos de teste `CT01` a `CT10`) o protótipo inicial de contagem por passagem baseado em **Arduino Uno** e **dois sensores ultrassônicos HC-SR04** (um dedicado a entrada e outro a saída), display LCD 16x2 I2C, buzzer (1.000 Hz por 100 ms) e botão que alterna os LEDs verde e vermelho sem interromper a contagem. Na Sprint 1, esse protótipo é totalmente local/offline (conforme refletido na Política de Privacidade preliminar da seção 3.1.6 e na BOM da seção 3.1.7).
+- **Planejado para a solução final (próximas sprints):** migração do contador das portarias para **ESP32** com nova lógica de botão/LEDs de emergência, inclusão dos nós **ESP32 + RFID RC522** nas portas de zonas e nos totens dos Pontos de Encontro, conectividade **Wi-Fi/MQTT**, armazenamento offline temporário nos totens e construção da **aplicação web** com controle de acesso e regras de privacidade atualizadas para tratamento de identificadores RFID. A solução **não calcula rotas de evacuação** (pilar de Orientação fora do escopo completo do grupo G05, tratado apenas parcialmente pelo apoio informativo à coordenação da SSMA, do CCO e dos brigadistas).
 
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
 
