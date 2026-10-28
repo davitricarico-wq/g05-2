@@ -1107,16 +1107,104 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)
 
-_Aqui você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema físico. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
+_Registre o protótipo físico do projeto, suas funcionalidades e os testes realizados. Use as nomenclaturas e convenções adotadas nas demais seções e relacione o conteúdo às necessidades do negócio e à experiência do usuário. Inclua figuras, códigos e evidências dos testes. A documentação do sistema web será apresentada em seção própria, logo após esta seção._
+
+#### 3.4.2.1. Contexto da Solução
+
+[Descreva o problema atendido pelo protótipo e o contexto em que será utilizado.]
+
+[Explique como a solução proposta se relaciona com o processo de evacuação e com as necessidades identificadas para o projeto.]
+
+[Delimite o escopo desta versão física: o que o protótipo contempla e quais capacidades ainda não estão implementadas.]
+
+[Descreva como os dispositivos físicos participam da solução e como se relacionam entre si.]
+
+#### 3.4.2.2. Funcionalidades dos Dispositivos Físicos
+
+[Apresente as funcionalidades implementadas nos dispositivos físicos. Documente cada dispositivo separadamente, indicando seu propósito, entradas, processamento, saídas e interação com os demais dispositivos.]
+
+##### Dispositivo 1 — [Nome do dispositivo]
+
+- **Propósito:** [Placeholder]
+- **Entradas e sensores:** [Placeholder]
+- **Processamento e comportamento:** [Placeholder]
+- **Saídas informacionais:** [Placeholder]
+- **Interação com os demais dispositivos:** [Placeholder]
+- **Limitações conhecidas:** [Placeholder]
+
+##### Dispositivo 2 — [Nome do dispositivo]
+
+- **Propósito:** [Placeholder]
+- **Entradas e sensores:** [Placeholder]
+- **Processamento e comportamento:** [Placeholder]
+- **Saídas informacionais:** [Placeholder]
+- **Interação com os demais dispositivos:** [Placeholder]
+- **Limitações conhecidas:** [Placeholder]
+
+##### Dispositivo 3 — [Nome do dispositivo]
+
+- **Propósito:** [Placeholder]
+- **Entradas e sensores:** [Placeholder]
+- **Processamento e comportamento:** [Placeholder]
+- **Saídas informacionais:** [Placeholder]
+- **Interação com os demais dispositivos:** [Placeholder]
+- **Limitações conhecidas:** [Placeholder]
+
+#### 3.4.2.3. Protótipos Físicos e Códigos
+
+[Apresente cada montagem física, incluindo componentes, conexões, alimentação e organização na protoboard. Inclua imagens identificadas e legendadas. Registre a versão do código correspondente a cada montagem.]
+
+##### Protótipo do Dispositivo 1 — [Nome]
+
+- **Componentes utilizados:** [Placeholder]
+- **Montagem e conexões:** [Placeholder]
+- **Figura da montagem:** [Inserir imagem e legenda]
+- **Código-fonte:** [Inserir código ou link para o arquivo]
+- **Versão do código e ambiente de compilação:** [Placeholder]
+
+##### Protótipo do Dispositivo 2 — [Nome]
+
+- **Componentes utilizados:** [Placeholder]
+- **Montagem e conexões:** [Placeholder]
+- **Figura da montagem:** [Inserir imagem e legenda]
+- **Código-fonte:** [Inserir código ou link para o arquivo]
+- **Versão do código e ambiente de compilação:** [Placeholder]
+
+##### Protótipo do Dispositivo 3 — [Nome]
+
+- **Componentes utilizados:** [Placeholder]
+- **Montagem e conexões:** [Placeholder]
+- **Figura da montagem:** [Inserir imagem e legenda]
+- **Código-fonte:** [Inserir código ou link para o arquivo]
+- **Versão do código e ambiente de compilação:** [Placeholder]
+
+#### 3.4.2.4. Casos de Teste
+
+_Registre situações de teste do sistema físico, incluindo casos de sucesso e possíveis falhas de leitura de entradas ou de acionamento de saídas. Cada caso deve indicar pré-condição, procedimento, resultado esperado e pós-condição. Continue a numeração CT a partir da tabela anterior. Após a execução, registre o resultado observado e associe as evidências ao caso correspondente._
 
 <p align="center">Quadro 14 – Modelo de registro de testes da Sprint 2</p>
 
-| **CT#** | **Descrição**                                    | **Pré-condição**                  | **Procedimento de teste**                                                                                                 | **Pós-condição/Resultado esperado**                                                                         | **Observações** (opcional) |
-| ------- | ------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
-| CT11    | ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado. | ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
+| **CT#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Resultado esperado** | **Pós-condição** | **Resultado observado** | **Evidência** | **Observações** |
+| ------- | ------------- | ---------------- | ------------------------- | ---------------------- | ---------------- | ----------------------- | -------------- | --------------- |
+| CT11 | [Descrever o comportamento verificado.] | [Informar o estado inicial e as condições necessárias.] | [Descrever os passos e estímulos aplicados.] | [Descrever as leituras, mudanças de estado e saídas esperadas, incluindo LEDs quando aplicável.] | [Descrever o estado esperado ao final do teste.] | [Preencher após executar; registrar o que ocorreu.] | [Inserir caminho ou link para captura e vídeo.] | [Opcional] |
+| CT12 | [Placeholder] | [Placeholder] | [Placeholder] | [Placeholder] | [Placeholder] | [Preencher após executar.] | [Placeholder] | [Opcional] |
+| CT13 | [Placeholder] | [Placeholder] | [Placeholder] | [Placeholder] | [Placeholder] | [Preencher após executar.] | [Placeholder] | [Opcional] |
 
-<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+[Acrescente linhas para os demais casos planejados. Inclua pelo menos três casos alinhados ao escopo, cobrindo comportamentos representativos e, quando aplicável, falhas de entrada e saída.]
+
+<p><sub>Fonte: modelo de registro de testes do projeto, adaptado para incluir execução e evidências.</sub></p>
+
+#### 3.4.2.5. Conclusão e Ressalvas
+
+[Resuma o que foi implementado e demonstrado pelos três protótipos físicos.]
+
+[Indique quais casos foram executados e seus resultados, com referência às evidências.]
+
+[Registre falhas encontradas, limitações técnicas e condições ainda não testadas.]
+
+[Explique o que os resultados permitem concluir e quais afirmações ainda dependem de testes adicionais.]
+
+[Registre ressalvas sobre o uso do protótipo, incluindo que resultados de bancada não comprovam, por si só, desempenho ou segurança em ambiente industrial.]
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
