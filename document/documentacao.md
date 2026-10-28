@@ -156,13 +156,28 @@ $$G(t) = P(t) - |Z(t)|$$
 
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
 
-A jornada prevista compreende **cinco etapas**:
+A operação da solução proposta envolve a atuação coordenada do **Operador do CCO**, dos **Porteiros**, dos **Colaboradores, Terceiros e Visitantes**, dos **Brigadistas** e da **Equipe de SSMA**, distribuindo-se em cinco etapas operacionais:
 
-1. **Rotina:** os registros de crachá nas portarias sustentam o saldo da planta; o controle agregado por zonas é uma integração prevista, sem localização contínua individual. O protótipo local permanece contando nos dois estados dos LEDs.
-2. **Alarme:** as catracas são liberadas conforme o procedimento da Unipar. No sistema integrado futuro, serão congelados `B` e o instante inicial do evento. O botão atual não inicia uma emergência nem zera o contador.
-3. **Chegada e saída nos PEs:** os líderes orientam as passagens pelos acessos monitorados. Cada entrada válida incrementa o total local e cada saída válida o reduz, com indicação no LCD e buzzer. A quantidade de acessos deve ser dimensionada para evitar retenção, conforme a seção 3.3.8.
-4. **Conferência e resposta:** atualmente, a leitura é local e a consolidação depende das equipes. Futuramente, o CCO acompanhará `D`; se `D > 0` aos dez minutos, haverá alerta automático para acionamento imediato da brigada conforme a regra interna. A SSMA coordena as ações. Baixo fluxo **pode indicar um problema que precisa ser investigado**, sem permitir concluir que uma rota está bloqueada.
-5. **Contingência e reconciliação:** falha de sensor, referência inconsistente, saída não registrada ou perda de comunicação na versão futura exigem conferência manual. `A > B` representa inconsistência; `D = 0` exige validação operacional e não encerra automaticamente a emergência.
+1. **Operação de Rotina (Controle de Portarias e Monitoramento por Zonas):**
+   - Nas portarias da planta, os dispositivos com dois sensores ultrassônicos contabilizam continuamente as entradas e saídas para atualizar a estimativa $P(t)$, mantendo o **LED verde aceso** e o **LED vermelho apagado** em estado normal.
+   - Nas portas das zonas monitoradas, os colaboradores, terceiros e visitantes (previamente cadastrados e portando tags RFID MIFARE de 13,56 MHz) registram suas passagens nos leitores RC522. O sistema alterna o estado da tag entre entrada e saída naquela zona (ou transfere a associação ativa quando a tag é lida em nova zona), partindo de um estado inicial reconciliado e zerado nas trocas de turno ou quando a planta fica vazia. Fora de situações de emergência ativa, a identificação nominal permanece oculta na aplicação web.
+
+2. **Deflagração da Emergência e Ativação Coordenada (CCO e Porteiros):**
+   - Diante de uma emergência (como vazamento de cloro), o **CCO** aciona o protocolo de dentro da sala segura por meio da aplicação web, congelando a estimativa inicial $B_0$ no instante $t_0$, iniciando a contagem do prazo interno de 10 minutos e ativando remotamente o modo de leitura dos totens RFID nos Pontos de Encontro designados pela SSMA (selecionados conforme a área afetada e a direção do vento).
+   - Simultaneamente, o CCO comunica-se por **radiocomunicador com os porteiros** para que pressionem o botão físico nos dispositivos instalados nos acessos de entrada e saída da planta. Na versão ESP32 final, esse acionamento apaga o LED verde e mantém o **LED vermelho aceso**, sinalizando localmente o protocolo de emergência ativo nas portarias.
+   - Caso ocorra falha de comunicação de rede antes que algum totem de Ponto de Encontro receba o comando remoto do CCO, um integrante da SSMA ou brigadista ativa o modo de leitura pressionando o **botão físico local do totem**.
+
+3. **Deslocamento e Confirmação Nominal por RFID nos Pontos de Encontro:**
+   - Durante a evacuação, os trabalhadores dirigem-se aos Pontos de Encontro ativos. Ao chegar ao totem do Ponto de Encontro, cada pessoa **aproxima seu crachá/tag RFID do leitor**.
+   - A leitura válida aciona a sinalização visual e sonora local do totem (LED e buzzer, que indicam apenas que o crachá foi lido), encerra a associação ativa daquela pessoa à última zona monitorada e registra sua confirmação no conjunto $M(t)$ da aplicação web (ou armazena o evento localmente no ESP32 caso a rede esteja indisponível, sincronizando-o quando a conexão retornar).
+
+4. **Monitoramento na Aplicação Web e Coordenação de Resgate aos 10 Minutos:**
+   - Durante a emergência ativa, a aplicação web habilita a visualização nominal restrita aos usuários autorizados da SSMA e do CCO, exibindo $P(t)$, $B_0$, as pessoas confirmadas nos Pontos de Encontro ($M(t)$), as pessoas que permanecem com última passagem registrada em alguma zona monitorada ($Z(t)$), os indicadores de diferença ($G(t) = P(t) - |Z(t)|$, $G(t) - |M(t)|$, $B_0 - |M(t)|$ e $B_0 - |Z(t)|$) e o horário da última atualização.
+   - Quando o limite interno de **10 minutos** definido no TAPI é atingido, a aplicação sinaliza à SSMA as pessoas ainda sem confirmação em Ponto de Encontro. A equipe de SSMA analisa os dados, coordena a resposta e orienta os brigadistas pelos canais operacionais da Unipar, utilizando o registro da última zona conhecida ($Z(t)$) como subsídio investigativo de busca (ciente de que esse dado informa apenas a última porta lida, e não a localização exata do indivíduo).
+
+5. **Tratamento de Limitações Operacionais e Encerramento do Protocolo:**
+   - **Limitações e contingências na interpretação:** (i) leituras perdidas ou duplicadas nos leitores RFID de zona podem inverter o estado de entrada/saída e exigem conferência operacional; (ii) a contagem ultrassônica nas portarias ($P(t)$ e $B_0$) é anônima e tem maior risco de erro com catracas liberadas e pessoas passando juntas; (iii) para obter uma lista nominal completa de esperados no início da emergência, é indispensável uma fonte cadastral confiável de quem entrou na planta (incluindo terceiros e visitantes com tags distribuídas), pois o sensor ultrassônico não gera lista nominal e as zonas monitoradas não cobrem áreas abertas; e (iv) se uma pessoa sair diretamente da planta sem passar por um Ponto de Encontro, ela poderá continuar constando como não confirmada em $B_0 - |M(t)|$ até a reconciliação.
+   - **Encerramento formal:** somente após a equipe de SSMA avaliar e confirmar que todos estão seguros, o protocolo é encerrado na aplicação web e a SSMA comunica os porteiros para que pressionem novamente o botão nos dispositivos das catracas, apagando o LED vermelho e reacendendo o LED verde.
 
 #### 3.1.3.4 Quais os benefícios trazidos pela solução proposta
 
