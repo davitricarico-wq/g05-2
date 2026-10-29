@@ -1107,6 +1107,110 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)
 
+#### 3.4.2.1. Arquitetura com Diagrama de Classe UML Conceitual
+
+#### Diagrama de classes UML conceitual - Protótipo de Monitoramento em tempo real
+
+#### Diagrama de classes UML conceitual - Site de integração dos protótipos
+
+```mermaid
+classDiagram
+    direction TB
+
+    class Sector {
+        +id: Identifier
+        +name: String
+    }
+
+    class Area {
+        +id: Identifier
+        +name: String
+        +entryHistory: List~AreaEntranceEvent~
+    }
+
+    class EspDevice {
+        +id: Identifier
+        +name: String
+    }
+
+    class Reading {
+        +id: Identifier
+        +tagCode: String
+        +observedAt: DateTime
+        +receivedAt: DateTime
+    }
+
+    class AreaEntranceEvent {
+        +id: Identifier
+        +occurredAt: DateTime
+    }
+
+    class CurrentPresence {
+        +lastSeenAt: DateTime
+        +status: PresenceStatus
+    }
+
+    class TagAssignment {
+        +startedAt: DateTime
+        +endedAt: DateTime
+    }
+
+    class Collaborator {
+        +id: Identifier
+        +name: String
+    }
+
+    class Tag {
+        +id: Identifier
+        +code: String
+    }
+
+    Sector "1" -- "1..*" Area : contém
+    Area "1" -- "0..*" EspDevice : possui
+    EspDevice "1" -- "0..*" Reading : envia
+
+    Area "1" --> "0..*" AreaEntranceEvent : entryHistory
+    AreaEntranceEvent "0..1" -- "1..*" Reading : confirmada por
+    Collaborator "1" -- "0..*" AreaEntranceEvent : entra
+
+    Collaborator "1" -- "0..1" CurrentPresence : possui
+    Area "0..1" -- "0..*" CurrentPresence : localização atual
+
+    Collaborator "1" -- "0..*" TagAssignment : recebe
+    Tag "1" -- "0..*" TagAssignment : participa
+```
+
+#### Descrição da arquitetura
+
+O dashboard recebe `Reading` dos ESPs e conserva a identificação do dispositivo, o código da tag e os horários da observação e do recebimento. O processamento usa `TagAssignment` para descobrir a qual colaborador a tag pertencia **no momento da leitura**. Quando as leituras confirmam que o colaborador entrou em uma área, o sistema cria um `AreaEntranceEvent` e atualiza `CurrentPresence`. A interface consulta a presença atual para exibição em tempo real e os eventos para apresentar o histórico.
+
+`Area.entryHistory` continua sendo **uma propriedade que representa uma lista de eventos**, e não uma classe independente. Na implementação, essa lista pode ser obtida por consulta aos eventos armazenados, sem carregar todo o histórico na memória da `Area`.
+
+#### Função das classes e cardinalidades
+
+| Classes                                     | Cardinalidade e motivo                                                                                                                                                                                                                                    |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Sector` → `Area`                           | Um setor contém **uma ou mais áreas**; cada área pertence a **um setor**. Isso permite agrupar a visualização do dashboard por setor.                                                                                                                     |
+| `Area` → `EspDevice`                        | Uma área pode ter **zero ou muitos ESPs**; cada ESP está configurado para **uma área**. Zero permite cadastrar a área antes de instalar o dispositivo. Para monitoramento ativo, ela precisará de ao menos um ESP operacional.                            |
+| `EspDevice` → `Reading`                     | Um ESP envia **muitas leituras ao longo do tempo**; cada leitura tem **um ESP de origem**. Assim, o dashboard pode rastrear a fonte dos dados.                                                                                                            |
+| `Tag` → `TagAssignment` ← `Collaborator`    | Uma tag e um colaborador podem ter **várias atribuições históricas**. Cada atribuição vincula exatamente **uma tag a um colaborador** durante um intervalo. Isso preserva o significado das leituras antigas quando uma tag é substituída ou transferida. |
+| `Area` → `AreaEntranceEvent`                | Uma área possui **zero ou muitos eventos de entrada** em `entryHistory`; cada evento registra a entrada em **uma área**.                                                                                                                                  |
+| `Collaborator` → `AreaEntranceEvent`        | Um colaborador pode ter **zero ou muitos eventos de entrada**; cada evento se refere a **um colaborador**.                                                                                                                                                |
+| `Reading` → `AreaEntranceEvent`             | **Uma ou mais leituras** podem confirmar um evento; uma leitura participa de **zero ou um evento**. Leituras repetidas podem atualizar a presença sem gerar outra entrada.                                                                                |
+| `Collaborator` → `CurrentPresence` → `Area` | Um colaborador tem **zero ou um estado atual**; esse estado aponta para **zero ou uma área**. A área é opcional quando a localização está desconhecida. Uma área pode ser a localização atual de **muitos colaboradores**.                                |
+
+### Regras conceituais do processamento
+
+1. O horário `observedAt` indica quando o ESP fez a leitura; `receivedAt` permite perceber atrasos na entrega.
+2. Para cada leitura, o sistema procura a `TagAssignment` válida em `observedAt`. Leituras sem atribuição válida permanecem registradas, mas não são atribuídas a um colaborador.
+3. Leituras sucessivas na mesma área atualizam `CurrentPresence.lastSeenAt`. O sistema cria um `AreaEntranceEvent` apenas quando confirma uma **nova entrada** naquela área.
+4. Se o colaborador for confirmado em outra área, a presença atual muda para a nova área e é registrado um novo evento de entrada.
+5. Sem leituras recentes, o estado passa a **desconhecido** conforme o prazo configurado. Isso evita apresentar uma saída como fato quando o sistema apenas perdeu o sinal.
+
+**Legenda:** `1` = exatamente um; `0..1` = opcional, no máximo um; `1..*` = um ou mais; `0..*` = zero ou mais; `-->` indica a associação navegável usada por `Area.entryHistory`. `EspDevice` representa, dentro do dashboard, a fonte externa dos dados; o funcionamento interno do ESP fica fora deste modelo.
+
+> **Nota:** os atributos inseridos no diagrama são hipotéticos. Afinal, o software de unificação só será desenvolvido nas Sprints mais à frente, onde será mais palpável o conhecimento do funcionamento do sistema. Assim, os atributos atuais tem como função a melhor compreensão da ideia e propósito de cada classe e cardinalidade apresentada no diagrama.
+
 _Aqui você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema físico. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
 Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
 
