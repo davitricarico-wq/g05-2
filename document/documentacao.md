@@ -985,6 +985,8 @@ _Nesta seção, detalhe os resultados obtidos com a implementação, de acordo c
 
 O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito estão armazenados no diretório [`src/firmware/prototipo`](../src/firmware/prototipo/).
 
+O protótipo inicial da Sprint 1 foi idealizado e desenvolvido com Arduino Uno. Após a revisão da arquitetura, a equipe substituiu o Arduino Uno pelo ESP32 como microcontrolador das versões seguintes da solução. Essa mudança permite utilizar conectividade Wi-Fi e comunicação via MQTT para integrar os dispositivos à aplicação web. Os testes CT01–CT10 permanecem como evidências históricas do protótipo inicial com Arduino Uno e não representam testes da versão com ESP32.
+
 O protótipo consiste em um contador de pessoas desenvolvido com Arduino Uno e dois sensores ultrassônicos HC-SR04. Um dos sensores registra a entrada de pessoas e incrementa o contador, enquanto o segundo registra a saída e decrementa o total. O valor atualizado é apresentado em um display LCD 16 × 2 conectado por I²C. Cada entrada ou saída válida também aciona um buzzer na frequência de 1.000 Hz durante 100 ms.
 
 Uma pessoa é detectada quando a distância medida pelo sensor é maior que zero e menor que 200 cm. Depois de uma detecção, o sensor permanece bloqueado até deixar de detectar a pessoa e permanecer livre durante pelo menos um segundo. Esse mecanismo evita contagens repetidas causadas pela permanência de uma pessoa em frente ao sensor. Durante o bloqueio, leituras conflitantes do outro sensor são ignoradas. O contador também possui uma proteção que impede a apresentação de valores negativos.
