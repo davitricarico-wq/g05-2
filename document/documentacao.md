@@ -766,12 +766,12 @@ Os requisitos funcionais a seguir descrevem o que os três tipos de dispositivo 
 | RF007 | Exibir no dashboard `B`, `A`, `D`, tempo desde o alarme, gráfico da ocupação por PE ao longo do tempo, estado dos dispositivos e última atualização. Dados ausentes/desatualizados devem aparecer como inconclusivos, sem serem convertidos em zero. | A01, A05 | 1.1; ART. 4 / RN05, RN08, RN09 | Preliminar, futuro |
 | RF008 | Ao atingir 600 s desde `t0`, com dados válidos e `D > 0`, emitir alerta visual e sonoro no painel com quantidade pendente para SSMA/CCO, apoiando acionamento da brigada. Dados inválidos seguem RF009. | A01, A02, A05 | Prazo interno do kickoff / RN06 | Preliminar, futuro |
 | RF009 | Sinalizar balanço inconclusivo diante de `A > B`, referência inválida, sensor/nó indisponível ou dados atrasados. Não mostrar evacuação concluída; indicar a origem da falha para conferência humana. Timeout do HC-SR04 isolado não comprova diagnóstico de defeito. | A01, A04, A05 | R02, R03, R08, R09 / RN08 | Preliminar, futuro |
-| RF010 | Publicar telemetria MQTT estruturada com `device_id`, local, função, `event_id`, `session_id`, `seq_id`, instante e `delta` (+1 entrada/−1 saída), além de heartbeat. Deduplicar pela combinação dispositivo/sessão/sequência; rejeitar campos inválidos e evento incompatível. Formato detalhado será definido na Sprint 3. | A04 | ART. 4; 3.3.8 / RN03, RN11 | Preliminar, futuro |
+| RF010 | Publicar por MQTT os eventos dos três tipos de dispositivo no padrão de tópico `evacuacao/{tipo}/{device_id}/{mensagem}`, em que `tipo` é `portaria`, `zona` ou `totem`. O payload é um JSON com `device_id`, horário (`ts`) e número de sequência (`seq`), além dos campos de cada tipo (exemplos abaixo do quadro), e leva somente identificador da tag ou contagem, nunca nome ou outro dado cadastral. A aplicação deduplica pela combinação `device_id` e `seq` e rejeita mensagens com campos inválidos. Cada dispositivo publica heartbeat periódico em `status`, e o totem assina o tópico `comando` para receber a ativação (RF020). | A04 | ART. 4; 3.1.3 / RN03, RN11 | Preliminar; padrão de tópicos a validar com a arquitetura da solução |
 | RF012 | Registrar eventual conclusão do evento somente por usuário autorizado da SSMA após conferência, com usuário, instante e justificativa. `D = 0` não encerra o evento automaticamente. | A01 | 3.1.3 / RN07, RN10 | Proposta documental para futura validação |
 | RF013 | Autenticar usuários do dashboard com chave única `user_id`, perfil e permissões. Negar consultas/alterações não autorizadas e registrar acessos e ações; credenciais não podem constar no firmware ou repositório. Dados de usuários exigem atualização da política antes da coleta. | A01, A04, A05 | ART. 4; 3.1.6 / RN10 | Proposta documental para futura validação |
 | RF014 | Manter o LED verde aceso em operação normal. Ao pressionamento válido do botão do dispositivo das portarias (verificação após 10 ms), feito pelo porteiro após o aviso do CCO por rádio, ativar o protocolo de emergência no dispositivo: apagar o LED verde e acender o vermelho. Novo pressionamento, feito após o encerramento comunicado pela SSMA, encerra o protocolo: apaga o vermelho e acende o verde. O botão não zera nem pausa a contagem. | A06, A05, A01 | 3.1.3; 3.4.1 / RN14 | Parcial: o protótipo Uno da Sprint 1 implementou a alternância dos LEDs (CT01/CT06); a ativação e o encerramento do protocolo são da versão ESP32, a desenvolver |
 | RF015 | Bloquear novos eventos enquanto o sensor ativo detectar presença; rearmar após ao menos 1.000 ms sem detecção. Ignorar o outro sensor durante o bloqueio; no ciclo livre priorizar saída. Descartar eco ausente após 30 ms. Não diagnosticar automaticamente defeito nem garantir ausência de perdas. | A01, A04 | 3.3.8; 3.4.1 / RN13 | Implementado no protótipo Uno da Sprint 1; CT03/CT05/CT08–CT10 registrados; fronteiras e simultaneidade no mesmo ciclo a ensaiar |
-| RF016 | Na versão conectada, configurar conexão Wi-Fi, informar estado conectado/desconectado e tentar reconexão após perda sem reiniciar o total local. Comunicar indisponibilidade ao painel quando cessar heartbeat; não apresentar dado antigo como atual. | A04, A05 | ART. 4; R09 / RN08, RN15 | Proposta documental para futura validação |
+| RF016 | Conectar cada dispositivo (portarias, zonas e totens) à rede Wi-Fi, informar o estado conectado ou desconectado e tentar a reconexão automática após perda, sem reiniciar a contagem local nem descartar leituras pendentes. A aplicação mostra o dispositivo como indisponível quando o heartbeat cessar e não apresenta dado antigo como atual. | A04, A05 | ART. 4; R09 / RN08, RN15 | Preliminar, futuro |
 | RF017 | Sinalizar localmente cada detecção válida no dispositivo das portarias: atualizar no LCD o total estimado e emitir 1.000 Hz por 100 ms no buzzer. Em saída com total zero, manter zero e exibir mensagem de detecção. | A06 | 3.1.3; 3.4.1 / RN12 | Implementado no protótipo Uno da Sprint 1; CT01–CT05, CT07 registrados; versão ESP32 a desenvolver |
 | RF018 | Ler, em cada porta monitorada, a tag RFID do crachá (MIFARE de 13,56 MHz) com um nó composto por ESP32 e leitor RC522, funcionando continuamente. Cada leitura válida gera um evento com o identificador da tag, a zona, o dispositivo e o horário. O dispositivo envia somente o identificador, sem nome ou outro dado cadastral. | A03, A04 | 3.1.3 / regras de leitura e zonas em 3.3.2 | Preliminar; protótipo previsto para a Sprint 2 (3.4.2), que pode simular mais de uma porta |
 | RF019 | Associar na aplicação o identificador recebido ao cadastro correspondente e atualizar a última zona registrada da pessoa, com o horário da leitura. A informação indica apenas a última passagem detectada: não acompanha a pessoa entre leitores nem representa sua posição atual precisa. A inferência de entrada e saída e a troca de zona seguem as regras de 3.3.2. | A01, A02, A05 | 3.1.3 / regras de leitura e zonas em 3.3.2 | Preliminar, futuro |
@@ -781,6 +781,25 @@ Os requisitos funcionais a seguir descrevem o que os três tipos de dispositivo 
 | RF023 | Armazenar no próprio totem as leituras feitas durante falha de conexão e sincronizá-las com a aplicação quando a conexão for restabelecida, mantendo o horário original de cada leitura. | A04, A05 | 3.1.3 / regras de emergência em 3.3.2 | Preliminar; protótipo previsto para a Sprint 3 |
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+Exemplos de mensagens MQTT previstas no RF010 (valores ilustrativos):
+
+```json
+// evacuacao/portaria/portaria-01/passagem
+{ "device_id": "portaria-01", "sentido": "entrada", "delta": 1, "total_local": 153, "ts": "2026-11-03T08:15:02-03:00", "seq": 1042 }
+
+// evacuacao/zona/zona-03/leitura
+{ "device_id": "zona-03", "zona": "Z03", "tag_id": "04A1B2C3", "ts": "2026-11-03T08:20:47-03:00", "seq": 877 }
+
+// evacuacao/totem/totem-pe2/confirmacao
+{ "device_id": "totem-pe2", "ponto": "PE2", "tag_id": "04A1B2C3", "ts": "2026-11-03T09:02:11-03:00", "seq": 15, "sincronizada": false }
+
+// evacuacao/totem/totem-pe2/comando (enviado pela aplicação)
+{ "comando": "ativar", "event_id": "EV-2026-11-03-01", "ts": "2026-11-03T09:00:05-03:00" }
+
+// evacuacao/{tipo}/{device_id}/status (heartbeat de qualquer dispositivo)
+{ "device_id": "zona-03", "conectado": true, "ts": "2026-11-03T09:00:30-03:00" }
+```
 
 RF001, RF015 e RF017 foram implementados no protótipo da Sprint 1, com Arduino Uno, e verificados pelos casos de teste da seção 3.4.1; RF014 foi implementado em parte, na alternância dos LEDs. Os demais requisitos descrevem a solução final, com dispositivos baseados em ESP32, e ainda não foram implementados.
 
