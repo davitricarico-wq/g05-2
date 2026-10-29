@@ -111,7 +111,7 @@ A Figura 1 apresenta uma visão integrada da análise. A rivalidade ocupa a posi
 
 <div align="center">
   <p>Figura 1 – Cinco Forças de Porter aplicadas à Unipar</p>
-  <img src="../assets/5ForcasDePorter.png" alt="Cinco Forças de Porter aplicadas à Unipar: rivalidade alta, novos entrantes com ameaça baixa, substitutos com ameaça moderada, fornecedores com poder moderado e compradores com poder moderado a alto" width="100%">
+  <img src="../assets/negocios/5ForcasDePorter.png" alt="Cinco Forças de Porter aplicadas à Unipar: rivalidade alta, novos entrantes com ameaça baixa, substitutos com ameaça moderada, fornecedores com poder moderado e compradores com poder moderado a alto" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 </div>
 
@@ -147,7 +147,7 @@ A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que ava
 
 <div align="center">
   <p>Figura 2 – Análise SWOT da Unipar</p>
-  <img src="../assets/SWOT.png" alt="Análise SWOT da Unipar" width="100%">
+  <img src="../assets/negocios/SWOT.png" alt="Análise SWOT da Unipar" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 </div>
 
@@ -211,7 +211,7 @@ O Value Proposition Canvas organiza o perfil do cliente — tarefas, dores e gan
 
 <div align="center">
   <p>Figura 3 – Value Proposition Canvas do C.R.I.S.I.S</p>
-  <img src="../assets/value-proposition-canvas.png" alt="Value Proposition Canvas do C.R.I.S.I.S: perfil de SSMA e mapa de valor, com distinção entre protótipo da Sprint 1 e integrações planejadas" width="100%">
+  <img src="../assets/negocios/value-proposition-canvas.png" alt="Value Proposition Canvas do C.R.I.S.I.S: perfil de SSMA e mapa de valor, com distinção entre protótipo da Sprint 1 e integrações planejadas" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial, com base em Osterwalder et al. (2014).</sub></p>
 </div>
 
@@ -313,7 +313,7 @@ Probabilidade e impacto usam escala ordinal de 1 a 5. A probabilidade é uma est
 
 <div align="center">
   <p>Figura 4 – Matriz de riscos do C.R.I.S.I.S</p>
-  <img src="../assets/MatrizDeRisco.png" alt="Matriz de ameaças R01 a R12 e oportunidades O01 a O03, por probabilidade e impacto em escala ordinal de 1 a 5" width="100%">
+  <img src="../assets/negocios/MatrizDeRisco.png" alt="Matriz de ameaças R01 a R12 e oportunidades O01 a O03, por probabilidade e impacto em escala ordinal de 1 a 5" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial, adaptada do modelo disponibilizado à turma.</sub></p>
 </div>
 
@@ -524,7 +524,7 @@ A proto-persona Gustavo Fring, apresentada na Figura 5, representa necessidades 
 
 <div align="center">
   <p>Figura 5 – Proto-persona Gustavo Fring, técnico de operação</p>
-  <img src="../assets/personaGustavoFring.png" alt="Proto-persona Gustavo Fring, técnico de operação; perfil fictício e necessidades da solução planejada" width="100%">
+  <img src="../assets/design/personas/personaGustavoFring.png" alt="Proto-persona Gustavo Fring, técnico de operação; perfil fictício e necessidades da solução planejada" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
@@ -582,7 +582,7 @@ A Figura 6 apresenta Maria Schrader, proto-persona que representa a perspectiva 
 
 <div align="center">
   <p>Figura 6 – Proto-persona Maria Schrader, operadora de CCO</p>
-  <img src="../assets/personaMariaSchrader.png" alt="Proto-persona Maria Schrader, operadora de CCO; perfil fictício e necessidades da solução planejada" width="100%">
+  <img src="../assets/design/personas/personaMariaSchrader.png" alt="Proto-persona Maria Schrader, operadora de CCO; perfil fictício e necessidades da solução planejada" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
@@ -636,7 +636,7 @@ A Figura 7 apresenta Tuco Salamanca, proto-persona que representa a perspectiva 
 
 <div align="center">
   <p>Figura 7 – Proto-persona Tuco Salamanca, gestor de SSMA</p>
-  <img src="../assets/personaTucoSalamanca.png" alt="Proto-persona Tuco Salamanca, gestor de SSMA; necessidades desejadas, sem comprovação de identificação ou localização pelo protótipo" width="100%">
+  <img src="../assets/design/personas/personaTucoSalamanca.png" alt="Proto-persona Tuco Salamanca, gestor de SSMA; necessidades desejadas, sem comprovação de identificação ou localização pelo protótipo" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
@@ -741,9 +741,80 @@ A caracterização das dores, necessidades e tarefas de cada perfil foi diretame
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
 
-_Coloque aqui seu Mapa de Jornada do Usuário (seguindo as instruções na descrição do artefato)_
+#### 3.2.2.1. Jornada do Usuário
 
+##### 3.2.2.1.1. Técnico de Operação
+
+###### Situação-Problema Presente
+
+###### Situação-Problema Futura
+
+##### 3.2.2.1.2. Operadora de Centro de Controle Operacional (CCO)
+
+###### Situação-Problema Presente
+
+<div align="center">
+  <p>Figura 3 – Jornada do Usuário Maria Scharader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/jornada_usuario/presente/jornadaUsuarioMariaPresente.png" alt="Jornada do Usuário Maria Scharader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+</div>
+
+**Cenário**
+
+O cenário atual é caracterizado pela utilização de diferentes canais de comunicação entre as equipes responsáveis pela resposta à emergência, exigindo confirmações para garantir a transmissão adequada das informações. Durante a evacuação, o acompanhamento depende de relatos das equipes de campo e de conferências manuais realizadas nos pontos de encontro. Além disso, as informações sobre a presença das pessoas não estão centralizadas em uma única interface, dificultando a visualização geral da situação. Os registros de ocorrências e atualizações também precisam ser consolidados manualmente, aumentando a necessidade de organização e conferência das informações.
+
+**Objetivo**
+
+O principal objetivo de Maria é identificar e comunicar rapidamente situações de emergência, garantindo que as equipes responsáveis recebam informações claras e confiáveis. Durante a ocorrência, busca acompanhar o andamento da evacuação e obter atualizações sobre a presença das pessoas nos pontos de encontro, sem assumir responsabilidades que pertencem às equipes de segurança. Além disso, procura manter registros organizados dos acontecimentos, contribuindo para a continuidade operacional, a comunicação entre turnos e a segurança das pessoas envolvidas.
+
+**Fases da jornada**
+
+A jornada foi dividida em quatro fases principais, que representam a sequência de atividades desempenhadas pela operadora durante uma ocorrência. A primeira fase, Monitoramento e identificação, envolve o acompanhamento das condições operacionais e a percepção de possíveis alterações. Na segunda, Verificação e comunicação, Maria analisa os sinais disponíveis, consulta os procedimentos e comunica as equipes responsáveis. A terceira fase, Resposta e acompanhamento, corresponde à execução das ações autorizadas ao CCO e ao recebimento de atualizações sobre a emergência e a evacuação. Por fim, a fase de Conferência e registro envolve o acompanhamento das informações recebidas sobre os pontos de encontro, a organização dos registros e a transmissão dos acontecimentos às equipes responsáveis ou ao próximo turno.
+
+**Emoções e pensamentos**
+
+As emoções e os pensamentos de Maria variam conforme a evolução da emergência. Inicialmente, ela demonstra atenção e familiaridade ao acompanhar os indicadores operacionais, atividade que faz parte de sua rotina. Quando identifica uma possível ocorrência, surge a preocupação de confirmar as informações antes de comunicá-las. Durante a resposta à emergência, a tensão aumenta devido à necessidade de acompanhar simultaneamente as condições operacionais e as atualizações das equipes de campo. O maior vale de frustração ocorre quando as informações sobre a evacuação chegam de maneira dispersa, dificultando a compreensão da situação e a confirmação da segurança das pessoas. Na etapa final, ocorre uma recuperação emocional parcial, com o principal pico de satisfação relativa associado à organização dos registros e à transmissão das informações necessárias à continuidade do acompanhamento. Apesar disso, Maria ainda precisa garantir a clareza e a confiabilidade dos dados compartilhados.
+
+**Ações**
+
+As ações realizadas por Maria acompanham as quatro fases da jornada. Inicialmente, ela monitora indicadores, alarmes e câmeras da planta, identificando possíveis alterações operacionais e recebendo relatos de campo. Ao perceber uma ocorrência, verifica os sinais, consulta os procedimentos aplicáveis, confere as informações disponíveis e comunica os setores envolvidos. Durante a resposta à emergência, executa as ações autorizadas ao CCO, acompanha as condições operacionais e recebe atualizações das equipes de campo e segurança. Na etapa final, acompanha as informações sobre a presença de pessoas nos pontos de encontro, registra alarmes, comunicações e providências realizadas e transmite os dados relevantes para garantir a continuidade do acompanhamento.
+
+**Touchpoints (Pontos de contato)**
+
+Os pontos de contato representam os recursos, canais e equipes com os quais Maria interage ao longo da jornada. Durante o monitoramento, utiliza painéis operacionais, sistemas de alarmes, câmeras e informações fornecidas pelas equipes de campo. Na verificação da ocorrência, consulta os procedimentos da unidade e utiliza canais internos de comunicação para interagir com os responsáveis. Durante a resposta à emergência, mantém contato com a brigada, o setor de Segurança, Saúde e Meio Ambiente (SSMA) e as equipes de campo, além de acompanhar os sistemas de monitoramento disponíveis. Na etapa final, utiliza informações recebidas dos pontos de encontro, registros de ocorrências e canais de comunicação com as equipes responsáveis e o próximo turno. Esses pontos de contato evidenciam a dependência de diferentes fontes para acompanhar a situação.
+
+**Dores**
+
+As principais dores identificadas estão relacionadas à dificuldade de interpretar, reunir e acompanhar informações durante uma emergência. Na primeira fase, a presença de alarmes simultâneos e o excesso de dados operacionais podem dificultar a identificação rápida de ocorrências críticas. Na segunda, a utilização de diferentes canais de comunicação e a necessidade de confirmação das informações podem aumentar o tempo necessário para compreender e comunicar a situação. Durante a resposta e o acompanhamento, a visibilidade limitada sobre a evacuação e a dispersão das atualizações dificultam a compreensão do andamento do processo. Por fim, a ausência de informações centralizadas sobre a presença de pessoas nos pontos de encontro, somada à dependência de conferências manuais e à consolidação de registros de diferentes fontes, representa uma dificuldade para o acompanhamento e a continuidade operacional.
+
+**Insights**
+
+A análise da jornada permite identificar que os desafios enfrentados por Maria não estão relacionados apenas à identificação de uma emergência, mas principalmente à disponibilidade e à confiabilidade das informações ao longo da ocorrência. A quantidade de alertas e dados operacionais pode dificultar a identificação de situações críticas, enquanto a comunicação entre equipes depende da clareza e da confirmação das informações compartilhadas. Durante a evacuação, a ausência de uma visão consolidada aumenta a incerteza e torna o acompanhamento dependente das atualizações fornecidas pelas equipes responsáveis. Além disso, a organização dos registros mostra-se fundamental para garantir a continuidade operacional e apoiar análises posteriores. Dessa forma, o principal insight identificado é a importância de disponibilizar informações confiáveis, organizadas e atualizadas para apoiar o acompanhamento da evacuação e a comunicação entre os envolvidos.
+
+**Oportunidades de melhoria**
+
+As oportunidades de melhoria foram identificadas a partir das dificuldades observadas em cada fase da jornada. No monitoramento, destacam-se a possibilidade de melhorar a organização e a priorização dos alertas, facilitando a identificação de ocorrências relevantes. Na verificação e comunicação, existem oportunidades para centralizar informações, facilitar a interação entre equipes e melhorar a rastreabilidade das confirmações. Durante a resposta à emergência, destaca-se a necessidade de disponibilizar uma visão consolidada do andamento da evacuação, permitindo acompanhar informações dos pontos de encontro com identificação das fontes e dos horários de atualização. Na etapa final, as oportunidades envolvem centralizar informações de presença e pendências, facilitar a consulta aos registros e melhorar a transmissão de informações entre equipes e turnos. Essas possibilidades representam direções para o desenvolvimento da solução futura, sem pressupor que todas serão implementadas.
+
+**Considerações finais**
+
+A jornada atual evidencia que o acompanhamento de uma emergência industrial envolve diferentes atividades de monitoramento, verificação, comunicação e registro, que dependem da interação entre o CCO e as equipes responsáveis. Entre os desafios identificados, destaca-se a dificuldade de obter uma visão consolidada sobre o andamento da evacuação e a presença de pessoas nos pontos de encontro. Essa limitação pode aumentar a incerteza durante a ocorrência e dificultar a organização das informações necessárias à continuidade operacional.
+
+###### Situação-Problema Futura
+
+##### 3.2.2.1.3. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
+
+###### Situação-Problema Presente
+
+###### Situação-Problema Futura
+
+#### 3.2.2.2. Storyboard
 _Coloque aqui seu Storyboard (seguindo as instruções na descrição do artefato)_
+
+##### Técnico de Operação
+
+##### Operadora de Centro de Controle Operacional (CCO)
+
+##### Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
 ## 3.3. Solução Técnica
 
