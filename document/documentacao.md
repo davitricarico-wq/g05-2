@@ -1111,6 +1111,89 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 
 #### Diagrama de classes UML conceitual - Protótipo de Monitoramento em tempo real
 
+https://chatgpt.com/s/cx_6ae2a2a8d0048191adb3e14413cd305d
+
+O modelo a seguir representa **um ESP32 com leitor RFID instalado no batente de uma passagem monitorada**. Ele descreve o firmware desse dispositivo; as classes da aplicação web aparecem no diagrama seguinte. No protótipo, o leitor previsto é o RC522 com tags de 13,56 MHz. Como seu alcance é curto, a leitura depende da aproximação da tag ao leitor; o registro indica uma passagem observada, não a posição contínua da pessoa.
+
+```mermaid
+classDiagram
+    direction LR
+
+    class RfidMonitor {
+        -RfidSensor sensor
+        -ReadingQueue queue
+        -MqttClient mqtt
+        -DeviceConfig config
+        +begin()
+        +tick()
+    }
+
+    class RfidSensor {
+        +begin()
+        +readNewPresentation() RfidCard
+    }
+
+    class RfidCard {
+        +tagCode: String
+    }
+
+    class RfidReading {
+        +eventId: String
+        +deviceId: String
+        +tagCode: String
+        +observedAt: DateTime
+    }
+
+    class ReadingQueue {
+        +add(reading)
+        +next() RfidReading
+        +markPublished(eventId)
+    }
+
+    class MqttClient {
+        +connect()
+        +publish(reading)
+        +poll()
+    }
+
+    class DeviceConfig {
+        +deviceId: String
+        +doorId: String
+        +readingTopic: String
+    }
+
+    RfidMonitor "1" *-- "1" RfidSensor : utiliza
+    RfidMonitor "1" *-- "1" ReadingQueue : mantém
+    RfidMonitor "1" *-- "1" MqttClient : utiliza
+    RfidMonitor "1" *-- "1" DeviceConfig : consulta
+    RfidSensor ..> RfidCard : produz
+    RfidMonitor ..> RfidReading : cria
+    ReadingQueue "1" o-- "0..*" RfidReading : pendentes
+    MqttClient ..> RfidReading : publica
+```
+
+##### Descrição da arquitetura do ESP32
+
+O `RfidMonitor` coordena o funcionamento do nó: inicializa o leitor e a conexão, verifica novas apresentações de tag e cria uma `RfidReading` para cada observação válida. O evento é colocado na `ReadingQueue` antes da tentativa de publicação pelo `MqttClient`. Quando a conexão estiver indisponível, a fila conserva os eventos pendentes para reenvio. Cada instalação possui uma `DeviceConfig` com a identidade do dispositivo, o batente monitorado e o tópico MQTT de publicação. Assim, o backend pode relacionar a leitura ao dispositivo cadastrado e, por meio dele, à área da solução.
+
+O `RfidSensor` encapsula a comunicação com o leitor físico e evita transformar leituras repetidas da **mesma apresentação** em vários eventos. `RfidCard` é o valor temporário que contém o código da tag detectada. `RfidReading` é o registro gerado pelo firmware, com identificador único do evento, identificador do ESP, código da tag e horário da observação. O horário de recebimento (`receivedAt`) é acrescentado pelo backend, pois o ESP não conhece quando o servidor recebeu a mensagem. A sincronização do relógio do ESP e o tratamento de horários indisponíveis ainda precisam ser definidos para a implementação.
+
+`MqttClient` cuida da conexão com o broker e da publicação, sem decidir o significado de uma passagem. Quando houver confirmação do broker, ela não comprova que o backend processou a mensagem. Por isso, o backend deve identificar retransmissões pelo `eventId`. A aplicação web associa a tag ao colaborador e interpreta a sequência de leituras para atualizar a última zona registrada. O ESP não armazena nomes, não mantém a presença das pessoas e não decide se a observação representa entrada ou saída. Caso sejam definidos comandos do sistema web para este tipo de nó, o recebimento pode ser acrescentado ao `MqttClient` e tratado pelo `RfidMonitor` conforme um contrato próprio.
+
+##### Função das classes e cardinalidades
+
+| Relação | Cardinalidade e motivo |
+| --- | --- |
+| `RfidMonitor` → `RfidSensor` | **1:1.** Cada instância do monitor controla um leitor no batente considerado neste modelo; separar o sensor permite trocar a implementação do leitor sem alterar a coordenação do nó. |
+| `RfidMonitor` → `ReadingQueue` | **1:1.** O nó possui uma fila de envio, mesmo quando vazia, para preservar a ordem dos eventos pendentes e reenviá-los após falha de conexão. |
+| `RfidMonitor` → `MqttClient` | **1:1.** O nó usa uma conexão lógica com o broker para publicar as leituras desse dispositivo. |
+| `RfidMonitor` → `DeviceConfig` | **1:1.** Cada nó consulta uma configuração que o identifica e informa qual passagem ele monitora. Outros nós têm suas próprias configurações. |
+| `ReadingQueue` → `RfidReading` | `1:0..*`. Uma fila pode estar vazia ou conter várias leituras ainda pendentes; cada leitura pendente pertence à fila do nó que a produziu. Depois de publicada e retirada, ela deixa de compor a fila. |
+| `RfidSensor` ⇢ `RfidCard` | **Dependência, sem posse permanente.** Uma detecção pode produzir um `RfidCard` temporário; ao longo do tempo, o leitor pode observar zero ou várias apresentações. |
+| `RfidMonitor` ⇢ `RfidReading` e `MqttClient` ⇢ `RfidReading` | **Dependências, sem coleção permanente.** O monitor cria zero ou muitos eventos ao longo do tempo, e o cliente MQTT publica os que estiverem pendentes. A coleção temporária de eventos é representada pela `ReadingQueue`. |
+
+**Legenda:** `1` = exatamente uma instância; `0..*` = nenhuma ou várias; `*--` = composição, parte mantida pelo monitor; `o--` = agregação, leitura temporariamente mantida na fila; `..>` = dependência de uso ou criação, sem posse permanente. As cardinalidades descrevem **um nó ESP32 por batente** e poderão ser revistas se um único ESP passar a controlar vários leitores.
+
 #### Diagrama de classes UML conceitual - Site de integração dos protótipos
 
 ```mermaid
