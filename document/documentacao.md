@@ -886,24 +886,22 @@ As regras RN01–RN11 e RN15 delimitam a visão integrada futura. RN12–RN14 re
 
 Essas regras de projeto não substituem o procedimento de emergência da Unipar. A validação futura deve ligar cada regra ao teste específico e à versão da implementação.
 
-### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
+### 3.3.3. Requisitos Não Funcionais (Sprint 2)
 
-_Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métrica, limite ou critério concreto) ou justificativa explícita de ausência. Evolua do conceitual (sprint 2) ao técnico mensurável (sprint 5)._
+A tabela segue os oito eixos do IoTDoc. A [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) fornece o modelo de referência para qualidade de produto. Os critérios abaixo são metas de aceitação propostas para a arquitetura integrada da seção 3.1.3. A verificação está planejada na seção 3.3.4.
 
-<p align="center">Quadro 9 – Modelo de requisitos não funcionais para as próximas sprints</p>
+<p align="center">Quadro 9 – Requisitos não funcionais da arquitetura integrada</p>
 
-| Eixo                     | Requisito | Métrica / Critério | Justificativa |
-| ------------------------ | --------- | ------------------ | ------------- |
-| USAB — Usabilidade       | ...       | ...                | ...           |
-| CONF — Confiabilidade    | ...       | ...                | ...           |
-| DES — Desempenho         | ...       | p95 < X ms         | ...           |
-| SUP — Suportabilidade    | ...       | ...                | ...           |
-| SEG — Segurança          | ...       | ...                | ...           |
-| CAP — Capacidade         | ...       | ...                | ...           |
-| REST — Restrições Design | ...       | ...                | ...           |
-| ORG — Organizacionais    | ...       | ...                | ...           |
-
-<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+| ID | Eixo | Requisito | Métrica e critério de aceitação | Justificativa |
+| --- | --- | --- | --- | --- |
+| RNF01 | USAB — Usabilidade | Distinguir leitura aceita, leitura não confirmada e dados desatualizados por sinalização local e mensagens do painel conforme a interface. | Em ensaio com cinco participantes representando os perfis operacionais, 5/5 devem interpretar corretamente os três cenários sem ajuda. O painel deve exibir texto além de cor. | Evitar que Maria ou Tuco interpretem uma indicação de leitura como confirmação de segurança. |
+| RNF02 | CONF — Confiabilidade | Persistir confirmações no totem durante a perda de comunicação e reconciliá-las após reconexão, com integridade e sem duplicar o balanço. | Interromper o broker por 15 min com até 900 eventos aceitos por totem a 1 evento/s e reiniciar o nó durante o ensaio. Após reconexão e drenagem, exigir 0 perdas, 0 duplicações e correspondência de IDs e conteúdos com o registro de referência. | Preservar a conferência de Tuco durante falha de rede ou reinicialização. |
+| RNF03 | DES — Desempenho | Sinalizar o resultado no dispositivo e atualizar o painel sob a carga do cenário dimensionado na seção 3.3.8. | Em pelo menos 100 eventos válidos com rede operacional, resposta local em até 0,5 s e atualização no painel em até 3,0 s por evento, medidos desde a captura. Dados atrasados seguem a contingência da seção 3.3.8. | Dar a Maria visibilidade dentro da janela de apuração. |
+| RNF04 | SUP — Suportabilidade | Permitir diagnosticar falhas de comunicação e leitura por dispositivo. | Em 100% das falhas injetadas de perda de heartbeat, fila cheia e leitura inválida, registrar nó, instante e código da causa observada, sem registrar UID bruto em logs de diagnóstico. | Permitir que Maria localize a falha e acione a equipe responsável. |
+| RNF05 | SEG — Segurança | Proteger telemetria e painel com TLS e controle de acesso, limitando o tratamento de identificadores RFID ao fluxo aprovado pela Unipar. | Rejeitar 100% das conexões com certificado inválido e das consultas de teste sem permissão. Em captura de tráfego, encontrar 0 identificadores em claro. Antes de usar dados reais, registrar aprovação da finalidade, perfis e prazo de retenção e verificar a remoção ao expirar o prazo em massa sintética. | Proteger o cadastro usado por Tuco e permitir a verificação dos controles de privacidade antes da coleta. |
+| RNF06 | CAP — Capacidade | Dimensionar a confirmação nos PEs para o cenário de 755 pessoas no prazo interno de dez minutos. | Em ensaio com distribuição de demanda validada, confirmar 755 identificadores válidos e distintos até t0 + 600 s, incluindo deslocamento, filas e tentativas repetidas, com os limites da seção 3.3.8. | Dar a Tuco uma estimativa verificável de capacidade por ponto de encontro. |
+| RNF07 | REST — Restrições de design | Restringir a telemetria ao evento de passagem nas portarias e às leituras discretas nos pontos RFID autorizados. | Inspecionar 100% dos esquemas e mensagens de teste. Exigir 0 coordenadas contínuas e 0 identificadores pessoais na telemetria das portarias. | Preservar o escopo do TAPI e a privacidade das pessoas na planta. |
+| RNF08 | ORG — Organizacionais | Apoiar o procedimento de conferência e a autoridade da SSMA para encerrar o evento. | Em quatro simulações — saldo reconciliado, saldo positivo aos 600 s, dados inconclusivos e tentativa de encerramento por outro perfil — obter o procedimento esperado em 4/4, com registro de usuário, instante e justificativa em todo encerramento autorizado. | Preservar a decisão humana e o acionamento da brigada conforme o procedimento da Unipar. |
 
 ### 3.3.4. Matriz de Rastreabilidade (RTM)
 
