@@ -1,118 +1,193 @@
-
 #include <SPI.h>
 #include <MFRC522.h>
 
-// RFID
-#define SS_PIN 5
-#define RST_PIN 17
+namespace Configuracao
+{
+  constexpr byte pinoRfidSs = 5;
+  constexpr byte pinoRfidReset = 17;
+  constexpr byte pinoSpiSck = 18;
+  constexpr byte pinoSpiMiso = 19;
+  constexpr byte pinoSpiMosi = 23;
+  constexpr byte pinoBuzzer = 25;
+  constexpr byte pinoLedVerde = 26;
+  constexpr byte pinoLedVermelho = 33;
+  constexpr byte pinoBotao = 27;
 
-// Buzzer
-#define BUZZER_PIN 25
-
-// LEDs
-#define LED_VERDE 26
-#define LED_VERMELHO 33
-
-// Botao
-#define BOTAO_PIN 27
-
-MFRC522 rfid(SS_PIN, RST_PIN);
-
-// Estados do sistema
-bool emergencia = false;
-
-// Controle de debounce
-bool ultimoEstadoLido = HIGH;
-bool estadoEstavel = HIGH;
-unsigned long ultimaMudanca = 0;
-const unsigned long debounceMs = 25;
-
-void atualizarLEDs() {
-  digitalWrite(LED_VERDE,
-               emergencia ? LOW : HIGH);
-
-  digitalWrite(LED_VERMELHO,
-               emergencia ? HIGH : LOW);
+  constexpr unsigned long debounceMs = 25;
+  constexpr unsigned int frequenciaBipeHz = 2000;
+  constexpr unsigned long duracaoBipeMs = 50;
+  constexpr unsigned long velocidadeSerial = 115200;
 }
 
-void verificarBotao() {
-  bool leitura = digitalRead(BOTAO_PIN);
+enum class EstadoEmergencia
+{
+  Normal,
+  Emergencia
+};
 
-  if (leitura != ultimoEstadoLido) {
-    ultimaMudanca = millis();
+class BotaoEmergencia
+{
+public:
+  explicit BotaoEmergencia(byte pino) : pino_(pino) {}
+
+  void iniciar() { pinMode(pino_, INPUT_PULLUP); }
+
+  bool foiPressionado(unsigned long agora)
+  {
+    const bool leitura = digitalRead(pino_);
+
+    if (leitura != ultimaLeitura_)
+    {
+      ultimaMudanca_ = agora;
+    }
+
+    if (agora - ultimaMudanca_ > Configuracao::debounceMs && leitura != estadoEstavel_)
+    {
+      estadoEstavel_ = leitura;
+      if (estadoEstavel_ == LOW)
+      {
+        ultimaLeitura_ = leitura;
+        return true;
+      }
+    }
+
+    ultimaLeitura_ = leitura;
+    return false;
   }
 
-  if (millis() - ultimaMudanca > debounceMs) {
-    if (leitura != estadoEstavel) {
-      estadoEstavel = leitura;
+private:
+  const byte pino_;
+  bool ultimaLeitura_ = HIGH;
+  bool estadoEstavel_ = HIGH;
+  unsigned long ultimaMudanca_ = 0;
+};
 
-      if (estadoEstavel == LOW) {
-        emergencia = !emergencia;
+class IndicadorEstado
+{
+public:
+  IndicadorEstado(byte pinoVerde, byte pinoVermelho)
+      : pinoVerde_(pinoVerde), pinoVermelho_(pinoVermelho) {}
 
-        atualizarLEDs();
+  void iniciar()
+  {
+    pinMode(pinoVerde_, OUTPUT);
+    pinMode(pinoVermelho_, OUTPUT);
+  }
 
-       Serial.println(
-          emergencia ? "EMERGENCIA" : "NORMAL"
-        );
+  void mostrar(EstadoEmergencia estado)
+  {
+    const bool emergencia = estado == EstadoEmergencia::Emergencia;
+    digitalWrite(pinoVerde_, emergencia ? LOW : HIGH);
+    digitalWrite(pinoVermelho_, emergencia ? HIGH : LOW);
+  }
+
+private:
+  const byte pinoVerde_;
+  const byte pinoVermelho_;
+};
+
+class SinalizadorSonoro
+{
+public:
+  explicit SinalizadorSonoro(byte pino) : pino_(pino) {}
+
+  void iniciar() { pinMode(pino_, OUTPUT); }
+
+  void confirmarLeitura()
+  {
+    tone(pino_, Configuracao::frequenciaBipeHz, Configuracao::duracaoBipeMs);
+  }
+
+private:
+  const byte pino_;
+};
+
+class LeitorCracha
+{
+public:
+  LeitorCracha(byte pinoSs, byte pinoReset) : leitor_(pinoSs, pinoReset), pinoSs_(pinoSs) {}
+
+  void iniciar()
+  {
+    SPI.begin(Configuracao::pinoSpiSck, Configuracao::pinoSpiMiso,
+              Configuracao::pinoSpiMosi, pinoSs_);
+    leitor_.PCD_Init();
+  }
+
+  bool lerUid(MFRC522::Uid &uid)
+  {
+    if (!leitor_.PICC_IsNewCardPresent() || !leitor_.PICC_ReadCardSerial())
+    {
+      return false;
+    }
+
+    uid = leitor_.uid;
+    leitor_.PICC_HaltA();
+    leitor_.PCD_StopCrypto1();
+    return true;
+  }
+
+private:
+  MFRC522 leitor_;
+  const byte pinoSs_;
+};
+
+class SistemaMonitoramento
+{
+public:
+  SistemaMonitoramento()
+      : botao_(Configuracao::pinoBotao),
+        indicador_(Configuracao::pinoLedVerde, Configuracao::pinoLedVermelho),
+        sinalizador_(Configuracao::pinoBuzzer),
+        leitor_(Configuracao::pinoRfidSs, Configuracao::pinoRfidReset) {}
+
+  void iniciar()
+  {
+    Serial.begin(Configuracao::velocidadeSerial);
+    botao_.iniciar();
+    indicador_.iniciar();
+    sinalizador_.iniciar();
+    indicador_.mostrar(estado_);
+    leitor_.iniciar();
+
+    Serial.println("Sistema inicializado!");
+    Serial.println("STATUS: NORMAL");
+  }
+
+  void atualizar()
+  {
+    if (botao_.foiPressionado(millis()))
+    {
+      estado_ = estado_ == EstadoEmergencia::Normal
+                    ? EstadoEmergencia::Emergencia
+                    : EstadoEmergencia::Normal;
+      indicador_.mostrar(estado_);
+      Serial.println(estado_ == EstadoEmergencia::Emergencia ? "EMERGENCIA" : "NORMAL");
+    }
+
+    MFRC522::Uid uid;
+    if (leitor_.lerUid(uid))
+    {
+      Serial.print("Cartao detectado! UID: ");
+      sinalizador_.confirmarLeitura();
+      for (byte i = 0; i < uid.size; ++i)
+      {
+        Serial.printf("%02X ", uid.uidByte[i]);
       }
+      Serial.println();
     }
   }
 
-  ultimoEstadoLido = leitura;
-}
+private:
+  EstadoEmergencia estado_ = EstadoEmergencia::Normal;
+  BotaoEmergencia botao_;
+  IndicadorEstado indicador_;
+  SinalizadorSonoro sinalizador_;
+  LeitorCracha leitor_;
+};
 
-void verificarRFID() {
-  if (!rfid.PICC_IsNewCardPresent()) {
-    return;
-  }
+SistemaMonitoramento sistema;
 
-  if (!rfid.PICC_ReadCardSerial()) {
-    return;
-  }
+void setup() { sistema.iniciar(); }
 
-  Serial.print("Cartao detectado! UID: ");
-  // Bipe de identificacao
-  tone(BUZZER_PIN, 2000, 50);
-
-  for (byte i = 0; i < rfid.uid.size; i++) {
-    Serial.printf("%02X ", rfid.uid.uidByte[i]);
-  }
-
-  Serial.println();
-
-  rfid.PICC_HaltA();
-  rfid.PCD_StopCrypto1();
-}
-
-void setup() {
-  Serial.begin(115200);
-
-  // Configuracao dos LEDs
-  pinMode(LED_VERDE, OUTPUT);
-  pinMode(LED_VERMELHO, OUTPUT);
-
-  // Botao com pull-up interno
-  pinMode(BOTAO_PIN, INPUT_PULLUP);
-
-  // Buzzer
-  pinMode(BUZZER_PIN, OUTPUT);
-
-  // Estado inicial: NORMAL
-  emergencia = false;
-  atualizarLEDs();
-
-  // Inicializa SPI e RFID
-  SPI.begin(18, 19, 23, SS_PIN);
-  rfid.PCD_Init();
-
-  Serial.println("Sistema inicializado!");
-  Serial.println("STATUS: NORMAL");
-}
-
-void loop() {
-  // Monitora o botao
-  verificarBotao();
-
-  // Le os cartoes RFID
-  verificarRFID();
-}
+void loop() { sistema.atualizar(); }
