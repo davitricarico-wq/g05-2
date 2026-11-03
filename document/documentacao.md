@@ -1,10 +1,19 @@
 # Documentação IoTDoc - Módulo 4 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final_**
+## Synthetix
 
-## Nome do Grupo
+### C.R.I.S.I.S - Controle e Resposta Inteligente em Situações de Incidente e Segurança
 
-#### Nomes dos integrantes do grupo
+#### Integrantes:
+
+- Davi Tricarico
+- Felipe Rabinovich
+- Gustavo Fantasia
+- Felipe Escobar
+- Lucas Oliveira
+- Pedro Negri
+- Vinicius Ramos
+- Arthur Rodrigues
 
 <img src="../assets/inteli.png">
 
@@ -24,15 +33,15 @@
 
 # <a name="c1"></a>1. Introdução
 
-A Unipar é uma empresa brasileira do setor químico e petroquímico, com mais de 55 anos de operação, que produz cloro, soda e PVC (VEJA..., 2024). A empresa tem mais de 1.400 colaboradores diretos (VEJA..., 2024) e fechou 2025 com receita líquida consolidada de R$ 5,1 bilhões (UNIPAR CARBOCLORO, 2026). Suas fábricas ficam em Cubatão (SP), Santo André (SP), Bahía Blanca, na Argentina (VEJA..., 2024), e Camaçari (BA), inaugurada em 2025 (UNIPAR..., 2025). A Unipar é líder na produção de cloro e soda e a segunda maior produtora de PVC da América do Sul (UNIPAR..., 2025).
+A Unipar é uma empresa brasileira do setor químico e petroquímico, com mais de 55 anos de operação, que produz cloro, soda e PVC (Veja [...], 2024). A empresa tem mais de 1.400 colaboradores diretos (Veja [...], 2024) e fechou 2025 com receita líquida consolidada de R$ 5,1 bilhões (Unipar Carbocloro S.A., 2026b). Suas fábricas ficam em Cubatão (SP), Santo André (SP), Bahía Blanca, na Argentina (Veja [...], 2024), e Camaçari (BA), inaugurada em 2025 (Unipar [...], 2025). A Unipar é líder na produção de cloro e soda e a segunda maior produtora de PVC da América do Sul (Unipar [...], 2025).
 
-Este projeto é feito com a fábrica de Cubatão, a unidade com a maior capacidade de produção de cloro da empresa (UNIPAR CARBOCLORO, 2023), onde trabalham cerca de 355 funcionários diretos e cerca de 400 de empresas parceiras (informação verbal)[^1]. Em uma emergência, como um vazamento de cloro, essas pessoas precisam sair da área rápido e chegar aos pontos de encontro. Hoje, esse processo é quase todo manual: o alarme é acionado por um operador, a empresa só sabe quem entrou e saiu pela portaria, sem saber onde cada pessoa está dentro da planta, e a confirmação de quem chegou ao ponto de encontro é feita pelos líderes, por chamada. Além disso, durante a emergência, as catracas são liberadas para dar vazão e deixam de registrar quem passa. Com isso, a evacuação fica mais lenta e é difícil saber, rápido, quem ainda não chegou (informação verbal)[^1].
+Este projeto é feito com a fábrica de Cubatão, a unidade com a maior capacidade de produção de cloro da empresa (Unipar Carbocloro S.A., 2023), onde trabalham cerca de 355 funcionários diretos e cerca de 400 de empresas parceiras (informação verbal)[^1]. Em uma emergência, como um vazamento de cloro, essas pessoas precisam sair da área rápido e chegar aos pontos de encontro. Hoje, esse processo é quase todo manual: o alarme é acionado por um operador, a empresa só sabe quem entrou e saiu pela portaria, sem saber onde cada pessoa está dentro da planta, e a confirmação de quem chegou ao ponto de encontro é feita pelos líderes, por chamada. Além disso, durante a emergência, as catracas são liberadas para dar vazão e deixam de registrar quem passa. Com isso, a evacuação fica mais lenta e é difícil saber, rápido, quem ainda não chegou (informação verbal)[^1].
 
 [^1]: Informação fornecida por representantes da Unipar na reunião de kickoff do projeto, em 16 de outubro de 2026.
 
 ## 1.1 Objetivos
 
-Os objetivos abaixo foram definidos a partir do Termo de Abertura do Projeto (UNIPAR, 2026) e da reunião de kickoff com a Unipar (informação verbal)[^1].
+Os objetivos abaixo foram definidos a partir do Termo de Abertura do Projeto (Unipar, 2026a) e da reunião de kickoff com a Unipar (informação verbal)[^1].
 
 **Objetivo geral**
 
@@ -40,29 +49,29 @@ Aumentar a rapidez, a precisão e a rastreabilidade da evacuação da fábrica d
 
 **Objetivos específicos**
 
-- Saber quantas pessoas estão em cada área da planta e quem são, sem precisar da posição exata delas dentro de cada área;
-- Continuar acompanhando quantas pessoas ainda estão em cada área durante a emergência, quando as catracas e portas são liberadas;
-- Confirmar a chegada das pessoas aos pontos de encontro sem depender de listas e da chamada feita pelos líderes;
-- Identificar quem ainda não chegou aos pontos de encontro em até 10 minutos após o alarme, prazo a partir do qual a Unipar considera a pessoa não identificada um caso crítico;
+- Melhorar a visibilidade sobre a população presente na planta e as pendências de conferência durante a evacuação;
+- Apoiar a apuração quantitativa mesmo quando as catracas e portas são liberadas durante a emergência;
+- Agilizar a conferência nos pontos de encontro, reduzindo o esforço manual sem dispensar a confirmação individual quando necessária;
+- Apoiar a apuração de pessoas ainda não confirmadas em até dez minutos após o alarme, conforme o prazo interno informado pela Unipar;
 - Avisar a sala de controle e as equipes de resposta sobre o andamento da evacuação, dando mais agilidade às decisões.
 
 ## 1.2 Proposta da solução
 
-A proposta usa o crachá de acesso dos funcionários e as catracas e portas entre as áreas da planta para saber quem está em cada área, inclusive durante uma emergência. A planta é dividida em áreas, e cada passagem entre elas tem uma catraca ou porta liberada pelo crachá.
+A proposta do C.R.I.S.I.S é apoiar a conferência da evacuação da Unipar em Cubatão por meio de contagem quantitativa nos acessos aos pontos de encontro. Na Sprint 1, o protótipo desenvolvido demonstra entradas e saídas simuladas, mantém um total local e oferece retorno visual e sonoro. Esse recorte permite estudar a lógica de contagem e suas falhas antes de ampliar a solução.
 
-No dia a dia, toda vez que alguém passa o crachá, o sistema registra em qual área essa pessoa entrou. Assim, ele sabe quantas pessoas estão em cada área e quem são, sem precisar da posição exata delas dentro de cada espaço.
+A contagem é anônima: informa quantas passagens foram reconhecidas e o saldo local estimado, mas não identifica quem chegou, quem falta ou onde uma pessoa está. A equipe continua responsável pela conferência humana e pelas decisões de emergência. O protótipo não orienta rotas nem controla catracas.
 
-Quando o alarme de emergência toca, as catracas e portas são liberadas para dar vazão, e as pessoas deixam de passar o crachá. Para não perder a contagem nesse momento, a proposta do grupo sugere um sensor que é ativado junto com o alarme, posicionado estratégicamente nas passagens principais, e conta as pessoas que atravessam, mesmo quando muitas passam ao mesmo tempo. Como o sistema já sabe quem estava em cada área antes do alarme, ele usa essa contagem para acompanhar quantas pessoas já saíram de cada área, quantas ainda faltam sair e quantas chegaram aos pontos de encontro.
+Na visão completa pensada para a solução, os registros de crachá e das portarias poderão fornecer a população de referência da planta. Os dispositivos dos pontos de encontro enviarão contagens para um painel compartilhado pelo CCO e pela SSMA, com ocupação por ponto, diferença quantitativa em relação à referência, tempo desde o alarme, alertas e histórico. Essa integração busca apoiar a conferência dentro do prazo interno de dez minutos.
 
-Essas informações vão para um painel na sala de controle, que mostra quantas pessoas ainda estão em cada área, quem estava presente nelas antes do alarme e quantas já chegaram aos pontos de encontro. Com isso, a equipe de emergência deixa de depender de listas e da chamada para saber quem pode ainda estar na planta e consegue agir dentro do prazo de 10 minutos definido pela Unipar.
-
-> Neste momento (Sprint 1), é certo afirmar que a proposta da solução engloba apenas a área de confirmação, sendo representada pela contagem de pessoas de maneira automatizada. Não foram definidas extensões para a solução que englobam os objetivos das áreas de monitoramento e orientação. A primeira proposta de solução simples foi adotada pela equipe para que, nas próximas sprints, fosse possível expandir a complexidade com mais precisão e evitar que houvesse retrabalho.
+Também se pretende analisar a viabilidade de aproveitar os registros de acesso entre áreas para informar a última área registrada antes do alarme. Esse dado seria uma referência histórica, não a localização atual de alguém nem prova de quem deixou de chegar ao ponto de encontro. Sua integração depende da disponibilidade dos dados, das permissões e da revisão de privacidade. Monitoramento por áreas, orientação durante a evacuação e contagem em fluxos simultâneos exigem análise e validação próprias antes de integrarem a implementação. Assim, a Sprint 1 demonstra o núcleo de contagem local, e as demais capacidades serão incorporadas progressivamente conforme a viabilidade e o avanço do projeto.
 
 ## 1.3 Justificativa
 
-Em uma fábrica que trabalha com cloro, a rapidez da evacuação pode salvar vidas. Em 2022, um vazamento de cloro no porto de Aqaba, na Jordânia, matou 13 pessoas e deixou mais de 250 feridos (VAZAMENTO..., 2022). Na Unipar, quem não é identificado em até 10 minutos após o alarme já é tratado como caso crítico (informação verbal)[^1], e hoje essa confirmação ainda depende de listas e chamada. A proposta mantém a contagem funcionando justamente no momento em que ela para hoje, quando as catracas são liberadas na emergência, e mostra à sala de controle quantas pessoas ainda estão em cada área e quem estava nelas. Com isso, a proposta busca entregar os benefícios que a Unipar espera do projeto: visibilidade, rastreabilidade e mais agilidade na decisão dos gestores de SSMA (UNIPAR, 2026). Esse tipo de ganho já aparece em outras indústrias: na Ferrero, a contagem com crachás eletrônicos ficou 70% mais rápida que o processo manual (DABROWSKA, 2024).
+A conferência manual e a perda de registros de passagem quando as catracas são liberadas dificultam a consolidação rápida de informações durante a evacuação, conforme o contexto informado no kickoff. A proposta atua sobre esse problema ao experimentar uma contagem local que continua funcionando nos dois estados de sinalização, preservando a verificação humana. O benefício esperado é reduzir o esforço de apuração quantitativa e oferecer um dado adicional à equipe responsável pelo ponto de encontro.
 
-A solução se diferencia em dois pontos. O primeiro é aproveitar o crachá que os funcionários já usam para entrar na planta, sem um dispositivo novo para carregar. No kickoff, a Unipar destacou que um equipamento que atrapalhe o uso do EPI ou seja desconfortável tende a ser deixado de lado pelas pessoas (informação verbal)[^1]. O segundo é trabalhar por áreas: o sistema mostra em que área cada pessoa estava, sem rastrear a posição exata, o que respeita a restrição do TAPI de não tratar localização precisa em ambientes internos (UNIPAR, 2026). Isso coloca a proposta entre as soluções que só contam as pessoas no ponto de encontro, como a da Ferrero (DABROWSKA, 2024), e as que rastreiam a localização dos funcionários na planta, como a usada pela Chevron Oronite em Singapura (WIRELESS..., [20--]). Como potencial, o mesmo modelo pode ser levado para as outras fábricas da Unipar no Brasil e na Argentina, que o TAPI já aponta como beneficiadas (UNIPAR, 2026), e servir de base para etapas futuras discutidas no kickoff, como o uso de câmeras e drones (informação verbal)[^1].
+O diferencial do recorte da Sprint 1 é dispensar dispositivos individuais e identificação pessoal no fluxo de contagem: a interação se resume à passagem pelo acesso simulado e à leitura do total local. Isso permite verificar entradas, saídas, bloqueio de repetição e falhas de leitura com uma montagem pequena e reproduzível. Não há comprovação, nesta etapa, de redução de tempo, acurácia em campo ou cumprimento do prazo de dez minutos. As metas e o protocolo de validação estão nas seções 3.1.3.5 e 3.4.1.1.
+
+A expansão para consolidação remota poderá melhorar a visibilidade do CCO/SSMA nas próximas sprints. O aproveitamento dos registros de acesso existentes poderá reduzir a necessidade de introduzir dispositivos pessoais adicionais, se a integração for viável. O acompanhamento agregado por pontos de encontro e a eventual consulta à última área registrada buscam oferecer contexto para a conferência, sem rastreamento contínuo de alta precisão. Esses diferenciais pertencem à visão planejada; a versão atual demonstra somente a contagem e a sinalização locais, mantendo a conferência nominal pelos procedimentos do parceiro.
 
 # <a name="c2"></a>2. Metodologia (sprint 3)
 
@@ -74,19 +83,73 @@ _Descreva as etapas da metodologia RM-ODP que foram utilizadas para o desenvolvi
 
 _Link para os templates de negócios: https://drive.google.com/drive/folders/1lTqisJ_gxxtc5J5aXM8ula2kQ4MsII_M?usp=sharing_
 
-### 3.1.1. Contexto da Indústria (sprint 1)
+### 3.1.1. Contexto da Indústria
 
-_O aluno deve fornecer informações sobre a concorrência (mínimo 3 competidores - 1 parágrafo; modelo de negócio - 1 parágrafo, e tendências - 1 parágrafo). Considere o setor do parceiro. Por exemplo, se o parceiro for a Rede Gazeta, o setor de Televisão.<br>
-<br>
-A análise de 5 forças deve ser feita considerando também o parceiro, o aluno deve preencher o template disponibilizado. No link a seguir há indicações de como avaliar as 5 forças: https://rockcontent.com/br/blog/5-forcas-de-porter/_
+#### Concorrência
+
+A Unipar atua na indústria química e petroquímica, com foco nos mercados de cloro, soda cáustica, policloreto de vinila (PVC) e derivados. De acordo com o Formulário de Referência 2026 da empresa, seus principais competidores no mercado interno incluem Braskem, Dow, Olin, Chemtrade, Katrium, Chlorum e CMPC. Essa relação deve ser interpretada no nível do portfólio: o documento não afirma que todas essas empresas disputam os mesmos produtos, clientes e regiões com a mesma intensidade. A soda cáustica e o PVC também estão expostos aos preços e estoques internacionais e à entrada de produtos importados. Segundo a própria companhia, os principais fatores de competitividade são a disponibilidade e o custo de matérias-primas, a escala de produção e a localização das unidades (Unipar Carbocloro S.A., 2026a).
+
+#### Modelo de negócio
+
+A Unipar adota um modelo predominantemente _business-to-business_ (B2B), baseado na produção e na comercialização, em grande escala, de insumos utilizados por outras organizações. A empresa atende setores como papel e celulose, alumínio, construção civil, infraestrutura, alimentos, siderurgia e metalurgia, tratamento de água, sabões, detergentes e produtos de limpeza. Essa diversidade reduz a exposição a um único mercado consumidor; em 2025, nenhum cliente respondeu por mais de 10% da receita líquida total da companhia (Unipar Carbocloro S.A., 2026a).
+
+Trata-se de um modelo intensivo em capital, infraestrutura e energia, no qual a competitividade depende da escala, do controle dos custos e da continuidade das operações. A localização das unidades próximas a polos industriais e aos mercados consumidores reduz a distância logística e favorece a confiabilidade do abastecimento, aspecto especialmente relevante para o cloro, cujo transporte apresenta restrições técnicas e de segurança. A proximidade geográfica, associada aos contratos de fornecimento e à autoprodução de energia, contribui para proteger a posição competitiva da empresa, embora não elimine sua exposição aos custos de insumos e aos ciclos internacionais de soda cáustica e PVC (Unipar Carbocloro S.A., 2026a).
+
+#### Tendências do setor
+
+Entre as principais tendências da indústria química e petroquímica estão a descarbonização, a eficiência energética, o uso de fontes renováveis, a modernização tecnológica e a economia circular. Essas tendências afetam tanto os custos operacionais quanto o acesso a capital, a conformidade ambiental e a preferência dos clientes industriais. Na Unipar, esse movimento aparece na substituição das tecnologias de mercúrio e diafragma por células de membrana na fábrica de Cubatão e na ampliação do uso de energia renovável. Em 2025, a companhia informou que 79% da energia elétrica consumida em suas operações veio de fontes renováveis (Unipar, 2026b).
+
+A digitalização e a automação dos processos industriais e administrativos também se destacam. A Indústria 4.0 integra tecnologias como Internet das Coisas, análise de grandes volumes de dados, inteligência artificial, computação em nuvem e sistemas ciberfísicos para criar fábricas mais conectadas e apoiar a melhoria dos processos produtivos (INMETRO, 2026). Nesse contexto, a integração de sistemas, o uso de sensores, a análise de dados e a automatização de tarefas podem melhorar o monitoramento das operações, reduzir atividades repetitivas e apoiar a tomada de decisão.
+
+No mercado brasileiro, a ampliação dos investimentos em saneamento pode favorecer a demanda por cloro e PVC, utilizados, respectivamente, no tratamento de água e em componentes de infraestrutura. Ao mesmo tempo, a indústria permanece exposta às oscilações cambiais, aos preços internacionais, às importações e ao desenvolvimento de materiais e tecnologias alternativas. Esse conjunto de tendências exige investimentos contínuos em inovação, eficiência operacional e sustentabilidade (Brasil, 2020; Unipar Carbocloro S.A., 2026a).
+
+#### Cinco Forças de Porter
+
+O modelo das Cinco Forças de Porter analisa como a rivalidade entre concorrentes, a ameaça de novos entrantes, a ameaça de produtos substitutos e os poderes de negociação de fornecedores e compradores afetam a atratividade e a rentabilidade de um setor (Harvard Business School, [s. d.]). A aplicação a seguir considera conjuntamente os mercados de cloro, soda cáustica e PVC. Como as condições competitivas variam entre esses produtos, as classificações representam uma síntese analítica do portfólio da Unipar, e não uma avaliação oficial divulgada pela companhia.
+
+A Figura 1 apresenta uma visão integrada da análise. A rivalidade ocupa a posição central porque resulta da interação com as outras quatro forças: barreiras de entrada, disponibilidade de substitutos e capacidade de fornecedores e compradores influenciarem custos, preços e condições comerciais. O quadro também antecipa a intensidade atribuída a cada força, permitindo comparar as pressões antes de examinar suas justificativas individualmente.
+
+<div align="center">
+  <p>Figura 1 – Cinco Forças de Porter aplicadas à Unipar</p>
+  <img src="../assets/5ForcasDePorter.png" alt="Cinco Forças de Porter aplicadas à Unipar: rivalidade alta, novos entrantes com ameaça baixa, substitutos com ameaça moderada, fornecedores com poder moderado e compradores com poder moderado a alto" width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+</div>
+
+Em síntese, a figura indica que a rivalidade constitui a pressão central e mais intensa, enquanto o poder dos compradores aparece como moderado a alto. O poder dos fornecedores e a ameaça de substitutos possuem intensidade moderada, e a ameaça de novos entrantes é baixa. Essa representação funciona como síntese visual; os fatores que sustentam cada classificação são apresentados a seguir.
+
+##### Rivalidade entre os concorrentes — alta
+
+A rivalidade é classificada como **alta**. A soda cáustica e o PVC seguem referências internacionais de preço e concorrem com importações, o que limita a capacidade de diferenciação e aumenta a pressão sobre custos. No cloro, a competição é mais regional, pois localização e logística têm maior peso. Em todos os mercados, escala produtiva, disponibilidade de matérias-primas e confiabilidade de fornecimento são fatores relevantes. A liderança da Unipar em cloro e soda cáustica e sua posição como segunda maior produtora de PVC da América do Sul fortalecem a empresa, mas não eliminam a pressão exercida por concorrentes locais e produtos importados (Unipar Carbocloro S.A., 2026a).
+
+##### Ameaça de novos entrantes — baixa
+
+A ameaça de novos entrantes é classificada como **baixa** para a instalação de nova capacidade produtiva local. A entrada exige investimento elevado, escala mínima eficiente, tecnologia especializada, licenciamento ambiental, acesso contínuo a energia e matérias-primas e uma estrutura logística compatível com produtos químicos. O novo participante também precisa construir reputação de segurança e confiabilidade perante clientes que dependem de fornecimento contínuo. A entrada por importações, aquisições ou parcerias é mais viável do que a construção de uma nova planta, mas não elimina as barreiras industriais e regulatórias do setor (Unipar Carbocloro S.A., 2026a).
+
+##### Ameaça de produtos substitutos — moderada
+
+A ameaça de produtos substitutos é classificada como **moderada**. Outros plásticos, metais, concreto e vidro podem cumprir funções semelhantes às do PVC em determinadas aplicações, enquanto outros produtos alcalinos podem substituir a soda cáustica em processos específicos. No tratamento de água, ozônio e radiação ultravioleta podem substituir ou complementar algumas aplicações do cloro; entretanto, essas tecnologias exigem condições próprias de instalação e operação e, isoladamente, não mantêm proteção residual na rede de distribuição (EPA, 2009). As alternativas, portanto, existem, mas não reproduzem simultaneamente o custo, o desempenho e a amplitude de usos dos principais produtos da Unipar.
+
+##### Poder de negociação dos fornecedores — moderado
+
+O poder de negociação dos fornecedores é classificado como **moderado**. Etileno, energia elétrica, sal, água, gás natural e vapor representam, em conjunto, cerca de 90% dos custos variáveis consolidados da companhia. A criticidade desses insumos e o impacto de eventuais interrupções aumentam a dependência operacional. Em contrapartida, contratos de longo prazo, acordos de compra de energia, autoprodução renovável e a possibilidade de adquirir sal no mercado nacional ou por importação reduzem essa pressão. Portanto, embora os insumos tenham peso elevado na estrutura de custos, os mecanismos contratuais e de diversificação impedem que o poder agregado dos fornecedores seja classificado como alto (Unipar Carbocloro S.A., 2026a).
+
+##### Poder de negociação dos compradores — moderado a alto
+
+O poder de negociação dos compradores é classificado como **moderado a alto**. Grandes clientes industriais podem negociar preços, prazos, volumes e níveis de serviço e, nos mercados de soda cáustica e PVC, comparar a oferta doméstica com produtos importados. Entretanto, esse poder é limitado pela necessidade de fornecimento contínuo, pelos requisitos técnicos e logísticos e pela diversificação da carteira da Unipar. Em 2025, nenhum cliente representou mais de 10% da receita líquida total da companhia, o que reduz a dependência de compradores individuais. A classificação mais elevada aplica-se, portanto, principalmente aos clientes de grande volume que possuem alternativas viáveis de abastecimento (Unipar Carbocloro S.A., 2026a).
+
+##### Conclusão
+
+A **rivalidade entre os concorrentes** representa a maior pressão competitiva sobre a Unipar, sobretudo nos mercados expostos a preços internacionais e importações. O poder de negociação dos **compradores** constitui uma pressão moderada a alta, principalmente entre clientes de grande volume com alternativas de abastecimento. O poder dos **fornecedores** e a ameaça de **produtos substitutos** são moderados: os insumos têm peso relevante nos custos, mas existem mecanismos de mitigação, enquanto a viabilidade dos substitutos varia conforme a aplicação. A ameaça de **novos entrantes** é a força menos intensa, devido às barreiras financeiras, tecnológicas, regulatórias e logísticas. Para responder a esse cenário, a Unipar deve priorizar eficiência operacional, segurança e confiabilidade de fornecimento, disciplina de custos, proximidade dos mercados consumidores e redução da exposição a insumos críticos.
 
 ### 3.1.2. Análise SWOT (sprint 1)
 
-A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que avalia quatro elementos: forças (fatores internos positivos), fraquezas (fatores internos negativos), oportunidades (fatores externos positivos) e ameaças (fatores externos negativos). Com base nisso, realizou-se a análise SWOT da Unipar, considerando suas características organizacionais, sua atuação no mercado e os fatores internos e externos que podem influenciar seu desempenho e sua competitividade, conforme apresentado na figura abaixo.
+A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que avalia quatro elementos: forças (fatores internos positivos), fraquezas (fatores internos negativos), oportunidades (fatores externos positivos) e ameaças (fatores externos negativos). Com base nisso, realizou-se a análise SWOT da Unipar, considerando suas características organizacionais, sua atuação no mercado e os fatores internos e externos que podem influenciar seu desempenho e sua competitividade, conforme apresentado na Figura 2.
 
-<img src="../assets/SWOT.png" alt="Análise SWOT da Unipar">
-
-Fonte: Elaborado pelos autores (2026).
+<div align="center">
+  <p>Figura 2 – Análise SWOT da Unipar</p>
+  <img src="../assets/SWOT.png" alt="Análise SWOT da Unipar" width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+</div>
 
 **Forças**
 
@@ -94,7 +157,7 @@ A análise das forças da Unipar evidencia sua experiência consolidada no setor
 
 **Fraquezas**
 
-Em relação às fraquezas, destacam-se limitações nos processos de monitoramento e confirmação de evacuação em situações de emergência. A conferência dos colaboradores nos pontos de encontro ainda depende de procedimentos manuais, como listas e contagens realizadas pelas equipes responsáveis. A ausência de monitoramento digital em tempo real dificulta o acompanhamento da evacuação e a identificação de pessoas que ainda não tiveram sua presença confirmada. Além disso, a falta de uma infraestrutura dedicada ao rastreamento, como sensores e dispositivos de identificação, limita a automatização desses processos. Essas dificuldades evidenciam a necessidade de aprimorar os mecanismos de acompanhamento e comunicação durante emergências industriais.
+Em relação às fraquezas, destacam-se as limitações do processo de conferência de evacuação descrito no kickoff: dependência de listas e contagens manuais nos pontos de encontro e perda de registros de passagem quando as catracas são liberadas. Na figura, “ausência de monitoramento digital em tempo real” e “falta de infraestrutura dedicada ao rastreamento” se referem a esse recorte de acompanhamento da evacuação, não à ausência de automação ou sistemas de identificação em toda a Unipar. Essas limitações motivam o protótipo de contagem local da Sprint 1 e a avaliação de consolidação remota nas sprints seguintes; não tornam necessário adotar rastreamento individual contínuo.
 
 **Oportunidades**
 
@@ -104,7 +167,7 @@ A crescente demanda do mercado por práticas industriais sustentáveis pode ince
 
 Por fim, as ameaças estão relacionadas às condições externas do mercado e às exigências regulatórias que afetam a indústria química. A concorrência no mercado químico internacional pode pressionar os preços e a competitividade da Unipar, enquanto as oscilações nos custos de energia e matérias-primas podem elevar suas despesas de produção. Além disso, as exigências regulatórias e ambientais rigorosas demandam investimentos contínuos em segurança, conformidade e modernização das instalações industriais. A esses fatores somam-se a instabilidade econômica e as variações cambiais nos países em que a empresa atua, que podem impactar seus custos operacionais, seus resultados financeiros e sua competitividade no mercado.
 
-### 3.1.3. Descrição da Solução a ser Desenvolvida (sprint 1)	
+### 3.1.3. Descrição da Solução a ser Desenvolvida (sprint 1)
 
 #### 3.1.3.1 Qual é o problema a ser resolvido
 
@@ -112,13 +175,15 @@ A Unipar opera uma planta química em Cubatão (SP), onde emergências operacion
 
 Em situação de alarme de emergência, a liberação das catracas permite a vazão física rápida para evasão, conforme o princípio geral da Norma Regulamentadora NR-23 de manter saídas desobstruídas para abandono seguro (BRASIL, 2022), mas interrompe o registro eletrônico individual das passagens. Ao mesmo tempo, a ausência de visibilidade sobre a última zona acessada pelos trabalhadores e a dependência de chamadas manuais com listas em papel nos Pontos de Encontro dificultam e retardam a consolidação das informações pelo Centro de Controle Operacional (CCO) e pela equipe de Saúde, Segurança e Meio Ambiente (SSMA). Pela diretriz interna informada pela Unipar no Termo de Abertura do Projeto de Inovação (TAPI) e no kickoff, qualquer pessoa não confirmada em até 10 minutos após o acionamento do alarme é classificada como caso crítico, exigindo o acionamento imediato da Brigada de Emergência para busca e resgate. Esse limite de 10 minutos constitui uma regra operacional interna da parceira, e não um prazo fixado pela NR-23.
 
-Sob o aspecto físico-químico e normativo, o cloro gasoso é tóxico por inalação, mais denso que o ar e não inflamável, embora atue como forte oxidante (NIOSH, 2019). Seu risco tóxico não caracteriza, por si só, uma atmosfera explosiva; a aplicação da NR-20 (relativa a inflamáveis e combustíveis) e a classificação elétrica das áreas dependem das substâncias e processos específicos presentes em cada setor industrial, exigindo avaliação técnica prévia de adequação para qualquer equipamento a ser instalado em campo (BRASIL, 2025).
+O cloro é tóxico, mais denso que o ar e não inflamável, embora seja um forte oxidante (NIOSH, 2019). Seu risco tóxico não caracteriza, por si só, uma área com atmosfera explosiva. A NR-20 trata de inflamáveis e combustíveis; sua aplicação depende das substâncias e atividades presentes. A classificação de áreas e a adequação dos equipamentos dependem de avaliação técnica específica. A NR-23 exige condições de abandono rápido e seguro, sem obstrução das passagens (Brasil, 2022, 2025).
 
 **Rastreabilidade das informações internas:** dados de população aproximada, procedimento de liberação de catracas, conferência manual, prazo interno de 10 minutos, atuação do CCO a partir de sala segura e restrição de não realizar localização contínua de alta precisão em ambientes internos foram fornecidos no contexto do projeto (TAPI e reunião de kickoff realizada em **16/10/2026**, conforme confirmação registrada em 23/10/2026). A ata formal e a versão/data publicada do TAPI permanecem pendentes de disponibilização no repositório, não sendo tais parâmetros operacionais atribuídos ao relatório público de sustentabilidade.
 
 #### 3.1.3.2 Qual a solução proposta (visão de negócios)
 
 A solução proposta pela equipe Synthetix (Grupo G05) integra **três tipos de dispositivos baseados em ESP32** a uma **aplicação web centralizada** para apoiar o monitoramento e a confirmação da evacuação em emergências industriais na planta de Cubatão, respeitando a restrição do TAPI de não realizar localização contínua precisa em ambientes internos e sem substituir os procedimentos institucionais de emergência da Unipar. A implantação real poderá demandar múltiplas unidades físicas de cada tipo de dispositivo, conforme a quantidade de portarias, portas de zonas e pontos de encontro monitorados.
+
+Na Sprint 1, o protótipo Wokwi utiliza Arduino Uno e **dois sensores HC-SR04**, um para entrada e outro para saída, LCD, buzzer e LEDs. O botão apenas alterna os LEDs e **não pausa a contagem**. A detecção usa sensores dedicados a cada sentido; não há algoritmo implementado de direção pela ordem de acionamento de dois feixes. Dashboard, comunicação em rede, integração às portarias, registros de horário, histórico e alerta automático ao CCO/brigada ainda são funcionalidades futuras. A seção 3.3.8 detalha os limites e o modelo técnico; a seção 3.4.1 registra CT01–CT10.
 
 Os três módulos de hardware e a camada de software que compõem a arquitetura proposta são:
 
@@ -151,7 +216,6 @@ $$G(t) = P(t) - |Z(t)|$$
    - Complementarmente, $B_0 - |M(t)|$ indica quantas pessoas da população de referência inicial ainda não foram confirmadas em um Ponto de Encontro (sem identificá-las nominalmente por si só e podendo incluir quem saiu da planta sem passar por um PE), enquanto $B_0 - |Z(t)|$ indica quantas pessoas da referência inicial não estão associadas ativamente a uma zona monitorada.
 
 **Separação entre o escopo implementado na Sprint 1 e a solução final proposta:**
-- **Implementado e testado na Sprint 1:** foi construído e verificado no simulador Wokwi (seção 3.4.1, casos de teste `CT01` a `CT10`) o protótipo inicial de contagem por passagem baseado em **Arduino Uno** e **dois sensores ultrassônicos HC-SR04** (um dedicado a entrada e outro a saída), display LCD 16x2 I2C, buzzer (1.000 Hz por 100 ms) e botão que alterna os LEDs verde e vermelho sem interromper a contagem. Na Sprint 1, esse protótipo é totalmente local/offline (conforme refletido na Política de Privacidade preliminar da seção 3.1.6 e na BOM da seção 3.1.7).
 - **Planejado para a solução final (próximas sprints):** migração do contador das portarias para **ESP32** com nova lógica de botão/LEDs de emergência, inclusão dos nós **ESP32 + RFID RC522** nas portas de zonas e nos totens dos Pontos de Encontro, conectividade **Wi-Fi/MQTT**, armazenamento offline temporário nos totens e construção da **aplicação web** com controle de acesso e regras de privacidade atualizadas para tratamento de identificadores RFID. A solução **não calcula rotas de evacuação** (pilar de Orientação fora do escopo completo do grupo G05, tratado apenas parcialmente pelo apoio informativo à coordenação da SSMA, do CCO e dos brigadistas).
 
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
@@ -198,7 +262,9 @@ Os benefícios descritos a seguir representam **resultados esperados e potenciai
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 
-A avaliação da solução combina critérios quantitativos de desempenho operacional, fidelidade de leitura/contagem e resiliência técnica, distinguindo o que foi verificado no protótipo da Sprint 1 do que será validado na arquitetura integrada com três dispositivos ESP32 e aplicação web:
+**Aceitação da Sprint 1:** o protótipo deve reproduzir CT01–CT10 com as entradas e saídas da seção 3.4.1, ter código e circuito versionados, funções `setup()` e `loop()`, ao menos duas funções auxiliares utilizadas e uma classe instanciada em uso. A medida é a quantidade de casos aprovados sobre dez, acompanhada das evidências e da versão ensaiada. A revisão do diagrama exige nova execução antes de confirmar a aprovação da versão corrigida.
+
+A avaliação da arquitetura integrada, ainda sujeita à validação com a parceira, combina critérios quantitativos de desempenho operacional, fidelidade de leitura/contagem e resiliência técnica, distinguindo o que foi verificado no protótipo da Sprint 1 do que será validado na arquitetura integrada com três dispositivos ESP32 e aplicação web:
 
 1. **Tempo de Confirmação e Atendimento ao Prazo Interno de 10 Minutos:**
    - **Meta proposta:** redução mínima de 60% no tempo de apuração nos Pontos de Encontro em comparação ao procedimento manual em papel, assegurando que o dimensionamento de totens RFID nos PEs e de acessos comporte o fluxo da população dentro da janela crítica de 10 minutos (600 s) definida no TAPI.
@@ -214,28 +280,150 @@ A avaliação da solução combina critérios quantitativos de desempenho operac
 4. **Verificação Funcional por Etapa do Projeto:**
    - **Evidência atual da Sprint 1 (Protótipo Wokwi):** execução documentada dos dez casos de teste funcionais `CT01` a `CT10` (seção 3.4.1) no protótipo inicial com Arduino Uno e dois sensores HC-SR04 (cobrindo inicialização, entrada, liberação, saída, botão/LEDs, proteção contra saldo negativo, objeto fora de alcance, bloqueio de leitura conflitante e falha do pino `ECHO`), os quais constituem validação funcional preliminar em simulador e não comprovam ainda as metas de tempo, acurácia estatística ou operação industrial.
    - **Validação das próximas sprints:** execução de baterias de teste integrando os três dispositivos ESP32 (portaria ultrassônica com botão de protocolo de emergência, porta de zona RFID RC522 e totem RFID de Ponto de Encontro com armazenamento offline) à aplicação web, verificando a consistência dos indicadores $P(t)$, $B_0$, $Z(t)$, $M(t)$ e $G(t)$ e o disparo do alerta de não confirmados aos 10 minutos.
-	
-### 3.1.4. Value Proposition Canvas (sprint 1)
 
-_O Canvas da proposta de valor deve ser feito considerando a solução que vocês estão desenvolvendo. Usar o template disponível no drive da turma._
+### 3.1.4. Value Proposition Canvas
 
-### 3.1.5. Matriz de Riscos (sprint 1)
+O Value Proposition Canvas organiza o perfil do cliente — tarefas, dores e ganhos — e o mapa de valor — produtos e serviços, aliviadores de dor e criadores de ganho (Osterwalder et al., 2014). Neste projeto, considera a visão da solução descrita nas seções 1.2 e 3.1.3. As necessidades representam o contexto reunido pela equipe e hipóteses das proto-personas; o mapa diferencia a entrega da Sprint 1 das integrações planejadas, cuja implementação depende de viabilidade e validação nas próximas sprints.
 
-_A Matriz de Risco deve ser desenhada considerando o projeto que os alunos estão criando. Deve ser entregue no template disponível no drive da turma. Os alunos devem enumerar os riscos, distribuí-los na matriz e justificar suas decisões._
+<div align="center">
+  <p>Figura 3 – Value Proposition Canvas do C.R.I.S.I.S</p>
+  <img src="../assets/value-proposition-canvas.png" alt="Value Proposition Canvas do C.R.I.S.I.S: perfil de SSMA e mapa de valor, com distinção entre protótipo da Sprint 1 e integrações planejadas" width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial, com base em Osterwalder et al. (2014).</sub></p>
+</div>
 
-Esta política preliminar considera exclusivamente o escopo do MVP definido até o momento: um protótipo de bancada com Arduino Uno, dois sensores ultrassônicos HC-SR04 para contar separadamente entradas e saídas, display LCD 16 × 2 para apresentar o total, botão para alternar entre os modos normal e emergência, LEDs verde e vermelho e buzzer para sinalização. Não fazem parte deste escopo cadastro de pessoas, crachá ou RFID, câmera, biometria, painel web, conexão de rede, banco de dados, nuvem ou rastreamento individual.
+**Segmento de cliente**
 
-Parte-se do pressuposto técnico de que cada HC-SR04 fornece apenas medições de distância usadas para detectar uma passagem, sem produzir imagem, áudio ou qualquer identificador da pessoa. Também se pressupõe que o firmware mantém somente a contagem agregada necessária ao funcionamento imediato e não grava histórico na memória EEPROM ou em outro meio persistente. Nessas condições, as informações do fluxo principal não se relacionam a uma pessoa natural identificada ou identificável e, portanto, não caracterizam dados pessoais para os fins da LGPD. Essa conclusão decorre dos conceitos de dado pessoal e dado anonimizado previstos nos arts. 5º e 12 da Lei nº 13.709/2018 [1]. Caso qualquer um desses pressupostos deixe de ser verdadeiro, a análise deverá ser refeita antes do teste ou da implantação.
+O cliente considerado no Canvas é o gestor de SSMA da fábrica de Cubatão, representado pela proto-persona Tuco Salamanca (seção 3.2). Seu perfil reúne necessidades de coordenação da resposta e de conferência da evacuação junto ao CCO e à brigada. As atribuições e permissões específicas devem seguir os procedimentos do parceiro; a proto-persona não constitui comprovação individual dessas responsabilidades.
+
+**Perfil do cliente**
+
+_Tarefas_
+
+- Coordenar a resposta à emergência junto com o Centro de Controle Operacional (CCO);
+- Apurar as presenças e as pendências nos pontos de encontro dentro do prazo interno de dez minutos após o alarme;
+- Decidir se e para onde a brigada deve ser enviada para busca e resgate;
+- Elaborar e revisar o Plano de Ação de Emergência (PAE);
+- Acompanhar os indicadores de SSMA da unidade.
+
+_Dores_
+
+- Depender de contagem visual e de chamada em papel nos pontos de encontro;
+- Não saber com precisão se ainda existem colaboradores ou terceiros em zonas de risco;
+- Perder registro de quem passa, porque as catracas são liberadas durante a emergência;
+- Trabalhar com listas impressas que não refletem visitantes, terceiros com crachá provisório e trocas de turno do dia;
+- Ter a chamada atrapalhada pelo barulho das sirenes e dos equipamentos;
+- Lidar com pessoas que vão para um ponto de encontro diferente do previsto, por causa da direção do vento, o que gera falsas ausências em um ponto e contagens duplicadas em outro;
+- Perder minutos para direcionar a brigada enquanto os dados da evacuação ainda estão sendo consolidados;
+- Expor os brigadistas a buscas em áreas de risco sem saber onde procurar, ou procurando pessoas que já saíram.
+
+_Ganhos_
+
+- Consultar um painel com contagens consolidadas e pendências claramente diferenciadas de confirmações individuais;
+- Saber quantas pessoas ainda precisam de conferência e reunir informações complementares para orientar a resposta;
+- Dispor de informação útil dentro do prazo de dez minutos, inclusive quando a conferência estiver incompleta;
+- Apoiar o direcionamento da brigada com dados verificados e informações de campo;
+- Ter o registro da evacuação com horários, para relatórios pós-incidente e para melhorar o PAE;
+- Trabalhar com a mesma informação que o CCO, em tempo real.
+
+**Mapa de valor**
+
+A proposta de valor é agilizar a apuração quantitativa nos pontos de encontro e, na evolução integrada, consolidá-la para apoiar as decisões de SSMA/CCO dentro do prazo interno de dez minutos. A solução complementa a conferência humana: contagem anônima não substitui confirmação nominal, não localiza ausentes e não autoriza concluir a emergência automaticamente.
+
+_Produtos e serviços_
+
+- **Sprint 1:** protótipo simulado com sensores dedicados de entrada e saída, total local no LCD, buzzer por detecção e botão que alterna LEDs sem pausar a contagem. O LED não confirma uma chegada individual;
+- **Planejado:** população de referência das portarias P1/P2, reconciliada e congelada no alarme;
+- **Planejado:** dispositivos conectados e painel de CCO/SSMA com ocupação por ponto, saldo quantitativo pendente, tempo desde o alarme e alertas;
+- **Planejado:** histórico dos eventos de contagem com horários. Eventual consulta aos crachás e às últimas áreas registradas será avaliada separadamente.
+
+_Aliviadores de dor_
+
+- **Sprint 1:** o total local é atualizado por detecções simuladas, reduzindo a necessidade de somar manualmente cada evento no ensaio;
+- **Sprint 1:** o bloqueio de repetição e o descarte de eco inválido evitam alguns registros espúrios; permanecem limitações de fluxo e possíveis perdas, conforme a matriz de riscos;
+- **Sprint 1:** o LCD oferece leitura visual do saldo, enquanto o buzzer sinaliza detecção; a legibilidade e a audibilidade em campo ainda precisam ser testadas;
+- **Planejado:** a referência congelada preservará a base quantitativa do início do alarme, desde que os registros de acesso estejam completos e reconciliados, inclusive para terceiros e visitantes;
+- **Planejado:** a consolidação somará a ocupação dos PEs designados, com entradas e saídas, apoiando a reconciliação de transferências sem prometer eliminar erros;
+- **Planejado:** o painel indicará pendência ou dados inconclusivos aos dez minutos e apoiará a conferência e o acionamento da brigada conforme o procedimento do parceiro.
+
+_Criadores de ganho_
+
+- **Sprint 1:** saldo local visível e cenários reproduzíveis para estudar contagem e falhas, sem identificação pessoal no fluxo;
+- **Planejado:** visão compartilhada da ocupação estimada por PE e da atualização dos dispositivos, facilitando a comunicação entre CCO e SSMA;
+- **Planejado:** cronômetro e alerta no prazo interno para apoiar decisões, sem promessa de que toda a evacuação será concluída nesse intervalo;
+- **Planejado:** histórico para analisar simulados e revisar procedimentos, com metas de desempenho medidas em etapas posteriores;
+- **Possibilidade a avaliar:** consulta autorizada aos registros de acesso como contexto complementar. Última área registrada ou setor de trabalho não equivale à localização atual de uma pessoa pendente;
+- **Limite permanente:** saldo zero representa convergência numérica e exige conferência. Não dispensa automaticamente busca, brigada ou confirmação nominal.
+
+**Encaixe entre o perfil e o mapa de valor**
+
+A entrega atual se relaciona à necessidade de apuração quantitativa por meio de RF001 e CT02/CT04, à sinalização local por RF014 e CT01/CT06 e ao tratamento de repetição e leitura inválida por RF015 e CT03/CT05/CT09/CT10. A consolidação remota e os alertas dependem de RF003–RF010 e RF016, ainda planejados. A solução busca reduzir esforço e incerteza, mas esses ganhos ainda precisam ser medidos. Nem o saldo anônimo nem uma eventual lista de pessoas presentes no alarme permitem identificar, por subtração, quem falta ou localizar ausentes. A conferência individual e as informações de campo permanecem necessárias.
+
+### 3.1.5. Matriz de Riscos
+
+A matriz considera o protótipo de contagem local da Sprint 1 e as dependências de sua eventual evolução. Chaveiros, acelerômetros, triangulação por antenas e rede mesh não fazem parte da solução confirmada. Os riscos abaixo foram revistos a partir do firmware, do circuito e dos testes registrados, sem atribuir ocorrências em campo que não foram observadas.
+
+#### Critérios de classificação
+
+Probabilidade e impacto usam escala ordinal de 1 a 5. A probabilidade é uma estimativa qualitativa da equipe, não frequência medida: muito baixa (1), baixa (2), média (3), alta (4) e muito alta (5). O impacto sobre a validade da contagem e da entrega é muito baixo (1, ajuste editorial), baixo (2, ajuste local), moderado (3, retrabalho), alto (4, resultado ou entrega comprometidos) e muito alto (5, informação capaz de induzir decisão insegura se usada fora do ensaio). A prioridade `P × I` é baixa de 1 a 4, média de 5 a 9, alta de 10 a 15 e crítica de 16 a 25. Não representa uma análise formal de segurança industrial.
+
+<p align="center">Quadro 1 – Ameaças ao projeto e respostas planejadas</p>
+
+| ID  | Evento e escopo                                                                            |   P |   I | Prioridade  | Justificativa e resposta planejada                                                                                                                                                                | Responsável proposto / verificação                   |
+| --- | ------------------------------------------------------------------------------------------ | --: | --: | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| R01 | Perda de passagens próximas ou em sentidos opostos — atual                                 |   4 |   5 | 20, crítica | O bloqueio é compartilhado e exige 1 s livre; CT09 mostra saída ignorada. Medir vazão e ensaiar duplas, respeitando a evasão; rever lógica antes de uso físico.                                   | Firmware e testes / campanha da seção 3.4.1.1        |
+| R02 | Saldo divergente por saída sem entrada inicial, reinício ou passagem não detectada — atual |   4 |   4 | 16, crítica | O total começa em zero e não persiste; CT07 mascara saldo negativo. Reconciliar a ocupação e registrar reinícios/erros.                                                                           | Testes / CT07 e ensaio de reinicialização planejado  |
+| R03 | Eco ausente ou sensor desconectado parecer ausência de pessoas — atual                     |   3 |   5 | 15, alta    | CT10 descarta a leitura, mas não identifica falha nem alerta o operador. Planejar diagnóstico e conferência manual.                                                                               | Firmware / CT10; RF009 futuro                        |
+| R04 | Igualdade de totais ser tomada como confirmação nominal — atual e futuro                   |   3 |   5 | 15, alta    | Contagem anônima não identifica ausentes nem detecta erros compensados. Explicitar limites na interface e manter conferência da SSMA.                                                             | Negócios e UX / RN07, RN09                           |
+| R05 | Montagem física incompatível com diagrama/BOM — transição à bancada                        |   4 |   4 | 16, crítica | Foram identificados alimentação invertida do sensor de entrada, protoboard cotada menor que a simulada e buzzer a conferir. Corrigir circuito, recotar itens e conferir pinos antes de energizar. | Hardware / checklist elétrico e nova simulação       |
+| R06 | Botão e LEDs serem interpretados como alarme, pausa ou indicação de segurança — atual      |   3 |   4 | 12, alta    | O botão só alterna LEDs. Rotular a demonstração e verificar entendimento com os usuários.                                                                                                         | UX / RF014, CT06                                     |
+| R07 | Ruído acústico, geometria ou múltiplas pessoas invalidarem a detecção — bancada futura     |   3 |   5 | 15, alta    | O Wokwi não comprova cobertura física nem discriminação humana. Ensaiar posição, reflexões e fluxo; revisar sensores se necessário.                                                               | Hardware e testes / seção 3.3.8                      |
+| R08 | População B incorreta ou ausência de integração com portarias — futuro                     |   3 |   5 | 15, alta    | Sem referência válida, D não permite estimar pendências. Validar origem, congelamento e reconciliação de B.                                                                                       | Integração e SSMA / RF003, RF004                     |
+| R09 | Rede indisponível ou retransmissão distorcer consolidação — futuro                         |   3 |   4 | 12, alta    | Comunicação não existe na Sprint 1. Planejar conectividade explícita, mensagens identificadas e estado de desatualização.                                                                         | Integração / RF010, RF016                            |
+| R10 | Expansão introduzir dados pessoais sem política adequada — futuro                          |   3 |   4 | 12, alta    | Conta de usuário e eventual crachá mudam o tratamento. Revisar agentes, finalidade, base legal, retenção e acesso antes da coleta.                                                                | Gestão e privacidade / RF011, RF013                  |
+| R11 | Extrapolação de bancada para instalação industrial inadequada — futuro                     |   3 |   5 | 15, alta    | Não há validação de alimentação, proteção ambiental, vazão ou classificação de área. Submeter a localização e os equipamentos à avaliação técnica do parceiro.                                    | Hardware e SSMA / seção 3.3.8                        |
+| R12 | Documentação, evidências e firmware divergirem — atual                                     |   4 |   4 | 16, crítica | A revisão encontrou RTM de outra lógica, links inexistentes e riscos de outra arquitetura. Manter baseline, revisar RF/RN/CT e repetir testes após alterações.                                    | Documentação e testes / RTM e conferência documental |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+#### Distribuição na matriz
+
+<div align="center">
+  <p>Figura 4 – Matriz de riscos do C.R.I.S.I.S</p>
+  <img src="../assets/MatrizDeRisco.png" alt="Matriz de ameaças R01 a R12 e oportunidades O01 a O03, por probabilidade e impacto em escala ordinal de 1 a 5" width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial, adaptada do modelo disponibilizado à turma.</sub></p>
+</div>
+
+A figura usa posições, sem codificação de prioridade por cor. Na metade das ameaças, o impacto cresce da esquerda para a direita; na metade das oportunidades, a ordem é espelhada. A escala ordinal evita apresentar estimativas qualitativas como probabilidades percentuais medidas. As prioridades e justificativas estão no quadro anterior.
+
+#### Oportunidades
+
+<p align="center">Quadro 2 – Oportunidades do projeto e ações propostas</p>
+
+| ID  | Evento positivo                                                         |   P |   I | Justificativa / ação proposta                                                                               |
+| --- | ----------------------------------------------------------------------- | --: | --: | ----------------------------------------------------------------------------------------------------------- |
+| O01 | Reuso dos casos simulados reduzir retrabalho em bancada                 |   4 |   3 | CT01–CT10 fornecem entradas e saídas; reproduzi-los no hardware físico e comparar os resultados.            |
+| O02 | Contagem agregada reduzir necessidade de dados pessoais                 |   4 |   4 | Não há identidade no fluxo atual; preservar essa minimização ao avaliar a consolidação remota.              |
+| O03 | Retorno de SSMA/CCO melhorar a legibilidade e o processo de conferência |   3 |   4 | As proto-personas ainda precisam de validação; apresentar LCD e limites antes de especificar telas futuras. |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+As oportunidades usam a mesma escala com impacto entendido como benefício: O01 em (P4,I3), O02 em (P4,I4) e O03 em (P3,I4). Sua distribuição é separada das ameaças para não confundir benefício com severidade. Os responsáveis são papéis propostos, sujeitos à divisão de tarefas do grupo. As prioridades imediatas são R01, R02, R05 e R12; as demais serão reavaliadas a cada sprint. Nenhuma resposta planejada deve ser interpretada como mitigação já testada.
+
+### 3.1.6. Política de privacidade do projeto (Sprint 1)
+
+Esta política preliminar considera exclusivamente o escopo do MVP definido até o momento: um protótipo de bancada com Arduino Uno, dois sensores ultrassônicos HC-SR04 para contar separadamente entradas e saídas, display LCD 16 × 2 para apresentar o total, botão para alternar a sinalização verde/vermelha sem pausar a contagem, LEDs verde e vermelho e buzzer para sinalização. Não fazem parte deste escopo cadastro de pessoas, crachá ou RFID, câmera, biometria, painel web, conexão de rede, banco de dados, nuvem ou rastreamento individual.
+
+Parte-se do pressuposto técnico de que cada HC-SR04 fornece apenas medições de distância usadas para detectar uma passagem, sem produzir imagem, áudio ou qualquer identificador da pessoa. Também se pressupõe que o firmware mantém somente a contagem agregada necessária ao funcionamento imediato e não grava histórico na memória EEPROM ou em outro meio persistente. Nessas condições, as informações do fluxo principal não se relacionam a uma pessoa natural identificada ou identificável e, portanto, não caracterizam dados pessoais para os fins da LGPD. Essa conclusão decorre dos conceitos de dado pessoal e dado anonimizado previstos nos arts. 5º e 12 da Lei nº 13.709/2018 (Brasil, 2018). Caso qualquer um desses pressupostos deixe de ser verdadeiro, a análise deverá ser refeita antes do teste ou da implantação.
 
 #### 3.1.6.1 Informações gerais sobre a empresa / organização
 
-O projeto é desenvolvido pelo Inteli em parceria com a Unipar, denominação que abrange a Unipar Carbocloro S.A. e suas sociedades controladas diretas e indiretas, conforme o Aviso de Privacidade da empresa [3]. O MVP tem finalidade acadêmica e busca validar a lógica de contagem agregada de entradas e saídas e a sinalização local do protótipo; ele não representa, nesta etapa, um sistema industrial pronto para operação.
+O projeto é desenvolvido pelo Inteli em parceria com a Unipar, denominação que abrange a Unipar Carbocloro S.A. e suas sociedades controladas diretas e indiretas, conforme o Aviso de Privacidade da empresa (Unipar, [s. d.]a). O MVP tem finalidade acadêmica e busca validar a lógica de contagem agregada de entradas e saídas e a sinalização local do protótipo; ele não representa, nesta etapa, um sistema industrial pronto para operação.
 
-Como o fluxo descrito não trata dados pessoais, não há, para ele, a atribuição de papéis de controlador e operador. Se uma evolução passar a coletar informações identificáveis, a entidade da Unipar responsável pelas decisões sobre esse tratamento deverá ser indicada como controladora, e a participação do Inteli ou de terceiros deverá ser avaliada e documentada conforme as atividades efetivamente desempenhadas e as orientações da ANPD [2].
+Como o fluxo descrito não trata dados pessoais, não há, para ele, a atribuição de papéis de controlador e operador. Se uma evolução passar a coletar informações identificáveis, a entidade da Unipar responsável pelas decisões sobre esse tratamento deverá ser indicada como controladora, e a participação do Inteli ou de terceiros deverá ser avaliada e documentada conforme as atividades efetivamente desempenhadas e as orientações da ANPD (ANPD, 2022).
 
 #### 3.1.6.2 Informações sobre o tratamento de dados
 
-Os sensores detectam passagens em dois pontos distintos. A sequência das detecções permite ao Arduino aumentar ou diminuir um contador agregado, cujo valor é exibido no LCD. O botão alterna o estado do protótipo entre os modos normal e emergência, os LEDs indicam o modo ativo e o buzzer fornece aviso sonoro durante as contagens. O sistema não identifica quem passou, não cria um registro por pessoa e não confirma a localização ou a situação individual de ninguém.
+Os sensores detectam passagens em dois pontos distintos. O sensor dedicado acionado determina se o Arduino aumenta ou diminui um contador agregado, cujo valor é exibido no LCD. O botão alterna a sinalização verde/vermelha sem abrir evento de emergência, os LEDs indicam o estado selecionado e o buzzer fornece aviso sonoro durante as contagens. O sistema não identifica quem passou, não cria um registro por pessoa e não confirma a localização ou a situação individual de ninguém.
 
 A avaliação desta política depende dos seguintes pressupostos:
 
@@ -252,16 +440,16 @@ Se o protótipo for utilizado em local ou configuração que permita combinar o 
 O MVP processa somente dados operacionais do circuito:
 
 - medições de distância e pulsos de detecção gerados pelos dois sensores;
-- indicação de entrada ou saída derivada da sequência das detecções;
+- indicação de entrada ou saída determinada pelo sensor dedicado acionado;
 - quantidade agregada calculada pelo Arduino;
-- estado selecionado pelo botão, normal ou emergência;
+- estado visual selecionado pelo botão, verde ou vermelho;
 - estados dos LEDs, do display e do buzzer.
 
 Não são coletados nome, matrícula, CPF, RG, imagem, voz, biometria, dado de saúde, localização individual, identificador de crachá ou dispositivo, endereço IP ou credencial de acesso. Pelos pressupostos apresentados, as medições e a contagem agregada não permitem identificar as pessoas detectadas e não constituem dados pessoais. Também não se deve registrar manualmente informações que permitam associar as contagens a indivíduos durante os testes.
 
 #### 3.1.6.4 Onde os dados são coletados
 
-As medições são geradas localmente no campo de alcance dos dois sensores instalados no protótipo de bancada, simulando um ponto de entrada e um ponto de saída. Como a documentação de escopo disponível não define unidade industrial, porta ou área real de instalação, pressupõe-se que os testes desta etapa ocorrerão apenas em ambiente acadêmico controlado. A escolha de um local real de operação está fora do escopo atual e exigirá nova avaliação, inclusive sobre a possibilidade de identificação indireta das pessoas.
+As medições são geradas localmente no campo de alcance dos dois sensores instalados no protótipo de bancada, simulando um ponto de entrada e um ponto de saída. O contexto de negócio é a unidade de Cubatão, mas nenhum acesso real foi homologado: os testes desta etapa são simulados e a montagem física ficará em ambiente acadêmico controlado. A escolha de um local real de operação está fora do escopo atual e exigirá nova avaliação, inclusive sobre a possibilidade de identificação indireta das pessoas.
 
 #### 3.1.6.5 Para quais finalidades os dados serão utilizados
 
@@ -278,21 +466,21 @@ O protótipo não deve ser usado para identificar pessoas, controlar acesso, reg
 
 O escopo atual não inclui banco de dados, cartão de memória, serviço de nuvem ou conexão de rede. Assim, as medições são processadas localmente e de forma transitória pelo Arduino; apenas o valor corrente do contador e o estado do sistema permanecem na memória necessária à execução e são apresentados no LCD.
 
-Pressupõe-se que o firmware não grave a contagem na EEPROM do Arduino. Esse comportamento deverá ser confirmado na revisão do código. Caso exista gravação persistente, o documento deverá informar o conteúdo gravado, a finalidade, o prazo e o procedimento de exclusão. O repositório poderá conter código-fonte e resultados agregados dos testes, mas não deve receber nomes, imagens, listas de presença, credenciais ou qualquer outro dado pessoal.
+A inspeção de `sketch.ino` nesta revisão não encontrou gravação em EEPROM, arquivos ou rede. O código emite mensagens no monitor serial, que podem aparecer nas capturas acadêmicas; isso não constitui histórico persistente implementado no dispositivo. Qualquer gravação futura exigirá especificar conteúdo, finalidade, prazo e exclusão. As evidências de teste devem conter apenas código, circuito e resultados simulados, sem dados pessoais de participantes, listas de presença ou credenciais. Os nomes e links profissionais dos autores no README são créditos acadêmicos separados do fluxo de contagem; sua publicação deve ser validada pela equipe.
 
 #### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)
 
 Cada medição de distância é descartada após ser usada no cálculo da detecção. A contagem agregada e o modo selecionado permanecem somente enquanto o protótipo está ligado ou até que o sistema seja reiniciado, conforme o pressuposto de ausência de gravação persistente. Portanto, não há prazo de retenção de dados pessoais a definir para o fluxo atual.
 
-Resultados agregados, como número de acertos, falhas e contagens simuladas, podem ser mantidos no repositório pelo período necessário à avaliação acadêmica, pois não identificam participantes. Se os testes passarem a registrar horário detalhado, vídeo ou qualquer elemento que permita reconhecer alguém, deverá ser definida previamente uma tabela de retenção e descarte conforme a finalidade e a LGPD [1].
+Resultados agregados, como número de acertos, falhas e contagens simuladas, podem ser mantidos no repositório pelo período necessário à avaliação acadêmica, pois não identificam participantes. Se os testes passarem a registrar horário detalhado, vídeo ou qualquer elemento que permita reconhecer alguém, deverá ser definida previamente uma tabela de retenção e descarte conforme a finalidade e a LGPD (Brasil, 2018).
 
 #### 3.1.6.8 Uso de cookies e/ou tecnologias semelhantes
 
-O MVP não possui site, aplicativo, painel web ou conexão com a internet. Por isso, não utiliza cookies, armazenamento local de navegador, ferramentas de análise ou tecnologias semelhantes. A futura inclusão de uma interface conectada estará fora deste escopo e exigirá atualização desta política antes da coleta.
+O firmware do MVP não possui site, painel web ou conexão com a internet e não utiliza cookies. O Wokwi e o GitLab são serviços externos usados para desenvolvimento e publicação; contas, IPs, cookies e registros de uso dessas plataformas são tratados conforme suas próprias políticas, separadamente do fluxo do circuito. A presente política não afirma ausência de tratamento pelas plataformas. A futura inclusão de uma interface conectada estará fora deste escopo e exigirá atualização desta política antes da coleta.
 
 #### 3.1.6.9 Com quem esses dados são compartilhados (parceiros, fornecedores, subcontratados)
 
-Não há compartilhamento de dados pessoais, pois o protótipo não os coleta. A equipe do Inteli, os avaliadores acadêmicos e os representantes da Unipar poderão acessar o valor agregado exibido e os resultados técnicos dos testes. O escopo não prevê fornecedores de nuvem, conectividade, banco de dados ou análise de dados.
+Não há compartilhamento de dados pessoais, pois o protótipo não os coleta. A equipe do Inteli, os avaliadores acadêmicos e os representantes da Unipar poderão acessar o valor agregado exibido e os resultados técnicos dos testes. O circuito não envia telemetria a fornecedores. Código e capturas simuladas são disponibilizados pelo Wokwi e pelo repositório GitLab, conforme as permissões desses serviços; o compartilhamento de evidências deve excluir dados identificáveis de participantes.
 
 Se uma evolução depender de terceiro ou de integração corporativa e envolver dados pessoais, os participantes e suas responsabilidades deverão ser identificados antes do tratamento, com regras de finalidade, acesso, segurança, retenção e exclusão.
 
@@ -308,17 +496,17 @@ Embora o fluxo atual não contenha dados pessoais, o projeto adota minimização
 - reiniciar o contador e apagar arquivos auxiliares quando deixarem de ser necessários;
 - utilizar apenas resultados agregados nas evidências acadêmicas.
 
-Essas medidas reduzem o risco de uma mudança informal transformar a contagem anônima em acompanhamento individual. Se houver tratamento futuro de dados pessoais, deverão ser adotadas medidas técnicas e administrativas proporcionais ao risco, em conformidade com os arts. 46 a 49 da LGPD e com as orientações da ANPD [1][4].
+Essas medidas reduzem o risco de uma mudança informal transformar a contagem anônima em acompanhamento individual. Se houver tratamento futuro de dados pessoais, deverão ser adotadas medidas técnicas e administrativas proporcionais ao risco, em conformidade com os arts. 46 a 49 da LGPD e com as orientações da ANPD (ANPD, 2021; Brasil, 2018).
 
 #### 3.1.6.11 Orientações sobre como a empresa/organização atende aos direitos dos usuários
 
 Como o contador não registra nem identifica pessoas, a equipe não consegue localizar, consultar, corrigir ou excluir uma passagem atribuída a determinado indivíduo. Também não há decisão automatizada que produza efeito sobre uma pessoa. Isso não impede que alguém peça esclarecimentos sobre o funcionamento do protótipo ou informe suspeita de coleta indevida.
 
-Se o escopo passar a envolver dados pessoais, a organização responsável deverá assegurar os direitos previstos no art. 18 da LGPD, incluindo confirmação, acesso, correção, informação sobre compartilhamento e, quando aplicável, anonimização, bloqueio, portabilidade, oposição ou eliminação [1][5].
+Se o escopo passar a envolver dados pessoais, a organização responsável deverá assegurar os direitos previstos no art. 18 da LGPD, incluindo confirmação, acesso, correção, informação sobre compartilhamento e, quando aplicável, anonimização, bloqueio, portabilidade, oposição ou eliminação (ANPD, [s. d.]; Brasil, 2018).
 
 #### 3.1.6.12 Informações sobre como o titular de dados pode solicitar e exercer os seus direitos
 
-Uma pessoa que queira esclarecer o uso do protótipo ou suspeite que houve coleta de dado pessoal poderá contatar o encarregado da Unipar pelo e-mail **lgpd-encarregado@unipar.com**, canal divulgado no Aviso de Privacidade da empresa [3]. O pedido deve indicar o contexto do teste e a dúvida ou o direito que se pretende exercer. Como a solução atual mantém apenas uma contagem anônima, pode não existir registro que permita vincular uma passagem ao solicitante; essa limitação deverá ser explicada com clareza na resposta.
+Uma pessoa que queira esclarecer o uso do protótipo ou suspeite que houve coleta de dado pessoal poderá contatar o encarregado da Unipar pelo e-mail **lgpd-encarregado@unipar.com**, canal divulgado no Aviso de Privacidade da empresa (Unipar, [s. d.]a). O pedido deve indicar o contexto do teste e a dúvida ou o direito que se pretende exercer. Como a solução atual mantém apenas uma contagem anônima, pode não existir registro que permita vincular uma passagem ao solicitante; essa limitação deverá ser explicada com clareza na resposta.
 
 #### 3.1.6.13 Informações de contato do Data Protection Officer (DPO) ou encarregado de proteção de dados da organização
 
@@ -327,18 +515,17 @@ O canal oficial publicado pela Unipar para contato com seu Encarregado de Prote�
 - **E-mail:** lgpd-encarregado@unipar.com
 - **Aviso de Privacidade:** <https://unipar.com/aviso-de-privacidade>
 
-O nome da pessoa que exerce a função não é apresentado no aviso público consultado; por isso, registra-se somente o canal institucional confirmado [3].
+O nome da pessoa que exerce a função não é apresentado no aviso público consultado; por isso, registra-se somente o canal institucional confirmado (Unipar, [s. d.]a).
 
-Esta política deverá ser revisada antes de qualquer alteração que inclua identificação por crachá ou RFID, cadastro, câmera, áudio, biometria, registro individual de horário ou localização, integração com sistemas corporativos, painel conectado, banco de dados, nuvem ou armazenamento persistente. Esses recursos não estão previstos no MVP analisado e não podem ser tratados como se já fizessem parte da solução.
+Esta política deverá ser revisada antes de qualquer alteração que inclua identificação por crachá ou RFID, cadastro, câmera, áudio, biometria, registro individual de horário ou localização, integração com sistemas corporativos, painel conectado, banco de dados, nuvem ou armazenamento persistente. Esses recursos não estão previstos no MVP analisado e não podem ser tratados como se já fizessem parte da entrega da Sprint 1. O contato institucional da Unipar foi conferido no aviso público nesta revisão; ele não comprova a designação do encarregado para tratamentos acadêmicos do Inteli, cuja responsabilidade deverá ser definida se houver pesquisa identificável.
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
 
-A Bill of Materials (BOM) apresenta os componentes necessários para a montagem do protótipo físico do MVP. O levantamento reúne os itens de processamento, sensoriamento, interação, sinalização, visualização e interconexão utilizados no circuito, permitindo a rastreabilidade dos materiais e apoiando o planejamento de aquisição.
+A Bill of Materials (BOM) apresenta o levantamento de materiais para uma montagem de bancada baseada no protótipo simulado da Sprint 1. Não é uma lista de equipamentos industriais homologados. A revisão documental não altera o circuito nem o firmware; as decisões de montagem serão verificadas pela equipe antes da etapa física.
 
-Esta BOM considera **uma unidade** do protótipo ilustrado, composta por Arduino Uno, dois sensores ultrassônicos, elementos de sinalização visual e sonora, display LCD, botão para alternância entre os modos normal e emergência, e materiais de montagem. Os valores foram levantados em fornecedores brasileiros para apoiar uma estimativa inicial de custo; eles não incluem frete, impostos adicionais ou materiais de reposição.
+Esta BOM considera **uma unidade** do protótipo ilustrado, com Arduino Uno, dois sensores ultrassônicos, sinalização visual e sonora, display LCD, botão para alternância dos LEDs e materiais de montagem. Os preços abaixo são do levantamento original da equipe, sujeitos a atualização; não incluem frete, impostos adicionais ou reposição. O quadro preserva esse levantamento, enquanto a reconciliação logo abaixo identifica os itens que precisam ser especificados e recotados. Seu total não deve ser usado como orçamento fechado de aquisição.
 
-<div align="center">
-<p>Quadro X — Bill of Materials do MVP</p>
+<p align="center">Tabela 1 – Levantamento inicial de materiais e preços do protótipo da Sprint 1</p>
 
 | Categoria                 | Quantidade | Referência do componente no protótipo/PCI                      | Código do componente (fabricante)                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Valor do componente (R$) |
 | ------------------------- | ---------: | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -356,22 +543,40 @@ Esta BOM considera **uma unidade** do protótipo ilustrado, composta por Arduino
 | Interconexão              |   16 ou 20 | Jumpers macho-macho                                            | Alternativa A: 16 unidades com 4 jumpers macho-fêmea; alternativa B: 20 unidades, caso todos os módulos sejam conectados pela protoboard |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      R$0,42 (unidade); Alternativa A: R$6,72; Alternativa B: R$8,40; ambos em [Mercado Livre](https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281) |
 | **Total estimado do MVP** |            |                                                                |                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   **Alternativa A: R$133,46; Alternativa B: R$130,94** |
 
-<p>Fonte: elaboração dos autores (2026).</p>
-</div>
+<p><sub>Fonte: elaboração dos autores (2026), com base nas cotações de Eletrogate ([s. d.]a, [s. d.]b, [s. d.]c, [s. d.]d), Mercado Livre ([s. d.]a, [s. d.]b, [s. d.]c, [s. d.]d, [s. d.]e, [s. d.]f, [s. d.]g) e Saravati ([s. d.]).</sub></p>
 
-> Observação: Todos os links de compra dos componentes foram acessados em 20/10/2026. Os preços e a disponibilidade podem variar em função do tempo.
+> **Origem dos valores:** datas de consulta e preços foram informados no levantamento original, com referências de 20 a 22/10/2026. Não representam nova cotação nesta revisão. Os valores unitários rateados de kits não equivalem necessariamente ao desembolso para comprar os kits completos.
 
 A coluna <i>Categoria</i> identifica a função do item no protótipo, enquanto <i>Quantidade</i> registra o número de unidades necessárias. A <i>Referência</i> descreve o componente empregado no circuito, e o <i>Código do componente</i> apresenta o modelo ou a especificação adotada. A coluna <i>Valor do componente</i> registra o valor estimado e disponibiliza o respectivo link de consulta. Nos itens vendidos por unidade, o custo total foi calculado pela multiplicação do valor unitário pela quantidade indicada.
 
-O custo estimado da alternativa A é de R$ 133,46, considerando quatro jumpers macho-fêmea para o display LCD I²C e dezesseis jumpers macho-macho para as demais conexões. Na alternativa B, o custo estimado é de R$ 130,94, utilizando somente vinte jumpers macho-macho, caso todos os módulos possam ser conectados pela protoboard. Ambos os totais incluem uma pilha CR2023 de 3 V. A alternativa B é R$ 2,52 mais econômica e reduz a variedade de cabos necessária; contudo, a escolha deve respeitar o tipo de terminal presente nos componentes físicos.
+**Reconciliação com o protótipo e correções para a próxima cotação**
+
+<p align="center">Quadro 3 – Reconciliação dos materiais e pontos de revisão para as próximas sprints</p>
+
+| Item / referência no diagrama             | Quantidade | Especificação a considerar                                                                                                            | Situação do orçamento                                                                                                      |
+| ----------------------------------------- | ---------: | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Processamento — uno                       |          1 | Placa compatível com Arduino Uno R3; confirmar se a oferta inclui a placa e o cabo, pois o título do link original menciona cabo USB. | R$ 39,54 é referência histórica; confirmar conteúdo do anúncio.                                                            |
+| Sensoriamento — ultrasonic1 e ultrasonic2 |          2 | HC-SR04, um dedicado à saída e outro à entrada.                                                                                       | R$ 15,00 por unidade; subtotal histórico R$ 30,00.                                                                         |
+| Interação — btn1                          |          1 | Botão momentâneo; muda a sinalização, sem pausar a contagem.                                                                          | R$ 1,21 por unidade rateada; conferir lote mínimo.                                                                         |
+| Sinalização — led1 e led2                 |          2 | Um LED vermelho e um verde.                                                                                                           | R$ 0,15 por unidade; subtotal histórico R$ 0,30.                                                                           |
+| Sinalização sonora — bz1                  |          1 | Transdutor compatível com frequência controlada pelo firmware; avaliar buzzer passivo e corrente necessária antes da montagem.        | O preço de R$ 2,90 refere-se ao buzzer ativo do levantamento; não comprova equivalência ao simulado. Recotar após revisão. |
+| Visualização — lcd1                       |          1 | LCD 16 × 2 com interface I²C e endereço compatível com o firmware.                                                                    | R$ 25,55 no levantamento original.                                                                                         |
+| Resistores — r1 e r2                      |          2 | 1 kΩ, 1/4 W, tolerância de 5%; a tensão de alimentação não é o valor do resistor.                                                     | R$ 0,12 por unidade; subtotal R$ 0,24.                                                                                     |
+| Montagem — bb1                            |          1 | Protoboard que comporte o layout ilustrado, a conferir como modelo de 830 pontos.                                                     | O link de 400 pontos não reproduz a disposição atual. Recotar.                                                             |
+| Interconexão                              |         20 | Alternativa A: 16 macho-macho e 4 macho-fêmea; alternativa B: 20 macho-macho, dependendo dos terminais e da montagem final.           | A: R$ 10,92; B: R$ 8,40, por rateio histórico.                                                                             |
+| Alimentação/programação                   | 1 conjunto | Cabo USB compatível e alimentação de bancada adequada ao Uno e periféricos; confirmar cabo incluído na placa e fonte disponível.      | Custo não confirmado separadamente; não assumir item gratuito.                                                             |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+Os totais originais de R$ 133,46 (A) e R$ 130,94 (B) incluem R$ 13,90 de pilha que não integra o circuito. Sua exclusão resulta em **subtotais históricos de R$ 119,56 (A) e R$ 117,04 (B)**. Esses valores ainda precisam incorporar as correções da placa/cabo, protoboard, buzzer e alimentação, além do custo efetivo dos kits. A diferença histórica entre as alternativas de jumpers é R$ 2,52. Portanto, o **custo total de uma montagem física validada permanece a confirmar**, sem substituir preços ausentes por zero.
 
 No protótipo, o Arduino Uno realiza o processamento das entradas e controla as saídas. Dois sensores ultrassônicos HC-SR04 identificam separadamente a entrada e a saída de pessoas, e o total é apresentado no display LCD 16 × 2 conectado por I²C. O botão alterna a sinalização entre os LEDs verde e vermelho, enquanto o buzzer fornece o aviso sonoro das contagens. Os dois resistores de 1 kΩ limitam a corrente dos LEDs. A protoboard e os jumpers viabilizam a montagem e as conexões do circuito sem a necessidade de solda.
 
-A pilha CR2023 de 3 V foi incluída na BOM como item de alimentação planejado, porém ainda não foi implementada no protótipo apresentado.
+A referência correta do anúncio da pilha é **CR2032**, e não CR2023. Ela foi uma hipótese do levantamento inicial, não foi implementada e não constitui alimentação validada para o conjunto Uno e periféricos. Fica excluída da montagem de referência e dos subtotais reconciliados. Qualquer solução de autonomia será dimensionada em etapa futura.
 
 A lista apresentada é adequada ao protótipo de bancada, mas não caracteriza, por si só, uma solução pronta para uso no ambiente industrial. Para uma futura implantação, será necessário especificar itens adicionais, como gabinete de proteção, alimentação apropriada, conectores, cabeamento, fixação mecânica e componentes com grau de proteção compatível com as condições de operação da Unipar.
 
-Assim, a BOM consolida os materiais e as duas possibilidades de interconexão identificadas para a implementação do MVP. A versão final deverá validar as especificações ainda pendentes e confirmar a alternativa de jumpers que será utilizada antes da aquisição dos componentes.
+Assim, a BOM preserva o levantamento inicial, explicita suas correções e identifica os componentes do diagrama. Antes da aquisição, a equipe deverá consolidar a revisão elétrica, a opção de interconexão e as cotações no template de materiais da turma. Esta documentação não declara essa montagem física executada ou aprovada.
 
 ## 3.2. Domínio de Fundamentos de Experiência de Usuário
 
@@ -381,37 +586,37 @@ Esta seção apresenta as **proto-personas** que orientam a compreensão inicial
 
 O mapeamento inicial considera cinco grupos de partes interessadas: colaboradores, operadores do Centro de Controle Operacional (CCO), gestores de Segurança, Saúde e Meio Ambiente (SSMA), brigadistas e responsáveis por Infraestrutura e TI. Nesta seção, são detalhadas três personas primárias: Gustavo Fring, técnico de operação, representa a perspectiva de quem precisa evacuar e ter sua chegada reconhecida; Maria Schrader, operadora de CCO, reúne as necessidades de monitoramento operacional e comunicação durante uma ocorrência; e Tuco Salamanca, gestor de SSMA, representa a perspectiva de gestão da emergência e uso das informações consolidadas. Brigadistas e responsáveis por Infraestrutura e TI são considerados públicos secundários neste recorte, com participação na resposta em campo e no suporte tecnológico, mas ainda não possuem perfis detalhados nesta seção.
 
-Os três perfis apresentados — Gustavo Fring, Maria Schrader e Tuco Salamanca — são proto-personas, e não personas validadas. Nesta etapa, as referências a “personas” ao longo da seção devem ser entendidas nesse sentido preliminar. Seus dados biográficos e falas ilustrativas são fictícios e não devem ser interpretados como relatos de pessoas reais; as atribuições, os comportamentos e as necessidades descritos são parte hipóteses e parte informações obtidas por meio das reuniões de kick-off com os parceiros, a verificar com os profissionais da unidade. Entrevistas, reviews com os parceiros e validações com os públicos representados deverão orientar a revisão dos perfis e sua evolução para personas mais bem fundamentadas e validadas.
+Os três perfis apresentados — Gustavo Fring, Maria Schrader e Tuco Salamanca — são **proto-personas**. Não houve entrevistas com usuários. A equipe obteve informações em reuniões de kickoff e reviews, no TAPI, no estudo de caso e nos demais materiais de contexto do projeto. Esses insumos apoiam hipóteses sobre necessidades e responsabilidades; não equivalem à observação direta ou à validação dos perfis com os trabalhadores. As referências a “personas” nos títulos e nas imagens devem ser entendidas nesse sentido preliminar.
 
-#### 3.2.1.2. Persona - Técnico de Operação
+**Processo de construção:** a equipe reuniu os relatos e materiais disponíveis sobre evacuação, conferência e comunicação; organizou as necessidades por papel; e sintetizou três perfis em um template com apresentação, demografia, biografia, dores, necessidades, desejos, tarefas, cenários e letramento digital. Nomes, idades, famílias, hábitos e falas são elementos fictícios de representação. Informações específicas sobre rotinas, permissões e infraestrutura permanecem hipóteses quando não há registro que as sustente. A evolução dos perfis deverá incorporar o retorno das próximas reviews e, se viável, pesquisa direta com os públicos representados.
 
-A persona colaborador corresponde a todos os colaboradores e funcionários que trabalham dentro do complexo industrial de Cubatão da Unipar.
+**Uso de inteligência artificial:** as imagens foram produzidas com apoio do ChatGPT, conforme suas legendas. Nesta revisão, a IA também auxiliou a organização textual e a verificação de coerência com os requisitos e o protótipo. Não foram produzidas entrevistas, depoimentos reais ou evidências de validação por IA. O uso anterior de IA além do registrado nas legendas não está detalhado nos materiais disponíveis.
+
+**Relação com a entrega:** as imagens retratam necessidades e aspirações da solução completa, não uma lista de funcionalidades já entregues. Confirmação individual, localização, painel e pedidos de ajuda não são capacidades do contador da Sprint 1. Os cenários abaixo distinguem a rotina considerada, a interação com o protótipo e as possibilidades de integração futura.
+
+#### 3.2.1.1. Persona – Técnico de Operação
+
+A proto-persona Gustavo Fring, apresentada na Figura 5, representa necessidades iniciais de trabalhadores operacionais do complexo de Cubatão, sem pressupor que um único perfil descreva todos os vínculos, turnos e necessidades de acessibilidade.
 
 <div align="center">
-  <sub>Figura 02: Técnico de Operação</sub>
-    </div>
-      <div align="center">
-       <img src="/assets/personaGustavoFring.png">
-      </div>
-    <div align="center">
-  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+  <p>Figura 5 – Proto-persona Gustavo Fring, técnico de operação</p>
+  <img src="../assets/personaGustavoFring.png" alt="Proto-persona Gustavo Fring, técnico de operação; perfil fictício e necessidades da solução planejada" width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
 **Nome:** Gustavo Fring.
 
 **Dados demográficos**
 
-- Idade: 32 anos.
-- Ocupação: técnico de operação industrial.
-- Localização: Cubatão, São Paulo.
-- Escolaridade: técnico em Química.
-- Setor: operador de máquina industrial.
+Gustavo tem 32 anos, possui formação técnica em Química e atua como técnico de operação industrial em Cubatão, São Paulo. Suas atividades envolvem a operação de máquinas industriais.
 
 **Biografia**
 
-Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em uma zona diferente quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Chega ao trabalho com EPI e, tem como prioridade durante uma emergência, sair com segurança e saber que a equipe de resposta recebeu seu pedido de ajuda, caso precise.
+No perfil fictício, Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em outra zona quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Usa os EPIs exigidos e prioriza sair com segurança e conseguir comunicar a necessidade de ajuda pelos meios previstos no procedimento local.
 
-| Prioridade      | Dor ou necessidade                                                          | O que espera da solução(desejos)                                                                             |
+<p align="center">Quadro 4 – Dores e necessidades da proto-persona Gustavo Fring</p>
+
+| Prioridade      | Dor ou necessidade                                                          | O que espera da solução (desejos)                                                                            |
 | :-------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
 | **1 — Crítica** | Perceber o alarme e entender qual procedimento se aplica à área onde está.  | Em ambiente ruidoso, com EPI e sob pressão, depende do treinamento, da sinalização e das orientações locais. |
 | **2 — Crítica** | Encontrar uma saída segura se a rota habitual estiver indisponível.         | Precisa seguir a orientação da brigada e a sinalização existente, sem improvisar um caminho.                 |
@@ -419,20 +624,19 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
 | **4 — Alta**    | Ter sua chegada reconhecida no ponto de encontro.                           | Aguarda a chamada ou contagem manual, que pode demorar ou exigir nova conferência.                           |
 | **5 — Média**   | Lembrar o procedimento em áreas menos familiares e em diferentes turnos.    | Recorre aos treinamentos, à liderança local e à equipe de resposta.                                          |
 
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
 **Tarefas**
 
-- Opera os equipamentos e acompanha as condições da máquina e da área em que está trabalhando.
-- Realiza as atividades de inspeção e manutenção dos maquinários previstas para sua função.
-- Utiliza os EPIs exigidos e segue os procedimentos de segurança e as orientações da liderança.
-- Participa de treinamentos e simulados para reconhecer os alarmes, as rotas de saída e os pontos de encontro.
-- Em uma emergência, interrompe a atividade conforme o procedimento, segue a orientação da brigada e se desloca ao ponto de encontro.
-- Comunica a necessidade de ajuda pelos meios disponíveis e informa sua chegada para a conferência presencial.
+Gustavo opera equipamentos, acompanha as condições da máquina e da área de trabalho e realiza as inspeções e atividades de manutenção previstas para sua função. Utiliza os equipamentos de proteção individual (EPIs) exigidos e segue os procedimentos de segurança e as orientações da liderança. Também participa de treinamentos e simulados para reconhecer os alarmes, as rotas de saída e os pontos de encontro.
 
-**Cenários de interação atuais:** No início do turno, Gustavo Fring recebe orientações de segurança aplicáveis à sua atividade e utiliza o crachá de identificação e os EPIs exigidos para o local. Em um simulado, pratica as rotas e o deslocamento até o ponto de encontro. Em um alarme real, segue o procedimento da unidade e as orientações da brigada para evacuar a área afetada. Se não conseguir sair ou se alguém precisar de ajuda, busca contato pelos meios existentes. Ao chegar ao ponto de encontro, informa sua presença para a conferência manual por lista ou contagem. **Assim, atualmente não há um dispositivo individual de confirmação automática ou um aplicativo de evacuação em uso.**
+Em uma emergência, interrompe a atividade conforme o procedimento, segue a orientação da brigada e se desloca ao ponto de encontro. Quando necessário, comunica pedidos de ajuda pelos meios disponíveis e, ao chegar, informa sua presença para a conferência presencial.
+
+**Cenários de interação atuais:** no início do turno, Gustavo Fring recebe orientações de segurança aplicáveis à sua atividade e utiliza o crachá de identificação e os EPIs exigidos para o local. Em um simulado, pratica as rotas e o deslocamento até o ponto de encontro. Em um alarme real, segue o procedimento da unidade e as orientações da brigada para evacuar a área afetada. Se não conseguir sair ou se alguém precisar de ajuda, busca contato pelos meios existentes. Ao chegar ao ponto de encontro, informa sua presença para a conferência manual por lista ou contagem. **Assim, atualmente não há um dispositivo individual de confirmação automática ou um aplicativo de evacuação em uso.**
 
 **Interesses e hábitos relacionados ao processo:** Gustavo Fring valoriza procedimentos claros, sinalização compreensível, equipamentos de proteção adequados e treinamentos que se pareçam com a rotina real. Sua interação com a evacuação ocorre em orientações, simulados e eventuais alarmes; no cotidiano, está concentrado nas tarefas operacionais. Não consulta o painel de SSMA durante a evacuação, pois o painel digital faz parte da proposta do projeto, não da situação atual.
 
-**Nível de letramento digital:** Intermediário. Usa aplicativos comuns e ferramentas de trabalho, mas o processo de evacuação atual que foi documentado para o projeto depende principalmente de sinais físicos, instruções da equipe e confirmação presencial. Não se pressupõe uso de telefone pessoal em área operacional.
+**Nível de letramento digital:** Gustavo apresenta nível intermediário e utiliza aplicativos comuns e ferramentas de trabalho. Entretanto, o processo de evacuação documentado para o projeto depende principalmente de sinais físicos, instruções da equipe e confirmação presencial. Não se pressupõe o uso de telefone pessoal em área operacional.
 
 **Falas ilustrativas, não coletadas em entrevista**
 
@@ -442,34 +646,29 @@ Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos
 
 > “Se eu estiver em outra área, quero reconhecer rapidamente o caminho previsto para sair.”
 
-**Nível de letramento digital:** Intermediário. Usa aplicativos comuns e ferramentas de trabalho, mas o processo de evacuação atual que foi documentado para o projeto depende principalmente de sinais físicos, instruções da equipe e confirmação presencial. Não se pressupõe uso de telefone pessoal em área operacional.
+**Interação com o projeto:** na demonstração da Sprint 1, uma aproximação simulada representa a entrada ou saída de Gustavo, alterando o total no LCD e acionando o buzzer. Não é necessário crachá ou aplicativo para esse ensaio, e a detecção não confirma sua identidade. Nas próximas sprints, a equipe avaliará passagens físicas, acessibilidade e entendimento do retorno local, além da integração das contagens ao painel.
 
 **Variações do público e limites da persona:** Gustavo Fring representa um trabalhador habitual de área operacional, não todas as pessoas presentes na planta. Terceirizados, equipes de manutenção, visitantes, pessoas com deficiência e novos colaboradores podem conhecer menos as rotas, ter vínculos de identificação diferentes ou precisar de outro tipo de apoio. Essas diferenças precisam ser investigadas antes de generalizar a persona para todo o complexo.
 
-**Abrangência e variações do público:** A persona reúne a necessidade comum de **todos os funcionários e colaboradores que trabalham no complexo**: perceber o alerta, sair da área afetada, receber apoio quando necessário e ser contabilizado. Função, turno, vínculo, área autorizada, conhecimento das rotas, EPI e necessidades de acessibilidade variam. Essas diferenças devem ser observadas na pesquisa para evitar que a experiência de um setor seja tomada como padrão para todos. Visitantes ocasionais ficam fora do público de trabalhadores representado por Gustavo Fring.
+**Abrangência e variações do público:** a persona reúne a necessidade comum de **todos os funcionários e colaboradores que trabalham no complexo**: perceber o alerta, sair da área afetada, receber apoio quando necessário e ser contabilizado. Função, turno, vínculo, área autorizada, conhecimento das rotas, EPI e necessidades de acessibilidade variam. Essas diferenças devem ser observadas na pesquisa para evitar que a experiência de um setor seja tomada como padrão para todos. Visitantes ocasionais ficam fora do público de trabalhadores representado por Gustavo Fring.
 
-#### 3.2.1.3. Persona - Operador de Centro de Controle Operacional (CCO)
+#### 3.2.1.2. Persona – Operadora de Centro de Controle Operacional (CCO)
+
+A Figura 6 apresenta Maria Schrader, proto-persona que representa a perspectiva de operação do Centro de Controle Operacional.
 
 <div align="center">
-  <sub>Figura 03: Operador de Centro de Controle Operacional (CCO)</sub>
-    </div>
-      <div align="center">
-       <img src="/assets/personaMariaSchrader.png">
-      </div>
-    <div align="center">
-  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+  <p>Figura 6 – Proto-persona Maria Schrader, operadora de CCO</p>
+  <img src="../assets/personaMariaSchrader.png" alt="Proto-persona Maria Schrader, operadora de CCO; perfil fictício e necessidades da solução planejada" width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
-- Nome fictício: Maria Schrader.
-- Idade: 38 anos.
-- Profissão: operadora de Centro de Controle Operacional (CCO).
-- Localização: Cubatão, São Paulo.
-- Formação: curso técnico em Automação Industrial e treinamentos internos aplicáveis à operação.
-- Setor: Centro de Controle Operacional (CCO).
+Maria Schrader é um nome fictício. A proto-persona tem 38 anos e atua como operadora do Centro de Controle Operacional (CCO) em Cubatão, São Paulo. Possui formação técnica em Automação Industrial e participa dos treinamentos internos aplicáveis à operação.
 
 **Biografia**
 
-Maria trabalhou em funções de apoio à operação antes de passar para a sala de controle. No retrato fictício, atua em turnos, acompanha indicadores e alarmes operacionais e responsável por alarmar emergências e evacuações, recebe informações de quem está em campo e registra alterações relevantes para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e de passeios de bicicleta. Opera painéis, registrar alterações e informar lideranças e operadores. **Como o CCO da Unipar participa da resposta a emergências ainda precisa ser confirmado.**
+No retrato fictício, Maria trabalhou em funções de apoio antes de passar para a sala de controle. Atua em turnos, acompanha indicadores e alarmes, recebe informações de campo e registra alterações para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e passeios de bicicleta. Sua participação no acionamento de alarmes e na resposta à emergência deve respeitar os procedimentos da unidade, cujas permissões específicas ainda precisam ser detalhadas com o parceiro.
+
+<p align="center">Quadro 5 – Dores e necessidades da proto-persona Maria Schrader</p>
 
 | Prioridade      | Dor ou necessidade atual                                                                                | Consequência na rotina                                                                                                                                            |
 | :-------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -479,22 +678,19 @@ Maria trabalhou em funções de apoio à operação antes de passar para a sala 
 | **4 — Alta**    | Entender o andamento da evacuação sem confundir status operacional de uma área com presença de pessoas. | A contagem de pessoas ocorre predominantemente por listas e confirmação manual nos pontos de encontro, fora dos painéis de processo descritos para esta hipótese. |
 | **5 — Média**   | Deixar um histórico claro para a troca de turno e a análise posterior.                                  | Horários de alarmes, comunicações e providências precisam ser registrados e conferidos.                                                                           |
 
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
 **Tarefas**
 
-- Recebe informações sobre as condições operacionais e as ocorrências em aberto na passagem de turno.
-- Acompanha os painéis de processo e as câmeras disponíveis durante o turno.
-- Verifica alarmes e relatos de campo, consultando os procedimentos antes de caracterizar ou repassar uma ocorrência.
-- Analisa se aquela situação de incidência necessita de evacuação e, se necessita, indica quais grupos devem evacuar e informa à equipe de segurança do ocorrido.
-- Comunica as informações relevantes às áreas responsáveis e mantém contato com as equipes em campo pelos canais adotados pela unidade.
-- Em uma emergência, executa as ações de comunicação e acompanhamento atribuídas ao CCO pelos procedimentos da unidade, incluindo o acionamento de alarmes quando aplicável.
-- Acompanha atualizações da evacuação sem tratar informações de processo como confirmação da presença de pessoas nos pontos de encontro.
-- Registra alarmes, comunicações e providências para dar continuidade ao acompanhamento e transmitir as informações à equipe seguinte.
+Na passagem de turno, Maria recebe informações sobre as condições operacionais e as ocorrências em aberto. Durante o trabalho, acompanha os painéis de processo e as câmeras disponíveis, verifica alarmes e relatos de campo e consulta os procedimentos antes de caracterizar ou comunicar uma ocorrência. Conforme as atribuições autorizadas, participa da avaliação da necessidade de evacuação, informa a equipe de segurança e comunica os grupos envolvidos.
 
-**Cenários de interação atuais:** Na passagem de turno, Maria toma conhecimento das condições operacionais e das ocorrências em aberto. Durante a rotina, acompanha os painéis de processo, monitora as câmeras do complexo e das salas operacionais, aciona o alarme de emergência e troca informações com profissionais em campo. Diante de um alarme ou relato de incidente, verifica o que seus instrumentos e os procedimentos permitem afirmar, comunica as áreas responsáveis e mantém o acompanhamento da operação. Se houver evacuação, recebe atualizações pelos canais atualmente usados entre as equipes; não presume que um painel de processo informe automaticamente quem chegou ao ponto de encontro. Se a própria sala estiver na área afetada, mantem-se atuando no monitoramento, afinal, fica em um bunker que a protege dos possíveis incidentes e acidentes. Após o evento, registra e transmite a sequência conhecida à equipe de segurança.
+Em uma emergência, executa as ações de comunicação e acompanhamento atribuídas ao CCO, incluindo o acionamento de alarmes quando aplicável, e mantém contato com as equipes em campo. Acompanha as atualizações sem interpretar informações de processo como confirmação da presença de pessoas nos pontos de encontro. Por fim, registra alarmes, comunicações e providências para dar continuidade ao acompanhamento e transmitir as informações à equipe seguinte.
 
-**Interesses e hábitos relacionados ao processo:** Valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis e câmeras em tempo real, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
+**Cenários de interação atuais:** no cenário hipotético, Maria toma conhecimento das ocorrências na passagem de turno e acompanha os instrumentos disponíveis. Diante de um alarme ou relato de incidente, verifica os sinais e os procedimentos, comunica as áreas responsáveis e executa as ações autorizadas. Durante a evacuação, recebe atualizações de campo sem presumir que um painel de processo confirme presenças no PE. Se a sala de controle for afetada, segue o procedimento aplicável; não se pressupõe proteção absoluta do local. Após o evento, registra e transmite as informações à equipe de segurança.
 
-**Nível de letramento digital:** Alto para as ferramentas operacionais que usa no trabalho: lê indicadores e navega entre telas de processo e câmeras com familiaridade.
+**Interesses e hábitos relacionados ao processo:** Maria valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis e câmeras em tempo real, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
+
+**Interação com o projeto:** na Sprint 1, Maria pode avaliar a clareza da demonstração e receber o saldo comunicado por quem lê o LCD; não existe painel remoto conectado. Na visão planejada, consultará ocupação por PE, pendências, tempo e validade dos dados no dashboard, apoiando a comunicação com SSMA. Essa interface e seu uso sob pressão ainda serão avaliados.
 
 **Falas ilustrativas, não coletadas em entrevista**
 
@@ -504,36 +700,31 @@ Maria trabalhou em funções de apoio à operação antes de passar para a sala 
 
 > “O painel mostra a condição da área, mas a conferência das pessoas vem da equipe responsável.”
 
-**Nível de letramento digital:** Alto no uso das ferramentas operacionais com as quais trabalha. Maria interpreta indicadores, acompanha alarmes e navega entre telas de processo e câmeras com familiaridade. Essa experiência não pressupõe domínio imediato de novos sistemas de apoio à evacuação: interfaces claras, identificação das fontes e dos horários das informações e treinamento específico são necessários para apoiar seu uso sob pressão. O perfil deve ser validado com os profissionais do CCO.
+**Nível de letramento digital:** Maria apresenta nível alto no uso das ferramentas operacionais com as quais trabalha. Maria interpreta indicadores, acompanha alarmes e navega entre telas de processo e câmeras com familiaridade. Essa experiência não pressupõe domínio imediato de novos sistemas de apoio à evacuação: interfaces claras, identificação das fontes e dos horários das informações e treinamento específico são necessários para apoiar seu uso sob pressão. O perfil deve ser validado com os profissionais do CCO.
 
 **Variações do público e limites da persona:** Maria representa uma operadora de CCO habituada ao monitoramento de processos e à comunicação com equipes em campo. Não representa as atribuições do SSMA, da brigada ou dos trabalhadores em evacuação. Seu perfil é hipotético e não permite concluir que todo operador tenha autonomia para determinar uma evacuação, acionar alarmes ou confirmar a presença de pessoas. Essas responsabilidades e os limites de atuação do CCO precisam ser confirmados nos procedimentos da unidade e na pesquisa com seus profissionais.
 
-**Abrangência e variações do público:** A persona reúne necessidades comuns aos profissionais de operação do CCO: interpretar alarmes, acionar evacuações, acompanhar as condições do processo, comunicar ocorrências e manter registros confiáveis entre turnos. Tempo de experiência, formação, turno, área monitorada, permissões de acesso, familiaridade com as ferramentas e necessidades de acessibilidade podem variar. A pesquisa deve contemplar essas diferenças, incluindo profissionais recém-integrados e experientes, para que a rotina atribuída a Maria não seja tomada como padrão de toda a equipe.
+**Abrangência e variações do público:** a persona reúne necessidades comuns aos profissionais de operação do CCO: interpretar alarmes, acionar evacuações, acompanhar as condições do processo, comunicar ocorrências e manter registros confiáveis entre turnos. Tempo de experiência, formação, turno, área monitorada, permissões de acesso, familiaridade com as ferramentas e necessidades de acessibilidade podem variar. A pesquisa deve contemplar essas diferenças, incluindo profissionais recém-integrados e experientes, para que a rotina atribuída a Maria não seja tomada como padrão de toda a equipe.
 
-#### 3.2.1.4 Persona - Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
+#### 3.2.1.3. Persona – Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
+
+A Figura 7 apresenta Tuco Salamanca, proto-persona que representa a perspectiva da gestão de Segurança, Saúde e Meio Ambiente.
 
 <div align="center">
-  <sub>Figura 04: Gestor de SSMA </sub>
-    </div>
-      <div align="center">
-       <img src="/assets/personaTucoSalamanca.png">
-      </div>
-    <div align="center">
-  <sub>Source: imagem produzida pela IA do Chatgpt, 2026.</sub>
+  <p>Figura 7 – Proto-persona Tuco Salamanca, gestor de SSMA</p>
+  <img src="../assets/personaTucoSalamanca.png" alt="Proto-persona Tuco Salamanca, gestor de SSMA; necessidades desejadas, sem comprovação de identificação ou localização pelo protótipo" width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
-- **Nome:** Tuco Salamanca
-- **Idade:** 43 anos
-- **Ocupação:** Gerente / Gestor de Segurança, Saúde e Meio Ambiente (SSMA)
-- **Localização:** Santos / Cubatão, São Paulo
-- **Escolaridade:** Graduação em Engenharia Química com pós-graduação em Engenharia de Segurança do Trabalho
-- **Setor:** SSMAQ / Operações Industriais
+Tuco Salamanca é um nome fictício. A proto-persona tem 43 anos, reside em Santos e trabalha em Cubatão, São Paulo, como gestor de Segurança, Saúde e Meio Ambiente (SSMA). Possui graduação em Engenharia Química e pós-graduação em Engenharia de Segurança do Trabalho, com atuação relacionada à área de Segurança, Saúde, Meio Ambiente e Qualidade (SSMAQ) e às operações industriais.
 
 **Biografia**
 
-Tuco trabalha há 18 anos no setor químico e petroquímico e atua há 6 anos na Unipar, sendo o responsável por liderar as diretrizes de prevenção de acidentes e as estratégias do Plano de Ação de Emergência (PAE). Vive em Santos com a esposa e dois filhos adolescentes; nos dias de folga, gosta de velejar e acompanhar novidades sobre tecnologia industrial. Chega à fábrica focado na meta de "Zero Acidentes" e tem como prioridade máxima durante uma emergência obter visibilidade em tempo real sobre a evacuação de todos os colaboradores, orientar com precisão as equipes de resposta e garantir que ninguém fique para trás em áreas de risco.
+Tuco trabalha há 18 anos no setor químico e petroquímico e atua há seis anos na Unipar, sendo o responsável por liderar as diretrizes de prevenção de acidentes e as estratégias do Plano de Ação de Emergência (PAE). Vive em Santos com a esposa e dois filhos adolescentes; nos dias de folga, gosta de velejar e acompanhar novidades sobre tecnologia industrial. Chega à fábrica focado na meta de "Zero Acidentes" e tem como prioridade máxima durante uma emergência obter visibilidade em tempo real sobre a evacuação de todos os colaboradores, orientar com precisão as equipes de resposta e garantir que ninguém fique para trás em áreas de risco.
 
 **Matriz de Dores, Necessidades e Desejos**
+
+<p align="center">Quadro 6 – Dores, necessidades e desejos da proto-persona Tuco Salamanca</p>
 
 | Prioridade      | Dor ou Necessidade                                                                                                              | O que espera da solução (Desejos)                                                                                                    |
 | :-------------- | :------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------- |
@@ -543,16 +734,15 @@ Tuco trabalha há 18 anos no setor químico e petroquímico e atua há 6 anos na
 | **4 — Alta**    | Eliminar a lentidão e as falhas da contagem presencial por listas em papel.                                                     | Busca a substituição do processo manual por uma validação digital rastreável e imediata.                                             |
 | **5 — Média**   | Obter dados precisos do tempo de evacuação para análises e treinamentos pós-incidente.                                          | Deseja relatórios históricos automatizados para comprovar a eficácia do plano em auditorias e aprimorar os simulados.                |
 
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
 ---
 
 **Tarefas e Responsabilidades**
 
-- Define, revisa e supervisiona os procedimentos do Plano de Ação de Emergência (PAE) e as rotas de evacuação da planta.
-- Acompanha os indicadores de SSMA e garante o cumprimento das normas regulamentadoras e da política de segurança da Unipar.
-- Planeja e coordena a execução de simulados periódicos de evacuação com as equipes operacionais e de brigada.
-- Em uma emergência, dirige-se ao Centro de Controle de Emergência (CCE) para comandar a resposta operacional e coordenar os brigadistas.
-- Consolida os dados recebidos via rádio sobre o contingente de pessoas que chegaram aos pontos de encontro.
-- Reporta os relatórios de simulados e ocorrências para a diretoria, liderança executiva e órgãos fiscalizadores.
+No perfil proposto, Tuco define, revisa e supervisiona os procedimentos do Plano de Ação de Emergência (PAE) e as rotas de evacuação. Acompanha os indicadores de SSMA, supervisiona o cumprimento das normas e da política de segurança e coordena simulados periódicos com as equipes operacionais e a brigada.
+
+Durante uma emergência, atua no Centro de Controle de Emergência (CCE), coordena a resposta e consolida os dados recebidos por rádio sobre as pessoas que chegaram aos pontos de encontro. Também encaminha relatórios de simulados e ocorrências à diretoria, à liderança executiva e aos órgãos fiscalizadores, conforme as atribuições previstas para sua função.
 
 **Cenários de Interação Atuais**
 
@@ -566,11 +756,9 @@ Tuco valoriza confiabilidade absoluta dos dados, processos auditáveis, tecnolog
 
 **Nível de Letramento Digital**
 
-**Classificação:** Avançado / Intermediário-Alto
+Tuco apresenta letramento digital entre intermediário e avançado. No perfil hipotético, utiliza sistemas corporativos de gestão, como SAP, ferramentas de análise de dados, como Power BI, e programas de gestão de riscos. Compreende os conceitos gerais de Internet das Coisas (IoT), sensoriamento e automação industrial. Ainda assim, espera que o sistema de acompanhamento da evacuação seja simples de aprender e operar durante uma emergência.
 
-Utiliza regularmente sistemas corporativos como ERP (SAP), ferramentas de análise de dados (Power BI) e softwares de gestão de riscos. Compreende de forma geral arquiteturas de tecnologia IoT, sensoriamento e automação industrial. Contudo, exige que o sistema de monitoramento de evacuação tenha uma curva de aprendizado nula e seja extremamente simples de operar durante situações de pânico ou emergência real.
-
-**Citações Diretas (Falas Ilustrativas)**
+**Falas ilustrativas, não coletadas em entrevista**
 
 > _"Preciso bater o olho na tela do CCE e saber em segundos quantos evacuaram e se há alguém na área afetada."_
 
@@ -580,10 +768,52 @@ Utiliza regularmente sistemas corporativos como ERP (SAP), ferramentas de análi
 
 **Variações do Público, Limites e Abrangência**
 
-- **Limites da Persona:** Tuco Salamanca representa a perspectiva do gestor estratégico no CCE da unidade fabril de Cubatão. A sua visão difere da visão de um brigadista em campo (que precisa de mobilidade e alertas locais) ou de um operador (focado em sair com segurança). Além disso, as particularidades das plantas da Unipar na Argentina ou em outras localidades do Brasil podem demandar diferentes adaptações nos protocolos ou nos dashboards locais.
-- **Abrangência:** A persona do Gestor de SSMA canaliza os objetivos corporativos de toda a liderança e equipe de resposta a emergências: garantir visibilidade total do contingente, acelerar decisões de resgate e manter a conformidade com o compromisso de zero acidentes. Embora os colaboradores operacionais e terceiros interajam na ponta (sendo monitorados e confirmando presença), o Gestor de SSMA é o usuário final primário das informações consolidadas da solução tecnológica proposta.
+**Limites da persona:** Tuco Salamanca representa a perspectiva do gestor estratégico no CCE da unidade fabril de Cubatão. A sua visão difere da visão de um brigadista em campo (que precisa de mobilidade e alertas locais) ou de um operador (focado em sair com segurança). Além disso, as particularidades das plantas da Unipar na Argentina ou em outras localidades do Brasil podem demandar diferentes adaptações nos protocolos ou nos dashboards locais.
+
+**Interação com o projeto:** na Sprint 1, Tuco representa quem avalia se o total local e os cenários simulados ajudam a compreender a apuração quantitativa. Não há confirmação individual no protótipo. Na evolução planejada, poderá consultar a consolidação dos PEs, o balanço e os alertas, confrontando-os com a conferência humana. Identificar ou localizar pessoas ausentes permanece uma necessidade não atendida pela contagem anônima; saldo zero não dispensa a brigada. CCE designa aqui o contexto hipotético de coordenação da emergência, cuja organização efetiva deve ser confirmada com a Unipar.
+
+**Abrangência:** a persona do Gestor de SSMA canaliza os objetivos corporativos de toda a liderança e equipe de resposta a emergências: garantir visibilidade total do contingente, acelerar decisões de resgate e manter a conformidade com o compromisso de zero acidentes. Embora os colaboradores operacionais e terceiros interajam na ponta (sendo monitorados e confirmando presença), o Gestor de SSMA é o usuário final primário das informações consolidadas da solução tecnológica proposta.
 
 Em conjunto, as proto-personas Gustavo, Maria e Tuco conectam três perspectivas complementares da evacuação: a experiência de quem se desloca para um local seguro, o acompanhamento das condições operacionais e a gestão da resposta à emergência. A necessidade de Gustavo de ter sua chegada reconhecida se relaciona à necessidade de Maria de receber informações consistentes sobre o andamento da ocorrência e à de Tuco de acompanhar a conferência das pessoas e identificar pendências. Essa relação orienta o propósito do projeto: apoiar uma evacuação mais segura por meio de informações claras, ágeis e rastreáveis sobre a presença nos pontos de encontro, reduzindo a incerteza e o tempo necessário para consolidar os dados. As proto-personas, portanto, fornecem uma base inicial para orientar a pesquisa com usuários, propor prioridades de requisitos, elaborar jornadas e avaliar a solução em simulados, considerando tanto a experiência em campo quanto o uso das informações pelo CCO e pelo SSMA. Essas decisões deverão ser revistas à medida que as hipóteses dos perfis forem confirmadas ou corrigidas pela pesquisa. A confirmação de presença e as pendências de registro devem ser apresentadas de forma distinta, para que a ausência de confirmação não seja interpretada automaticamente como localização de uma pessoa em uma área de risco.
+
+#### 3.2.1.4. Processo de Elaboração das Personas
+
+A concepção das personas deste projeto seguiu um processo estruturado em etapas de pesquisa exploratória (_desk research_), imersão com o parceiro de negócios, identificação de partes interessadas (_stakeholders_) e modelagem preliminar de perfis com a metodologia de **proto-personas** (GOTHELF; SEIDEN, 2016). Esse método permitiu tangibilizar e humanizar os requisitos operacionais, dores e tarefas dos usuários antes da aplicação de entrevistas em campo no complexo industrial da Unipar em Cubatão.
+
+O processo de construção dos perfis foi conduzido a partir das seguintes fases:
+
+##### 1. Levantamento de dados e pesquisa exploratória (_Desk Research_)
+
+O ponto de partida da investigação consistiu na análise de fontes documentais do projeto, regulamentações vigentes e dados do setor químico e petroquímico:
+
+- **Termo de Abertura do Projeto de Inovação (TAPI) (UNIPAR, 2026):** Forneceu o escopo do desafio, a população de referência estimada na fábrica de Cubatão (cerca de 755 pessoas, sendo 355 colaboradores diretos e cerca de 400 terceirizados) e as diretrizes arquiteturais, como a premissa de não utilizar rastreamento invasivo ou de alta precisão em ambientes internos e a recomendação de compatibilidade com os crachás de identificação já utilizados pelos funcionários.
+- **Normas Regulamentadoras (NR-20 e NR-23) (BRASIL, 2022; BRASIL, 2025):** A NR-20 (segurança com inflamáveis e combustíveis) e a NR-23 (proteção contra incêndios) orientaram a definição das tarefas e limites operacionais dos trabalhadores durante emergências, exigindo rotas de fuga sempre desobstruídas, saídas céleres e comunicação eficaz sem adição de barreiras físicas ou cognitivas aos colaboradores.
+- **Estudo de Riscos Toxicológicos e Procedimentos Químicos (NIOSH, 2019):** O entendimento do comportamento do cloro (gás tóxico, fortemente oxidante e mais denso que o ar, acumulando-se rente ao solo) evidenciou a extrema criticidade do tempo de evacuação e a necessidade de chegar aos Pontos de Encontro (PEs) com máxima presteza e na direção perpendicular ou oposta ao vento.
+- **Benchmarking de Soluções de Evacuação:** Análise de práticas de contagem automatizada e rastreamento em outras plantas industriais (como os casos da Ferrero e da Chevron Oronite), permitindo identificar a viabilidade e os gargalos de abordagens por contagem anônima versus identificação individualizada.
+
+##### 2. Imersão no contexto operacional do parceiro (_Kickoff_)
+
+As dinâmicas reais de emergência e as dores vivenciadas na planta foram detalhadas durante a reunião de _kickoff_ com os interlocutores da Unipar, realizada em **16 de outubro de 2026**. Nesse encontro, foram mapeados aspectos fundamentais do fluxo de abandono da fábrica de Cubatão:
+
+1. **Abertura compulsória das catracas no alarme:** Durante o acionamento do alarme de emergência, as catracas de portaria e portas de contenção entre setores são destravadas para viabilizar a evasão rápida e evitar pisoteamentos ou retenção de fluxo. Esse procedimento interrompe o registro magnético/RFID dos crachás, criando um ponto cego no sistema corporativo sobre quem saiu e quem permaneceu nas edificações.
+2. **Conferência manual por listas e pranchetas:** A checagem de presença nos Pontos de Encontro (PEs) é realizada manualmente por líderes de setor e brigadistas por meio de chamadas orais com listas impressas e comunicação via rádio, sob ruído severo de sirenes, vento e movimentação de veículos de emergência, gerando morosidade e risco de erros de contagem.
+3. **Regra crítica do prazo interno de 10 minutos (SLA):** A liderança da Unipar estabeleceu que qualquer colaborador cuja presença não seja confirmada no Ponto de Encontro em até 10 minutos após o alarme é classificado como caso crítico, determinando o acionamento imediato da brigada de emergência para busca e salvamento em área de risco.
+
+##### 3. Mapeamento de atores e seleção dos perfis primários
+
+Com base nos dados coletados, a equipe realizou dinâmicas de mapeamento de partes interessadas com o auxílio da Matriz CSD (Certezas, Suposições e Dúvidas). Foram identificados cinco grupos operacionais distintos: colaboradores de fábrica/campo, operadores de sala de controle (CCO), gestores de SSMA, brigadistas de emergência e profissionais de Infraestrutura/TI.
+
+Para orientar o desenvolvimento da solução na Sprint 1, a equipe selecionou e aprofundou **três perfis primários** que cobrem todo o ciclo de vida do evento de evacuação:
+
+- **Técnico de Operação (Gustavo Fring):** Representa o usuário da ponta — quem está no chão de fábrica e precisa evacuar. O perfil sintetiza as necessidades do trabalhador que utiliza EPIs pesados, atua em ambientes com ruído de máquinas e precisa apenas evacuar pela rota segura e ter a certeza imediata de que sua passagem pelo Ponto de Encontro foi registrada, sem depender de dispositivos intrusivos ou procedimentos complexos.
+- **Operadora do Centro de Controle Operacional - CCO (Maria Schrader):** Representa o elo de comunicação e monitoramento de processos. Atuando a partir de uma sala protegida (_bunker_), precisa discernir anomalias de processo de alertas de emergência, acionar os alarmes sonoros e acompanhar a evolução das áreas sem confundir status operacional de máquinas com o balanço de pessoas em trânsito.
+- **Gestor de SSMA (Tuco Salamanca):** Representa o tomador de decisão estratégica e comandante da crise no Centro de Controle de Emergência (CCE). É quem consome diretamente o balanço de evacuação ($D = B - A$, onde $B$ é a população de referência congelada no alarme e $A$ são as chegadas registradas), sendo o principal responsável por cumprir a meta dos 10 minutos e decidir com segurança quando e para onde despachar equipes de resgate.
+
+Os **Brigadistas** e os profissionais de **Infraestrutura e TI** foram categorizados como stakeholders secundários nesta etapa. Embora suas tarefas sejam vitais (intervenção em campo e sustentação da infraestrutura de hardware/rede, respectivamente), suas demandas no MVP estão coordenadas com as decisões estratégicas da SSMA e os fluxos de telecomunicações do CCO, estando seu detalhamento em personas próprias reservado para refinamento nas próximas etapas do projeto.
+
+##### 4. Articulação com a proposta de valor e regras de negócio
+
+A caracterização das dores, necessidades e tarefas de cada perfil foi diretamente conectada ao _Value Proposition Canvas_ (seção 3.1.4) e à Matriz de Riscos (seção 3.1.5). Dores como a lentidão da contagem por papel, a perda de dados nas catracas liberadas e a ansiedade da liderança sem números confiáveis subsidiaram a especificação das Regras de Negócio RN01 a RN06 (seção 3.3.2) e dos Requisitos Funcionais de contagem local (RF001), totalização anônima (RF005) e alerta crítico aos 10 minutos (RF008).
 
 ### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
 
@@ -595,52 +825,72 @@ _Coloque aqui seu Storyboard (seguindo as instruções na descrição do artefat
 
 _Nesta seção, detalhe a especificação da solução, de acordo com o disposto nas subseções._
 
-### 3.3.1. Requisitos Funcionais (sprint 1, refinar e atualizar até sprint 5)
+### 3.3.1. Requisitos Funcionais (Sprint 1, refinar nas próximas sprints)
 
-Os requisitos funcionais descrevem as ações e os resultados que o sistema deve oferecer para apoiar a contagem de pessoas e o acompanhamento da evacuação. Esta lista preliminar foi elaborada com base nas reuniões e informações obtidas por meio das conversas com o parceiro, que inclusive permitiu a criação das personas. As funcionalidades ainda não implementadas ou dependentes de alinhamento com a Unipar estão identificadas na coluna “Situação”.
+Esta especificação distingue a entrega local demonstrada dos requisitos preliminares da solução futura. A documentação de Wi-Fi, MQTT, cadastro de dispositivos, acesso ao dashboard e representação gráfica atende à abrangência solicitada no ART. 4; **não amplia a implementação ou o escopo confirmado da Sprint 1**. Esses itens dependem de decisão e validação nas sprints seguintes.
 
-Para leitura dos requisitos, **B** é a população de referência presente na planta quando o alarme é acionado, **A** é o total de passagens contabilizadas nas entradas dos Pontos de Encontro ativos desde esse instante e **D = B − A** é a diferença numérica estimada. **D = 0** indica apenas convergência dos totais, sujeita à conferência da equipe de Saúde, Segurança e Meio Ambiente (SSMA). Os códigos de atores **A01 a A05** estão definidos na seção 3.2.1.
+**Atores:** A01 — Tuco, gestor de SSMA; A02 — brigadistas e responsáveis pela conferência no PE (público secundário, sem proto-persona própria); A03 — Gustavo, técnico de operação; A04 — Infraestrutura/TI (público secundário); A05 — Maria, operadora de CCO. As responsabilidades específicas da unidade permanecem sujeitas à pesquisa descrita em 3.2.1.
 
-De forma geral, os atores e perfis operacionais referenciados nos requisitos funcionais são:
+**Vocabulário único:** `B` é a população de referência congelada no alarme; `A` é a **ocupação atual estimada dos PEs**, incluindo ocupação inicial reconciliada, entradas somadas e saídas descontadas; `D = B − A`. Não se confunde `A` com chegadas acumuladas. Na Sprint 1 existe somente o contador local; `B`, `D`, evento e painel ainda não existem no firmware.
 
-- **A01 — Gestor de SSMA | Público principal — proto-persona Tuco Salamanca:** acompanha o balanço de evacuação, coordena a conferência complementar em campo e utiliza os dados para apoiar as decisões sobre a emergência.
-- **A02 — Brigadistas / Equipe de Emergência | Público secundário — sem proto-persona elaborada:** orientam a evacuação, verificam os Pontos de Encontro e comunicam informações de campo à gestão da emergência.
-- **A03 — Técnico de Operação / Colaborador | Público principal — proto-persona Gustavo Fring:** representa quem precisa receber o alerta, evacuar e ser contabilizado ao passar pelo acesso monitorado, sem identificação nominal pelo sensor.
-- **A04 — Responsável por Infraestrutura e TI | Público secundário — sem proto-persona elaborada:** configura os dispositivos e locais monitorados e apoia a conectividade e a integração da solução.
-- **A05 — Operador do Centro de Controle Operacional (CCO) | Público principal — proto-persona Maria Schrader:** acompanha indicadores e alarmes, recebe relatos de campo e consulta o painel para apoiar a comunicação com a SSMA e as equipes responsáveis.
+<p align="center">Quadro 7 – Requisitos funcionais e critérios de verificação</p>
 
-**Quadro 1 — Requisitos funcionais do sistema de apoio à contagem e balanço de evacuação.**
+| ID    | Funcionalidade e critério verificável                                                                                                                                                                                                                                                                                        | Atores        | Origem / RN                     | Situação                                                                                            |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------- | --------------------------------------------------------------------------------------------------- |
+| RF001 | Contar localmente: com sensor livre e `0 < distância < 200 cm`, entrada incrementa 1 e saída decrementa 1 sem total negativo; atualizar LCD e emitir 1.000 Hz por 100 ms. Em saída com zero, manter zero e emitir buzzer/mensagem de detecção. Funciona com LED verde ou vermelho.                                           | A01, A02, A03 | 3.1.3; 3.4.1 / RN12, RN13       | Implementado; CT01–CT05, CT07 registrados; repetir no diagrama corrigido                            |
+| RF002 | Cadastrar cada dispositivo futuro com `device_id` único, PE/portaria, sensores e sentidos; rejeitar evento de nó desconhecido, desativado ou associado a local incompatível.                                                                                                                                                 | A04           | 3.1.3 / RN03                    | Preliminar, futuro                                                                                  |
+| RF003 | Consolidar entradas menos saídas das portarias P1/P2 e permitir reconciliar a referência antes de utilizá-la, sem inferir localização interna. A fonte real dos dados depende do parceiro.                                                                                                                                   | A01, A04, A05 | Kickoff; 3.1.3 / RN02           | Preliminar, futuro                                                                                  |
+| RF004 | Abrir evento com identificador, `t0`, PEs designados e `B` congelado. Mudanças posteriores nas portarias não alteram `B`; iniciar tempo decorrido sem reinício por passagem. O botão da Sprint 1 não executa essa função.                                                                                                    | A01, A05      | 1.1; 3.1.3 / RN01, RN02         | Preliminar, futuro                                                                                  |
+| RF005 | Consolidar `A` a partir da ocupação inicial reconciliada de cada PE, entradas e saídas válidas durante o evento. Transferências exigem saída na origem e entrada no destino; não identificar pessoas.                                                                                                                        | A01, A05      | 3.3.8 / RN03, RN04, RN09        | Preliminar, futuro                                                                                  |
+| RF006 | Calcular `D = B − A` com dados válidos; diferenciar pendência (`D > 0`), convergência sujeita a conferência (`D = 0`) e inconsistência (`D < 0`). Nunca concluir segurança individual pela igualdade.                                                                                                                        | A01, A02, A05 | 3.1.3 / RN05, RN07, RN08        | Preliminar, futuro                                                                                  |
+| RF007 | Exibir no dashboard `B`, `A`, `D`, tempo desde o alarme, gráfico da ocupação por PE ao longo do tempo, estado dos dispositivos e última atualização. Dados ausentes/desatualizados devem aparecer como inconclusivos, sem serem convertidos em zero.                                                                         | A01, A05      | 1.1; ART. 4 / RN05, RN08, RN09  | Preliminar, futuro                                                                                  |
+| RF008 | Ao atingir 600 s desde `t0`, com dados válidos e `D > 0`, emitir alerta visual e sonoro no painel com quantidade pendente para SSMA/CCO, apoiando acionamento da brigada. Dados inválidos seguem RF009.                                                                                                                      | A01, A02, A05 | Prazo interno do kickoff / RN06 | Preliminar, futuro                                                                                  |
+| RF009 | Sinalizar balanço inconclusivo diante de `A > B`, referência inválida, sensor/nó indisponível ou dados atrasados. Não mostrar evacuação concluída; indicar a origem da falha para conferência humana. Timeout do HC-SR04 isolado não comprova diagnóstico de defeito.                                                        | A01, A04, A05 | R02, R03, R08, R09 / RN08       | Preliminar, futuro                                                                                  |
+| RF010 | Publicar telemetria MQTT estruturada com `device_id`, local, função, `event_id`, `session_id`, `seq_id`, instante e `delta` (+1 entrada/−1 saída), além de heartbeat. Deduplicar pela combinação dispositivo/sessão/sequência; rejeitar campos inválidos e evento incompatível. Formato detalhado será definido na Sprint 3. | A04           | ART. 4; 3.3.8 / RN03, RN11      | Preliminar, futuro                                                                                  |
+| RF011 | Avaliar consulta autorizada ao sistema de crachás já existente, somente se a Unipar aprovar acesso, finalidade e viabilidade. A contagem dos PEs continua anônima e não identifica quem chegou.                                                                                                                              | A01, A04, A05 | 3.1.6 / RN09, RN10              | Possibilidade a validar; fora da Sprint 1                                                           |
+| RF012 | Registrar eventual conclusão do evento somente por usuário autorizado da SSMA após conferência, com usuário, instante e justificativa. `D = 0` não encerra o evento automaticamente.                                                                                                                                         | A01           | 3.1.3 / RN07, RN10              | Proposta documental para futura validação                                                           |
+| RF013 | Autenticar usuários do dashboard com chave única `user_id`, perfil e permissões. Negar consultas/alterações não autorizadas e registrar acessos e ações; credenciais não podem constar no firmware ou repositório. Dados de usuários exigem atualização da política antes da coleta.                                         | A01, A04, A05 | ART. 4; 3.1.6 / RN10            | Proposta documental para futura validação                                                           |
+| RF014 | Alternar verde/vermelho por pressionamento válido no botão D11, com verificação após 10 ms. Preservar o total e continuar contando em ambos os estados. Inicializar verde; não gerar alarme remoto, pausa ou zeragem.                                                                                                        | A01, A02      | 3.4.1; R06 / RN14               | Implementado; CT01/CT06 registrados; retorno ao verde e robustez do botão ainda a ensaiar           |
+| RF015 | Bloquear novos eventos enquanto o sensor ativo detectar presença; rearmar após ao menos 1.000 ms sem detecção. Ignorar o outro sensor durante o bloqueio; no ciclo livre priorizar saída. Descartar eco ausente após 30 ms. Não diagnosticar automaticamente defeito nem garantir ausência de perdas.                        | A01, A04      | 3.3.8; 3.4.1 / RN13             | Implementado; CT03/CT05/CT08–CT10 registrados; fronteiras e simultaneidade no mesmo ciclo a ensaiar |
+| RF016 | Na versão conectada, configurar conexão Wi-Fi, informar estado conectado/desconectado e tentar reconexão após perda sem reiniciar o total local. Comunicar indisponibilidade ao painel quando cessar heartbeat; não apresentar dado antigo como atual.                                                                       | A04, A05      | ART. 4; R09 / RN08, RN15        | Proposta documental para futura validação                                                           |
 
-| ID    | Nome                                                                             | Descrição verificável                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Tipo                     | Prioridade | Atores        | Origem                                                        | Situação                                                 |
-| ----- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------- | ------------- | ------------------------------------------------------------- | -------------------------------------------------------- |
-| RF001 | Contagem local de passagens no Ponto de Encontro                                 | Quando o modo de monitoramento estiver ativo, o dispositivo local (Arduino Uno R3 com sensor ultrassônico HC-SR04) deve detectar a presença de uma pessoa atravessando o acesso em distância inferior a 200 cm, incrementar em uma unidade o contador local, atualizar imediatamente o total no visor LCD 16x2 I2C (`Total: X`) e emitir um pulso sonoro de 100 ms no buzzer ativo.                                                                                                                                                                                         | Sensoriamento            | Alta       | A01, A02, A03 | Seção 1.2; Seção 3.1.3; BOM 3.1.7; Protótipo 3.4.1            | Simulado no Wokwi (Sprint 1); validação física planejada |
-| RF002 | Identificação e configuração de função dos dispositivos                          | A solução integrada deve associar a cada nó de sensoriamento um identificador único (`device_id`), o local físico monitorado (Portaria P1, Portaria P2 ou Ponto de Encontro específico) e a regra direcional dos sensores (incremento de entrada ou decremento/descarte de saída a partir do par de sensores ultrassônicos).                                                                                                                                                                                                                                                | Configuração             | Alta       | A04           | Seção 3.1.3; BOM 3.1.7; RN03                                  | Planejado                                                |
-| RF003 | Consolidação da população de referência nas portarias                            | A solução integrada deve contabilizar as entradas e subtrair as saídas registradas nas Portarias P1 e P2 durante a operação de rotina para manter atualizado o saldo estimado de pessoas presentes no interior da planta, sem rastrear a divisão por setores internos.                                                                                                                                                                                                                                                                                                      | Processamento            | Alta       | A01, A04, A05 | Kickoff Unipar; Seção 1.2; Seção 3.1.3.2; RN02                | Planejado                                                |
-| RF004 | Abertura do evento de emergência e congelamento de B                             | Ao receber o comando de início de emergência ou simulado de vazamento de cloro, a solução deve registrar o carimbo de tempo inicial (`t = 0`), habilitar os Pontos de Encontro designados para a ocorrência, congelar o saldo corrente das Portarias P1 e P2 como a população de referência **B** e iniciar a contagem regressiva do prazo interno de 10 minutos definido pela SSMA da Unipar.                                                                                                                                                                              | Controle                 | Alta       | A01, A03, A05 | Kickoff Unipar; Seção 1.1; Seção 3.1.3.3; RN01; RN02          | Planejado                                                |
-| RF005 | Totalização anônima de passagens nos Pontos de Encontro (A)                      | Enquanto houver um evento de emergência ativo, a solução deve somar na variável **A** todas as passagens válidas de entrada registradas pelos dispositivos dos Pontos de Encontro ativos a partir do instante do alarme, tratando cada leitura de forma estritamente numérica e anônima (sem associação a crachá, nome, vínculo ou setor).                                                                                                                                                                                                                                  | Processamento            | Alta       | A01, A03, A05 | TAPI Unipar; Seção 3.1.3.2; Seção 3.1.6 (LGPD); RN04; RN09    | Planejado                                                |
-| RF006 | Cálculo dinâmico e classificação do balanço de evacuação                         | A solução deve calcular continuamente o saldo estimado de pendentes pela fórmula **D = B − A** e exibir conjuntamente **B**, **A**, **D** e o tempo decorrido desde o alarme, classificando explicitamente três estados operacionais: (i) pendência numérica (**D > 0**), (ii) convergência numérica sujeita à conferência da SSMA (**D = 0**, isto é, **A = B**) e (iii) inconsistência por sobrecontagem (**A > B**, isto é, **D < 0**).                                                                                                                                  | Processamento / Consulta | Alta       | A01, A02, A05 | Seção 1.1; Seção 3.1.3.2; RN05; RN07; RN08                    | Planejado                                                |
-| RF007 | Painel centralizado de acompanhamento (Dashboard CCO/SSMA)                       | O painel de supervisão deve apresentar em tempo real os indicadores consolidados (**B**, **A**, **D** e cronômetro de 10 minutos), a evolução temporal das passagens contabilizadas por Ponto de Encontro, o estado de conectividade de cada dispositivo e o horário da última atualização recebida.                                                                                                                                                                                                                                                                        | Visualização             | Alta       | A01, A02, A05 | TAPI Unipar; Seção 3.1.3.2; RN05; RN09                        | Planejado                                                |
-| RF008 | Emissão de alerta crítico ao atingir o prazo interno de 10 minutos               | Caso os dados do balanço estejam válidos e o saldo estimado **D** permaneça estritamente positivo (**D > 0**) ao se completarem 10 minutos desde o disparo do alarme, a solução deve emitir alerta visual e sonoro de alta prioridade no painel para a SSMA, o CCO e os brigadistas, destacando a quantidade total não contabilizada e a distribuição de chegadas por Ponto de Encontro.                                                                                                                                                                                    | Alerta                   | Alta       | A01, A02, A05 | Kickoff Unipar; Seção 1.1; Seção 3.1.3.3; RN06                | Planejado                                                |
-| RF009 | Sinalização de balanço inconclusivo e falhas operacionais                        | A solução deve classificar e sinalizar imediatamente o balanço como **inconclusivo** para a SSMA e o CCO quando ocorrer qualquer uma das seguintes anomalias: (i) passagens contabilizadas superiores à referência (**A > B**), (ii) falha de leitura ou indisponibilidade de sensor em Ponto de Encontro ativo, (iii) perda de comunicação de rede de um dispositivo ou (iv) base de referência **B** das portarias marcada como inválida, impedindo que o sistema apresente a evacuação como concluída.                                                                   | Alerta / Confiabilidade  | Alta       | A01, A04, A05 | Seção 3.1.3.3; Matriz de Riscos 3.1.5; RN08                   | Planejado                                                |
-| RF010 | Transmissão de telemetria IoT via MQTT com idempotência                          | Na etapa conectada do protótipo, cada dispositivo deve publicar os eventos de passagem e sinais periódicos de integridade (heartbeat) em broker MQTT por meio de mensagem estruturada contendo identificador do dispositivo (`device_id`), local, função, identificador do evento ativo, carimbo de tempo, número sequencial (`seq_id`) e valor do incremento, garantindo que mensagens retransmitidas com o mesmo `seq_id` sejam descartadas sem duplicar a contagem.                                                                                                      | Integração               | Alta       | A04           | Seção 3.1.3.5; RN03; RN11                                     | Planejado para próximas sprints                          |
-| RF011 | Possível integração com o sistema existente de crachás                           | A solução deve prever a possibilidade de integração com o sistema de controle de acesso individual por crachá já utilizado nas catracas da Unipar. Se a integração for autorizada e tecnicamente viável, em uma emergência os responsáveis autorizados poderão consultar os dados pessoais já vinculados aos crachás nesse sistema. A contagem por sensores nos Pontos de Encontro permanece anônima; ela não identifica, por si só, quem chegou ou quem falta. Os dados disponíveis, as permissões de consulta e a forma de integração dependem de validação com a Unipar. | Integração / Consulta    | Média      | A01, A04, A05 | Informação da equipe; Seção 3.1.6 (LGPD)                      | Possibilidade a validar com a Unipar                     |
-| RF014 | Controle local de ativação e pausa do monitoramento no dispositivo               | O dispositivo de Ponto de Encontro deve permitir ao operador/líder local alternar entre o modo de espera (pausado) e o modo de monitoramento ativo por meio de botão físico com tratamento de ruído (debounce): quando pausado, deve manter o LED verde aceso, o LED vermelho apagado e ignorar aproximações no sensor HC-SR04 preservando o total acumulado no visor LCD 16x2; quando ativo, deve manter o LED vermelho aceso e o LED verde apagado.                                                                                                                       | Controle Local           | Alta       | A01, A02      | BOM 3.1.7; Protótipo 3.4.1 (CT01, CT06, CT07); RN01           | Simulado no Wokwi (Sprint 1); validação física planejada |
-| RF015 | Bloqueio de duplicidade por permanência e descarte de leitura inválida no sensor | O firmware do dispositivo local deve manter trava lógica de presença ocupada enquanto o objeto ou pessoa permanecer a menos de 200 cm do sensor HC-SR04 (liberando novo incremento somente após leitura igual ou superior a 200 cm) e deve descartar leituras nulas decorrentes de falha ou desconexão do pino `ECHO` (timeout de 30 ms), evitando contagens repetidas ou falsos positivos no visor LCD 16x2.                                                                                                                                                               | Confiabilidade Local     | Alta       | A01, A04      | Seção 3.1.3.3; Protótipo 3.4.1 (CT03, CT04, CT05, CT08); RN08 | Simulado no Wokwi (Sprint 1); validação física planejada |
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
-**Nota do Quadro 1:** A classificação "Simulado no Wokwi (Sprint 1); validação física planejada" identifica os requisitos funcionais locais já implementados no código-fonte da Sprint 1 e verificados nos casos de teste CT01 a CT08 em ambiente virtual (seção 3.4.1), restando sua validação física em bancada nas etapas seguintes. O status "Planejado" indica capacidades necessárias à arquitetura integrada das próximas sprints. O RF011 registra uma possibilidade de integração a validar com a Unipar, sem afirmar que ela já foi aprovada ou implementada. Os identificadores RF012 e RF013 foram reservados, pois os temas anteriormente descritos neles ainda não haviam sido pensados pela equipe; não integram, por ora, o escopo aprovado de requisitos. Como a Lista de Materiais (seção 3.1.7) da Sprint 1 adota a placa Arduino Uno R3 (ATmega328P), que não dispõe de interface Wi-Fi nativa, a conectividade MQTT prevista no RF010 será implementada nas sprints subsequentes mediante módulo de comunicação serial/ ponte de rede ou atualização de hardware conforme definido na arquitetura técnica (seção 3.3.5).
+RF001, RF014 e RF015 são os requisitos implementados no recorte atual, com cobertura experimental limitada aos casos existentes. Os outros 13 requisitos são preliminares. RF012/RF013, antes reservados, e RF016 explicitam lacunas da rubrica e precisam de validação do grupo antes de compromisso de implementação. Arduino Uno não possui Wi-Fi nativo; o hardware da etapa conectada será definido posteriormente. Nenhuma credencial, broker ou plataforma foi configurada nesta revisão.
 
-### 3.3.2. Regras de Negócio (sprint 1, refinar até sprint 5)
+### 3.3.2. Regras de Negócio (Sprint 1, refinar nas próximas sprints)
 
-As regras de negócio abaixo delimitam as condições formais para que uma leitura de passagem integre o balanço dinâmico de evacuação e estabelecem os parâmetros de interpretação operacional pela liderança de SSMA e pelo CCO. No recorte atual do MVP, elas aplicam-se a eventos de emergência e exercícios simulados de vazamento de cloro gasoso na unidade de Cubatão, considerando sensoriamento de passagem instalado nos Pontos de Encontro e população de referência obtida das Portarias P1 e P2. O sensoriamento entre áreas internas da planta, a orientação ativa de rotas de fuga e a identificação nominal de pessoas ausentes permanecem fora do escopo desta versão, em alinhamento com o TAPI e com a seção 3.1.3.
+As regras RN01–RN11 e RN15 delimitam a visão integrada futura. RN12–RN14 registram as regras operacionais do protótipo atual e permitem rastrear os testes sem atribuir à simulação regras de negócio ainda não implementadas.
 
-| ID   | Descrição | RF associado |
-| ---- | --------- | ------------ |
-| RN01 | ...       | RF001        |
-| RN02 | ...       | RF001        |
+<p align="center">Quadro 8 – Regras de negócio e requisitos associados</p>
+
+| ID   | Regra e condição                                                                                                                                                                     | Consequência se descumprida                                | RFs associados / estágio                                                        |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| RN01 | Balanço de emergência só existe em evento aberto, com `t0` e PEs designados. A contagem local de rotina não abre evento.                                                             | Misturar rotina com evacuação.                             | RF004, RF005 / futuro                                                           |
+| RN02 | Congelar `B` no alarme, após validar a referência das portarias; fluxo posterior não altera a base daquele evento.                                                                   | Comparar quantidades com referência variável.              | RF003, RF004, RF006 / futuro                                                    |
+| RN03 | Aceitar somente dispositivos cadastrados, com local, sentido e evento compatíveis; PE admite entrada e saída.                                                                        | Somar eventos ao local ou sentido errado.                  | RF002, RF003, RF005, RF010 / futuro                                             |
+| RN04 | `A` é ocupação inicial reconciliada mais entradas menos saídas dos PEs designados. Não é total histórico de chegadas nem identificação individual.                                   | Sobrecontar retornos ou omitir pessoas já presentes.       | RF004, RF005, RF006 / futuro                                                    |
+| RN05 | Com dados válidos, `D > 0` representa pendência quantitativa a conferir; não indica identidade ou posição.                                                                           | Inferir resgate nominal sem evidência.                     | RF006, RF007 / futuro                                                           |
+| RN06 | Aos dez minutos desde o alarme, pendência válida exige alerta para SSMA/CCO e acionamento da brigada conforme procedimento informado; o prazo não reinicia por leitura.              | Retardar resposta.                                         | RF004, RF008 / futuro                                                           |
+| RN07 | `A = B` exige conferência; só SSMA autorizada pode registrar conclusão. Igualdade não comprova segurança individual.                                                                 | Encerramento indevido.                                     | RF006, RF012 / futuro                                                           |
+| RN08 | Referência inválida, `A > B`, sensor/nó indisponível ou dados desatualizados tornam o balanço inconclusivo e exigem conferência humana.                                              | Interpretar ausência de dado como segurança.               | RF006, RF007, RF009, RF016 / futuro                                             |
+| RN09 | Não atribuir identidade ou localização a passagens anônimas. Eventual consulta ao controle de acesso é separada e depende de revisão da política.                                    | Inferências indevidas e mudança de privacidade.            | RF003, RF005, RF006, RF007, RF011 / futuro; minimização já observável no código |
+| RN10 | Restringir painel e alterações por perfil vinculado a `user_id`; conclusão exige perfil SSMA e registro da ação.                                                                     | Acesso ou alteração sem responsabilização.                 | RF011, RF012, RF013 / futuro                                                    |
+| RN11 | Uma mensagem identificada por dispositivo, sessão e sequência só altera a contagem uma vez, inclusive após retransmissão. Isso não reconhece a mesma pessoa em duas passagens.       | Duplicação de eventos de rede.                             | RF005, RF010 / futuro                                                           |
+| RN12 | Total local inicia em zero, entrada soma 1 e saída subtrai 1 sem negatividade; LCD e buzzer refletem a detecção. A inicialização deve corresponder ao cenário do ensaio.             | Saldo local inválido.                                      | RF001 / atual                                                                   |
+| RN13 | Contar somente distância válida em sensor livre, respeitar bloqueio/rearme de 1 s e prioridade da saída. Eco inválido não é passagem; falhas e eventos perdidos exigem investigação. | Duplicidade ou interpretação incorreta de ausência de eco. | RF001, RF015 / atual                                                            |
+| RN14 | Botão e LEDs representam apenas o estado visual da demonstração; contagem continua e não há confirmação de segurança ou abertura de emergência.                                      | Uso incorreto dos indicadores.                             | RF014 / atual                                                                   |
+| RN15 | Perda de Wi-Fi não deve zerar a contagem nem produzir falso estado de atualização remota. Configuração e segredo de rede devem ser protegidos.                                       | Perda de saldo ou dado antigo tratado como atual.          | RF016 / futuro                                                                  |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+Essas regras de projeto não substituem o procedimento de emergência da Unipar. A validação futura deve ligar cada regra ao teste específico e à versão da implementação.
 
 ### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
 
 _Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métrica, limite ou critério concreto) ou justificativa explícita de ausência. Evolua do conceitual (sprint 2) ao técnico mensurável (sprint 5)._
+
+<p align="center">Quadro 9 – Modelo de requisitos não funcionais para as próximas sprints</p>
 
 | Eixo                     | Requisito | Métrica / Critério | Justificativa |
 | ------------------------ | --------- | ------------------ | ------------- |
@@ -653,13 +903,56 @@ _Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métr
 | REST — Restrições Design | ...       | ...                | ...           |
 | ORG — Organizacionais    | ...       | ...                | ...           |
 
-### 3.3.4. Matriz de Rastreabilidade (RTM) (sprints 1 a 5)
+<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
 
-_A RTM consolida a rastreabilidade completa do sistema. Um elo quebrado invalida toda a cadeia — mantenha-a atualizada a cada sprint. Referencie os casos de testes a partir das tabelas definidas na seção 3.4.x_
+### 3.3.4. Matriz de Rastreabilidade (RTM)
 
-| Persona | RF    | RN   | Caso de Teste | Evidência                          |
-| ------- | ----- | ---- | ------------- | ---------------------------------- |
-| ...     | RF001 | RN01 | CT02          | print, log, relatório de cobertura |
+A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa resultado informado no ensaio original da seção 3.4.1, com imagem existente; não significa nova execução nesta revisão. A correção do circuito requer repetir a bateria. **Planejado** significa critério de aceitação futuro, sem resultado executado. A relação com uma persona indica a necessidade atendida, não participação dessa pessoa fictícia no teste.
+
+<p align="center">Quadro 10 – Rastreabilidade dos testes registrados na Sprint 1</p>
+
+| Caso | Necessidade / persona                      | RF           | RN         | Evidência e alcance                                                                                                                                                                                                   | Status                                  |
+| ---- | ------------------------------------------ | ------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| CT01 | Leitura inicial compreensível / Tuco       | RF001, RF014 | RN12, RN14 | [T01](../assets/casos_teste_prototipos/inicial/T01.png): total 0, verde aceso.                                                                                                                                        | Registrado; repetir                     |
+| CT02 | Passagem contabilizada / Gustavo           | RF001        | RN12, RN13 | [T02](../assets/casos_teste_prototipos/inicial/T02.png): entrada a 2 cm, total 1.                                                                                                                                     | Registrado; repetir                     |
+| CT03 | Não duplicar ao afastar / Tuco             | RF015        | RN13       | [T03](../assets/casos_teste_prototipos/inicial/T03.png): entrada afastada a 400 cm, total 1; imagem não mede sozinha 1 s.                                                                                             | Registrado; repetir                     |
+| CT04 | Descontar saída / Tuco                     | RF001        | RN12, RN13 | [T04](../assets/casos_teste_prototipos/inicial/T04.png): saída a 43 cm, de 1 para 0.                                                                                                                                  | Registrado; repetir                     |
+| CT05 | Rearmar sem novo decremento / Tuco         | RF015        | RN13       | [T05](../assets/casos_teste_prototipos/inicial/T05.png): saída a 400 cm, total 0.                                                                                                                                     | Registrado; repetir                     |
+| CT06 | Compreender o estado visual / Maria        | RF014        | RN14       | [T06](../assets/casos_teste_prototipos/inicial/T06.png): vermelho aceso, total preservado; não prova pausa.                                                                                                           | Registrado; repetir                     |
+| CT07 | Evitar saldo negativo / Tuco               | RF001        | RN12       | [T07](../assets/casos_teste_prototipos/inicial/T07.png): saída a 6 cm com zero preservado.                                                                                                                            | Registrado; repetir                     |
+| CT08 | Descartar alvo fora do limiar / Gustavo    | RF015        | RN13       | [T08](../assets/casos_teste_prototipos/inicial/T08.png): 400 cm não altera total.                                                                                                                                     | Registrado; repetir                     |
+| CT09 | Entender conflito entre acessos / Tuco     | RF015        | RN13       | [T09.1](../assets/casos_teste_prototipos/inicial/T09.1.png), [T09.2](../assets/casos_teste_prototipos/inicial/T09.2.png): entrada primeiro, saída ignorada durante bloqueio. Não prova simultaneidade no mesmo ciclo. | Registrado para essa sequência; repetir |
+| CT10 | Leitura inválida não gerar contagem / Tuco | RF015        | RN13       | [T10](../assets/casos_teste_prototipos/inicial/T10.png): ECHO desconectado; não comprova diagnóstico remoto do RF009.                                                                                                 | Registrado; repetir                     |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+#### Rastreabilidade preliminar da evolução
+
+Os identificadores **PV** abaixo são propostas de validação, não casos CT executados. Serão detalhados e convertidos em novos CT quando a respectiva implementação existir.
+
+<p align="center">Quadro 11 – Rastreabilidade das validações previstas para as próximas sprints</p>
+
+| Validação proposta           | RF           | RN                           | Persona beneficiada | Entrada / resultado esperado                                                                                              | Etapa proposta         |
+| ---------------------------- | ------------ | ---------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| PV01 — Dispositivos          | RF002        | RN03                         | Tuco / apoio de TI  | Cadastrar um nó; rejeitar ID duplicado e evento de nó desconhecido.                                                       | Sprints 3–4            |
+| PV02 — Referência e evento   | RF003, RF004 | RN01, RN02                   | Maria, Tuco         | Base fictícia 10, abrir alarme, nova entrada na portaria; B continua 10 e t0 não muda.                                    | Sprint 3               |
+| PV03 — Ocupação e balanço    | RF005, RF006 | RN03, RN04, RN05, RN07, RN08 | Tuco                | B=10, A inicial=2, +3 entradas e −1 saída: A=4, D=6; A=10 pede conferência, A=11 é inconclusivo.                          | Sprint 3               |
+| PV04 — Representação gráfica | RF007        | RN05, RN08, RN09             | Maria, Tuco         | Eventos em dois PEs geram série temporal por local, total e horário; nó parado aparece desatualizado.                     | Sprints 3–4            |
+| PV05 — Prazo                 | RF008        | RN06                         | Maria, Tuco         | D positivo com dados válidos aos 600 s gera alerta; nova passagem não reinicia relógio.                                   | Sprint 3               |
+| PV06 — Falhas                | RF009        | RN08                         | Maria, Tuco         | Invalidar B, interromper heartbeat ou simular sensor indisponível: balanço inconclusivo sem conclusão automática.         | Sprints 3–4            |
+| PV07 — MQTT                  | RF010        | RN03, RN11                   | Tuco / apoio de TI  | Enviar delta +1 e −1, repetir mesma chave, alterar sessão, omitir campo obrigatório: aceitar só eventos válidos únicos.   | Sprint 3               |
+| PV08 — Crachás, se aprovado  | RF011        | RN09, RN10                   | Maria, Tuco         | Consulta autorizada a base fictícia; leitura anônima do PE não deve ganhar identidade por inferência.                     | A decidir com parceiro |
+| PV09 — Conclusão             | RF012        | RN07, RN10                   | Tuco                | A=B não encerra; ação autorizada registra usuário, instante e justificativa; perfil sem permissão é recusado.             | Sprint 4               |
+| PV10 — Acesso ao painel      | RF013        | RN10                         | Maria, Tuco         | Chaves de usuários distintas, login válido/inválido e perfis diferentes; negar alteração não autorizada e registrar ação. | Sprint 4               |
+| PV11 — Wi-Fi                 | RF016        | RN08, RN15                   | Maria / apoio de TI | Conectar, derrubar rede e restabelecer: preservar total local, sinalizar desatualização e recuperar conexão.              | Sprints 3–4            |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+#### Cobertura e atualização
+
+Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. Há **15 RNs**: RN12–RN14 possuem evidência parcial nos CTs; as outras 12 dependem de implementação/validação futura. RN09 também é apoiada pela inspeção de ausência de identificadores no firmware, sem validar integração futura.
+
+A próxima revisão do circuito ficará a cargo da equipe e deverá ser seguida de nova execução da bateria, identificando versão/commit, responsável, entradas, saídas e resultado real. Esta etapa é exclusivamente documental, sem execução do protótipo. A cada sprint, atualizar RFs, RNs, riscos e testes juntos. Um caso só muda para aprovado após execução e evidência; planejamento não é cobertura experimental.
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
@@ -675,10 +968,10 @@ O diagrama de arquitetura deve:\_
 - _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
 - _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
 - _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
-- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
+- _Mostrar o broker MQTT e o dashboard, que é a interface do usuário_
 - _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros_
 
-### 3.3.6. Arquitetura do Protótipo(sprint 4)
+### 3.3.6. Arquitetura do Protótipo (sprint 4)
 
 _Vídeo de explicação sobre a arquitetura do protótipo físico: (coloque aqui o link do vídeo)_
 
@@ -690,14 +983,18 @@ Descreva a arquitetura usando um diagrama de blocos similar à visão anterior, 
 - _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
 - _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
 - _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
-- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
+- _Mostrar o broker MQTT e o dashboard, que é a interface do usuário_
 - _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros._
   _Faça uma tabela dos possíveis componentes utilizados. Todos os componentes devem estar presentes na arquitetura._
+
+<p align="center">Quadro 12 – Modelo de descrição dos componentes da arquitetura futura</p>
 
 | **Componente**             | **Descrição**                                                                                                                                                               | **Tipo**              |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | E.g. ESP32 WROOM 32 Devkit | E.g. Trata-se de um microcontrolador amplamente usado na indústria e em projetos educacionais, que possui interfaces mais amigáveis para conexão de componentes diversos... | E.g. Microcontrolador |
 | E.g. sensor XPTO           | E.g. Este sensor mede o sinal de XYZ em unidades q/s, e possui tolerância de abcd...                                                                                        | E.g. Sensor           |
+
+<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
 
 ### 3.3.7. Arquitetura Refinada da Solução (sprint 5)
 
@@ -723,7 +1020,7 @@ Na evolução conectada, `D > 0` em `t0 + 600 s` deverá produzir alerta automá
 
 #### Hardware, detecção e geometria
 
-O circuito atual utiliza Arduino Uno, dois HC-SR04 dedicados a entrada e saída, LCD 16x2 I2C, buzzer e LEDs. O botão alterna vermelho/verde; os sensores funcionam em ambos os estados. No `loop()`, a saída é consultada antes da entrada; depois de um evento, o outro sensor fica ignorado até a liberação. Não existe discriminação de direção pela sequência dos feixes. A instalação futura precisa garantir passagens coerentes com os sensores dedicados ou implementar e validar outra lógica de direção.
+O circuito atual utiliza Arduino Uno, dois HC-SR04 dedicados a entrada e saída, LCD 16 × 2 com interface I²C, buzzer e LEDs. O botão alterna vermelho/verde; os sensores funcionam em ambos os estados. No `loop()`, a saída é consultada antes da entrada; depois de um evento, o outro sensor fica ignorado até a liberação. Não existe discriminação de direção pela sequência dos feixes. A instalação futura precisa garantir passagens coerentes com os sensores dedicados ou implementar e validar outra lógica de direção.
 
 O limiar configurado é **distância medida maior que zero e menor que 200 cm**. Trata-se da distância entre sensor e alvo na direção da medição, não de uma largura de corredor nem de garantia de cobertura lateral. Largura útil, orientação, posição, altura, campo de detecção, reflexões e separação de pessoas precisam ser definidos e ensaiados na montagem física. A proposta anterior de corredor de 150 cm não demonstra cobertura nem assegura fila individual por estar abaixo de 200 cm. Nenhuma largura de instalação está aprovada nesta etapa, e delimitadores não podem obstruir a evasão.
 
@@ -737,12 +1034,16 @@ Seja `s` o intervalo efetivo entre contagens corretas, incluindo passagem e rear
 
 $$k_{min} = \left\lceil \frac{755\,s}{600 - t_{desloc}} \right\rceil$$
 
-| Intervalo efetivo assumido `s` | Vazão por acesso | Acessos mínimos com 600 s disponíveis | Acessos mínimos com 420 s disponíveis (180 s reservados ao deslocamento) |
-|---|---|---|---|
-| 1 s (limite idealizado, sem ocupação/processamento) | 60 pessoas/min | 2 | 2 |
-| 1,5 s | 40 pessoas/min | 2 | 3 |
-| 2 s | 30 pessoas/min | 3 | 4 |
-| 3 s | 20 pessoas/min | 4 | 6 |
+<p align="center">Tabela 2 – Dimensionamento exploratório dos acessos para 755 pessoas</p>
+
+| Intervalo efetivo assumido `s`                      | Vazão por acesso | Acessos mínimos com 600 s disponíveis | Acessos mínimos com 420 s disponíveis (180 s reservados ao deslocamento) |
+| --------------------------------------------------- | ---------------- | ------------------------------------- | ------------------------------------------------------------------------ |
+| 1 s (limite idealizado, sem ocupação/processamento) | 60 pessoas/min   | 2                                     | 2                                                                        |
+| 1,5 s                                               | 40 pessoas/min   | 2                                     | 3                                                                        |
+| 2 s                                                 | 30 pessoas/min   | 3                                     | 4                                                                        |
+| 3 s                                                 | 20 pessoas/min   | 4                                     | 6                                                                        |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
 Esses cenários são cálculos, não vazões medidas. Por exemplo, com `s = 2 s` e três minutos de deslocamento, são necessários **pelo menos quatro acessos independentes**. Para uma reserva adicional de 20% da capacidade nesse cenário, `ceil(755 × 2 / (0,8 × 420)) = 5` acessos. Esses parâmetros ainda precisam ser medidos e aprovados com a SSMA; não há número definitivo de acessos de implantação.
 
@@ -750,7 +1051,7 @@ A soma da capacidade não basta se uma fila ficar sobrecarregada. Para cada PE c
 
 #### Evoluções previstas
 
-ESP32, comunicação em rede/MQTT, integração P1/P2, congelamento automático de `B`, sincronização de horário, dashboard, registros temporais persistentes, histórico e alertas remotos são planejados. As mensagens atuais no monitor serial não constituem histórico persistente com data/hora. O controle agregado por zonas com crachás integra a visão futura; a Sprint 1 se restringe à contagem local nos PEs e aos testes CT01–CT10, sem indoor tracking.
+Comunicação em rede/MQTT, integração P1/P2, congelamento de `B`, sincronização de horário, dashboard, registros persistentes e alertas remotos são propostas para avaliação futura; a adoção de ESP32 depende da arquitetura a definir. As mensagens atuais no monitor serial não constituem histórico persistente com data/hora. Eventual controle por zonas com crachás exigiria nova decisão de escopo; a Sprint 1 se restringe à contagem local nos PEs e aos testes CT01–CT10, sem rastreamento contínuo em ambientes internos.
 
 ## 3.4. Resultados
 
@@ -760,87 +1061,109 @@ _Nesta seção, detalhe os resultados obtidos com a implementação, de acordo c
 
 O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito estão armazenados no diretório [`src/firmware/prototipo`](../src/firmware/prototipo/).
 
-O protótipo consiste em um contador de pessoas desenvolvido com Arduino Uno e dois sensores ultrassônicos HC-SR04. Um dos sensores registra a entrada de pessoas e incrementa o contador, enquanto o segundo registra a saída e decrementa o total. O valor atualizado é apresentado em um display LCD 16x2 conectado por I2C. Cada entrada ou saída válida também aciona um buzzer na frequência de 1.000 Hz durante 100 ms.
+O protótipo consiste em um contador de pessoas desenvolvido com Arduino Uno e dois sensores ultrassônicos HC-SR04. Um dos sensores registra a entrada de pessoas e incrementa o contador, enquanto o segundo registra a saída e decrementa o total. O valor atualizado é apresentado em um display LCD 16 × 2 conectado por I²C. Cada entrada ou saída válida também aciona um buzzer na frequência de 1.000 Hz durante 100 ms.
 
 Uma pessoa é detectada quando a distância medida pelo sensor é maior que zero e menor que 200 cm. Depois de uma detecção, o sensor permanece bloqueado até deixar de detectar a pessoa e permanecer livre durante pelo menos um segundo. Esse mecanismo evita contagens repetidas causadas pela permanência de uma pessoa em frente ao sensor. Durante o bloqueio, leituras conflitantes do outro sensor são ignoradas. O contador também possui uma proteção que impede a apresentação de valores negativos.
 
 O botão alterna a sinalização visual entre os LEDs verde e vermelho sem interromper o funcionamento dos sensores. Dessa forma, o usuário recebe uma indicação visual do estado selecionado sem perder o monitoramento de entradas e saídas. Caso um sensor não retorne o pulso de eco dentro de 30 ms, a medição é considerada inválida e descartada sem alterar o contador ou acionar o buzzer.
 
-O software contém as funções obrigatórias `setup()` e `loop()`, além de funções auxiliares como `iniciarLCD()`, `atualizarContador()`, `medirDistancia()` e `detectarPessoa()`. Também foi definida a classe `ContadorPessoas`. A instância `contador` dessa classe é utilizada no `loop()` para registrar entradas, registrar saídas e consultar o total atual. O código foi executado no Wokwi sem erros de sintaxe ou compilação.
+O software contém as funções obrigatórias `setup()` e `loop()`, além de funções auxiliares como `iniciarLCD()`, `atualizarContador()`, `medirDistancia()` e `detectarPessoa()`. Também foi definida a classe `ContadorPessoas`. A instância `contador` dessa classe é utilizada no `loop()` para registrar entradas, registrar saídas e consultar o total atual. A documentação original informa execução no Wokwi sem erros de sintaxe ou compilação. Nesta revisão, foi feita inspeção do código; a versão do circuito corrigida ainda deve ser reexecutada no simulador.
+
+#### Preparação e reprodução
+
+Na próxima execução, usar juntos os arquivos locais `sketch.ino` e `diagram.json` em um projeto Arduino Uno no Wokwi. Para reproduzir CT01, preparar ambos os sensores em 400 cm e manter o botão solto. O diagrama recebeu ajustes locais na etapa anterior desta revisão, mas sua conferência elétrica e a execução ficaram pendentes para a equipe. Nenhuma alteração no circuito ou no firmware foi feita nesta etapa documental. As capturas abaixo pertencem ao ensaio registrado anteriormente e não comprovam nova execução da versão local.
+
+Antes de cada caso isolado, restaurar o ECHO e as conexões normais, afastar ambos os sensores e aguardar pelo menos 1 s livre; quando houver reinício, o saldo esperado é zero. CT01–CT05 são sequenciais. CT06–CT10 requerem preparação própria indicada na tabela; CT09 começa com zero e detecta a entrada antes da saída. Para CT10, manter o sensor não testado em 400 cm e desconectar apenas o ECHO do sensor testado. Não restaurar conexões de alimentação invertidas para imitar a captura antiga.
 
 #### Casos de teste
 
 Os testes CT01 a CT05 representam uma sequência completa de entrada e saída. Os testes seguintes verificam o botão e os LEDs, condições de limite, leituras simultâneas e falha de leitura. A simulação foi reiniciada quando necessário para isolar a situação avaliada.
 
-| **CT#** | **Bloco** | **Componente de entrada** | **Leitura da entrada** | **Componente de saída** | **Leitura da saída** | **Descrição e resultado observado** |
-|---|---|---|---|---|---|---|
-| CT01 | Inicialização | Arduino Uno | Simulação iniciada sem pessoas próximas aos sensores | LED verde e LCD 16x2 | LED verde aceso, LED vermelho apagado e `Total: 0` | O sistema inicializa com o contador zerado e fica pronto para receber leituras. **Aprovado.** |
-| CT02 | Entrada de pessoa | HC-SR04 de entrada | 2 cm, abaixo do limite de 200 cm | LCD 16x2, buzzer e monitor serial | `Total: 1`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa entrou: +1` | A pessoa é detectada pelo sensor de entrada e o contador é incrementado uma única vez. **Aprovado.** |
-| CT03 | Liberação do sensor de entrada | HC-SR04 de entrada | Distância alterada para 400 cm depois da entrada | LCD 16x2 | Total permanece em `1` | O afastamento não gera uma nova contagem. Após um segundo sem presença, os sensores são liberados para o próximo evento. **Aprovado.** |
-| CT04 | Saída de pessoa | HC-SR04 de saída | 43 cm, com o total anterior igual a `1` | LCD 16x2, buzzer e monitor serial | `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A pessoa é detectada pelo sensor de saída e o contador é reduzido em uma unidade. **Aprovado.** |
-| CT05 | Liberação do sensor de saída | HC-SR04 de saída | Distância alterada para 400 cm depois da saída | LCD 16x2 | Total permanece em `0` | O afastamento não gera outro decremento. Após um segundo sem presença, os sensores são liberados para a próxima leitura. **Aprovado.** |
-| CT06 | Sinalização vermelha | Botão | Um pressionamento válido | LEDs e LCD 16x2 | LED vermelho aceso, LED verde apagado e total preservado em `0` | O botão alterna a sinalização para o LED vermelho sem reiniciar ou modificar o contador. **Aprovado.** |
-| CT07 | Proteção contra valor negativo | HC-SR04 de saída | 6 cm com o contador já em `0` | LCD 16x2, buzzer e monitor serial | LCD permanece em `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A saída é detectada, mas o método `saida()` impede que o total seja reduzido abaixo de zero. **Aprovado.** |
-| CT08 | Objeto fora do alcance | HC-SR04 | 400 cm, acima do limite de detecção de 200 cm | LCD 16x2 e buzzer | Total permanece em `0` e buzzer não é acionado | O objeto fora do alcance definido não é interpretado como uma pessoa e não altera o contador. **Aprovado.** |
-| CT09 | Bloqueio de leituras conflitantes | HC-SR04 de entrada e HC-SR04 de saída | Entrada detectada a 2 cm e, antes da liberação, leitura de 86 cm no sensor de saída | LCD 16x2, buzzer e monitor serial | Apenas uma entrada é registrada e o total permanece em `1` | Neste ensaio, a entrada foi acionada antes da saída e permanece ativa. A leitura do sensor de saída é ignorada até a liberação do sensor inicial. Se ambos já estiverem detectando no início do mesmo ciclo, o firmware dá prioridade à saída; esse cenário não é comprovado por esta evidência. **Aprovado para a sequência ensaiada.** |
-| CT10 | Falha de leitura do sensor | HC-SR04 com o fio `ECHO` desconectado | Sensor configurado em 63 cm, mas sem pulso de retorno durante 30 ms | LCD 16x2 e buzzer | Total permanece em `0` e buzzer não é acionado | A função `medirDistancia()` devolve `-1` após o tempo limite. A leitura inválida é descartada e o sistema continua funcionando sem contabilizar uma pessoa incorretamente. **Aprovado.** |
+<p align="center">Quadro 13 – Casos de teste e resultados registrados na Sprint 1</p>
+
+| **CT#** | **Bloco**                         | **Componente de entrada**             | **Leitura da entrada**                                                              | **Componente de saída**             | **Leitura da saída**                                                                          | **Descrição e resultado observado**                                                                                                                                                                                                                                                                                                      |
+| ------- | --------------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CT01    | Inicialização                     | Arduino Uno                           | Simulação iniciada sem pessoas próximas aos sensores                                | LED verde e LCD 16 × 2              | LED verde aceso, LED vermelho apagado e `Total: 0`                                            | O sistema inicializa com o contador zerado e fica pronto para receber leituras. **Aprovado.**                                                                                                                                                                                                                                            |
+| CT02    | Entrada de pessoa                 | HC-SR04 de entrada                    | 2 cm, abaixo do limite de 200 cm                                                    | LCD 16 × 2, buzzer e monitor serial | `Total: 1`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa entrou: +1`                | A pessoa é detectada pelo sensor de entrada e o contador é incrementado uma única vez. **Aprovado.**                                                                                                                                                                                                                                     |
+| CT03    | Liberação do sensor de entrada    | HC-SR04 de entrada                    | Distância alterada para 400 cm depois da entrada                                    | LCD 16 × 2                          | Total permanece em `1`                                                                        | O afastamento não gera uma nova contagem. Após um segundo sem presença, os sensores são liberados para o próximo evento. **Aprovado.**                                                                                                                                                                                                   |
+| CT04    | Saída de pessoa                   | HC-SR04 de saída                      | 43 cm, com o total anterior igual a `1`                                             | LCD 16 × 2, buzzer e monitor serial | `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1`                  | A pessoa é detectada pelo sensor de saída e o contador é reduzido em uma unidade. **Aprovado.**                                                                                                                                                                                                                                          |
+| CT05    | Liberação do sensor de saída      | HC-SR04 de saída                      | Distância alterada para 400 cm depois da saída                                      | LCD 16 × 2                          | Total permanece em `0`                                                                        | O afastamento não gera outro decremento. Após um segundo sem presença, os sensores são liberados para a próxima leitura. **Aprovado.**                                                                                                                                                                                                   |
+| CT06    | Sinalização vermelha              | Botão                                 | Um pressionamento válido                                                            | LEDs e LCD 16 × 2                   | LED vermelho aceso, LED verde apagado e total preservado em `0`                               | O botão alterna a sinalização para o LED vermelho sem reiniciar ou modificar o contador. **Aprovado.**                                                                                                                                                                                                                                   |
+| CT07    | Proteção contra valor negativo    | HC-SR04 de saída                      | 6 cm com o contador já em `0`                                                       | LCD 16 × 2, buzzer e monitor serial | LCD permanece em `Total: 0`, aviso sonoro de 1.000 Hz por 100 ms e mensagem `Pessoa saiu: -1` | A saída é detectada, mas o método `saida()` impede que o total seja reduzido abaixo de zero. **Aprovado.**                                                                                                                                                                                                                               |
+| CT08    | Objeto fora do alcance            | HC-SR04                               | 400 cm, acima do limite de detecção de 200 cm                                       | LCD 16 × 2 e buzzer                 | Total permanece em `0` e buzzer não é acionado                                                | O objeto fora do alcance definido não é interpretado como uma pessoa e não altera o contador. **Aprovado.**                                                                                                                                                                                                                              |
+| CT09    | Bloqueio de leituras conflitantes | HC-SR04 de entrada e HC-SR04 de saída | Entrada detectada a 2 cm e, antes da liberação, leitura de 86 cm no sensor de saída | LCD 16 × 2, buzzer e monitor serial | Apenas uma entrada é registrada e o total permanece em `1`                                    | Neste ensaio, a entrada foi acionada antes da saída e permanece ativa. A leitura do sensor de saída é ignorada até a liberação do sensor inicial. Se ambos já estiverem detectando no início do mesmo ciclo, o firmware dá prioridade à saída; esse cenário não é comprovado por esta evidência. **Aprovado para a sequência ensaiada.** |
+| CT10    | Falha de leitura do sensor        | HC-SR04 com o fio `ECHO` desconectado | Sensor configurado em 63 cm, mas sem pulso de retorno durante 30 ms                 | LCD 16 × 2 e buzzer                 | Total permanece em `0` e buzzer não é acionado                                                | A função `medirDistancia()` devolve `-1` após o tempo limite. A leitura inválida é descartada e o sistema continua funcionando sem contabilizar uma pessoa incorretamente. **Aprovado.**                                                                                                                                                 |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
 #### Evidências dos testes
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T01.png" alt="CT01: inicialização do sistema" width="85%"><br>
-  <i>Figura 1 — CT01: sistema inicializado, LED verde aceso e contador apresentado em zero.</i>
-</p>
+As Figuras 8 a 17 apresentam as capturas dos ensaios CT01 a CT10. Os títulos identificam o estado observado em cada captura; os resultados e as limitações de cada ensaio estão descritos no quadro de casos de teste. A Figura 16 reúne duas capturas da sequência do CT09.
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T02.png" alt="CT02: entrada de pessoa" width="85%"><br>
-  <i>Figura 2 — CT02: pessoa detectada a 2 cm pelo sensor de entrada, elevando o total para um.</i>
-</p>
+<div align="center">
+  <p>Figura 8 – CT01: inicialização com LED verde aceso e contador em zero</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T01.png" alt="CT01: inicialização do sistema" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T03.png" alt="CT03: liberação do sensor de entrada" width="85%"><br>
-  <i>Figura 3 — CT03: afastamento para 400 cm libera o sensor de entrada e mantém o total em um.</i>
-</p>
+<div align="center">
+  <p>Figura 9 – CT02: entrada detectada a 2 cm e contador em um</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T02.png" alt="CT02: entrada de pessoa" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T04.png" alt="CT04: saída de pessoa" width="85%"><br>
-  <i>Figura 4 — CT04: pessoa detectada a 43 cm pelo sensor de saída, reduzindo o total de um para zero.</i>
-</p>
+<div align="center">
+  <p>Figura 10 – CT03: sensor de entrada a 400 cm e contador preservado em um</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T03.png" alt="CT03: liberação do sensor de entrada" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T05.png" alt="CT05: liberação do sensor de saída" width="85%"><br>
-  <i>Figura 5 — CT05: afastamento para 400 cm libera o sensor de saída e mantém o total em zero.</i>
-</p>
+<div align="center">
+  <p>Figura 11 – CT04: saída detectada a 43 cm e contador reduzido a zero</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T04.png" alt="CT04: saída de pessoa" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T06.png" alt="CT06: LED vermelho acionado pelo botão" width="85%"><br>
-  <i>Figura 6 — CT06: o botão alterna a sinalização para o LED vermelho sem modificar o contador.</i>
-</p>
+<div align="center">
+  <p>Figura 12 – CT05: sensor de saída a 400 cm e contador preservado em zero</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T05.png" alt="CT05: liberação do sensor de saída" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T07.png" alt="CT07: saída com contador zerado" width="85%"><br>
-  <i>Figura 7 — CT07: saída detectada a 6 cm; a proteção mantém o contador em zero.</i>
-</p>
+<div align="center">
+  <p>Figura 13 – CT06: sinalização vermelha sem alteração do contador</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T06.png" alt="CT06: LED vermelho acionado pelo botão" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T08.png" alt="CT08: objeto fora do alcance" width="85%"><br>
-  <i>Figura 8 — CT08: objeto posicionado a 400 cm, fora do limite de detecção, sem alteração no contador.</i>
-</p>
+<div align="center">
+  <p>Figura 14 – CT07: saída detectada a 6 cm com contador preservado em zero</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T07.png" alt="CT07: saída com contador zerado" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T09.1.png" alt="CT09: entrada registrada antes da leitura conflitante" width="42%">
-  <img src="../assets/casos_teste_prototipos/inicial/T09.2.png" alt="CT09: leitura conflitante ignorada" width="42%"><br>
-  <i>Figura 9 — CT09: o sensor de entrada registra uma pessoa e a leitura do sensor de saída é ignorada enquanto o primeiro sensor permanece ativo.</i>
-</p>
+<div align="center">
+  <p>Figura 15 – CT08: objeto a 400 cm sem alteração do contador</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T08.png" alt="CT08: objeto fora do alcance" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
-<p align="center">
-  <img src="../assets/casos_teste_prototipos/inicial/T10.png" alt="CT10: falha de leitura do sensor" width="85%"><br>
-  <i>Figura 10 — CT10: com o fio ECHO desconectado, a leitura inválida é descartada e o contador permanece em zero.</i>
-</p>
+<div align="center">
+  <p>Figura 16 – CT09: registro da entrada e bloqueio da leitura conflitante de saída</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T09.1.png" alt="CT09, captura A: entrada registrada antes da leitura conflitante" width="49%">
+  <img src="../assets/casos_teste_prototipos/inicial/T09.2.png" alt="CT09, captura B: leitura conflitante ignorada" width="49%">
+  <p><sub>Fonte: capturas dos autores no Wokwi (2026). Nota: à esquerda, a captura A registra a entrada; à direita, a captura B mostra a leitura de saída durante o bloqueio.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura 17 – CT10: ECHO desconectado e contador preservado em zero</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T10.png" alt="CT10: falha de leitura do sensor" width="100%">
+  <p><sub>Fonte: captura dos autores no Wokwi (2026).</sub></p>
+</div>
 
 #### 3.4.1.1. Alcance dos resultados e protocolo de validação futura
 
-**Evidência disponível:** CT01–CT10 são dez cenários funcionais com resultados e imagens registrados acima. A numeração e as descrições de referência são: CT01 — Inicialização; CT02 — Entrada de pessoa; CT03 — Liberação do sensor de entrada; CT04 — Saída de pessoa; CT05 — Liberação do sensor de saída; CT06 — Sinalização vermelha; CT07 — Proteção contra valor negativo; CT08 — Objeto fora do alcance; CT09 — Bloqueio de leituras conflitantes; CT10 — Falha de leitura do sensor. A conformidade reportada é `10/10` nos cenários documentados, com a ressalva de sequência do CT09. Isso não significa acurácia de 100% por passagem nem validação física/industrial. Não foram fornecidas séries de medições de tempo ou amostras auditadas de passagens que comprovem 60% de redução ou 99% de acurácia.
+**Evidência disponível:** CT01–CT10 são dez cenários funcionais com resultados e imagens registrados acima. A numeração e as descrições de referência são: CT01 — Inicialização; CT02 — Entrada de pessoa; CT03 — Liberação do sensor de entrada; CT04 — Saída de pessoa; CT05 — Liberação do sensor de saída; CT06 — Sinalização vermelha; CT07 — Proteção contra valor negativo; CT08 — Objeto fora do alcance; CT09 — Bloqueio de leituras conflitantes; CT10 — Falha de leitura do sensor. A conformidade **reportada no ensaio original** é `10/10` nos cenários documentados, com a ressalva de sequência do CT09. A aprovação da versão corrigida permanece pendente de nova execução. Isso não significa acurácia de 100% por passagem nem validação física/industrial. Não foram fornecidas séries de medições de tempo ou amostras auditadas de passagens que comprovem 60% de redução ou 99% de acurácia.
 
 **Redução do tempo de apuração quantitativa — meta ainda não validada:** utilizar o mesmo grupo e condições equivalentes nos dois métodos. O início da medição será o sinal de liberação da primeira pessoa de um grupo posicionado na mesma linha de chegada ao acesso do PE. O fim será a disponibilização, ao mesmo responsável pela conferência, do total quantitativo de todas as pessoas do grupo: no manual, após chamada, anotação e soma final; no protótipo, após atualização do LCD e comunicação do total ao responsável. Se houver erro, o relógio continua até a correção e disponibilização do total correto. Registrar separadamente o instante da última passagem e o tempo de reconciliação. A confirmação nominal continua sendo uma atividade complementar; contagem anônima e chamada nominal não entregam a mesma informação.
 
@@ -863,18 +1186,26 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 _Aqui você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema físico. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
 Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
 
+<p align="center">Quadro 14 – Modelo de registro de testes da Sprint 2</p>
+
 | **CT#** | **Descrição**                                    | **Pré-condição**                  | **Procedimento de teste**                                                                                                 | **Pós-condição/Resultado esperado**                                                                         | **Observações** (opcional) |
 | ------- | ------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
 | CT11    | ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado. | ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
 
-### 3.4.3. Protótipo do Projeto com MQTT e I2C (sprint 3)
+<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+
+### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
 _Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
 Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
 
+<p align="center">Quadro 15 – Modelo de registro de testes da Sprint 3</p>
+
 | **CT#** | **Configuração do ambiente**                                                                                                                   | **Ação do usuário**                                                                     | **Resposta esperada do sistema**                                                                                                                 |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | CT21    | ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização |
+
+<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)
 
@@ -889,108 +1220,110 @@ Também inclua figuras da versão final do protótipo físico e dashboards, alé
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
-_Escreva, de forma resumida, sobre os principais resultados do seu projeto e faça recomendações formais ao seu parceiro de projeto em relação ao uso dessa solução. Você pode aproveitar este espaço para comentar sobre possíveis materiais extras._
+Na Sprint 1, o C.R.I.S.I.S consolidou o entendimento inicial do problema de conferência da evacuação, a proposta de valor, três proto-personas e os requisitos preliminares da solução. O protótipo simulado explora a contagem local anônima de entradas e saídas, com apresentação do total no LCD e sinalização por LEDs e buzzer. Os dez casos documentados registram situações de uso e de falha, mas suas capturas não comprovam desempenho industrial, identificação individual ou validação da montagem física.
+
+Recomenda-se utilizar essa entrega como base para os próximos experimentos, mantendo a conferência humana e os procedimentos de emergência do parceiro. Antes da evolução física, será necessário revisar a montagem, consolidar a BOM e repetir os testes com identificação da versão e registro dos resultados. A consolidação remota, o dashboard e as possíveis integrações com registros de acesso permanecem planejados e dependem de viabilidade técnica, validação com o parceiro e revisão das condições de privacidade. A expansão nas próximas sprints deverá ser orientada por essas evidências; a contagem local, isoladamente, não permite afirmar que todas as pessoas estão seguras.
 
 ## <a name="c5"></a>5. Referências
 
-BRASIL. Lei nº 14.026, de 15 de julho de 2020. Atualiza o marco legal do saneamento básico. Brasília, DF: Presidência da República, 2020. Disponível em: [https://www.planalto.gov.br/ccivil_03/\_ato2019-2022/2020/lei/l14026.htm](https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14026.htm). Acesso em: 15 out. 2026.
+AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS (ANPD). **Direito dos titulares**. Brasília, DF: ANPD, [s. d.]. Disponível em: https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados/direito-dos-titulares. Acesso em: 22 out. 2026.
 
-BRASIL. Ministério do Trabalho e Emprego. Normas Regulamentadoras (NR). Brasília, DF: Ministério do Trabalho e Emprego. Disponível em: [https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/ctpp-nrs/normas-regulamentadoras-nrs](https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/ctpp-nrs/normas-regulamentadoras-nrs). Acesso em: 15 out. 2026.
+AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS (ANPD). **Guia orientativo para definições dos agentes de tratamento de dados pessoais e do encarregado**. Brasília, DF: ANPD, 2022. Disponível em: https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-para-definicoes-dos-agentes-de-tratamento-de-dados-pessoais-e-do-encarregado. Acesso em: 22 out. 2026.
 
-DABROWSKA, Magda. Emergency mustering solution. _IoT Now_, [s. l.], 12 jan. 2024. Disponível em: https://iot-now.com/2024/01/12/141842-emergency-mustering-solution/. Acesso em: 20 out. 2026.
+AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS (ANPD). **Guia orientativo sobre segurança da informação para agentes de tratamento de pequeno porte**. Brasília, DF: ANPD, 2021. Disponível em: https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-sobre-seguranca-da-informacao-para-agentes-de-tratamento-de-pequeno-porte. Acesso em: 22 out. 2026.
 
-ELETROGATE. _Buzzer ativo 5 V_. Disponível em: <https://www.eletrogate.com/buzzer-ativo-5v?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=1&gad_campaignid=20223015315&gbraid=0AAAAADqxjs_RKxEA4lB8OTz9kzOy_b2y9&gclid=CjwKCAjwotzWBhBFEiwA1JhPoLPBf6mtcZizCQRpZRRLmGNgwewSSuaihP1VIORbIt2h8imNmBty9RoCrG8QAvD_BwE>. Acesso em: 20 out. 2026.
-MERCADO LIVRE. _Cabo USB compatível com placa de desenvolvimento Arduino Uno R3 ATmega328P CH340_. Disponível em: <https://www.mercadolivre.com.br/cabo-usb-compativel-com-placa-de-desenvolvimento-arduino-uno-r3-atmega328p-ch340/p/MLB44072268?pdp_filters=item_id%3AMLB5229650730&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735125422&matt_product_id=MLB44072268-product&matt_product_partition_id=2495059736147&matt_target_id=pla-2495059736147&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoJRuM1jdBvwQsy-JbDuO2GqZUVevX9I5SgDqMi81aZh_Pusf2a-KQhoC7PwQAvD_BwE>. Acesso em: 20 out. 2026.
+ASSOCIAÇÃO BRASILEIRA DA INDÚSTRIA DE ÁLCALIS, CLORO E DERIVADOS (ABICLOR). **Produção brasileira de cloro cresce 5,4% entre janeiro e outubro de 2024**. [S. l.]: Abiclor, 13 jan. 2025. Disponível em: https://www.abiclor.com.br/producao-brasileira-de-cloro-cresce-54-entre-janeiro-e-outubro-de-2024/. Acesso em: 22 out. 2026.
 
-MERCADO LIVRE. _Módulo sensor ultrassônico de distância HC-SR04 para Arduino_. Disponível em: <https://www.mercadolivre.com.br/modulo-sensor-ultrassonico-distancia-hc-sr04-para-arduino/p/MLB64164978?pdp_filters=item_id%3AMLB5130062737&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735128761&matt_product_id=MLB64164978-product&matt_product_partition_id=2495059736347&matt_target_id=pla-2495059736347&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoIQ9ytYCHxi7QMFA-RU1aROmSXUtXE3xD1biz_vwK9s3dwk-8Ro6oxoCIOoQAvD_BwE>. Acesso em: 20 out. 2026.
+BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL (BNDES). Novo marco legal do saneamento: impactos na cadeia de fornecedores – parte 2. **BNDES Setorial**, Rio de Janeiro, v. 28, n. 55, p. 179–239, mar. 2022. Disponível em: https://web.bndes.gov.br/bib/jspui/bitstream/1408/22426/3/PR_BS_v28_n55_Saneamento_parte%202_.pdf. Acesso em: 22 out. 2026.
 
-MERCADO LIVRE. _Conjunto de 50 botões de pressão para placa de circuito_. Disponível em: <https://www.mercadolivre.com.br/conjunto-de-50-botoes-de-pressao-para-placa-de-circuito/p/MLB2052130334?matt_tool=18956390&utm_source=google_shopping&utm_medium=organic&pdp_filters=item_id%3AMLB7635767930&from=gshop>. Acesso em: 20 out. 2026.
+BRASIL. **Lei nº 13.709, de 14 de agosto de 2018**: Lei Geral de Proteção de Dados Pessoais (LGPD). Brasília, DF: Presidência da República, 2018. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm. Acesso em: 22 out. 2026.
 
-ELETROGATE. _LED difuso 5 mm verde_. Disponível em: <https://www.eletrogate.com/led-difuso-5mm-verde?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=1&gad_campaignid=22470016551&gbraid=0AAAAADqxjs-J182in_CBPr1nyA54F-LL9&gclid=CjwKCAjwotzWBhBFEiwA1JhPoCaLKeb9vaLT7u49dThE1TEGwTfv0C6_EYGFI6dS3biP6Xoqy1ZgVxoCiEIQAvD_BwE>. Acesso em: 20 out. 2026.
+BRASIL. **Lei nº 14.026, de 15 de julho de 2020**: atualiza o marco legal do saneamento básico. Brasília, DF: Presidência da República, 2020. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14026.htm. Acesso em: 15 out. 2026.
 
-ELETROGATE. _LED difuso 5 mm vermelho_. Disponível em: <https://www.eletrogate.com/led-difuso-5mm-vermelho?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=1&gad_campaignid=20223015315&gbraid=0AAAAADqxjs_RKxEA4lB8OTz9kzOy_b2y9&gclid=CjwKCAjwotzWBhBFEiwA1JhPoN-apmwJkkXYYznxTECGwrAfUUdQMOGaQL_4-m8zeFGfzU6AOYhiNxoCqJgQAvD_BwE>. Acesso em: 20 out. 2026.
+BRASIL. Ministério do Trabalho e Emprego. **Normas regulamentadoras (NR)**. Brasília, DF: Ministério do Trabalho e Emprego, [s. d.]. Disponível em: https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/ctpp-nrs/normas-regulamentadoras-nrs. Acesso em: 15 out. 2026.
 
-ELETROGATE. _Protoboard 400 pontos_. Disponível em: <https://www.eletrogate.com/protoboard-400-pontos?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=4&gad_campaignid=20223015315&gbraid=0AAAAADqxjs--_IDti_OP_PomQr4wJeFmq&gclid=CjwKCAjwotzWBhBFEiwA1JhPoPlT3_2SAg4EbLjDVCFA_2Gb0qBCgwXD5npVhSjZdn-yagDte4bg4BoCZoMQAvD_BwE>. Acesso em: 20 out. 2026.
+BRASIL. Ministério do Trabalho e Emprego. **NR-20**: segurança e saúde no trabalho com inflamáveis e combustíveis. Brasília, DF: Ministério do Trabalho e Emprego, 2025. Texto atualizado em 2025. Disponível em: https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-20-atualizada-2025.pdf. Acesso em: 23 out. 2026.
 
-ESTADÃO CONTEÚDO. Unipar tem 2025 desafiado pelo ciclo petroquímico, com quarto trimestre mais crítico. UOL Economia, 19 mar. 2026. Disponível em: [https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm](https://economia.uol.com.br/noticias/estadao-conteudo/2026/03/19/unipar-tem-2025-desafiado-pelo-ciclo-petroquimico-com-quarto-trimestre-mais-critico.htm). Acesso em: 15 out. 2026.
+BRASIL. Ministério do Trabalho e Emprego. **NR-23**: proteção contra incêndios. Brasília, DF: Ministério do Trabalho e Emprego, 2022. Texto atualizado em 2022. Disponível em: https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-23-atualizada-2022.pdf. Acesso em: 23 out. 2026.
 
-INTELI. Projeto parceiro: Unipar — Sistema de IoT para Monitoramento, Orientação e Confirmação de Evacuação em Emergências Industriais. 2026. Disponível em: [https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true](https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit?usp=drive_link&ouid=118360090804793164161&rtpof=true&sd=true). Acesso em: 15 out. 2026. Material de apoio correspondente ao Módulo 4 do Ciclo Comum de Graduação do Instituto de Tecnologia e Liderança, 2026.
+BRASKEM S.A. **Annual report 2025 (Form 20-F)**. Washington, DC: U.S. Securities and Exchange Commission, 2026. Disponível em: https://www.sec.gov/Archives/edgar/data/1071438/000129281426002427/bakform20f_2025.htm. Acesso em: 22 out. 2026.
 
-MERCADO LIVRE. _Bateria Maxell CR2032 de lítio, 3 V, uma unidade_. Disponível em: <https://lista.mercadolivre.com.br/bateria-maxell-cr2032>. Acesso em: 22 out. 2026.
+DABROWSKA, Magda. Emergency mustering solution. **IoT Now**, [S. l.], 12 jan. 2024. Disponível em: https://iot-now.com/2024/01/12/141842-emergency-mustering-solution/. Acesso em: 20 out. 2026.
 
-MERCADO LIVRE. _Cabo jumper macho-macho 20 cm para Arduino e protoboard_. Disponível em: <https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281>. Acesso em: 20 out. 2026.
+ELETROGATE. **Buzzer ativo 5 V**. [S. l.]: Eletrogate, [s. d.]a. Disponível em: https://www.eletrogate.com/buzzer-ativo-5v. Acesso em: 20 out. 2026.
 
-MERCADO LIVRE. _Cabo USB compatível com placa de desenvolvimento Arduino Uno R3 ATmega328P CH340_. Disponível em: <https://www.mercadolivre.com.br/cabo-usb-compativel-com-placa-de-desenvolvimento-arduino-uno-r3-atmega328p-ch340/p/MLB44072268?pdp_filters=item_id%3AMLB5229650730&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735125422&matt_product_id=MLB44072268-product&matt_product_partition_id=2495059736147&matt_target_id=pla-2495059736147&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoJRuM1jdBvwQsy-JbDuO2GqZUVevX9I5SgDqMi81aZh_Pusf2a-KQhoC7PwQAvD_BwE>. Acesso em: 20 out. 2026.
+ELETROGATE. **LED difuso 5 mm verde**. [S. l.]: Eletrogate, [s. d.]b. Disponível em: https://www.eletrogate.com/led-difuso-5mm-verde. Acesso em: 20 out. 2026.
 
-MERCADO LIVRE. _Conjunto de 50 botões de pressão para placa de circuito_. Disponível em: <https://www.mercadolivre.com.br/conjunto-de-50-botoes-de-pressao-para-placa-de-circuito/p/MLB2052130334?matt_tool=18956390&utm_source=google_shopping&utm_medium=organic&pdp_filters=item_id%3AMLB7635767930&from=gshop>. Acesso em: 20 out. 2026.
+ELETROGATE. **LED difuso 5 mm vermelho**. [S. l.]: Eletrogate, [s. d.]c. Disponível em: https://www.eletrogate.com/led-difuso-5mm-vermelho. Acesso em: 20 out. 2026.
 
-MERCADO LIVRE. _Display LCD 16 × 2 1602 com módulo I²C soldado_. Disponível em: <https://www.mercadolivre.com.br/display-lcd-16x2-1602-fundo-azul-com-modulo-i2c-soldado/up/MLBU4549779439?pdp_filters=item_id%3AMLB7321088826&from=gshop&matt_tool=56885173&matt_word=&matt_source=google&matt_campaign_id=22090354256&matt_ad_group_id=192555051054&matt_match_type=&matt_network=g&matt_device=c&matt_creative=799032781561&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=119897001&matt_product_id=MLBU4549779439&matt_product_partition_id=2498613880064&matt_target_id=pla-2498613880064&cq_src=google_ads&cq_cmp=22090354256&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22090354256&gbraid=0AAAAAD93qcAf98DVye3WhOkZqJU1o3eSE&gclid=CjwKCAjwotzWBhBFEiwA1JhPoMgiK21_IFmDbVmbNMgDC3o03ZARpy4oBINxyPna8AsDNp4ISmYalRoCR_MQAvD_BwE>. Acesso em: 20 out. 2026.
+ELETROGATE. **Protoboard 400 pontos**. [S. l.]: Eletrogate, [s. d.]d. Disponível em: https://www.eletrogate.com/protoboard-400-pontos. Acesso em: 20 out. 2026.
 
-MERCADO LIVRE. _Kit de cabos jumper macho-fêmea 20 cm_. Disponível em: <https://www.mercadolivre.com.br/20pcs-jumper-mxf-20cm--20pcs-jumper-fxf-20cm/up/MLBU2370810037?pdp_filters=item_id%3AMLB4078036044&from=gshop&matt_tool=19390443&matt_word=&matt_source=google&matt_campaign_id=22090354205&matt_ad_group_id=191786774561&matt_match_type=&matt_network=g&matt_device=c&matt_creative=782869962440&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=5458938305&matt_product_id=MLBU2370810037&matt_product_partition_id=2495493043879&matt_target_id=pla-2495493043879&cq_src=google_ads&cq_cmp=22090354205&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090354205&gbraid=0AAAAAD93qcBWh7S0-tQRtyURYUhdok1-w&gclid=CjwKCAjwotzWBhBFEiwA1JhPoO4nhPq-F2KwwBsDI-Hn3A0iwomUAHbI1TRcldDnimZUYjGi7kAF6xoCG5oQAvD_BwE>. Acesso em: 20 out. 2026.
+HARVARD BUSINESS SCHOOL. Institute for Strategy and Competitiveness. **The five forces**. [S. l.]: Harvard Business School, [s. d.]. Disponível em: https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx. Acesso em: 23 out. 2026.
 
-MERCADO LIVRE. _Módulo sensor ultrassônico de distância HC-SR04 para Arduino_. Disponível em: <https://www.mercadolivre.com.br/modulo-sensor-ultrassonico-distancia-hc-sr04-para-arduino/p/MLB64164978?pdp_filters=item_id%3AMLB5130062737&from=gshop&matt_tool=56164162&matt_word=&matt_source=google&matt_campaign_id=22090193744&matt_ad_group_id=194474654154&matt_match_type=&matt_network=g&matt_device=c&matt_creative=792355615410&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735128761&matt_product_id=MLB64164978-product&matt_product_partition_id=2495059736347&matt_target_id=pla-2495059736347&cq_src=google_ads&cq_cmp=22090193744&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090193744&gbraid=0AAAAAD93qcDWMW_AFPrQLlrvCxOyNb_89&gclid=CjwKCAjwotzWBhBFEiwA1JhPoIQ9ytYCHxi7QMFA-RU1aROmSXUtXE3xD1biz_vwK9s3dwk-8Ro6oxoCIOoQAvD_BwE>. Acesso em: 20 out. 2026.
+INSTITUTO NACIONAL DE METROLOGIA, QUALIDADE E TECNOLOGIA (INMETRO). **Maturidade da Indústria 4.0**. Brasília, DF: Inmetro, 2026. Disponível em: https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0. Acesso em: 23 out. 2026.
 
-SARAVATI. _Resistor 1 kΩ 5% 1/4 W_. Disponível em: <https://www.saravati.com.br/resistor-1k-5-1-4w.html?gad_source=1&gad_campaignid=23551463662&gbraid=0AAAAAC2QUl9NJxOJbt89j1o1regZh5Nz1&gclid=CjwKCAjwotzWBhBFEiwA1JhPoG38v08Hq-K_8VKXdxS8REO0qaNgkFziIwVTl9Rc2LXpGSD3o1KboRoCCEkQAvD_BwE>. Acesso em: 20 out. 2026.
+INTELI. **Projeto parceiro: Unipar**: sistema de IoT para monitoramento, orientação e confirmação de evacuação em emergências industriais. São Paulo: Inteli, 2026. Material de apoio do Módulo 4. Disponível em: https://docs.google.com/document/d/1yKX2hho7oz5-i71Sfl6xBaFho90tpnsR/edit. Acesso em: 15 out. 2026.
 
-UNIPAR. Manual da marca. 2022. Disponível em: [https://drive.google.com/file/d/1_XkquJbTrDnP6CyCtCTjtASRwI4qLL2P/view?usp=sharing](https://drive.google.com/file/d/1_XkquJbTrDnP6CyCtCTjtASRwI4qLL2P/view?usp=sharing). Acesso em: 15 out. 2026. Material institucional da Unipar utilizado como referência no Módulo 4 do Ciclo Comum de Graduação do Instituto de Tecnologia e Liderança, 2026.
+MERCADO LIVRE. **Bateria Maxell CR2032 de lítio, 3 V, uma unidade**. [S. l.]: Mercado Livre, [s. d.]a. Disponível em: https://lista.mercadolivre.com.br/bateria-maxell-cr2032. Acesso em: 22 out. 2026.
 
-UNIPAR. Perfil corporativo. Relações com Investidores. Disponível em: [https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/](https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/). Acesso em: 15 out. 2026.
+MERCADO LIVRE. **Cabo jumper macho-macho 20 cm para Arduino e protoboard**. [S. l.]: Mercado Livre, [s. d.]b. Disponível em: https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281. Acesso em: 20 out. 2026.
 
-UNIPAR. Produtos: cloro. Disponível em: [https://unipar.com/produtos/cloro](https://unipar.com/produtos/cloro). Acesso em: 15 out. 2026.
+MERCADO LIVRE. **Cabo USB compatível com placa de desenvolvimento Arduino Uno R3 ATmega328P CH340**. [S. l.]: Mercado Livre, [s. d.]c. Disponível em: https://www.mercadolivre.com.br/cabo-usb-compativel-com-placa-de-desenvolvimento-arduino-uno-r3-atmega328p-ch340/p/MLB44072268?pdp_filters=item_id%3AMLB5229650730. Acesso em: 20 out. 2026.
 
-UNIPAR. _Projeto parceiro Unipar_: sistema de IoT para monitoramento, orientação e confirmação de evacuação em emergências industriais. São Paulo: Inteli, 2026. Termo de Abertura do Projeto (TAPI), Turma 25, Módulo 4. Documento não publicado.
+MERCADO LIVRE. **Conjunto de 50 botões de pressão para placa de circuito**. [S. l.]: Mercado Livre, [s. d.]d. Disponível em: https://www.mercadolivre.com.br/conjunto-de-50-botoes-de-pressao-para-placa-de-circuito/p/MLB2052130334?pdp_filters=item_id%3AMLB7635767930. Acesso em: 20 out. 2026.
 
-UNIPAR. Relatório de sustentabilidade. Relações com Investidores, 2025. Disponível em: [https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/](https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/). Acesso em: 15 out. 2026.
+MERCADO LIVRE. **Display LCD 16 × 2 1602 com módulo I²C soldado**. [S. l.]: Mercado Livre, [s. d.]e. Disponível em: https://www.mercadolivre.com.br/display-lcd-16x2-1602-fundo-azul-com-modulo-i2c-soldado/up/MLBU4549779439?pdp_filters=item_id%3AMLB7321088826. Acesso em: 20 out. 2026.
 
-UNIPAR. Sobre a Unipar. Disponível em: [https://unipar.com/sobre/](https://unipar.com/sobre/). Acesso em: 15 out. 2026.
+MERCADO LIVRE. **Kit de cabos jumper macho-fêmea 20 cm**. [S. l.]: Mercado Livre, [s. d.]f. Disponível em: https://www.mercadolivre.com.br/20pcs-jumper-mxf-20cm--20pcs-jumper-fxf-20cm/up/MLBU2370810037?pdp_filters=item_id%3AMLB4078036044. Acesso em: 20 out. 2026.
 
-UNIPAR CARBOCLORO. _Release de resultados 2T23_. São Paulo: Unipar Carbocloro, 2023. Disponível em: https://static.poder360.com.br/2023/08/resultados-unipar-2T23.pdf. Acesso em: 19 out. 2026.
+MERCADO LIVRE. **Módulo sensor ultrassônico de distância HC-SR04 para Arduino**. [S. l.]: Mercado Livre, [s. d.]g. Disponível em: https://www.mercadolivre.com.br/modulo-sensor-ultrassonico-distancia-hc-sr04-para-arduino/p/MLB64164978?pdp_filters=item_id%3AMLB5130062737. Acesso em: 20 out. 2026.
 
-UNIPAR CARBOCLORO. _Release de resultados 4T25_. São Paulo: Unipar Carbocloro, 2026. Disponível em: https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/2d4c9ca6-1e44-6e77-e845-7392f3c2c4b0?origin=2. Acesso em: 19 out. 2026.
+NATIONAL INSTITUTE FOR OCCUPATIONAL SAFETY AND HEALTH (NIOSH). **NIOSH pocket guide to chemical hazards: chlorine**. [S. l.]: Centers for Disease Control and Prevention, 2019. Revisão de 30 out. 2019. Disponível em: https://www.cdc.gov/niosh/npg/npgd0115.html. Acesso em: 23 out. 2026.
 
-UNIPAR CARBOCLORO S.A. Informações trimestrais (ITR): 31 de março de 2025. 2025. Disponível em: [https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1](https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1). Acesso em: 15 out. 2026.
+OSTERWALDER, Alexander; PIGNEUR, Yves; BERNARDA, Gregory; SMITH, Alan. **Value proposition design**: how to create products and services customers want. Hoboken: John Wiley & Sons, 2014.
 
-UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. _Movimento Econômico_, [s. l.], 4 abr. 2025. Disponível em: https://movimentoeconomico.com.br/estados/bahia/2025/04/04/unipar-carbocloro-inaugura-sua-1a-unidade-no-nordeste/. Acesso em: 19 out. 2026.
+SARAVATI. **Resistor 1 kΩ 5% 1/4 W**. [S. l.]: Saravati, [s. d.]. Disponível em: https://www.saravati.com.br/resistor-1k-5-1-4w.html. Acesso em: 20 out. 2026.
 
-VAZAMENTO de gás em porto deixa 13 mortos e mais de 250 feridos na Jordânia; veja vídeo. _Folha de Pernambuco_, Recife, jun. 2022. Disponível em: https://www.folhape.com.br/noticias/vazamento-de-gas-em-porto-deixa-13-mortos-na-jordania/231857/. Acesso em: 20 out. 2026.
+SYNTHETIX. **C.R.I.S.I.S: protótipo inicial e evidências CT01–CT10**. São Paulo: Inteli, 2026. Disponível em: https://wokwi.com/projects/478404642645348353. Acesso em: 23 out. 2026. Arquivos associados: [firmware](../src/firmware/prototipo/sketch.ino), [circuito](../src/firmware/prototipo/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). A consulta aos arquivos não equivale à reexecução da simulação.
 
-VEJA o impacto gerado pela Unipar em 55 anos de história. _Exame_, São Paulo, 28 maio 2024. Disponível em: https://exame.com/esg/impacto-unipar-em-55-anos-de-historia/. Acesso em: 19 out. 2026.
+UNIPAR. **Aviso de privacidade**. [S. l.]: Unipar, [s. d.]a. Disponível em: https://unipar.com/aviso-de-privacidade. Acesso em: 22 out. 2026.
 
-WIRELESS, paperless tracking keeps employees safer. _Automation World_, [s. l.], [20--]. Disponível em: https://www.automationworld.com/article/technologies/sensors-process/wireless-paperless-tracking-keeps-employees-safer. Acesso em: 20 out. 2026.
+UNIPAR. **Cloro: fabricação, transporte e aplicações**. [S. l.]: Unipar, [s. d.]b. Disponível em: https://unipar.com/produtos/cloro. Acesso em: 22 out. 2026.
 
-[1] BRASIL. **Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais (LGPD)**. Brasília, DF: Presidência da República, 2018. Disponível em: <https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm>. Acesso em: 22 out. 2026.
+UNIPAR. **Manual da marca**. [S. l.]: Unipar, 2022. Disponível em: https://drive.google.com/file/d/1_XkquJbTrDnP6CyCtCTjtASRwI4qLL2P/view. Acesso em: 15 out. 2026.
 
-[2] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Guia orientativo para definições dos agentes de tratamento de dados pessoais e do encarregado**. Brasília, DF: ANPD, 2022. Disponível em: <https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-para-definicoes-dos-agentes-de-tratamento-de-dados-pessoais-e-do-encarregado>. Acesso em: 22 out. 2026.
+UNIPAR. **Perfil corporativo**. [S. l.]: Unipar, [s. d.]c. Disponível em: https://ri.unipar.com/sobre-a-unipar/perfil-corporativo/. Acesso em: 23 out. 2026.
 
-[3] UNIPAR. **Aviso de Privacidade**. Disponível em: <https://unipar.com/aviso-de-privacidade>. Acesso em: 22 out. 2026.
+UNIPAR. **Projeto parceiro Unipar**: sistema de IoT para monitoramento, orientação e confirmação de evacuação em emergências industriais. São Paulo: Inteli, 2026a. Termo de Abertura do Projeto de Inovação (TAPI), Turma 25, Módulo 4. Documento interno. Os dados bibliográficos foram informados pela equipe; a versão e o endereço de consulta do TAPI ainda precisam ser confirmados.
 
-[4] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Guia orientativo sobre segurança da informação para agentes de tratamento de pequeno porte**. Brasília, DF: ANPD, 2021. Disponível em: <https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-sobre-seguranca-da-informacao-para-agentes-de-tratamento-de-pequeno-porte>. Acesso em: 22 out. 2026.
+UNIPAR. **Relações com investidores: nossos números**. [S. l.]: Unipar, [s. d.]d. Disponível em: https://ri.unipar.com/. Acesso em: 22 out. 2026.
 
-[5] AGÊNCIA NACIONAL DE PROTEÇÃO DE DADOS. **Direito dos titulares**. Disponível em: <https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados/direito-dos-titulares>. Acesso em: 22 out. 2026.
-ELETROGATE. _Buzzer ativo 5 V_. Disponível em: <https://www.eletrogate.com/buzzer-ativo-5v?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=1&gad_campaignid=20223015315&gbraid=0AAAAADqxjs_RKxEA4lB8OTz9kzOy_b2y9&gclid=CjwKCAjwotzWBhBFEiwA1JhPoLPBf6mtcZizCQRpZRRLmGNgwewSSuaihP1VIORbIt2h8imNmBty9RoCrG8QAvD_BwE>. Acesso em: 20 out. 2026.
+UNIPAR. **Relatório de sustentabilidade 2023**. [S. l.]: Unipar, [s. d.]e. Disponível em: https://unipar-institucional-prd.s3.sa-east-1.amazonaws.com/downloads_list_item/4073-unipar__r_s_2023__d6.pdf. Endereço identificado em: 23 out. 2026. Referência complementar do levantamento; a data de publicação e a leitura integral não foram verificadas.
 
-MERCADO LIVRE. _Display LCD 16 × 2 1602 com módulo I²C soldado_. Disponível em: <https://www.mercadolivre.com.br/display-lcd-16x2-1602-fundo-azul-com-modulo-i2c-soldado/up/MLBU4549779439?pdp_filters=item_id%3AMLB7321088826&from=gshop&matt_tool=56885173&matt_word=&matt_source=google&matt_campaign_id=22090354256&matt_ad_group_id=192555051054&matt_match_type=&matt_network=g&matt_device=c&matt_creative=799032781561&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=119897001&matt_product_id=MLBU4549779439&matt_product_partition_id=2498613880064&matt_target_id=pla-2498613880064&cq_src=google_ads&cq_cmp=22090354256&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22090354256&gbraid=0AAAAAD93qcAf98DVye3WhOkZqJU1o3eSE&gclid=CjwKCAjwotzWBhBFEiwA1JhPoMgiK21_IFmDbVmbNMgDC3o03ZARpy4oBINxyPna8AsDNp4ISmYalRoCR_MQAvD_BwE>. Acesso em: 20 out. 2026.
+UNIPAR. **Relatório de sustentabilidade 2024**. São Paulo: Unipar, 2025. Disponível em: https://unipar.com/sustentabilidade. Acesso em: 20 out. 2026.
 
-SARAVATI. _Resistor 1 kΩ 5% 1/4 W_. Disponível em: <https://www.saravati.com.br/resistor-1k-5-1-4w.html?gad_source=1&gad_campaignid=23551463662&gbraid=0AAAAAC2QUl9NJxOJbt89j1o1regZh5Nz1&gclid=CjwKCAjwotzWBhBFEiwA1JhPoG38v08Hq-K_8VKXdxS8REO0qaNgkFziIwVTl9Rc2LXpGSD3o1KboRoCCEkQAvD_BwE>. Acesso em: 20 out. 2026.
+UNIPAR. **Relatório de sustentabilidade 2025**. São Paulo: Unipar, 2026b. Disponível em: https://ri.unipar.com/sustentabilidade/relatorio-de-sustentabilidade/. Acesso em: 23 out. 2026.
 
-ELETROGATE. _Protoboard 400 pontos_. Disponível em: <https://www.eletrogate.com/protoboard-400-pontos?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gad_source=4&gad_campaignid=20223015315&gbraid=0AAAAADqxjs--_IDti_OP_PomQr4wJeFmq&gclid=CjwKCAjwotzWBhBFEiwA1JhPoPlT3_2SAg4EbLjDVCFA_2Gb0qBCgwXD5npVhSjZdn-yagDte4bg4BoCZoMQAvD_BwE>. Acesso em: 20 out. 2026.
+UNIPAR. **Sobre a Unipar**. [S. l.]: Unipar, [s. d.]f. Disponível em: https://unipar.com/sobre/. Acesso em: 15 out. 2026.
 
-MERCADO LIVRE. _Bateria Maxell CR2032 de lítio, 3 V, uma unidade_. Disponível em: <https://lista.mercadolivre.com.br/bateria-maxell-cr2032>. Acesso em: 22 out. 2026.
+UNIPAR CARBOCLORO S.A. **Formulário de referência 2026**. Versão 1. São Paulo: Unipar Carbocloro S.A., 2026a. Disponível em: https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/396d9e64-cbbd-f172-97df-b409609b9c6b?origin=2. Acesso em: 22 out. 2026.
 
-MERCADO LIVRE. _Kit de cabos jumper macho-fêmea 20 cm_. Disponível em: <https://www.mercadolivre.com.br/20pcs-jumper-mxf-20cm--20pcs-jumper-fxf-20cm/up/MLBU2370810037?pdp_filters=item_id%3AMLB4078036044&from=gshop&matt_tool=19390443&matt_word=&matt_source=google&matt_campaign_id=22090354205&matt_ad_group_id=191786774561&matt_match_type=&matt_network=g&matt_device=c&matt_creative=782869962440&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=5458938305&matt_product_id=MLBU2370810037&matt_product_partition_id=2495493043879&matt_target_id=pla-2495493043879&cq_src=google_ads&cq_cmp=22090354205&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=4&gad_campaignid=22090354205&gbraid=0AAAAAD93qcBWh7S0-tQRtyURYUhdok1-w&gclid=CjwKCAjwotzWBhBFEiwA1JhPoO4nhPq-F2KwwBsDI-Hn3A0iwomUAHbI1TRcldDnimZUYjGi7kAF6xoCG5oQAvD_BwE>. Acesso em: 20 out. 2026.
+UNIPAR CARBOCLORO S.A. **Informações trimestrais (ITR)**: 31 de março de 2025. [S. l.]: Unipar Carbocloro S.A., 2025a. Disponível em: https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/605e2a07-9fb6-eb47-ecda-0350c5df8db7?origin=1. Acesso em: 15 out. 2026.
 
-MERCADO LIVRE. _Cabo jumper macho-macho 20 cm para Arduino e protoboard_. Disponível em: <https://www.mercadolivre.com.br/cabo-jumper-mxm-20cm-40-pinos-para-arduino-protoboard/up/MLBU2098535281>. Acesso em: 20 out. 2026.
+UNIPAR CARBOCLORO S.A. **Release de resultados 1T25**. São Paulo: Unipar Carbocloro S.A., 2025b. Disponível em: https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/bc3d7aae-1800-44eb-9d21-2b8e87ea5466?origin=1. Acesso em: 22 out. 2026.
 
-BRASIL. Ministério do Trabalho e Emprego. **NR-20 — Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis**. Texto atualizado em 2025, itens 20.1 e 20.2. Disponível em: [PDF oficial da NR-20](https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-20-atualizada-2025.pdf). Acesso em: 23 out. 2026.
+UNIPAR CARBOCLORO S.A. **Release de resultados 2T23**. São Paulo: Unipar Carbocloro S.A., 2023. Disponível em: https://static.poder360.com.br/2023/08/resultados-unipar-2T23.pdf. Acesso em: 19 out. 2026.
 
-BRASIL. Ministério do Trabalho e Emprego. **NR-23 — Proteção Contra Incêndios**. Texto atualizado em 2022, itens 23.3.3 a 23.3.5.1. Disponível em: [PDF oficial da NR-23](https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-23-atualizada-2022.pdf). Acesso em: 23 out. 2026.
+UNIPAR CARBOCLORO S.A. **Release de resultados 4T25**. São Paulo: Unipar Carbocloro S.A., 2026b. Disponível em: https://api.mziq.com/mzfilemanager/v2/d/3c0b3516-7dff-44a5-946f-20e7ec87dfa0/2d4c9ca6-1e44-6e77-e845-7392f3c2c4b0?origin=2. Acesso em: 19 out. 2026.
 
-NIOSH — NATIONAL INSTITUTE FOR OCCUPATIONAL SAFETY AND HEALTH. **NIOSH Pocket Guide to Chemical Hazards: Chlorine (CAS 7782-50-5)**. Última revisão informada: 30 out. 2019. Disponível em: [ficha específica de cloro](https://www.cdc.gov/niosh/npg/npgd0115.html). Acesso em: 23 out. 2026.
+UNIPAR Carbocloro inaugura sua 1ª unidade no Nordeste. **Movimento Econômico**, [S. l.], 4 abr. 2025. Disponível em: https://movimentoeconomico.com.br/estados/bahia/2025/04/04/unipar-carbocloro-inaugura-sua-1a-unidade-no-nordeste/. Acesso em: 19 out. 2026.
 
-UNIPAR. **Relatório de Sustentabilidade 2023**. Referência complementar de contexto institucional, sem uso como evidência da população ou do SLA da unidade. Disponível em: [relatório completo em PDF](https://unipar-institucional-prd.s3.sa-east-1.amazonaws.com/downloads_list_item/4073-unipar__r_s_2023__d6.pdf). Link identificado no levantamento das referências em 23 out. 2026; a leitura integral do PDF não foi realizada nesta revisão.
+UNIPAR; INTELI. **Kickoff do projeto: unidade de Cubatão**. [S. l.], 16 out. 2026. Reunião de apresentação do projeto. Informação verbal fornecida por representantes da Unipar; a ata não integra o repositório consultado.
 
-UNIPAR / INTELI. **Kickoff do projeto — unidade de Cubatão**. Realizado em 16 out. 2026, conforme data confirmada por Arthur Davi da Silva Rodrigues em 23 out. 2026. Informações operacionais utilizadas: população aproximada, liberação das catracas, conferência manual e prazo interno de dez minutos. Ata e link interno não disponíveis no repositório; não há data de acesso documental a declarar.
+UNITED STATES ENVIRONMENTAL PROTECTION AGENCY (EPA). **Water systems, disinfection byproducts, and the use of monochloramine**: other than chlorine and monochloramine, what options could water utilities consider? Washington, DC: EPA, 2009. Disponível em: https://www.epa.gov/sites/default/files/2015-09/documents/other_than_chlorine_and_monochloramine_what_options_could_water_utilities.pdf. Acesso em: 23 out. 2026.
 
-UNIPAR / INTELI. **Termo de Abertura do Projeto de Inovação (TAPI) — Módulo 4**. Restrição de escopo informada no contexto do projeto: não contemplar rastreamento contínuo de alta precisão em ambientes internos. Versão, data e link interno pendentes de disponibilização; documento não consultado diretamente nesta revisão.
+VAZAMENTO de gás em porto deixa 13 mortos e mais de 250 feridos na Jordânia; veja vídeo. **Folha de Pernambuco**, Recife, jun. 2022. Disponível em: https://www.folhape.com.br/noticias/vazamento-de-gas-em-porto-deixa-13-mortos-na-jordania/231857/. Acesso em: 20 out. 2026.
 
-EQUIPE DO PROJETO. **Protótipo inicial Wokwi e evidências CT01–CT10**. Disponível em: [simulação](https://wokwi.com/projects/478404642645348353), [firmware](../src/firmware/prototipo/sketch.ino), [circuito](../src/firmware/prototipo/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). Firmware, circuito e documentação das evidências consultados em 23 out. 2026; a simulação não foi reexecutada nesta revisão documental.
+VEJA o impacto gerado pela Unipar em 55 anos de história. **Exame**, São Paulo, 28 maio 2024. Disponível em: https://exame.com/esg/impacto-unipar-em-55-anos-de-historia/. Acesso em: 19 out. 2026.
+
+WIRELESS, paperless tracking keeps employees safer. **Automation World**, [S. l.], [s. d.]. Disponível em: https://www.automationworld.com/article/technologies/sensors-process/wireless-paperless-tracking-keeps-employees-safer. Acesso em: 20 out. 2026.
