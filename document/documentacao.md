@@ -743,13 +743,7 @@ A caracterização das dores, necessidades e tarefas de cada perfil foi diretame
 
 #### 3.2.2.1. Jornada do Usuário
 
-##### 3.2.2.1.1. Técnico de Operação
-
-###### Situação-Problema Presente
-
-###### Situação-Problema Futura
-
-##### 3.2.2.1.2. Operadora de Centro de Controle Operacional (CCO)
+##### 3.2.2.1.1. Operadora de Centro de Controle Operacional (CCO)
 
 ###### Situação-Problema Presente
 
@@ -847,20 +841,25 @@ As oportunidades identificadas na jornada futura estão relacionadas ao aperfei�
 
 A jornada futura de Maria demonstra como a solução Synthetix pode transformar o acompanhamento de uma evacuação industrial por meio da integração de informações provenientes das portarias, zonas monitoradas e pontos de encontro. Enquanto a jornada atual apresenta dificuldades relacionadas à dispersão das informações, à ausência de registros individuais integrados e à dependência de conferências manuais, o cenário futuro prevê a utilização de sensores ultrassônicos, leitores RFID, totens de confirmação e uma aplicação web para organizar os dados da evacuação. Essa integração tem potencial para reduzir incertezas, facilitar a identificação de possíveis pendências e apoiar a comunicação entre o CCO, a SSMA e os brigadistas. Entretanto, a solução não oferece localização precisa, não comprova automaticamente a segurança das pessoas e não substitui os procedimentos de emergência da Unipar. Seus benefícios dependem da confiabilidade dos sensores e leitores, da atualização dos registros, da integração entre os dispositivos e da validação das informações pelas equipes responsáveis.
 
-##### 3.2.2.1.3. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
+##### 3.2.2.1.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
 ###### Situação-Problema Presente
 
 ###### Situação-Problema Futura
 
 #### 3.2.2.2. Storyboard
-_Coloque aqui seu Storyboard (seguindo as instruções na descrição do artefato)_
 
-##### 3.2.2.2.1. Técnico de Operação
+O storyboard apresenta a jornada de Maria Schrader, operadora do Centro de Controle Operacional (CCO), durante uma situação de emergência industrial, ilustrando como a solução Synthetix apoia o acompanhamento da evacuação. Organizado em sete quadros sequenciais, o storyboard retrata desde o monitoramento inicial da planta e a verificação da ocorrência até o acionamento do protocolo de emergência, o acompanhamento da evacuação e o registro das informações. Cada quadro evidencia o ambiente, as ações e decisões de Maria e as respostas dos sistemas envolvidos, demonstrando como a integração de sensores, leitores RFID e uma aplicação web pode facilitar o acesso às informações, a identificação de possíveis pendências e a comunicação entre as equipes responsáveis, sem substituir os procedimentos de segurança existentes.
 
-##### 3.2.2.2.2. Operadora de Centro de Controle Operacional (CCO)
+<div align="center">
+  <p>Figura 1 – Storyboard de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/storyboard/storyboardMaria.png" alt="Storyboard de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
+</div>
 
-##### 3.2.2.2.3. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
+##### 3.2.2.2.1. Operadora de Centro de Controle Operacional (CCO)
+
+##### 3.2.2.2.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
 ## 3.3. Solução Técnica
 
