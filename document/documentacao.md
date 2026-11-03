@@ -873,6 +873,18 @@ Após confirmar a ocorrência, Maria segue os procedimentos da unidade e comunic
 
 Com a evacuação em andamento, os trabalhadores se deslocam até os pontos de encontro definidos pelas equipes responsáveis. Durante esse processo, os sensores ultrassônicos das portarias fornecem dados para estimar a ocupação da planta, os leitores RFID registram as passagens pelas zonas monitoradas e os totens RFID confirmam as chegadas aos pontos de encontro. A solução integra essas informações e as disponibiliza na aplicação web.
 
+**Quadro 5 – Acompanhamento em tempo real**
+
+Maria acessa a aplicação web da Synthetix para acompanhar o andamento da evacuação. O sistema apresenta a ocupação estimada da planta, as últimas zonas registradas pelos leitores RFID e as confirmações nos pontos de encontro, destacando possíveis pendências. Com essas informações organizadas e atualizadas conforme os registros recebidos, Maria consegue acompanhar a situação com maior clareza.
+
+**Quadro 6 – Análise e alinhamento**
+
+Ao identificar possíveis pendências na aplicação, Maria consulta os últimos registros RFID e verifica os horários de atualização das informações. O sistema apresenta os dados disponíveis sobre as pessoas ainda sem confirmação, permitindo que ela compartilhe essas informações com a SSMA. A equipe responsável utiliza os registros como apoio à verificação em campo, considerando que a última zona registrada não representa necessariamente a localização atual da pessoa.
+
+**Quadro 7 – Conferência e registro**
+
+Na etapa final, Maria consulta as confirmações, pendências e horários disponíveis na aplicação para apoiar a documentação da ocorrência. A solução mantém os registros eletrônicos acessíveis para consulta, facilitando a organização das informações. Com esses dados, Maria registra as informações relevantes e comunica a situação às equipes responsáveis e ao próximo turno, contribuindo para a continuidade do acompanhamento operacional.
+
 ##### 3.2.2.2.1. Operadora de Centro de Controle Operacional (CCO)
 
 ##### 3.2.2.2.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
