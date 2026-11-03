@@ -850,6 +850,22 @@ A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa 
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
+#### Casos planejados para o protótipo físico offline
+
+Os casos CT11–CT15 abaixo pertencem à Sprint 2 e ainda **não foram executados**. Eles foram definidos para orientar a montagem do protótipo com ESP32, leitor RFID RC522 e LEDs verde e vermelho. O vínculo com RF011 é preliminar: antes de associar crachás reais ou integrar o protótipo ao sistema da Unipar, a equipe deve validar finalidade, autorização, privacidade e viabilidade com o parceiro. Nesta etapa, somente tags com identificadores fictícios devem ser utilizadas.
+
+<p align="center">Quadro 10A – Rastreabilidade planejada do protótipo físico offline</p>
+
+| Caso | Necessidade / persona | RF | RN | Evidência prevista | Status |
+| ---- | --------------------- | -- | -- | ------------------ | ------ |
+| CT11 | Reconhecer que o dispositivo está pronto / apoio de TI | RF011, a refinar | RN09; inicialização a definir | Foto da montagem energizada e registro serial da inicialização do ESP32 e do RC522; estado inicial dos LEDs identificado. | Planejado; não executado |
+| CT12 | Receber retorno visual de leitura aceita / Gustavo | RF011, a refinar | RN09; aceite local a definir | Foto ou vídeo da aproximação de uma tag fictícia válida, UID mascarado no registro e LED verde aceso pelo intervalo definido no firmware. | Planejado; não executado |
+| CT13 | Evitar registros repetidos involuntários / Gustavo, Tuco | RF011, a refinar | RN09; repetição a definir | Vídeo de uma mesma tag mantida no campo de leitura e log que permita verificar a política de bloqueio ou intervalo entre leituras. | Planejado; não executado |
+| CT14 | Tornar uma leitura não autorizada compreensível / Gustavo | RF011, a refinar | RN09; rejeição local a definir | Foto ou vídeo de tag fictícia fora da lista de teste, com LED vermelho e sem indicação de aceite. | Planejado; não executado |
+| CT15 | Sinalizar indisponibilidade do sensor / apoio de TI, Tuco | RF009, RF011, a refinar | RN08, RN09 | Foto da condição controlada de falha, saída serial de diagnóstico e LED vermelho; o sistema não deve registrar aceite. | Planejado; não executado |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
 #### Rastreabilidade preliminar da evolução
 
 Os identificadores **PV** abaixo são propostas de validação, não casos CT executados. Serão detalhados e convertidos em novos CT quando a respectiva implementação existir.
@@ -874,7 +890,7 @@ Os identificadores **PV** abaixo são propostas de validação, não casos CT ex
 
 #### Cobertura e atualização
 
-Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. Há **15 RNs**: RN12–RN14 possuem evidência parcial nos CTs; as outras 12 dependem de implementação/validação futura. RN09 também é apoiada pela inspeção de ausência de identificadores no firmware, sem validar integração futura.
+Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs da Sprint 1 possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. CT11–CT15 estão apenas planejados para a Sprint 2 e não constituem cobertura experimental até que sejam executados com evidências. Há **15 RNs**: RN12–RN14 possuem evidência parcial nos CTs da Sprint 1; as outras 12 dependem de implementação/validação futura. RN09 também é apoiada pela inspeção de ausência de identificadores no firmware anterior, sem validar a futura leitura RFID.
 
 A próxima revisão do circuito ficará a cargo da equipe e deverá ser seguida de nova execução da bateria, identificando versão/commit, responsável, entradas, saídas e resultado real. Esta etapa é exclusivamente documental, sem execução do protótipo. A cada sprint, atualizar RFs, RNs, riscos e testes juntos. Um caso só muda para aprovado após execução e evidência; planejamento não é cobertura experimental.
 
@@ -1109,16 +1125,55 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)
 
-_Aqui você deve registrar diversas situações de teste, indicando exemplos de leitura (entrada) e escrita (saída) apresentadas pelo seu sistema físico. Estes registros serão utilizados para testar seus componentes, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de possíveis falhas nas leituras de entradas e saídas. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
+Esta etapa prepara a primeira montagem física do C.R.I.S.I.S em bancada. O recorte definido utiliza uma placa **ESP32**, um leitor **RFID RC522** conectado por SPI, protoboard, alimentação USB e dois LEDs com resistores: verde para indicar uma leitura aceita e vermelho para indicar erro ou leitura rejeitada. Três cartões ou tags MIFARE de 13,56 MHz devem representar perfis fictícios. A lista detalhada de materiais e os cuidados elétricos estão no documento [Materiais para o primeiro protótipo físico (offline)](outros/materiais-prototipo-fisico-offline.md).
 
-<p align="center">Quadro 14 – Modelo de registro de testes da Sprint 2</p>
+O objetivo desta versão é validar localmente a leitura do sensor e a sinalização informacional. Ela não implementa MQTT, dashboard, integração com a base corporativa, identificação de pessoas reais ou controle de acesso. O uso de RFID representa uma hipótese técnica da Sprint 2 e requer validação do parceiro e revisão da política de privacidade antes de qualquer dado real. O protótipo anterior com Arduino Uno e sensores ultrassônicos permanece documentado em 3.4.1; seus resultados não podem ser atribuídos ao ESP32 com RC522.
 
-| **CT#** | **Descrição**                                    | **Pré-condição**                  | **Procedimento de teste**                                                                                                 | **Pós-condição/Resultado esperado**                                                                         | **Observações** (opcional) |
-| ------- | ------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
-| CT11    | ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado. | ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
+#### Protótipo e código
 
-<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+O firmware físico será mantido em [`src/firmware/prototipo-fisico`](../src/firmware/prototipo-fisico/). O diretório contém a estrutura de integração e a lista de verificações necessárias para receber o código que está sendo refatorado. Até a incorporação dessa versão, não há firmware físico validado nesta branch.
+
+Para atender aos critérios de qualidade, a versão integrada deve:
+
+- utilizar nomes descritivos para pinos, estados, funções e variáveis;
+- manter `setup()` e `loop()` pequenos, delegando inicialização, leitura do RC522, validação de tags e sinalização dos LEDs a funções encapsuladas;
+- comentar o propósito de cada procedimento e decisões que não sejam evidentes, sem repetir literalmente o código;
+- não versionar UIDs reais, credenciais ou dados pessoais;
+- registrar no monitor serial somente os dados necessários ao diagnóstico, mascarando o UID nas evidências;
+- definir de forma verificável os intervalos de sinalização dos LEDs e a política para impedir leituras repetidas involuntárias;
+- identificar a versão ou commit ensaiado antes de registrar qualquer CT como aprovado.
+
+#### Montagem e figuras
+
+A montagem deve ser feita com o ESP32 e o RC522 na protoboard, fios organizados e identificáveis, alimentação e terra comuns e resistores em série com os LEDs. A tensão e a pinagem devem ser conferidas antes de energizar o conjunto; o RC522 não deve receber 5 V em entrada destinada a 3,3 V.
+
+As figuras abaixo devem ser inseridas após a montagem. Os espaços são intencionalmente mantidos sem imagens para não apresentar simulação ou material ilustrativo como evidência física.
+
+| Figura pendente | Conteúdo mínimo esperado | Arquivo sugerido |
+| --------------- | ----------------------- | ---------------- |
+| Figura A | Vista geral do ESP32, RC522, LEDs e organização dos jumpers na protoboard. | `assets/casos_teste_prototipos/fisico/montagem-geral.jpg` |
+| Figura B | Detalhe da alimentação, GND comum, conexão SPI e resistores dos LEDs. | `assets/casos_teste_prototipos/fisico/conexoes-detalhe.jpg` |
+| Figura C | Execução de CT12 ou CT14, mostrando a tag e o LED correspondente sem expor UID real. | `assets/casos_teste_prototipos/fisico/ct12-ou-ct14.jpg` |
+
+#### Casos de teste planejados
+
+Os casos a seguir foram preparados antes da disponibilidade da montagem física. Por isso, a coluna final descreve o resultado esperado e permanece com status **não executado**. Após cada ensaio, substituir o status pelo resultado observado, informar responsável, data, versão do firmware e anexar foto, captura serial ou vídeo. Uma evidência visual deve permitir relacionar a entrada aplicada ao estado do LED; uma captura isolada sem contexto não é suficiente.
+
+<p align="center">Quadro 14 – Casos de teste planejados para o protótipo físico offline</p>
+
+| **CT#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Pós-condição / resultado esperado** | **Evidência e status** |
+| ------- | ------------- | ---------------- | ------------------------- | ------------------------------------- | ---------------------- |
+| CT11 | Inicialização do ESP32 e do leitor RFID. | Montagem desenergizada, conexões revisadas e firmware da Sprint 2 gravado. | Energizar o ESP32, abrir o monitor serial e aguardar a rotina de inicialização. Não aproximar tags. | O ESP32 inicia sem reinicializações contínuas; o RC522 é reconhecido; o estado inicial dos LEDs corresponde ao definido no firmware e nenhuma leitura é aceita sem tag. | Pendente: foto da montagem energizada e captura serial. **Não executado.** |
+| CT12 | Leitura aceita de tag fictícia válida. | CT11 aprovado; uma tag fictícia cadastrada para teste; nenhum LED de resposta ativo. | Aproximar a tag do RC522 uma vez e afastá-la após a leitura. Observar o monitor serial e os LEDs. | Uma única leitura é reconhecida; o LED verde acende pelo intervalo especificado; o vermelho permanece apagado; o log indica aceite sem expor UID completo. | Pendente: vídeo ou sequência de fotos e captura serial. **Não executado.** |
+| CT13 | Controle de leitura repetida da mesma tag. | CT11 aprovado; tag fictícia válida; política de bloqueio ou intervalo definida no firmware. | Manter a mesma tag no campo do RC522 por tempo superior ao intervalo normal de leitura e depois afastá-la. | O comportamento coincide com a política documentada: não ocorre uma sequência indefinida de aceites; o LED e o log permitem distinguir uma leitura válida de repetições bloqueadas. | Pendente: vídeo contínuo e log com marcas de tempo. **Não executado.** |
+| CT14 | Rejeição de tag fictícia não cadastrada. | CT11 aprovado; tag compatível com o RC522, mas ausente da lista fictícia de teste. | Aproximar a tag não cadastrada uma vez e afastá-la após a resposta. | Nenhum aceite é registrado; o LED vermelho acende pelo intervalo definido; o verde permanece apagado; o log informa rejeição sem expor UID completo. | Pendente: vídeo ou sequência de fotos e captura serial. **Não executado.** |
+| CT15 | Falha controlada de comunicação com o RC522. | Montagem desenergizada e procedimento seguro definido; firmware com diagnóstico de inicialização ou leitura. | Desenergizar, desconectar de forma controlada uma conexão de comunicação do RC522, energizar novamente e observar a resposta. Ao terminar, desenergizar antes de restaurar a ligação. | O sistema não apresenta leitura como aceita; o LED vermelho ou outro estado de erro documentado é acionado; o log informa indisponibilidade do leitor e orienta inspeção, sem reinicialização infinita silenciosa. | Pendente: foto da condição, captura serial e vídeo do LED. **Não executado.** |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+#### Registro dos resultados
+
+Após a execução, a equipe deve atualizar simultaneamente este quadro e a RTM da seção 3.3.4. Cada CT deverá informar `Aprovado`, `Reprovado` ou `Bloqueado`, acompanhado do resultado observado. Falhas não devem ser apagadas: devem registrar a diferença em relação ao esperado, a hipótese de causa e a decisão de corrigir, restringir ou repetir o teste. Somente imagens e vídeos da montagem real podem ser apresentados como evidência desta etapa.
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
