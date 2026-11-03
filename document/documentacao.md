@@ -857,6 +857,22 @@ O storyboard apresenta a jornada de Maria Schrader, operadora do Centro de Contr
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
+**Quadro 1 – Monitoramento da operação**
+
+Maria está no Centro de Controle Operacional (CCO), acompanhando os indicadores, alarmes e câmeras da planta durante sua rotina. Os sistemas operacionais exibem as condições monitoradas em tempo real, permitindo que ela identifique possíveis alterações e mantenha a atenção sobre o funcionamento da unidade.
+
+**Quadro 2 – Verificação da ocorrência**
+
+Ao receber um alerta, Maria analisa os indicadores, consulta as câmeras e verifica os procedimentos da unidade para determinar se a situação representa uma emergência. Enquanto realiza essa avaliação, os sistemas operacionais continuam exibindo os dados da área afetada. Com base nas informações disponíveis, Maria decide se deve prosseguir com o protocolo de emergência.
+
+**Quadro 3 – Identificação e acionamento**
+
+Após confirmar a ocorrência, Maria segue os procedimentos da unidade e comunica a situação à SSMA, aos brigadistas e à portaria, respeitando suas atribuições no CCO. Com o acionamento do protocolo de emergência, a solução Synthetix inicia o acompanhamento da evacuação, preparando a integração dos registros provenientes dos dispositivos instalados na planta.
+
+**Quadro 4 – Registro da evacuação**
+
+Com a evacuação em andamento, os trabalhadores se deslocam até os pontos de encontro definidos pelas equipes responsáveis. Durante esse processo, os sensores ultrassônicos das portarias fornecem dados para estimar a ocupação da planta, os leitores RFID registram as passagens pelas zonas monitoradas e os totens RFID confirmam as chegadas aos pontos de encontro. A solução integra essas informações e as disponibiliza na aplicação web.
+
 ##### 3.2.2.2.1. Operadora de Centro de Controle Operacional (CCO)
 
 ##### 3.2.2.2.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
