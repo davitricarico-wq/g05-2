@@ -1171,11 +1171,38 @@ Os casos a seguir foram preparados antes da disponibilidade da montagem física.
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
+#### Casos de teste do Artefato 5 — versão de monitoramento no Wokwi
+
+A bateria abaixo tem como referência o [PrototipoMonitoramento no Wokwi](https://wokwi.com/projects/479252249534862337), cujo firmware foi consultado em 4 de novembro de 2026. Utiliza ESP32, RFID RC522 por SPI, botão no GPIO 27 com `INPUT_PULLUP`, LED verde no GPIO 26, LED vermelho no GPIO 33 e buzzer no GPIO 25. Configurar o monitor serial a 115200 baud e utilizar somente UIDs fictícios. Antes de executar, guardar a versão do código e do circuito ou identificar seu commit, pois o projeto no link pode ser alterado.
+
+**Comportamento desta versão:** os LEDs indicam modo NORMAL (verde) ou EMERGÊNCIA (vermelho), e não autorização de cartão. Toda leitura bem-sucedida imprime o UID e solicita bipe de 2.000 Hz por 50 ms, em ambos os modos. Não há lista de autorização, registro de presença, MQTT, dashboard ou diagnóstico explícito de falha do leitor. CT11–CT15 permanecem como planejamento anterior da montagem física; CT16–CT23 descrevem o código do link e não substituem os critérios pendentes daquela montagem.
+
+**Status:** casos elaborados por inspeção do firmware; simulação e montagem física não foram executadas nesta revisão. As respostas abaixo são esperadas, sem aprovação experimental.
+
+<p align="center">Quadro 14A – Casos de teste da versão de monitoramento do Artefato 5</p>
+
+| **CT#** | **Configuração do ambiente** | **Ação do usuário / procedimento** | **Resposta esperada do sistema** | **Evidência e status** |
+| ------- | --------------------------- | ---------------------------------- | -------------------------------- | ---------------------- |
+| CT16 | Circuito carregado, botão solto e nenhum cartão apresentado. | Iniciar a simulação e acompanhar LEDs e serial a 115200 baud. | Verde aceso, vermelho apagado; mensagens `Sistema inicializado!` e `STATUS: NORMAL`; nenhum bipe ou registro de cartão. A mensagem inicial não comprova funcionamento do leitor. | Captura do circuito e serial desde o início. **Não executado.** |
+| CT17 | CT16 aprovado; modo NORMAL. | Pressionar o botão por 100 ms ou mais e soltar. | Uma transição para EMERGÊNCIA: verde apaga, vermelho acende e serial imprime `EMERGENCIA`. O botão não solicita bipe. | Vídeo do botão, LEDs e serial. **Não executado.** |
+| CT18 | Modo EMERGÊNCIA; botão solto por pelo menos 100 ms. | Pressionar novamente por 100 ms ou mais e soltar. | Verde acende, vermelho apaga; serial imprime `NORMAL` uma vez para esse acionamento. | Vídeo e serial da sequência CT17–CT18. **Não executado.** |
+| CT19 | Modo NORMAL e nenhum cartão apresentado. | Manter o botão pressionado por 2 s; soltar por pelo menos 100 ms e pressionar novamente por 100 ms. | Pressão contínua gera uma única transição para EMERGÊNCIA; soltar não alterna o modo; nova pressão retorna a NORMAL. O debounce exige estabilidade por mais de 25 ms. | Vídeo contínuo da pressão e serial. **Não executado.** |
+| CT20 | Modo NORMAL; leitor configurado e cartão compatível com UID fictício. | Apresentar o cartão uma vez e afastá-lo após a leitura. | Serial imprime `Cartao detectado! UID: ` e bytes em hexadecimal; comando de bipe de 2.000 Hz por 50 ms; verde permanece aceso e vermelho apagado. Não há validação de autorização. | Vídeo, áudio e serial; medir frequência/duração se necessário. **Não executado.** |
+| CT21 | Modo EMERGÊNCIA; cartão fictício compatível. | Apresentar o cartão uma vez e afastá-lo após a leitura. | Mesmo registro e bipe do CT20; vermelho permanece aceso e verde apagado. A emergência não suspende leituras nem registra chegada ao ponto de encontro. | Vídeo com LEDs e serial. **Não executado.** |
+| CT22 | Modo NORMAL; outro cartão compatível, com UID fictício diferente do CT20. | Apresentar o segundo cartão sem alterar o firmware. | Também gera UID no serial e bipe, sem mudar o modo. Não ocorre rejeição por falta de cadastro, pois não existe lista de autorização; registrar essa limitação. | Vídeo e serial dos cartões fictícios. **Não executado.** |
+| CT23 | Modo EMERGÊNCIA; cartão afastado e botão solto. | Parar e reiniciar a simulação ou reiniciar o ESP32 na bancada. | Retorna a NORMAL com verde aceso, vermelho apagado e mensagens iniciais. O modo anterior não é persistido; registrar a perda do estado de emergência como limitação a avaliar. | Vídeo antes/depois e serial de inicialização. **Não executado.** |
+
+<p><sub>Fonte: elaboração dos autores (2026), com base no firmware do projeto Wokwi indicado acima.</sub></p>
+
+Registrar para cada caso data, responsável, versão ensaiada, entrada aplicada, resultado observado e evidência antes de atribuir `Aprovado`, `Reprovado` ou `Bloqueado`. Identificar capturas do Wokwi como simulação; repetir no hardware real para validar a montagem física. A rastreabilidade é preliminar: CT17–CT19 e CT23 verificam sinalização de modo; CT20–CT22 verificam aquisição local de UID, sem comprovar identificação corporativa ou integração remota. Incorporar esses vínculos à RTM ao refinar os requisitos da Sprint 2.
+
 #### Registro dos resultados
 
 Após a execução, a equipe deve atualizar simultaneamente este quadro e a RTM da seção 3.3.4. Cada CT deverá informar `Aprovado`, `Reprovado` ou `Bloqueado`, acompanhado do resultado observado. Falhas não devem ser apagadas: devem registrar a diferença em relação ao esperado, a hipótese de causa e a decisão de corrigir, restringir ou repetir o teste. Somente imagens e vídeos da montagem real podem ser apresentados como evidência desta etapa.
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
+
+**Planejamento:** os casos de teste do protótipo 3 serão elaborados e executados na **Sprint 3**, após a integração de MQTT e I²C. Os resultados e evidências serão registrados nesta seção. Continuar a numeração a partir de **CT24**, considerando CT01–CT23 reservados nas seções anteriores.
 
 _Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
 Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
@@ -1184,7 +1211,7 @@ Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esq
 
 | **CT#** | **Configuração do ambiente**                                                                                                                   | **Ação do usuário**                                                                     | **Resposta esperada do sistema**                                                                                                                 |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| CT21    | ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização |
+| CT24    | ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização |
 
 <p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
 
