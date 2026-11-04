@@ -739,7 +739,7 @@ Os **Brigadistas** e os profissionais de **Infraestrutura e TI** foram categoriz
 
 A caracterização das dores, necessidades e tarefas de cada perfil foi diretamente conectada ao _Value Proposition Canvas_ (seção 3.1.4) e à Matriz de Riscos (seção 3.1.5). Dores como a lentidão da contagem por papel, a perda de dados nas catracas liberadas e a ansiedade da liderança sem números confiáveis subsidiaram a especificação das Regras de Negócio RN01 a RN06 (seção 3.3.2) e dos Requisitos Funcionais de contagem local (RF001), totalização anônima (RF005) e alerta crítico aos 10 minutos (RF008).
 
-### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
+### 3.2.2. Jornada do Usuário e Storyboard
 
 #### 3.2.2.1. Jornada do Usuário
 
@@ -748,8 +748,8 @@ A caracterização das dores, necessidades e tarefas de cada perfil foi diretame
 ###### Situação-Problema Presente
 
 <div align="center">
-  <p>Figura 3 – Jornada do Usuário do Presente de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)</p>
-  <img src="../assets/design/jornada_usuario/presente/jornadaUsuarioMariaPresente.png" alt="Jornada do Usuário do Presente de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p>Figura 1 – Jornada do Usuário do Presente de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/jornada_usuario/presente/jornadaUsuarioMariaPresente.png" alt="Jornada do Usuário do Presente de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
   <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 </div>
 
@@ -796,8 +796,8 @@ A jornada atual evidencia que o acompanhamento de uma emergência industrial env
 ###### Situação-Problema Futura
 
 <div align="center">
-  <p>Figura 4 – Jornada do Usuário do Futuro de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)</p>
-  <img src="../assets/design/jornada_usuario/futuro/jornadaUsuarioMariaFututo.png" alt="Jornada do Usuário do Futuro de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p>Figura 2 – Jornada do Usuário do Futuro de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/jornada_usuario/futuro/jornadaUsuarioMariaFuturo.png" alt="Jornada do Usuário do Futuro de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
   <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 </div>
 
@@ -849,11 +849,13 @@ A jornada futura de Maria demonstra como a solução Synthetix pode transformar 
 
 #### 3.2.2.2. Storyboard
 
+##### 3.2.2.2.1. Operadora de Centro de Controle Operacional (CCO)
+
 O storyboard apresenta a jornada de Maria Schrader, operadora do Centro de Controle Operacional (CCO), durante uma situação de emergência industrial, ilustrando como a solução Synthetix apoia o acompanhamento da evacuação. Organizado em sete quadros sequenciais, o storyboard retrata desde o monitoramento inicial da planta e a verificação da ocorrência até o acionamento do protocolo de emergência, o acompanhamento da evacuação e o registro das informações. Cada quadro evidencia o ambiente, as ações e decisões de Maria e as respostas dos sistemas envolvidos, demonstrando como a integração de sensores, leitores RFID e uma aplicação web pode facilitar o acesso às informações, a identificação de possíveis pendências e a comunicação entre as equipes responsáveis, sem substituir os procedimentos de segurança existentes.
 
 <div align="center">
-  <p>Figura 1 – Storyboard de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)</p>
-  <img src="../assets/design/storyboard/storyboardMaria.png" alt="Storyboard de Maria Scharader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p>Figura 1 – Storyboard de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/storyboard/storyboardMaria.png" alt="Storyboard de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
@@ -884,8 +886,6 @@ Ao identificar possíveis pendências na aplicação, Maria consulta os últimos
 **Quadro 7 – Conferência e registro**
 
 Na etapa final, Maria consulta as confirmações, pendências e horários disponíveis na aplicação para apoiar a documentação da ocorrência. A solução mantém os registros eletrônicos acessíveis para consulta, facilitando a organização das informações. Com esses dados, Maria registra as informações relevantes e comunica a situação às equipes responsáveis e ao próximo turno, contribuindo para a continuidade do acompanhamento operacional.
-
-##### 3.2.2.2.1. Operadora de Centro de Controle Operacional (CCO)
 
 ##### 3.2.2.2.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
