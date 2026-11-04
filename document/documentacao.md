@@ -1220,31 +1220,132 @@ A descrição registra comportamentos identificados nos firmwares. A execução 
 
 #### 3.4.2.3. Protótipos Físicos e Códigos
 
-_[Apresente cada montagem física, incluindo componentes, conexões, alimentação e organização na protoboard. Inclua imagens identificadas e legendadas. Registre a versão do código correspondente a cada montagem.]_
+Esta subseção reúne os componentes representados nas montagens digitais, suas conexões e os códigos dos três protótipos. O levantamento foi realizado a partir dos arquivos `diagram.json` e confrontado com os pinos definidos nos respectivos firmwares. As listas complementam a BOM (Seção 3.1.7), cuja pesquisa para os dispositivos da solução integrada está prevista para a Sprint 3; não incluem preços, fornecedores ou quantidades de aquisição.
 
-##### Protótipo do Dispositivo 1 — [Nome]
+As figuras distinguem o esquema digital no Wokwi do registro fotográfico da montagem física. A numeração será ajustada na revisão geral da documentação. Os componentes e valores listados correspondem aos esquemas; eventuais diferenças da montagem física devem ser registradas junto às fotografias. Os resultados dos testes pertencem à Seção 3.4.2.4.
 
-- **Componentes utilizados:** [Placeholder]
-- **Montagem e conexões:** [Placeholder]
-- **Figura da montagem:** [Inserir imagem e legenda]
-- **Código-fonte:** [Inserir código ou link para o arquivo]
-- **Versão do código e ambiente de compilação:** [Placeholder]
+##### Protótipo do Dispositivo 1 — Controle de entradas e saídas da planta
 
-##### Protótipo do Dispositivo 2 — [Nome]
+O primeiro protótipo utiliza Arduino Uno e preserva a implementação da Sprint 1 que fundamenta o controle das portarias. A versão final do dispositivo deve utilizar ESP32; o circuito abaixo documenta a montagem inicial.
 
-- **Componentes utilizados:** [Placeholder]
-- **Montagem e conexões:** [Placeholder]
-- **Figura da montagem:** [Inserir imagem e legenda]
-- **Código-fonte:** [Inserir código ou link para o arquivo]
-- **Versão do código e ambiente de compilação:** [Placeholder]
+**Componentes utilizados no esquema**
 
-##### Protótipo do Dispositivo 3 — [Nome]
+| Componente | Quantidade | Identificação e função |
+| --- | ---: | --- |
+| Arduino Uno | 1 | Controlador da contagem e da sinalização local. |
+| Sensor ultrassônico HC-SR04 | 2 | Um sensor de entrada e um de saída. |
+| Display LCD 16 × 2 com interface I²C | 1 | Apresentação do total local. |
+| LED verde e LED vermelho | 1 de cada | Indicação do estado local. |
+| Resistor de 1 kΩ | 2 | Um em série com cada LED. |
+| Buzzer | 1 | Sinalização sonora de detecção. |
+| Botão momentâneo de 6 mm | 1 | Alternância da sinalização. |
+| Protoboard | 1 | Organização dos componentes e distribuição de alimentação. |
 
-- **Componentes utilizados:** [Placeholder]
-- **Montagem e conexões:** [Placeholder]
-- **Figura da montagem:** [Inserir imagem e legenda]
-- **Código-fonte:** [Inserir código ou link para o arquivo]
-- **Versão do código e ambiente de compilação:** [Placeholder]
+Os fios de interligação são representados no diagrama; a quantidade de jumpers e o cabo de alimentação da montagem física ainda precisam ser registrados na BOM.
+
+**Montagem, conexões e alimentação:** o esquema distribui 5 V e GND do Uno pelos barramentos da protoboard para os sensores e o LCD. O sensor de saída utiliza TRIG no pino 3 e ECHO no pino 2; o de entrada utiliza TRIG no pino 5 e ECHO no pino 4. O LCD utiliza SDA em A4 e SCL em A5, com endereço `0x27` definido no firmware. O LED verde está associado ao pino 13, o vermelho ao 12, o buzzer ao 6 e o botão ao 11, com `INPUT_PULLUP` e acionamento para GND. LEDs, resistores, botão, buzzer e sensores estão organizados na protoboard; Uno e LCD aparecem ao lado dela. O esquema representa as tensões do circuito, enquanto a fonte e o cabo usados em bancada devem ser identificados no registro físico.
+
+**Figuras da montagem**
+
+<div align="center">
+  <p>Figura – Montagem digital do primeiro protótipo de controle das portarias, com Arduino Uno</p>
+  <img src="../assets/casos_teste_prototipos/inicial/T01.png" alt="Montagem no Wokwi com Arduino Uno, dois sensores ultrassônicos, LCD, botão, LEDs, resistores e buzzer" width="100%">
+  <p><sub>Fonte: elaboração dos autores no Wokwi; captura do protótipo inicial já registrada na Sprint 1.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do primeiro protótipo de controle das portarias</p>
+  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
+  <img src="../assets/prototipos_fisicos/PLACEHOLDER-contagem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+**Código-fonte e esquema:** [sketch.ino do contador](../src/firmware/prototipo-contagem/sketch.ino) e [diagram.json da montagem](../src/firmware/prototipo-contagem/diagram.json). A simulação está disponível no [projeto do contador no Wokwi](https://wokwi.com/projects/478404642645348353).
+
+**Versão do código e ambiente:** código e esquema registrados no commit `91d5329`. O firmware utiliza a API Arduino e a biblioteca `Wire`, com comunicação serial a 9.600 baud e controle do LCD implementado no próprio sketch. O alvo da montagem digital é Arduino Uno. A versão do compilador e do núcleo Arduino não está registrada nos arquivos consultados.
+
+##### Protótipo do Dispositivo 2 — Monitoramento por zonas
+
+O protótipo utiliza ESP32 e um leitor RFID para representar um acesso monitorado. O botão e os LEDs permitem alternar e visualizar o estado local durante a demonstração, enquanto o buzzer sinaliza a leitura do crachá.
+
+**Componentes utilizados no esquema**
+
+| Componente | Quantidade | Identificação e função |
+| --- | ---: | --- |
+| ESP32 DevKitC V4 | 1 | Controlador representado no Wokwi como `board-esp32-devkit-c-v4`. |
+| Leitor RFID RC522 | 1 | Leitura de tags por aproximação, representado como `board-mfrc522`. |
+| LED verde e LED vermelho | 1 de cada | Indicação do estado local normal/emergência. |
+| Resistor de 1 kΩ | 3 | Dois associados aos LEDs e um em série com o buzzer. |
+| Buzzer | 1 | Sinalização sonora de leitura. |
+| Botão momentâneo | 1 | Alternância do estado local. |
+| Protoboard | 1 | Organização das entradas e saídas e do retorno comum. |
+
+As tags compatíveis com a solução, de 13,56 MHz, são necessárias à interação com o leitor. A quantidade de crachás físicos de teste, dos jumpers e dos cabos não é especificada pelo `diagram.json` e deve constar do levantamento da montagem física.
+
+**Montagem, conexões e alimentação:** o RC522 recebe 3,3 V do ESP32 e compartilha GND com a protoboard. A comunicação SPI utiliza SCK no GPIO 18, MISO no 19 e MOSI no 23; o terminal SDA do módulo atua como seleção SPI (SS), ligado ao GPIO 5, e RST utiliza o GPIO 17. O LED verde utiliza GPIO 26, o vermelho GPIO 33 e o buzzer GPIO 25. O botão utiliza GPIO 27, configurado com `INPUT_PULLUP` e fechamento para GND. Os barramentos negativos superior e inferior da protoboard estão interligados; os resistores ficam em série com as respectivas saídas. ESP32 e leitor aparecem ao lado da protoboard no esquema. O cabo e a fonte efetivamente utilizados na bancada devem ser identificados no registro fotográfico.
+
+**Figuras da montagem**
+
+<div align="center">
+  <p>Figura – Montagem digital do protótipo de monitoramento por zonas no Wokwi</p>
+  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
+  <img src="../assets/prototipos_fisicos/PLACEHOLDER-monitoramento-digital.png" alt="Esquema digital do protótipo com ESP32, leitor RC522, botão, LEDs e buzzer" width="100%">
+  <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas</p>
+  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
+  <img src="../assets/prototipos_fisicos/PLACEHOLDER-monitoramento-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de leitura RFID para monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+**Código-fonte e esquema:** [sketch.ino do monitoramento](../src/firmware/prototipo-monitoramento/sketch.ino), [diagram.json da montagem](../src/firmware/prototipo-monitoramento/diagram.json) e [libraries.txt](../src/firmware/prototipo-monitoramento/libraries.txt).
+
+**Versão do código e ambiente:** firmware na revisão `c096117`, com esquema registrado em `91d5329`. O código utiliza a API Arduino para ESP32 e as bibliotecas `SPI` e `MFRC522`, com comunicação serial a 115.200 baud. O arquivo `libraries.txt` declara `MFRC522`, sem fixar sua versão. As versões do núcleo Arduino-ESP32 e do compilador ainda precisam ser registradas para reprodução do ambiente.
+
+##### Protótipo do Dispositivo 3 — Confirmação nos pontos de encontro
+
+O protótipo do totem utiliza ESP32 e RFID para registrar localmente crachás distintos, com persistência e sinalização de atendimento. O circuito de bancada representa a eletrônica do dispositivo; o invólucro do totem não aparece no esquema digital.
+
+**Componentes utilizados no esquema**
+
+| Componente | Quantidade | Identificação e função |
+| --- | ---: | --- |
+| ESP32 DevKitC V4 | 1 | Controlador e armazenamento dos registros na memória interna. |
+| Leitor RFID RC522 | 1 | Captura dos identificadores das tags. |
+| LED azul | 1 | Indicação de atendimento ativo. |
+| LED verde | 1 | Sinalização de um novo registro gravado. |
+| Resistor de 330 Ω | 2 | Um em série com cada LED. |
+| Buzzer | 1 | Sinalização sonora local. |
+| Botão momentâneo | 1 | Ativação local do atendimento. |
+| Protoboard | 1 | Organização do circuito e das interligações. |
+
+Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quantidade de tags, jumpers e cabos físicos deve ser registrada na BOM. A persistência utiliza a memória interna do ESP32; o esquema não inclui cartão de memória ou módulo de armazenamento externo.
+
+**Montagem, conexões e alimentação:** o RC522 recebe 3,3 V do ESP32 e utiliza GND comum. As conexões SPI são SCK no GPIO 18, MISO no 19 e MOSI no 23; SDA/SS utiliza GPIO 21 e RST utiliza GPIO 22. O LED azul está associado ao GPIO 25, o verde ao GPIO 26, o buzzer ao GPIO 27 e o botão ao GPIO 32. O botão utiliza `INPUT_PULLUP` e acionamento para GND. No esquema, parte dos terminais do ESP32 está inserida na protoboard, cujos barramentos negativos são interligados. Os resistores de 330 Ω ficam em série com os LEDs e o leitor aparece separado, conectado por fios. A fonte e o cabo utilizados na montagem física devem ser identificados junto à fotografia.
+
+**Figuras da montagem**
+
+<div align="center">
+  <p>Figura – Montagem digital do protótipo de confirmação nos pontos de encontro no Wokwi</p>
+  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
+  <img src="../assets/prototipos_fisicos/PLACEHOLDER-totem-digital.png" alt="Esquema digital do totem offline com ESP32, leitor RC522, botão, LEDs azul e verde e buzzer" width="100%">
+  <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro</p>
+  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
+  <img src="../assets/prototipos_fisicos/PLACEHOLDER-totem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de totem para registro de crachás nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+**Código-fonte e esquema:** [sketch.ino do totem](../src/firmware/prototipo-totem/sketch.ino), [diagram.json da montagem](../src/firmware/prototipo-totem/diagram.json) e [libraries.txt](../src/firmware/prototipo-totem/libraries.txt). A simulação está disponível no [projeto do totem no Wokwi](https://wokwi.com/projects/479314160569873409).
+
+**Versão do código e ambiente:** conjunto do protótipo registrado no commit `f86c7ca`. O firmware utiliza Arduino para ESP32, `SPI`, `MFRC522` e `Preferences`, além de `cstring`, com comunicação serial a 115.200 baud. O arquivo `libraries.txt` declara `MFRC522`; as versões dessa biblioteca, do núcleo e do compilador ainda precisam ser registradas. O código mantém a capacidade experimental de 50 UIDs descrita na Seção 3.4.2.2.
+
+As revisões identificam os arquivos usados neste levantamento. A correspondência entre fotografias, esquemas e códigos deve considerar eventuais diferenças de componentes, conexões e alimentação.
 
 #### 3.4.2.4. Casos de Teste
 
