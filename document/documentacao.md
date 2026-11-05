@@ -1254,9 +1254,14 @@ Os fios de interligação são representados no diagrama; a quantidade de jumper
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do primeiro protótipo de controle das portarias</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-contagem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 1</p>
+  <img src="../assets/prototipo_2/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 2</p>
+  <img src="../assets/prototipo_2/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
