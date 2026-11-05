@@ -1115,11 +1115,11 @@ Em uma emergência industrial na unidade da Unipar em Cubatão, como um vazament
 
 A solução proposta integra três tipos de dispositivos baseados em ESP32 a uma aplicação web. O dispositivo nas portarias utiliza sensores ultrassônicos para estimar entradas, saídas e a quantidade de pessoas dentro da planta; essa contagem é agregada e não identifica indivíduos. Os dispositivos instalados junto a portas de zonas monitoradas utilizam leitores RFID para registrar a última zona associada ao crachá. Nos pontos de encontro, que são áreas abertas situadas entre as portarias e as zonas monitoradas, totens RFID registram a confirmação de chegada. Em cada unidade, o ESP32 processa as leituras dos sensores, leitores e botões e controla as saídas locais, como LCD, LEDs e buzzer, conforme a função do dispositivo. O CCO ativa os totens por integração com o alarme; se não houver conexão, um membro da SSMA ou um Brigadista pode ativá-los localmente, com armazenamento das leituras para sincronização posterior.
 
-O cálculo do *gap* relaciona a estimativa corrente de pessoas dentro da planta à quantidade de identificadores distintos associados a zonas: `G(t) = P(t) − |Z(t)|`. Como os pontos de encontro ficam fora das zonas monitoradas, as pessoas reunidas nesses locais também fazem parte do *gap* até a confirmação pelo totem. Consideradas leituras exclusivas e sincronizadas, a subtração das confirmações distintas nos pontos (`G(t) − |M(t)|`) estima o contingente ainda sem associação a uma zona e sem confirmação em ponto de encontro. Esse resultado orienta a análise da SSMA, mas não informa por si só a identidade ou a posição exata das pessoas.
+O cálculo do _gap_ relaciona a estimativa corrente de pessoas dentro da planta à quantidade de identificadores distintos associados a zonas: `G(t) = P(t) − |Z(t)|`. Como os pontos de encontro ficam fora das zonas monitoradas, as pessoas reunidas nesses locais também fazem parte do _gap_ até a confirmação pelo totem. Consideradas leituras exclusivas e sincronizadas, a subtração das confirmações distintas nos pontos (`G(t) − |M(t)|`) estima o contingente ainda sem associação a uma zona e sem confirmação em ponto de encontro. Esse resultado orienta a análise da SSMA, mas não informa por si só a identidade ou a posição exata das pessoas.
 
 No escopo físico offline desta seção, os dispositivos são contextualizados como componentes da solução completa, mas sua existência não significa que a aplicação web, a comunicação MQTT ou a integração entre todos eles já estejam implementadas. O LCD, os LEDs, o buzzer e os botões fornecem informações ou interação local conforme a função de cada dispositivo. A leitura de crachá exige aproximação ao leitor e pode influenciar o fluxo de evacuação; as leituras por zona representam somente a última passagem registrada. A solução não realiza localização precisa em ambientes internos nem calcula rotas. A apresentação nominal na aplicação ocorre somente enquanto uma emergência está ativa e para usuários autorizados; a contagem ultrassônica, por si só, não produz uma lista nominal de pessoas presentes.
 
-> ***totens**: estruturas cilíndricas, similares a um poste, com aproximadamente 1,20 metros de altura e feitos de um material rígido. (madeira, plástico ou PVC, por exemplo).
+> **\*totens**: estruturas cilíndricas, similares a um poste, com aproximadamente 1,20 metros de altura e feitos de um material rígido. (madeira, plástico ou PVC, por exemplo).
 
 ##### Diagrama de classes UML conceitual — Protótipo de Monitoramento em tempo real
 
@@ -1175,11 +1175,11 @@ O quadro-resumo apresenta os componentes e as funções locais codificadas em ca
 
 **Quadro-resumo dos dispositivos físicos**
 
-| Dispositivo e controlador do protótipo | Sensores e entradas | Atuadores e saídas | Comunicação | Funcionalidades implementadas no firmware |
-| --- | --- | --- | --- | --- |
-| Controle de entradas e saídas — Arduino Uno; ESP32 definido para a solução final | Dois sensores ultrassônicos HC-SR04 e botão | LCD, LEDs verde/vermelho, buzzer e monitor serial | Local, sem rede; Wi-Fi/MQTT previstos na versão ESP32 | Contagem de entradas e saídas, bloqueio entre detecções, total mínimo zero e sinalização local. |
-| Monitoramento por zonas — ESP32 | Leitor RFID RC522 e botão | LEDs verde/vermelho, buzzer e monitor serial | Local, sem rede; envio de leituras previsto na integração | Leitura de UID, sinal sonoro e alternância do estado local normal/emergência pelo botão. |
-| Confirmação nos pontos de encontro — ESP32 | Leitor RFID RC522, botão e comandos seriais de teste | LEDs azul/verde, buzzer e monitor serial | Local, sem rede; ativação remota e sincronização previstas na integração | Ativação local, registro de até 50 UIDs distintos, persistência, recuperação após reinicialização e tratamento de algumas falhas. |
+| Dispositivo e controlador do protótipo                                           | Sensores e entradas                                  | Atuadores e saídas                                | Comunicação                                                              | Funcionalidades implementadas no firmware                                                                                         |
+| -------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| Controle de entradas e saídas — Arduino Uno; ESP32 definido para a solução final | Dois sensores ultrassônicos HC-SR04 e botão          | LCD, LEDs verde/vermelho, buzzer e monitor serial | Local, sem rede; Wi-Fi/MQTT previstos na versão ESP32                    | Contagem de entradas e saídas, bloqueio entre detecções, total mínimo zero e sinalização local.                                   |
+| Monitoramento por zonas — ESP32                                                  | Leitor RFID RC522 e botão                            | LEDs verde/vermelho, buzzer e monitor serial      | Local, sem rede; envio de leituras previsto na integração                | Leitura de UID, sinal sonoro e alternância do estado local normal/emergência pelo botão.                                          |
+| Confirmação nos pontos de encontro — ESP32                                       | Leitor RFID RC522, botão e comandos seriais de teste | LEDs azul/verde, buzzer e monitor serial          | Local, sem rede; ativação remota e sincronização previstas na integração | Ativação local, registro de até 50 UIDs distintos, persistência, recuperação após reinicialização e tratamento de algumas falhas. |
 
 <p><sub>Fonte: elaboração dos autores, com base nos firmwares dos protótipos.</sub></p>
 
@@ -1226,20 +1226,22 @@ As figuras distinguem o esquema digital no Wokwi do registro fotográfico da mon
 
 ##### Protótipo do Dispositivo 1 — Controle de entradas e saídas da planta
 
+**Código-fonte e esquema:** [sketch.ino do contador](../src/firmware/prototipo-contagem/sketch.ino) e [diagram.json da montagem](../src/firmware/prototipo-contagem/diagram.json). A simulação está disponível no [projeto do contador no Wokwi](https://wokwi.com/projects/478404642645348353).
+
 O primeiro protótipo utiliza Arduino Uno e preserva a implementação da Sprint 1 que fundamenta o controle das portarias. A versão final do dispositivo deve utilizar ESP32; o circuito abaixo documenta a montagem inicial.
 
 **Componentes utilizados no esquema**
 
-| Componente | Quantidade | Identificação e função |
-| --- | ---: | --- |
-| Arduino Uno | 1 | Controlador da contagem e da sinalização local. |
-| Sensor ultrassônico HC-SR04 | 2 | Um sensor de entrada e um de saída. |
-| Display LCD 16 × 2 com interface I²C | 1 | Apresentação do total local. |
-| LED verde e LED vermelho | 1 de cada | Indicação do estado local. |
-| Resistor de 1 kΩ | 2 | Um em série com cada LED. |
-| Buzzer | 1 | Sinalização sonora de detecção. |
-| Botão momentâneo de 6 mm | 1 | Alternância da sinalização. |
-| Protoboard | 1 | Organização dos componentes e distribuição de alimentação. |
+| Componente                           | Quantidade | Identificação e função                                     |
+| ------------------------------------ | ---------: | ---------------------------------------------------------- |
+| Arduino Uno                          |          1 | Controlador da contagem e da sinalização local.            |
+| Sensor ultrassônico HC-SR04          |          2 | Um sensor de entrada e um de saída.                        |
+| Display LCD 16 × 2 com interface I²C |          1 | Apresentação do total local.                               |
+| LED verde e LED vermelho             |  1 de cada | Indicação do estado local.                                 |
+| Resistor de 1 kΩ                     |          2 | Um em série com cada LED.                                  |
+| Buzzer                               |          1 | Sinalização sonora de detecção.                            |
+| Botão momentâneo de 6 mm             |          1 | Alternância da sinalização.                                |
+| Protoboard                           |          1 | Organização dos componentes e distribuição de alimentação. |
 
 Os fios de interligação são representados no diagrama; a quantidade de jumpers e o cabo de alimentação da montagem física ainda precisam ser registrados na BOM.
 
@@ -1260,29 +1262,43 @@ Os fios de interligação são representados no diagrama; a quantidade de jumper
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
-**Código-fonte e esquema:** [sketch.ino do contador](../src/firmware/prototipo-contagem/sketch.ino) e [diagram.json da montagem](../src/firmware/prototipo-contagem/diagram.json). A simulação está disponível no [projeto do contador no Wokwi](https://wokwi.com/projects/478404642645348353).
-
 **Versão do código e ambiente:** código e esquema registrados no commit `91d5329`. O firmware utiliza a API Arduino e a biblioteca `Wire`, com comunicação serial a 9.600 baud e controle do LCD implementado no próprio sketch. O alvo da montagem digital é Arduino Uno. A versão do compilador e do núcleo Arduino não está registrada nos arquivos consultados.
 
 ##### Protótipo do Dispositivo 2 — Monitoramento por zonas
+
+**Código-fonte e esquema:** [sketch.ino do monitoramento](../src/firmware/prototipo-monitoramento/sketch.ino), [diagram.json da montagem](../src/firmware/prototipo-monitoramento/diagram.json). A simulação está disponível no [projeto do monitoramento por zonas no Wokwi](https://wokwi.com/projects/479252249534862337).
 
 O protótipo utiliza ESP32 e um leitor RFID para representar um acesso monitorado. O botão e os LEDs permitem alternar e visualizar o estado local durante a demonstração, enquanto o buzzer sinaliza a leitura do crachá.
 
 **Componentes utilizados no esquema**
 
-| Componente | Quantidade | Identificação e função |
-| --- | ---: | --- |
-| ESP32 DevKitC V4 | 1 | Controlador representado no Wokwi como `board-esp32-devkit-c-v4`. |
-| Leitor RFID RC522 | 1 | Leitura de tags por aproximação, representado como `board-mfrc522`. |
-| LED verde e LED vermelho | 1 de cada | Indicação do estado local normal/emergência. |
-| Resistor de 1 kΩ | 3 | Dois associados aos LEDs e um em série com o buzzer. |
-| Buzzer | 1 | Sinalização sonora de leitura. |
-| Botão momentâneo | 1 | Alternância do estado local. |
-| Protoboard | 1 | Organização das entradas e saídas e do retorno comum. |
+| Componente               | Quantidade | Identificação e função                                              |
+| ------------------------ | ---------: | ------------------------------------------------------------------- |
+| ESP32 DevKitC V4         |          1 | Controlador representado no Wokwi como `board-esp32-devkit-c-v4`.   |
+| Leitor RFID RC522        |          1 | Leitura de tags por aproximação, representado como `board-mfrc522`. |
+| LED verde e LED vermelho |  1 de cada | Indicação do estado local normal/emergência.                        |
+| Resistor de 1 kΩ         |          3 | Dois associados aos LEDs e um em série com o buzzer.                |
+| Buzzer                   |          1 | Sinalização sonora de leitura.                                      |
+| Botão momentâneo         |          1 | Alternância do estado local.                                        |
+| Protoboard               |          1 | Organização das entradas e saídas e do retorno comum.               |
 
 As tags compatíveis com a solução, de 13,56 MHz, são necessárias à interação com o leitor. A quantidade de crachás físicos de teste, dos jumpers e dos cabos não é especificada pelo `diagram.json` e deve constar do levantamento da montagem física.
 
 **Montagem, conexões e alimentação:** o RC522 recebe 3,3 V do ESP32 e compartilha GND com a protoboard. A comunicação SPI utiliza SCK no GPIO 18, MISO no 19 e MOSI no 23; o terminal SDA do módulo atua como seleção SPI (SS), ligado ao GPIO 5, e RST utiliza o GPIO 17. O LED verde utiliza GPIO 26, o vermelho GPIO 33 e o buzzer GPIO 25. O botão utiliza GPIO 27, configurado com `INPUT_PULLUP` e fechamento para GND. Os barramentos negativos superior e inferior da protoboard estão interligados; os resistores ficam em série com as respectivas saídas. ESP32 e leitor aparecem ao lado da protoboard no esquema. O cabo e a fonte efetivamente utilizados na bancada devem ser identificados no registro fotográfico.
+
+**Desenho Esquemático**
+
+Um desenho esquemático representa os componentes de um circuito e suas ligações elétricas por meio de símbolos e linhas, sem reproduzir a posição física das peças. Aqui, seu objetivo é mostrar como o ponto de leitura RFID é alimentado e conectado ao controlador e como o protótipo recebe comandos e sinaliza seu estado.
+
+<div align="center">
+  <p>Figura – Desenho esquemático do protótipo de monitoramento por zonas</p>
+  <img src="../assets/diagrama-esquematico-prototipo-monitoramento.png" alt="Esquema com ESP32, leitor RFID RC522, botão, buzzer, LEDs, resistores e ligações de alimentação e sinal" width="100%">
+  <p><sub>Fonte: elaboração dos autores.</sub></p>
+</div>
+
+No centro, o **ESP32 (U1)** controla a leitura e as saídas. À esquerda, o **RC522 (U2)** recebe 3,3 V e GND do circuito e troca dados com o ESP32 pela interface SPI; o pino SDA do leitor funciona como seleção do dispositivo, e RST permite reiniciá-lo. À direita, o **botão (SW1)** fecha o GPIO 27 para GND quando pressionado e alterna o estado local; a indicação de _pull-up interno_ mostra que o pino permanece em nível alto enquanto o botão está solto. O **LED vermelho (D1)** indica emergência e o **verde (D2)** indica operação normal. Os **resistores de 1 kΩ (R1 e R2)** limitam a corrente dos LEDs. O **buzzer (BZ1)** emite um sinal sonoro a cada UID lido. As linhas representam as conexões elétricas; os símbolos de **GND** indicam o retorno comum.
+
+Para reproduzir a montagem, devem prevalecer as conexões descritas acima e no `diagram.json`: a figura troca os rótulos MOSI e MISO em relação aos GPIOs 19 e 23 e não mostra o terceiro resistor de 1 kΩ em série com o buzzer, presente na montagem digital.
 
 **Figuras da montagem**
 
@@ -1300,8 +1316,6 @@ As tags compatíveis com a solução, de 13,56 MHz, são necessárias à intera�
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
-**Código-fonte e esquema:** [sketch.ino do monitoramento](../src/firmware/prototipo-monitoramento/sketch.ino), [diagram.json da montagem](../src/firmware/prototipo-monitoramento/diagram.json) e [libraries.txt](../src/firmware/prototipo-monitoramento/libraries.txt).
-
 **Versão do código e ambiente:** firmware na revisão `c096117`, com esquema registrado em `91d5329`. O código utiliza a API Arduino para ESP32 e as bibliotecas `SPI` e `MFRC522`, com comunicação serial a 115.200 baud. O arquivo `libraries.txt` declara `MFRC522`, sem fixar sua versão. As versões do núcleo Arduino-ESP32 e do compilador ainda precisam ser registradas para reprodução do ambiente.
 
 ##### Protótipo do Dispositivo 3 — Confirmação nos pontos de encontro
@@ -1310,16 +1324,16 @@ O protótipo do totem utiliza ESP32 e RFID para registrar localmente crachás di
 
 **Componentes utilizados no esquema**
 
-| Componente | Quantidade | Identificação e função |
-| --- | ---: | --- |
-| ESP32 DevKitC V4 | 1 | Controlador e armazenamento dos registros na memória interna. |
-| Leitor RFID RC522 | 1 | Captura dos identificadores das tags. |
-| LED azul | 1 | Indicação de atendimento ativo. |
-| LED verde | 1 | Sinalização de um novo registro gravado. |
-| Resistor de 330 Ω | 2 | Um em série com cada LED. |
-| Buzzer | 1 | Sinalização sonora local. |
-| Botão momentâneo | 1 | Ativação local do atendimento. |
-| Protoboard | 1 | Organização do circuito e das interligações. |
+| Componente        | Quantidade | Identificação e função                                        |
+| ----------------- | ---------: | ------------------------------------------------------------- |
+| ESP32 DevKitC V4  |          1 | Controlador e armazenamento dos registros na memória interna. |
+| Leitor RFID RC522 |          1 | Captura dos identificadores das tags.                         |
+| LED azul          |          1 | Indicação de atendimento ativo.                               |
+| LED verde         |          1 | Sinalização de um novo registro gravado.                      |
+| Resistor de 330 Ω |          2 | Um em série com cada LED.                                     |
+| Buzzer            |          1 | Sinalização sonora local.                                     |
+| Botão momentâneo  |          1 | Ativação local do atendimento.                                |
+| Protoboard        |          1 | Organização do circuito e das interligações.                  |
 
 Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quantidade de tags, jumpers e cabos físicos deve ser registrada na BOM. A persistência utiliza a memória interna do ESP32; o esquema não inclui cartão de memória ou módulo de armazenamento externo.
 
