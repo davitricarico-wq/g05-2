@@ -886,22 +886,24 @@ As regras RN01–RN11 e RN15 delimitam a visão integrada futura. RN12–RN14 re
 
 Essas regras de projeto não substituem o procedimento de emergência da Unipar. A validação futura deve ligar cada regra ao teste específico e à versão da implementação.
 
-### 3.3.3. Requisitos Não Funcionais (Sprint 2)
+### 3.3.3. Requisitos Não Funcionais — 8 Eixos ISO/IEC 25010 (sprints 2 a 5)
 
-A tabela segue os oito eixos do IoTDoc. A [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) fornece o modelo de referência para qualidade de produto. Os critérios abaixo são metas de aceitação propostas para a arquitetura integrada da seção 3.1.3. A verificação está planejada na seção 3.3.4.
+_Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métrica, limite ou critério concreto) ou justificativa explícita de ausência. Evolua do conceitual (sprint 2) ao técnico mensurável (sprint 5)._
 
-<p align="center">Quadro 9 – Requisitos não funcionais da arquitetura integrada</p>
+<p align="center">Quadro 9 – Modelo de requisitos não funcionais para as próximas sprints</p>
 
-| ID | Eixo | Requisito | Métrica e critério de aceitação | Justificativa |
-| --- | --- | --- | --- | --- |
-| RNF01 | USAB — Usabilidade | Distinguir leitura aceita, leitura não confirmada e dados desatualizados por sinalização local e mensagens do painel conforme a interface. | Em ensaio com cinco participantes representando os perfis operacionais, 5/5 devem interpretar corretamente os três cenários sem ajuda. O painel deve exibir texto além de cor. | Evitar que Maria ou Tuco interpretem uma indicação de leitura como confirmação de segurança. |
-| RNF02 | CONF — Confiabilidade | Persistir confirmações no totem durante a perda de comunicação e reconciliá-las após reconexão, com integridade e sem duplicar o balanço. | Interromper o broker por 15 min com até 900 eventos aceitos por totem a 1 evento/s e reiniciar o nó durante o ensaio. Após reconexão e drenagem, exigir 0 perdas, 0 duplicações e correspondência de IDs e conteúdos com o registro de referência. | Preservar a conferência de Tuco durante falha de rede ou reinicialização. |
-| RNF03 | DES — Desempenho | Sinalizar o resultado no dispositivo e atualizar o painel sob a carga do cenário dimensionado na seção 3.3.8. | Em pelo menos 100 eventos válidos com rede operacional, resposta local em até 0,5 s e atualização no painel em até 3,0 s por evento, medidos desde a captura. Dados atrasados seguem a contingência da seção 3.3.8. | Dar a Maria visibilidade dentro da janela de apuração. |
-| RNF04 | SUP — Suportabilidade | Permitir diagnosticar falhas de comunicação e leitura por dispositivo. | Em 100% das falhas injetadas de perda de heartbeat, fila cheia e leitura inválida, registrar nó, instante e código da causa observada, sem registrar UID bruto em logs de diagnóstico. | Permitir que Maria localize a falha e acione a equipe responsável. |
-| RNF05 | SEG — Segurança | Proteger telemetria e painel com TLS e controle de acesso, limitando o tratamento de identificadores RFID ao fluxo aprovado pela Unipar. | Rejeitar 100% das conexões com certificado inválido e das consultas de teste sem permissão. Em captura de tráfego, encontrar 0 identificadores em claro. Antes de usar dados reais, registrar aprovação da finalidade, perfis e prazo de retenção e verificar a remoção ao expirar o prazo em massa sintética. | Proteger o cadastro usado por Tuco e permitir a verificação dos controles de privacidade antes da coleta. |
-| RNF06 | CAP — Capacidade | Dimensionar a confirmação nos PEs para o cenário de 755 pessoas no prazo interno de dez minutos. | Em ensaio com distribuição de demanda validada, confirmar 755 identificadores válidos e distintos até t0 + 600 s, incluindo deslocamento, filas e tentativas repetidas, com os limites da seção 3.3.8. | Dar a Tuco uma estimativa verificável de capacidade por ponto de encontro. |
-| RNF07 | REST — Restrições de design | Restringir a telemetria ao evento de passagem nas portarias e às leituras discretas nos pontos RFID autorizados. | Inspecionar 100% dos esquemas e mensagens de teste. Exigir 0 coordenadas contínuas e 0 identificadores pessoais na telemetria das portarias. | Preservar o escopo do TAPI e a privacidade das pessoas na planta. |
-| RNF08 | ORG — Organizacionais | Apoiar o procedimento de conferência e a autoridade da SSMA para encerrar o evento. | Em quatro simulações — saldo reconciliado, saldo positivo aos 600 s, dados inconclusivos e tentativa de encerramento por outro perfil — obter o procedimento esperado em 4/4, com registro de usuário, instante e justificativa em todo encerramento autorizado. | Preservar a decisão humana e o acionamento da brigada conforme o procedimento da Unipar. |
+| Eixo                     | Requisito | Métrica / Critério | Justificativa |
+| ------------------------ | --------- | ------------------ | ------------- |
+| USAB — Usabilidade       | ...       | ...                | ...           |
+| CONF — Confiabilidade    | ...       | ...                | ...           |
+| DES — Desempenho         | ...       | p95 < X ms         | ...           |
+| SUP — Suportabilidade    | ...       | ...                | ...           |
+| SEG — Segurança          | ...       | ...                | ...           |
+| CAP — Capacidade         | ...       | ...                | ...           |
+| REST — Restrições Design | ...       | ...                | ...           |
+| ORG — Organizacionais    | ...       | ...                | ...           |
+
+<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
 
 ### 3.3.4. Matriz de Rastreabilidade (RTM)
 
@@ -924,34 +926,29 @@ A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa 
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
-#### Rastreabilidade das validações da arquitetura integrada
+#### Rastreabilidade preliminar da evolução
 
-CT01–CT10 são os identificadores oficiais dos casos registrados na seção 3.4.1. Os códigos PV identificam propostas de validação, todas **planejadas e pendentes de implementação ou execução**. Ao versionar o caso oficial na seção 3.4 correspondente, registrar o CT atribuído na matriz e anexar a evidência da versão executada.
+Os identificadores **PV** abaixo são propostas de validação, não casos CT executados. Serão detalhados e convertidos em novos CT quando a respectiva implementação existir.
 
-<p align="center">Quadro 11 – Rastreabilidade das validações planejadas</p>
+<p align="center">Quadro 11 – Rastreabilidade das validações previstas para as próximas sprints</p>
 
-| Validação | Persona e necessidade | RF | RN | RNF | Cenário e resultado esperado | Evidência prevista |
-| --- | --- | --- | --- | --- | --- | --- |
-| PV01 | Tuco — confiar na origem do evento | RF002 | RN03 | RNF04 | Cadastrar um nó, rejeitar ID duplicado e evento de nó desconhecido, com diagnóstico da origem. | Log e cadastro de nós |
-| PV02 | Maria e Tuco — congelar a referência | RF003, RF004 | RN01, RN02 | RNF08 | Abrir evento com B = 10 e registrar entrada posterior em P1. B e t0 permanecem iguais. | Log de P1/P2 e histórico do evento |
-| PV03 | Tuco — distinguir confirmação de ocupação | RF005, RF006 | RN03, RN04, RN05, RN07, RN08 | RNF07, RNF08 | Variante anônima de RN04: de A = 2, três entradas e uma saída dão A = 4. Variante RFID da seção 3.3.8: repetir crachá e transferir entre PEs sem aumentar A. Testar D = 0, D > 0 e A > B. | Trilhas de eventos, estado por PE e painel |
-| PV04 | Maria e Tuco — entender o painel | RF007 | RN05, RN08, RN09 | RNF01 | Cinco participantes distinguem confirmação, falha e dados desatualizados. Conferir totais, séries por PE e última atualização. | Capturas e fichas de observação |
-| PV05 | Maria e Tuco — responder no prazo | RF008 | RN06 | RNF08 | Com D > 0 válido, alertar aos 600 s. Se o balanço estiver inconclusivo, manter o relógio e indicar conferência pendente. | Registro temporal, alerta e painel |
-| PV06 | Maria e Tuco — diagnosticar falhas | RF009 | RN08 | RNF04 | Injetar falha de leitura, fila cheia, nó sem heartbeat e base inválida. Conferir estado inconclusivo, códigos de falha e ausência de UID bruto nos logs. | Logs de injeção e capturas do painel |
-| PV07 | Tuco — preservar a integridade da telemetria | RF010 | RN03, RN11 | RNF02, RNF03 | Reenviar mesma chave e mensagem inválida. Aplicar cada evento válido uma vez e medir os tempos local e remoto em pelo menos 100 eventos sob carga. | Trilha de mensagens, contagem e amostras de latência |
-| PV08 | Maria e Tuco — proteger dados de crachá | RF011 | RN09, RN10 | RNF05, RNF07 | Com dados fictícios, inspecionar esquemas e tráfego. Verificar retenção, rejeição de acesso indevido e ausência de identidade na portaria ou de coordenadas contínuas. Uso de dados reais depende de aprovação. | Checklist, captura de tráfego e trilha de auditoria |
-| PV09 | Tuco — manter autoridade de encerramento | RF012 | RN07, RN10 | RNF08 | Verificar os quatro cenários do RNF08. Em encerramento autorizado, registrar usuário, instante e justificativa. | Registro de conferência e trilha de auditoria |
-| PV10 | Maria e Tuco — restringir acesso ao painel | RF013 | RN10 | RNF05 | Rejeitar conexão com certificado inválido e requisições de perfil sem permissão. Registrar ações autorizadas. | Logs de TLS, acesso e auditoria |
-| PV11 | Maria e Tuco — recuperar dados após desconexão | RF016, RF010 | RN08, RN11, RN15 | RNF02, RNF04 | Interromper Wi-Fi e broker, simular 900 eventos por totem em 15 min com reinício e reenvio. Conferir estado desatualizado e zero perdas ou duplicações após reconciliação. | Registro de referência, logs do buffer e painel |
-| PV12 | Tuco e Gustavo — evitar fila crítica e releituras | RF005, RF006 | RN03, RN05, RN11 | RNF03, RNF06 | Ensaiar 755 confirmações distintas em 600 s, incluindo deslocamento, filas e repetições. Ensaiar sobrecarga e indisponibilidade de totem para verificar a contingência da seção 3.3.8. | Tempos de chegada e serviço, contagem por PE e relatório de contingência |
+| Validação proposta           | RF           | RN                           | Persona beneficiada | Entrada / resultado esperado                                                                                              | Etapa proposta         |
+| ---------------------------- | ------------ | ---------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| PV01 — Dispositivos          | RF002        | RN03                         | Tuco / apoio de TI  | Cadastrar um nó; rejeitar ID duplicado e evento de nó desconhecido.                                                       | Sprints 3–4            |
+| PV02 — Referência e evento   | RF003, RF004 | RN01, RN02                   | Maria, Tuco         | Base fictícia 10, abrir alarme, nova entrada na portaria; B continua 10 e t0 não muda.                                    | Sprint 3               |
+| PV03 — Ocupação e balanço    | RF005, RF006 | RN03, RN04, RN05, RN07, RN08 | Tuco                | B=10, A inicial=2, +3 entradas e −1 saída: A=4, D=6; A=10 pede conferência, A=11 é inconclusivo.                          | Sprint 3               |
+| PV04 — Representação gráfica | RF007        | RN05, RN08, RN09             | Maria, Tuco         | Eventos em dois PEs geram série temporal por local, total e horário; nó parado aparece desatualizado.                     | Sprints 3–4            |
+| PV05 — Prazo                 | RF008        | RN06                         | Maria, Tuco         | D positivo com dados válidos aos 600 s gera alerta; nova passagem não reinicia relógio.                                   | Sprint 3               |
+| PV06 — Falhas                | RF009        | RN08                         | Maria, Tuco         | Invalidar B, interromper heartbeat ou simular sensor indisponível: balanço inconclusivo sem conclusão automática.         | Sprints 3–4            |
+| PV07 — MQTT                  | RF010        | RN03, RN11                   | Tuco / apoio de TI  | Enviar delta +1 e −1, repetir mesma chave, alterar sessão, omitir campo obrigatório: aceitar só eventos válidos únicos.   | Sprint 3               |
+| PV08 — Crachás, se aprovado  | RF011        | RN09, RN10                   | Maria, Tuco         | Consulta autorizada a base fictícia; leitura anônima do PE não deve ganhar identidade por inferência.                     | A decidir com parceiro |
+| PV09 — Conclusão             | RF012        | RN07, RN10                   | Tuco                | A=B não encerra; ação autorizada registra usuário, instante e justificativa; perfil sem permissão é recusado.             | Sprint 4               |
+| PV10 — Acesso ao painel      | RF013        | RN10                         | Maria, Tuco         | Chaves de usuários distintas, login válido/inválido e perfis diferentes; negar alteração não autorizada e registrar ação. | Sprint 4               |
+| PV11 — Wi-Fi                 | RF016        | RN08, RN15                   | Maria / apoio de TI | Conectar, derrubar rede e restabelecer: preservar total local, sinalizar desatualização e recuperar conexão.              | Sprints 3–4            |
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
-PV03, PV11 e PV12 cobrem o comportamento RFID proposto para a Sprint 2. RF005, RF006, RF010, RF011 e RN04 ainda descrevem aspectos da variante anônima ou da consulta de crachá preliminar. O alinhamento desses enunciados e a formalização das regras de confirmação e transferência RFID são pendências de escopo para a próxima revisão de requisitos. Os CTs da Sprint 1 não demonstram os RNFs da solução integrada.
-
 #### Cobertura e atualização
-
-A matriz cobre documentalmente 16/16 RFs, 15/15 RNs e 8/8 RNFs. Os dez CTs registrados têm vínculos com necessidade ou persona, requisito, regra e evidência. Os oito RNFs têm verificação proposta, com 0/8 executados no escopo integrado. Os CTs vinculados aos requisitos locais permanecem com o status registrado e sujeitos a repetição após a revisão do circuito.
 
 Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. Há **15 RNs**: RN12–RN14 possuem evidência parcial nos CTs; as outras 12 dependem de implementação/validação futura. RN09 também é apoiada pela inspeção de ausência de identificadores no firmware, sem validar integração futura.
 
