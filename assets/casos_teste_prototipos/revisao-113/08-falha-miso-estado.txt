@@ -1,0 +1,63 @@
+Browser tab: 1, Title: "PrototipoMonitoramento - Wokwi ESP32, STM32, Arduino Simulator", URL: "https://wokwi.com/projects/479252249534862337".
+0 AXWebArea PrototipoMonitoramento - Wokwi ESP32, STM32, Arduino Simulator, URL: wokwi.com/projects/479252249534862337
+	1 container
+		2 container
+			3 link wokwi.com/
+			4 button SAVE
+			5 button
+			6 button SHARE
+			7 button Like this project
+			8 button toggle dark mode
+			9 button SIGN IN
+		10 tab group
+			11 tab (selected, settable, boolean) Simulation, Value: 1
+			12 tab (selectable, settable, boolean) Code, Value: 0
+		13 container
+			14 button Restart the simulation
+			15 button Stop the simulation
+			16 button Pause
+			17 text 00:10.300 13%
+			18 container
+				19 heading MFRC522 RFID Reader, Value: 6
+					20 text MFRC522 RFID Reader
+				21 container
+					22 text Card
+					23 combo box (collapsed) Value: Blue Card, Secondary Actions: Expand
+						24 text Blue Card
+				25 button TAP
+				26 container
+					27 checkbox (settable, integer) Description: Hold, Value: 0
+					28 text Hold
+				29 container
+					30 text UID:  01:02:03:04
+				31 button
+			32 container (showing 0-500 of 903 items)
+				33 image bb2
+					34 container
+						35 text a b c d e a b c d e
+					36 container breadboard-numbers
+						37 text 1 5 10 15 20 25 30 35 40 45 50 55 60
+					38 container
+						39 text f g h i j f g h i j
+			40 container simple-tabpanel-0
+				41 text ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1156
+load:0x40078000,len:11456
+ho 0 tail 12 room 4
+load:0x40080400,len:2972
+entry 0x400805dc
+Sistema inicializado!
+STATUS: NORMAL
+
+				42 text field (settable)
+				43 button Serial plotter
+				44 button Auto scroll
+				45 button
+				46 button Collapse
+
+The focused UI element is 25 button TAP

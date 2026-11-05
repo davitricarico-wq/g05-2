@@ -829,6 +829,8 @@ _Preencha os 8 eixos. Cada eixo deve ter ao menos um RNF verificável (com métr
 
 <p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
 
+<a id="rtm"></a>
+
 ### 3.3.4. Matriz de Rastreabilidade (RTM)
 
 A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa resultado informado no ensaio original da seção 3.4.1, com imagem existente; não significa nova execução nesta revisão. A correção do circuito requer repetir a bateria. **Planejado** significa critério de aceitação futuro, sem resultado executado. A relação com uma persona indica a necessidade atendida, não participação dessa pessoa fictícia no teste.
@@ -849,6 +851,37 @@ A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa 
 | CT10 | Leitura inválida não gerar contagem / Tuco | RF015        | RN13       | [T10](../assets/casos_teste_prototipos/inicial/T10.png): ECHO desconectado; não comprova diagnóstico remoto do RF009.                                                                                                 | Registrado; repetir                     |
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+#### Casos planejados para o protótipo físico offline
+
+CT11–CT15 registram o planejamento anterior de leitura autorizada com ESP32 e RC522, ainda não executado. Os vínculos e os comportamentos esperados precisam de readequação à versão integrada do modelo 2, conforme a [seção 3.4.2.4](#testes-prototipos). As evidências de execução física por caso permanecem pendentes.
+
+<p align="center">Quadro 10A – Rastreabilidade planejada do protótipo físico offline</p>
+
+| Caso | Necessidade / persona | RF | RN | Evidência prevista | Status |
+| ---- | --------------------- | -- | -- | ------------------ | ------ |
+| CT11 | Reconhecer que o dispositivo está pronto / apoio de TI | RF011, a refinar | RN09; inicialização a definir | Foto da montagem energizada e registro serial da inicialização do ESP32 e do RC522; estado inicial dos LEDs identificado. | Planejado; não executado |
+| CT12 | Receber retorno visual de leitura aceita / Gustavo | RF011, a refinar | RN09; aceite local a definir | Foto ou vídeo da aproximação de uma tag fictícia válida, UID mascarado no registro e LED verde aceso pelo intervalo definido no firmware. | Planejado; não executado |
+| CT13 | Evitar registros repetidos involuntários / Gustavo, Tuco | RF011, a refinar | RN09; repetição a definir | Vídeo de uma mesma tag mantida no campo de leitura e log que permita verificar a política de bloqueio ou intervalo entre leituras. | Planejado; não executado |
+| CT14 | Tornar uma leitura não autorizada compreensível / Gustavo | RF011, a refinar | RN09; rejeição local a definir | Foto ou vídeo de tag fictícia fora da lista de teste, com LED vermelho e sem indicação de aceite. | Planejado; não executado |
+| CT15 | Sinalizar indisponibilidade do sensor / apoio de TI, Tuco | RF009, RF011, a refinar | RN08, RN09 | Foto da condição controlada de falha, saída serial de diagnóstico e LED vermelho; o sistema não deve registrar aceite. | Planejado; não executado |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+#### Rastreabilidade da simulação de monitoramento
+
+Os casos abaixo verificam o comportamento local do firmware ESP32 preservado com as evidências. Os RFs e RNs desta branch ainda descrevem o protótipo Arduino e integrações futuras. A formalização dos requisitos de modo de emergência e leitura RFID permanece pendente, portanto os vínculos abaixo não representam cobertura integral de requisito aprovado.
+
+| Caso | Necessidade / persona | Vínculo com os requisitos atuais | Evidência | Resultado e alcance |
+| --- | --- | --- | --- | --- |
+| CT16 | Reconhecer o estado inicial / Maria | Inicialização do monitoramento ESP32 a formalizar. A mensagem inicial não valida o diagnóstico de RF009. | [Inicialização](../assets/casos_teste_prototipos/wokwi-monitoramento/ct16-inicializacao.png) | Aprovado no escopo visual/serial. |
+| CT17 | Acionar a sinalização de emergência / Maria | Regra de alternância local do ESP32 a formalizar. RF014 e RN14 descrevem o botão do Arduino. | [Emergência](../assets/casos_teste_prototipos/wokwi-monitoramento/ct17-emergencia.png) | Aprovado no escopo visual/serial. |
+| CT18 | Restaurar a sinalização normal / Maria | Mesmo vínculo pendente de CT17. | [Normal](../assets/casos_teste_prototipos/wokwi-monitoramento/ct18-normal.png) | Aprovado no escopo visual/serial. |
+| CT19 | Evitar alternâncias durante pressão contínua / Maria | Debounce e acionamento único do ESP32 a formalizar. | [Pressão contínua](../assets/casos_teste_prototipos/wokwi-monitoramento/ct19-pressao-continua.png) | Parcial. Duração e sequência contínua sem comprovação temporal. |
+| CT20 | Obter retorno da leitura local / Gustavo | Aquisição de UID a formalizar. RF011 e RN09 tratam da consulta corporativa e da privacidade, cuja integração segue pendente. | [Cartão em modo normal](../assets/casos_teste_prototipos/wokwi-monitoramento/ct20-rfid-normal.png) | Parcial. UID e LEDs observados, áudio pendente. |
+| CT21 | Ler cartão durante emergência / Gustavo, Tuco | Regra de leitura nos dois modos a formalizar. Confirmação de presença ainda pendente. | [Cartão em emergência](../assets/casos_teste_prototipos/wokwi-monitoramento/ct21-rfid-emergencia.png) | Parcial. UID e LEDs observados, áudio pendente. |
+| CT22 | Distinguir leitura de autorização / Gustavo, Tuco | Autorização de cartão e cadastro ainda pendentes de requisito e implementação. | [Segundo cartão](../assets/casos_teste_prototipos/wokwi-monitoramento/ct22-segundo-cartao.png) | Parcial. Dois UIDs fictícios lidos, áudio pendente. |
+| CT23 | Conhecer o estado após reinício / Maria, Tuco | Recuperação do modo de emergência a formalizar. RF016 e RN15 tratam de reconexão e saldo, não de persistência desse modo. | [Antes](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-antes-reinicio.png) e [depois](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-reinicio-normal.png) | Aprovado para o retorno implementado a NORMAL. Persistência da emergência pendente de decisão. |
 
 #### Rastreabilidade preliminar da evolução
 
@@ -874,9 +907,9 @@ Os identificadores **PV** abaixo são propostas de validação, não casos CT ex
 
 #### Cobertura e atualização
 
-Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. Há **15 RNs**: RN12–RN14 possuem evidência parcial nos CTs; as outras 12 dependem de implementação/validação futura. RN09 também é apoiada pela inspeção de ausência de identificadores no firmware, sem validar integração futura.
+Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs da Sprint 1 possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. CT11–CT15 registram um planejamento anterior a readequar e não constituem cobertura experimental até que sejam executados com evidências. Há **15 RNs**: RN12–RN14 possuem evidência parcial nos CTs da Sprint 1; as outras 12 dependem de implementação/validação futura. RN09 também é apoiada pela inspeção de ausência de identificadores no firmware anterior, sem validar a futura leitura RFID.
 
-A próxima revisão do circuito ficará a cargo da equipe e deverá ser seguida de nova execução da bateria, identificando versão/commit, responsável, entradas, saídas e resultado real. Esta etapa é exclusivamente documental, sem execução do protótipo. A cada sprint, atualizar RFs, RNs, riscos e testes juntos. Um caso só muda para aprovado após execução e evidência; planejamento não é cobertura experimental.
+A bateria da Sprint 1 requer nova execução após a revisão do circuito. Na Sprint 2, CT11–CT15 aguardam readequação ao firmware e execução física, enquanto CT16–CT23 possuem registros de simulação com o alcance descrito na seção 3.4.2. A atualização da RTM acompanha a versão ensaiada, os resultados e as evidências de cada caso.
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
@@ -983,7 +1016,9 @@ _Nesta seção, detalhe os resultados obtidos com a implementação, de acordo c
 
 ### 3.4.1. Protótipo Inicial do Projeto usando o Simulador Wokwi (sprint 1)
 
-O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito estão armazenados no diretório [`src/firmware/prototipo`](../src/firmware/prototipo/).
+O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito estão armazenados no diretório [`src/firmware/prototipo`](../src/firmware/prototipo-contagem/).
+
+As versões seguintes adotam ESP32, com conectividade Wi-Fi para a integração MQTT planejada. CT01–CT10 registram os resultados da Sprint 1 com Arduino Uno. A simulação com ESP32 e RFID está documentada em CT16–CT23, na seção 3.4.2.
 
 O protótipo consiste em um contador de pessoas desenvolvido com Arduino Uno e dois sensores ultrassônicos HC-SR04. Um dos sensores registra a entrada de pessoas e incrementa o contador, enquanto o segundo registra a saída e decrementa o total. O valor atualizado é apresentado em um display LCD 16 × 2 conectado por I²C. Cada entrada ou saída válida também aciona um buzzer na frequência de 1.000 Hz durante 100 ms.
 
@@ -998,6 +1033,8 @@ O software contém as funções obrigatórias `setup()` e `loop()`, além de fun
 Na próxima execução, usar juntos os arquivos locais `sketch.ino` e `diagram.json` em um projeto Arduino Uno no Wokwi. Para reproduzir CT01, preparar ambos os sensores em 400 cm e manter o botão solto. O diagrama recebeu ajustes locais na etapa anterior desta revisão, mas sua conferência elétrica e a execução ficaram pendentes para a equipe. Nenhuma alteração no circuito ou no firmware foi feita nesta etapa documental. As capturas abaixo pertencem ao ensaio registrado anteriormente e não comprovam nova execução da versão local.
 
 Antes de cada caso isolado, restaurar o ECHO e as conexões normais, afastar ambos os sensores e aguardar pelo menos 1 s livre; quando houver reinício, o saldo esperado é zero. CT01–CT05 são sequenciais. CT06–CT10 requerem preparação própria indicada na tabela; CT09 começa com zero e detecta a entrada antes da saída. Para CT10, manter o sensor não testado em 400 cm e desconectar apenas o ECHO do sensor testado. Não restaurar conexões de alimentação invertidas para imitar a captura antiga.
+
+<a id="testes-modelo-1"></a>
 
 #### Casos de teste
 
@@ -1174,11 +1211,15 @@ O totem registra crachás apresentados no ponto de encontro. O firmware [`protot
 
 A descrição registra comportamentos identificados nos firmwares. A execução física, os tempos de resposta, a capacidade e a recuperação após falhas precisam ser verificados nos testes, conforme os RNFs. Os sinais locais indicam estados, leituras ou gravações e não atestam a segurança das pessoas; os registros de zona representam passagens discretas, sem localização precisa. A adequação ao ambiente industrial exige avaliação específica. A montagem, as versões e as evidências de execução são documentadas nas subseções seguintes.
 
+<a id="prototipos-codigos"></a>
+
 #### 3.4.2.3. Protótipos Físicos e Códigos
 
 Esta subseção reúne os componentes representados nas montagens digitais, suas conexões e os códigos dos três protótipos. O levantamento foi realizado a partir dos arquivos `diagram.json` e confrontado com os pinos definidos nos respectivos firmwares. As listas complementam a BOM (Seção 3.1.7), cuja pesquisa para os dispositivos da solução integrada está prevista para a Sprint 3; não incluem preços, fornecedores ou quantidades de aquisição.
 
 As figuras distinguem o esquema digital no Wokwi do registro fotográfico da montagem física. A numeração será ajustada na revisão geral da documentação. Os componentes e valores listados correspondem aos esquemas; eventuais diferenças da montagem física devem ser registradas junto às fotografias. Os resultados dos testes pertencem à Seção 3.4.2.4.
+
+<a id="codigo-modelo-1"></a>
 
 ##### Protótipo do Dispositivo 1 — Controle de entradas e saídas da planta
 
@@ -1224,6 +1265,8 @@ Os fios de interligação são representados no diagrama; a quantidade de jumper
 </div>
 
 **Versão do código e ambiente:** código e esquema registrados no commit `91d5329`. O firmware utiliza a API Arduino e a biblioteca `Wire`, com comunicação serial a 9.600 baud e controle do LCD implementado no próprio sketch. O alvo da montagem digital é Arduino Uno. A versão do compilador e do núcleo Arduino não está registrada nos arquivos consultados.
+
+<a id="codigo-modelo-2"></a>
 
 ##### Protótipo do Dispositivo 2 — Monitoramento por zonas
 
@@ -1341,6 +1384,8 @@ Esta arquitetura deliberadamente não inclui classes para pessoa, zona, ponto de
 
 **Versão do código e ambiente:** firmware na revisão `c096117`, com esquema registrado em `91d5329`. O código utiliza a API Arduino para ESP32 e as bibliotecas `SPI` e `MFRC522`, com comunicação serial a 115.200 baud. O arquivo `libraries.txt` declara `MFRC522`, sem fixar sua versão. As versões do núcleo Arduino-ESP32 e do compilador ainda precisam ser registradas para reprodução do ambiente.
 
+<a id="codigo-modelo-3"></a>
+
 ##### Protótipo do Dispositivo 3 — Confirmação nos pontos de encontro
 
 O protótipo do totem utiliza ESP32 e RFID para registrar localmente crachás distintos, com persistência e sinalização de atendimento. O circuito de bancada representa a eletrônica do dispositivo; o invólucro do totem não aparece no esquema digital.
@@ -1394,21 +1439,78 @@ Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quan
 
 As revisões identificam os arquivos usados neste levantamento. A correspondência entre fotografias, esquemas e códigos deve considerar eventuais diferenças de componentes, conexões e alimentação.
 
+<a id="testes-prototipos"></a>
+
 #### 3.4.2.4. Casos de Teste
 
-_Registre situações de teste do sistema físico, incluindo casos de sucesso e possíveis falhas de leitura de entradas ou de acionamento de saídas. Cada caso deve indicar pré-condição, procedimento, resultado esperado e pós-condição. Continue a numeração CT a partir da tabela anterior. Após a execução, registre o resultado observado e associe as evidências ao caso correspondente._
+Os registros são organizados pelo dispositivo e pela versão ensaiada. A montagem, o código e o ambiente de cada modelo estão na [seção 3.4.2.3](#prototipos-codigos). As fotografias dessa subseção documentam as montagens de bancada. Os resultados por caso são acompanhados das evidências de execução correspondentes.
 
-<p align="center">Quadro 14 – Modelo de registro de testes da Sprint 2</p>
+| Modelo | Casos e documentação | Situação |
+| --- | --- | --- |
+| 1 — Contagem com Arduino Uno | [CT01–CT10, documentados anteriormente na Sprint 1](#testes-modelo-1), com [firmware](../src/firmware/prototipo-contagem/sketch.ino) e [evidências originais](../assets/casos_teste_prototipos/inicial/). | Resultados históricos da simulação. A versão ESP32 do contador aguarda desenvolvimento e nova validação. |
+| 2 — Monitoramento com ESP32 e RC522 | CT16–CT23 abaixo, [firmware](../src/firmware/prototipo-monitoramento/sketch.ino), [capturas do Wokwi](../assets/casos_teste_prototipos/wokwi-monitoramento/) e [revisão #113](outros/revisao-prototipo-digital-113.md). | Execução visual/serial registrada, com ressalvas temporais e de áudio. Os registros de execução física por caso estão pendentes. |
+| 3 — Totem offline com ESP32 | [Código e montagem do totem](#codigo-modelo-3), incluindo persistência e limite de 50 UIDs. | Documentação preliminar. A elaboração e a execução dos casos específicos permanecem previstas para a Sprint 3. |
 
-| **CT#** | **Descrição**                                    | **Pré-condição**                  | **Procedimento de teste**                                                                                                 | **Pós-condição/Resultado esperado**                                                                         | **Observações** (opcional) |
-| ------- | ------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
-| CT11    | ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado. | ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
+##### Modelo 1 — Testes documentados na Sprint 1
 
-<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+Os casos CT01–CT10 foram documentados anteriormente na [seção 3.4.1](#testes-modelo-1), com entradas, resultados e imagens T01–T10. Eles abrangem inicialização, entrada, saída, bloqueio/rearme, sinalização, saldo mínimo e falha de eco do protótipo Arduino Uno. A mesma versão do contador está preservada em prototipo-contagem.
 
-_[Acrescente linhas para os demais casos planejados. Inclua pelo menos três casos alinhados ao escopo, cobrindo comportamentos representativos e, quando aplicável, falhas de entrada e saída.]_
+A inclusão das fotos de bancada na [descrição do modelo 1](#codigo-modelo-1) complementa o registro da montagem. A execução desses dez casos na bancada e a migração para ESP32 exigem resultados e evidências próprios.
 
-<p><sub>Fonte: modelo de registro de testes do projeto, adaptado para incluir execução e evidências.</sub></p>
+##### Modelo 2 — Monitoramento por zonas
+
+O firmware e o circuito estão em [prototipo-monitoramento](../src/firmware/prototipo-monitoramento/). A versão integrada corresponde às cópias preservadas na bateria CT16–CT23, após normalizar as quebras de linha. As [fotos da montagem do modelo 2](#codigo-modelo-2) estão na subseção anterior.
+
+###### Planejamento anterior — CT11–CT15
+
+CT11–CT15 foram elaborados para uma hipótese de leitura autorizada com LEDs de aceite e rejeição. Permanecem registrados para rastrear a evolução do planejamento, com status não executado. A versão integrada indica modos NORMAL e EMERGÊNCIA nos LEDs e imprime o UID sem consultar cadastro. O planejamento precisa ser readequado a esse firmware e aos requisitos antes da execução física.
+
+<p align="center">Quadro 14 – Casos de teste planejados para o protótipo físico offline</p>
+
+| **CT#** | **Descrição** | **Pré-condição** | **Procedimento de teste** | **Pós-condição / resultado esperado** | **Evidência e status** |
+| ------- | ------------- | ---------------- | ------------------------- | ------------------------------------- | ---------------------- |
+| CT11 | Inicialização do ESP32 e do leitor RFID. | Montagem desenergizada, conexões revisadas e firmware da Sprint 2 gravado. | Energizar o ESP32, abrir o monitor serial e aguardar a rotina de inicialização. Não aproximar tags. | O ESP32 inicia sem reinicializações contínuas; o RC522 é reconhecido; o estado inicial dos LEDs corresponde ao definido no firmware e nenhuma leitura é aceita sem tag. | Pendente: foto da montagem energizada e captura serial. **Não executado.** |
+| CT12 | Leitura aceita de tag fictícia válida. | CT11 aprovado; uma tag fictícia cadastrada para teste; nenhum LED de resposta ativo. | Aproximar a tag do RC522 uma vez e afastá-la após a leitura. Observar o monitor serial e os LEDs. | Uma única leitura é reconhecida; o LED verde acende pelo intervalo especificado; o vermelho permanece apagado; o log indica aceite sem expor UID completo. | Pendente: vídeo ou sequência de fotos e captura serial. **Não executado.** |
+| CT13 | Controle de leitura repetida da mesma tag. | CT11 aprovado; tag fictícia válida; política de bloqueio ou intervalo definida no firmware. | Manter a mesma tag no campo do RC522 por tempo superior ao intervalo normal de leitura e depois afastá-la. | O comportamento coincide com a política documentada: não ocorre uma sequência indefinida de aceites; o LED e o log permitem distinguir uma leitura válida de repetições bloqueadas. | Pendente: vídeo contínuo e log com marcas de tempo. **Não executado.** |
+| CT14 | Rejeição de tag fictícia não cadastrada. | CT11 aprovado; tag compatível com o RC522, mas ausente da lista fictícia de teste. | Aproximar a tag não cadastrada uma vez e afastá-la após a resposta. | Nenhum aceite é registrado; o LED vermelho acende pelo intervalo definido; o verde permanece apagado; o log informa rejeição sem expor UID completo. | Pendente: vídeo ou sequência de fotos e captura serial. **Não executado.** |
+| CT15 | Falha controlada de comunicação com o RC522. | Montagem desenergizada e procedimento seguro definido; firmware com diagnóstico de inicialização ou leitura. | Desenergizar, desconectar de forma controlada uma conexão de comunicação do RC522, energizar novamente e observar a resposta. Ao terminar, desenergizar antes de restaurar a ligação. | O sistema não apresenta leitura como aceita; o LED vermelho ou outro estado de erro documentado é acionado; o log informa indisponibilidade do leitor e orienta inspeção, sem reinicialização infinita silenciosa. | Pendente: foto da condição, captura serial e vídeo do LED. **Não executado.** |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+###### Execução do modelo 2 no Wokwi — CT16–CT23
+
+A simulação do [PrototipoMonitoramento no Wokwi](https://wokwi.com/projects/479252249534862337), registrada em 4 de novembro de 2026, usa ESP32, RC522 por SPI, botão no GPIO 27, LEDs nos GPIOs 26 (verde) e 33 (vermelho) e buzzer no GPIO 25. O monitor serial opera a 115200 baud. As [cópias do firmware, circuito e dependências](../assets/casos_teste_prototipos/wokwi-monitoramento/) identificam a versão ensaiada.
+
+Nessa versão, os LEDs representam os modos NORMAL e EMERGÊNCIA. A leitura de um cartão imprime seu UID fictício e aciona no código um bipe de 2.000 Hz por 50 ms. O firmware permite ler cartões nos dois modos e não contém lista de autorização, persistência de presença, MQTT ou diagnóstico explícito de falha do leitor. Esse comportamento difere do planejamento de CT11–CT15.
+
+A execução registrada foi realizada por automação de navegador (Codex). As evidências disponíveis são capturas da simulação e um registro da interface com a saída serial. Elas sustentam os resultados visuais e seriais, com as ressalvas de cada caso. A duração da pressão contínua de CT19 e o áudio de CT20–CT22 permanecem sem comprovação nos arquivos. O hardware físico aguarda ensaio.
+
+<p align="center">Quadro 14A – Casos de teste da versão de monitoramento do Artefato 5</p>
+
+| **CT#** | **Configuração do ambiente** | **Ação do usuário / procedimento** | **Resposta esperada do sistema** | **Evidência e status** |
+| ------- | --------------------------- | ---------------------------------- | -------------------------------- | ---------------------- |
+| CT16 | Circuito carregado, botão solto e nenhum cartão apresentado. | Iniciar a simulação e acompanhar LEDs e serial a 115200 baud. | Verde aceso, vermelho apagado; mensagens `Sistema inicializado!` e `STATUS: NORMAL`; nenhum bipe ou registro de cartão. A mensagem inicial não comprova funcionamento do leitor. | Inicialização com `Sistema inicializado!` e `STATUS: NORMAL`; verde aceso e vermelho apagado, sem registro de cartão. **Aprovado no escopo visual/serial.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct16-inicializacao.png). |
+| CT17 | CT16 aprovado; modo NORMAL. | Pressionar o botão por 100 ms ou mais e soltar. | Uma transição para EMERGÊNCIA: verde apaga, vermelho acende e serial imprime `EMERGENCIA`. O botão não solicita bipe. | Pressão acionou `EMERGENCIA`, vermelho aceso e verde apagado, uma vez. **Aprovado no escopo visual/serial.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct17-emergencia.png). |
+| CT18 | Modo EMERGÊNCIA; botão solto por pelo menos 100 ms. | Pressionar novamente por 100 ms ou mais e soltar. | Verde acende, vermelho apaga; serial imprime `NORMAL` uma vez para esse acionamento. | Nova pressão retornou a `NORMAL`, verde aceso e vermelho apagado. **Aprovado no escopo visual/serial.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct18-normal.png). |
+| CT19 | Modo NORMAL e nenhum cartão apresentado. | Manter o botão pressionado por 2 s; soltar por pelo menos 100 ms e pressionar novamente por 100 ms. | Pressão contínua gera uma única transição para EMERGÊNCIA; soltar não alterna o modo; nova pressão retorna a NORMAL. O debounce exige estabilidade por mais de 25 ms. | A captura registra uma mensagem `EMERGENCIA`. CT18 registra o retorno a `NORMAL`. **Parcial.** A imagem isolada não comprova pressão contínua por 2 s, soltura sem transição ou o limiar de 25 ms. Falta um registro temporal da sequência. [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct19-pressao-continua.png). |
+| CT20 | Modo NORMAL; leitor configurado e cartão compatível com UID fictício. | Apresentar o cartão uma vez e afastá-lo após a leitura. | Serial imprime `Cartao detectado! UID: ` e bytes em hexadecimal; comando de bipe de 2.000 Hz por 50 ms; verde permanece aceso e vermelho apagado. Não há validação de autorização. | Blue Card: `Cartao detectado! UID: 01 02 03 04`; modo NORMAL preservado. **Parcial: leitura e LEDs confirmados; buzzer não medido.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct20-rfid-normal.png). |
+| CT21 | Modo EMERGÊNCIA; cartão fictício compatível. | Apresentar o cartão uma vez e afastá-lo após a leitura. | Mesmo registro e bipe do CT20; vermelho permanece aceso e verde apagado. A emergência não suspende leituras nem registra chegada ao ponto de encontro. | Green Card: `Cartao detectado! UID: 11 22 33 44` após `EMERGENCIA`; modo preservado. **Parcial: leitura e LEDs confirmados; buzzer não medido.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct21-rfid-emergencia.png). |
+| CT22 | Modo NORMAL; outro cartão compatível, com UID fictício diferente do CT20. | Apresentar o segundo cartão sem alterar o firmware. | Também gera UID no serial e bipe, sem mudar o modo. Não ocorre rejeição por falta de cadastro, pois não existe lista de autorização; registrar essa limitação. | Green Card (UID `11 22 33 44`) também lido no modo NORMAL, sem cadastro ou rejeição. **Parcial: ausência de bloqueio confirmada; buzzer não medido.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct22-segundo-cartao.png). |
+| CT23 | Modo EMERGÊNCIA; cartão afastado e botão solto. | Parar e reiniciar a simulação ou reiniciar o ESP32 na bancada. | Retorna a NORMAL com verde aceso, vermelho apagado e mensagens iniciais. O modo anterior não é persistido; registrar a perda do estado de emergência como limitação a avaliar. | Comando Restart aplicado após emergência; mensagens iniciais e modo NORMAL restaurados. **Aprovado no escopo visual/serial para o comportamento implementado.** O retorno a NORMAL após reinício é uma limitação para operação em emergência. [Antes](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-antes-reinicio.png) e [depois](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-reinicio-normal.png). |
+
+<p><sub>Fonte: elaboração dos autores (2026), com base no firmware do projeto Wokwi indicado acima.</sub></p>
+
+A revisão técnica da task #113, realizada em 05/11/2026, está registrada no [parecer do protótipo digital](outros/revisao-prototipo-digital-113.md), com conferência de código e pinagem, nova execução no Wokwi e ensaio de inicialização com MISO desconectado. O parecer solicita alterações no diagnóstico do leitor e no tratamento de reinício, além de registrar as pendências de integração e medição.
+
+##### Modelo 3 — Testes previstos para a Sprint 3
+
+O [totem offline](#codigo-modelo-3) possui firmware e fotos de montagem nesta branch. A bateria específica será detalhada na Sprint 3, conforme o escopo de maturidade da entrega. Ela deverá verificar ativação local, registro de UID distinto, rejeição de repetidos, recuperação após reinício e tratamento de memória cheia e falhas de leitor ou armazenamento, com dados fictícios e evidências da versão executada.
+
+A numeração dos novos casos começa em CT24, compartilhada com os demais ensaios da Sprint 3. Nenhum resultado dos modelos 1 ou 2 é atribuído ao totem.
+
+##### Registro dos resultados
+
+O registro de cada ensaio reúne data, responsável, versão do firmware, entrada aplicada, resultado observado, evidência e status, com atualização correspondente na [RTM da seção 3.3.4](#rtm). CT01–CT10 mantêm seu registro histórico, CT11–CT15 aguardam readequação, e CT16–CT23 preservam os resultados e as ressalvas da simulação. Os ensaios físicos por caso e a bateria do modelo 3 permanecem pendentes.
 
 #### 3.4.2.5. Conclusão e Ressalvas
 
@@ -1416,20 +1518,11 @@ A Sprint 2 amplia a solução com o protótipo 2, principal entrega desta etapa,
 
 O detalhamento dos dispositivos apresenta níveis distintos de maturidade. Para o protótipo 1, estão previstas para a Sprint 3 a atualização do controlador de Arduino Uno para ESP32 e a formalização da arquitetura e do desenho esquemático correspondentes, preservando-se o circuito inicial como registro histórico da Sprint 1. A inclusão do protótipo 3 nesta etapa é preliminar e abrange suas montagens física e digital, funcionalidades, componentes e código. Sua arquitetura, desenho esquemático formal, casos de teste, requisitos funcionais e regras de negócio específicos serão desenvolvidos na Sprint 3. Os diagramas de montagem no Wokwi servem de referência aos circuitos e não substituem essa documentação técnica.
 
-Os protótipos operam localmente, sem o sistema web de integração, a consolidação dos registros entre dispositivos ou a sincronização em rede. A seção de testes da Sprint 2 ainda aguarda resultados e evidências, e os registros da Sprint 1 se aplicam ao primeiro protótipo. Assim, esta entrega documenta a evolução física e offline da solução; a validação do desempenho, da confiabilidade e da adequação ao ambiente industrial permanece dependente das próximas etapas de implementação e testes.
+Os protótipos operam localmente, sem o sistema web de integração, a consolidação dos registros entre dispositivos ou a sincronização em rede. Os testes do modelo 1 estão documentados na [seção 3.4.1](#testes-modelo-1). A [seção 3.4.2.4](#testes-prototipos) reúne a bateria simulada do modelo 2, suas limitações e o planejamento anterior. Os resultados de execução física por caso e os testes específicos do modelo 3 continuam pendentes. Assim, esta entrega documenta a evolução física e offline da solução; a validação do desempenho, da confiabilidade e da adequação ao ambiente industrial permanece dependente das próximas etapas de implementação e testes.
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
-
-<p align="center">Quadro 15 – Modelo de registro de testes da Sprint 3</p>
-
-| **CT#** | **Configuração do ambiente**                                                                                                                   | **Ação do usuário**                                                                     | **Resposta esperada do sistema**                                                                                                                 |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| CT21    | ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização |
-
-<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+A integração MQTT e I²C e seus ensaios estão planejados para a Sprint 3. Os novos casos serão numerados a partir de CT24 e deverão cobrir a operação integrada, a perda de conexão e a recuperação dos dispositivos. O detalhamento dos cenários, os resultados e as evidências estão pendentes.
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)
 
@@ -1508,7 +1601,7 @@ OSTERWALDER, Alexander; PIGNEUR, Yves; BERNARDA, Gregory; SMITH, Alan. **Value p
 
 SARAVATI. **Resistor 1 kΩ 5% 1/4 W**. [S. l.]: Saravati, [s. d.]. Disponível em: https://www.saravati.com.br/resistor-1k-5-1-4w.html. Acesso em: 20 out. 2026.
 
-SYNTHETIX. **C.R.I.S.I.S: protótipo inicial e evidências CT01–CT10**. São Paulo: Inteli, 2026. Disponível em: https://wokwi.com/projects/478404642645348353. Acesso em: 23 out. 2026. Arquivos associados: [firmware](../src/firmware/prototipo/sketch.ino), [circuito](../src/firmware/prototipo/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). A consulta aos arquivos não equivale à reexecução da simulação.
+SYNTHETIX. **C.R.I.S.I.S: protótipo inicial e evidências CT01–CT10**. São Paulo: Inteli, 2026. Disponível em: https://wokwi.com/projects/478404642645348353. Acesso em: 23 out. 2026. Arquivos associados: [firmware](../src/firmware/prototipo-contagem/sketch.ino), [circuito](../src/firmware/prototipo-contagem/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). A consulta aos arquivos não equivale à reexecução da simulação.
 
 UNIPAR. **Aviso de privacidade**. [S. l.]: Unipar, [s. d.]a. Disponível em: https://unipar.com/aviso-de-privacidade. Acesso em: 22 out. 2026.
 
