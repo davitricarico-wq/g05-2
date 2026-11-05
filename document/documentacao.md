@@ -1357,9 +1357,20 @@ Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quan
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-totem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de totem para registro de crachás nos pontos de encontro" width="100%">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 1</p>
+  <img src="../assets/prototipo_3/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 2</p>
+  <img src="../assets/prototipo_3/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 3</p>
+  <img src="../assets/prototipo_3/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
