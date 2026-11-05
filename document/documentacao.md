@@ -1294,9 +1294,26 @@ As tags compatíveis com a solução, de 13,56 MHz, são necessárias à intera�
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do protótipo de monitoramento por zonas</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-monitoramento-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de leitura RFID para monitoramento por zonas" width="100%">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 1</p>
+  <img src="../assets/prototipo_1/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 2</p>
+  <img src="../assets/prototipo_1/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 3</p>
+  <img src="../assets/prototipo_1/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 4</p>
+  <img src="../assets/prototipo_1/montagem-04.jpeg" alt="Vista 4 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
