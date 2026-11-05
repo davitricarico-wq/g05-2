@@ -1197,6 +1197,8 @@ A execução registrada foi realizada por automação de navegador (Codex). As e
 
 <p><sub>Fonte: elaboração dos autores (2026), com base no firmware do projeto Wokwi indicado acima.</sub></p>
 
+A revisão técnica da task #113, realizada em 05/11/2026, está registrada no [parecer do protótipo digital](outros/revisao-prototipo-digital-113.md), com conferência de código e pinagem, nova execução no Wokwi e ensaio de inicialização com MISO desconectado. O parecer solicita alterações no diagnóstico do leitor e no tratamento de reinício, além de registrar as pendências de integração e medição.
+
 #### Registro dos resultados
 
 O registro de cada ensaio reúne data, responsável, versão do firmware, entrada aplicada, resultado observado, evidência e status, com atualização correspondente na RTM da seção 3.3.4. Divergências entre o esperado e o observado devem acompanhar a decisão de corrigir ou repetir o teste.
