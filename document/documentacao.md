@@ -1123,52 +1123,6 @@ No escopo físico offline desta seção, os dispositivos são contextualizados c
 
 > **\*totens**: estruturas cilíndricas, similares a um poste, com aproximadamente 1,20 metros de altura e feitos de um material rígido. (madeira, plástico ou PVC, por exemplo).
 
-##### Diagrama de classes UML conceitual — Protótipo de Monitoramento em tempo real
-
-O diagrama abaixo representa **somente o firmware offline atualmente implementado** em [`prototipo-monitoramento/sketch.ino`](../src/firmware/prototipo-monitoramento/sketch.ino). `SistemaMonitoramento` coordena os componentes físicos e mantém `EstadoEmergencia`; não representa a aplicação web ou a solução integrada descrita acima. O botão alterna o estado local após debounce, os LEDs o exibem, e a leitura RFID produz um bipe e imprime o UID no monitor serial. O UID é uma leitura transitória, não uma entidade de pessoa nem uma confirmação de chegada persistida.
-
-```mermaid
-classDiagram
-    class EstadoEmergencia {
-        <<enumeration>>
-        Normal
-        Emergencia
-    }
-    class SistemaMonitoramento {
-        -EstadoEmergencia estado_
-        +iniciar() void
-        +atualizar() void
-    }
-    class BotaoEmergencia {
-        -bool ultimaLeitura_
-        -bool estadoEstavel_
-        -unsigned long ultimaMudanca_
-        +iniciar() void
-        +foiPressionado(agora) bool
-    }
-    class IndicadorEstado {
-        +iniciar() void
-        +mostrar(estado) void
-    }
-    class LeitorCracha {
-        -MFRC522 leitor_
-        +iniciar() void
-        +lerUid(uid) bool
-    }
-    class SinalizadorSonoro {
-        +iniciar() void
-        +confirmarLeitura() void
-    }
-    SistemaMonitoramento *-- BotaoEmergencia
-    SistemaMonitoramento *-- IndicadorEstado
-    SistemaMonitoramento *-- LeitorCracha
-    SistemaMonitoramento *-- SinalizadorSonoro
-    SistemaMonitoramento --> EstadoEmergencia
-    IndicadorEstado ..> EstadoEmergencia
-```
-
-Esta arquitetura deliberadamente não inclui classes para pessoa, zona, ponto de encontro, MQTT, armazenamento ou dashboard: nenhuma dessas responsabilidades existe neste sketch. A leitura do crachá continua disponível tanto no estado normal quanto no de emergência; o protótipo não valida autorização, não deduplica UIDs e não envia dados à rede. Essas capacidades da solução proposta exigem implementação e testes próprios antes de constarem no diagrama do firmware.
-
 #### 3.4.2.2. Funcionalidades dos Dispositivos Físicos
 
 As funcionalidades são organizadas pelos três tipos de dispositivo da solução, seguindo seu propósito, entradas, processamento, saídas, interação e limitações. A descrição considera a descrição da solução (Seção 3.1.3) e as especificações de Requisitos Funcionais (Seção 3.3.1), Regras de Negócio (Seção 3.3.2) e Requisitos Não Funcionais (Seção 3.3.3). Os identificadores RF, RN e RNF relacionam as funcionalidades às respectivas especificações. A situação de implementação é delimitada pelo código disponível.
@@ -1306,6 +1260,52 @@ Um desenho esquemático representa os componentes de um circuito e suas ligaçõ
 No centro, o **ESP32 (U1)** controla a leitura e as saídas. À esquerda, o **RC522 (U2)** recebe 3,3 V e GND do circuito e troca dados com o ESP32 pela interface SPI; o pino SDA do leitor funciona como seleção do dispositivo, e RST permite reiniciá-lo. À direita, o **botão (SW1)** fecha o GPIO 27 para GND quando pressionado e alterna o estado local; a indicação de _pull-up interno_ mostra que o pino permanece em nível alto enquanto o botão está solto. O **LED vermelho (D1)** indica emergência e o **verde (D2)** indica operação normal. Os **resistores de 1 kΩ (R1 e R2)** limitam a corrente dos LEDs. O **buzzer (BZ1)** emite um sinal sonoro a cada UID lido. As linhas representam as conexões elétricas; os símbolos de **GND** indicam o retorno comum.
 
 Para reproduzir a montagem, devem prevalecer as conexões descritas acima e no `diagram.json`: a figura troca os rótulos MOSI e MISO em relação aos GPIOs 19 e 23 e não mostra o terceiro resistor de 1 kΩ em série com o buzzer, presente na montagem digital.
+
+**Diagrama de Classes UML Conceitual — Protótipo de monitoramento em tempo real**
+
+O diagrama abaixo representa **somente o firmware offline atualmente implementado** em [`prototipo-monitoramento/sketch.ino`](../src/firmware/prototipo-monitoramento/sketch.ino). `SistemaMonitoramento` coordena os componentes físicos e mantém `EstadoEmergencia`; não representa a aplicação web ou a solução integrada descrita acima. O botão alterna o estado local após debounce, os LEDs o exibem, e a leitura RFID produz um bipe e imprime o UID no monitor serial. O UID é uma leitura transitória, não uma entidade de pessoa nem uma confirmação de chegada persistida.
+
+```mermaid
+classDiagram
+    class EstadoEmergencia {
+        <<enumeration>>
+        Normal
+        Emergencia
+    }
+    class SistemaMonitoramento {
+        -EstadoEmergencia estado_
+        +iniciar() void
+        +atualizar() void
+    }
+    class BotaoEmergencia {
+        -bool ultimaLeitura_
+        -bool estadoEstavel_
+        -unsigned long ultimaMudanca_
+        +iniciar() void
+        +foiPressionado(agora) bool
+    }
+    class IndicadorEstado {
+        +iniciar() void
+        +mostrar(estado) void
+    }
+    class LeitorCracha {
+        -MFRC522 leitor_
+        +iniciar() void
+        +lerUid(uid) bool
+    }
+    class SinalizadorSonoro {
+        +iniciar() void
+        +confirmarLeitura() void
+    }
+    SistemaMonitoramento *-- BotaoEmergencia
+    SistemaMonitoramento *-- IndicadorEstado
+    SistemaMonitoramento *-- LeitorCracha
+    SistemaMonitoramento *-- SinalizadorSonoro
+    SistemaMonitoramento --> EstadoEmergencia
+    IndicadorEstado ..> EstadoEmergencia
+```
+
+Esta arquitetura deliberadamente não inclui classes para pessoa, zona, ponto de encontro, MQTT, armazenamento ou dashboard: nenhuma dessas responsabilidades existe neste sketch. A leitura do crachá continua disponível tanto no estado normal quanto no de emergência; o protótipo não valida autorização, não deduplica UIDs e não envia dados à rede. Essas capacidades da solução proposta exigem implementação e testes próprios antes de constarem no diagrama do firmware.
 
 **Figuras da montagem**
 
