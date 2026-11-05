@@ -37,41 +37,56 @@ A Unipar é uma empresa brasileira do setor químico e petroquímico, com mais d
 
 Este projeto é feito com a fábrica de Cubatão, a unidade com a maior capacidade de produção de cloro da empresa (Unipar Carbocloro S.A., 2023), onde trabalham cerca de 355 funcionários diretos e cerca de 400 de empresas parceiras (informação verbal)[^1]. Em uma emergência, como um vazamento de cloro, essas pessoas precisam sair da área rápido e chegar aos pontos de encontro. Hoje, esse processo é quase todo manual: o alarme é acionado por um operador, a empresa só sabe quem entrou e saiu pela portaria, sem saber onde cada pessoa está dentro da planta, e a confirmação de quem chegou ao ponto de encontro é feita pelos líderes, por chamada. Além disso, durante a emergência, as catracas são liberadas para dar vazão e deixam de registrar quem passa. Com isso, a evacuação fica mais lenta e é difícil saber, rápido, quem ainda não chegou (informação verbal)[^1].
 
+Para isso, a Synthetix propõe o C.R.I.S.I.S, uma solução de Internet das Coisas (IoT) que confirma a chegada de cada pessoa ao ponto de encontro pela leitura do crachá, registra a última zona por onde ela passou e reúne essas informações em uma aplicação web para a equipe de Segurança, Saúde e Meio Ambiente (SSMA) e para o Centro de Controle Operacional (CCO).
+
 [^1]: Informação fornecida por representantes da Unipar na reunião de kickoff do projeto, em 16 de outubro de 2026.
 
 ## 1.1 Objetivos
 
 Os objetivos abaixo foram definidos a partir do Termo de Abertura do Projeto (Unipar, 2026a) e da reunião de kickoff com a Unipar (informação verbal)[^1].
 
-**Objetivo geral**
+**Objetivo geral:** tornar a evacuação das áreas fabris da Unipar em Cubatão mais rápida, precisa e rastreável, permitindo saber quem já chegou aos pontos de encontro e quem ainda precisa ser procurado durante uma emergência (Unipar, 2026a).
 
-Aumentar a rapidez, a precisão e a rastreabilidade da evacuação da fábrica de Cubatão em situações de emergência, fortalecendo a gestão de emergências e a proteção das pessoas que estão na planta.
+**Objetivos específicos:**
 
-**Objetivos específicos**
-
-- Melhorar a visibilidade sobre a população presente na planta e as pendências de conferência durante a evacuação;
-- Apoiar a apuração quantitativa mesmo quando as catracas e portas são liberadas durante a emergência;
-- Agilizar a conferência nos pontos de encontro, reduzindo o esforço manual sem dispensar a confirmação individual quando necessária;
-- Apoiar a apuração de pessoas ainda não confirmadas em até dez minutos após o alarme, conforme o prazo interno informado pela Unipar;
-- Avisar a sala de controle e as equipes de resposta sobre o andamento da evacuação, dando mais agilidade às decisões.
+1. Confirmar individualmente a chegada de cada pessoa ao ponto de encontro, substituindo a conferência manual por listas.
+2. Identificar quem ainda não confirmou a chegada a tempo de a SSMA decidir a busca dentro do prazo interno de 10 minutos informado pela Unipar (informação verbal)[^1].
+3. Apoiar a orientação da busca feita pelos brigadistas com a última área registrada de cada pessoa não confirmada.
+4. Dar à SSMA e ao CCO uma visão consolidada da evacuação, com a estimativa de pessoas na planta e as confirmações em cada ponto de encontro.
+5. Manter registros rastreáveis de cada evacuação, para auditorias, simulados e melhoria do plano de emergência.
+6. Proteger os dados dos colaboradores, usando a identificação nominal somente durante a emergência e somente por quem coordena a resposta.
 
 ## 1.2 Proposta da solução
 
-A proposta do C.R.I.S.I.S é apoiar a conferência da evacuação da Unipar em Cubatão por meio de contagem quantitativa nos acessos aos pontos de encontro. Na Sprint 1, o protótipo desenvolvido demonstra entradas e saídas simuladas, mantém um total local e oferece retorno visual e sonoro. Esse recorte permite estudar a lógica de contagem e suas falhas antes de ampliar a solução.
+O C.R.I.S.I.S, solução proposta pela Synthetix, é um sistema de Internet das Coisas (IoT) que acompanha a evacuação em três pontos da planta e reúne as informações em uma aplicação web:
 
-Na Sprint 1, a contagem do protótipo é anônima: informa passagens e saldo local, sem identificar pessoas. Na solução integrada, a leitura de crachá no ponto de encontro (PE) identifica quem chegou; os protótipos das catracas continuam contabilizando entradas e saídas identificadas durante a emergência. A equipe continua responsável pela conferência humana e pelas decisões de emergência. O protótipo não orienta rotas nem controla catracas.
+- **Nas portarias**, sensores contam as entradas e saídas e estimam quantas pessoas estão dentro da planta, sem identificar ninguém.
+- **Nas portas das zonas monitoradas**, leitores registram o crachá de quem passa e guardam a última zona de cada pessoa.
+- **Nos pontos de encontro**, totens confirmam a chegada de cada pessoa quando ela aproxima o crachá do leitor.
 
-Na visão completa pensada para a solução, os registros de crachá e das portarias poderão fornecer a população de referência da planta. Os dispositivos dos pontos de encontro enviarão confirmações identificadas e contagens para um painel compartilhado pelo CCO e pela SSMA, com ocupação por ponto, diferença quantitativa em relação à referência, tempo desde o alarme, alertas e histórico. Essa integração busca apoiar a conferência dentro do prazo interno de dez minutos.
+Em uma emergência, o CCO inicia o protocolo na aplicação e indica os pontos de encontro ativos, conforme a orientação da SSMA. A aplicação mostra em um só lugar a estimativa de pessoas na planta, as confirmações em cada ponto e quem ainda não confirmou. Aos 10 minutos, a SSMA recebe a lista de quem não confirmou, com a última zona registrada, e decide a busca dos brigadistas. Os nomes só aparecem enquanto a emergência está ativa e para quem coordena a resposta.
 
-Também se pretende analisar a viabilidade de aproveitar os registros de acesso entre áreas para informar a última área registrada antes do alarme. Esse dado seria uma referência histórica, não a localização atual de alguém nem prova de quem deixou de chegar ao ponto de encontro. Sua integração depende da disponibilidade dos dados, das permissões e da revisão de privacidade. Monitoramento por áreas, orientação durante a evacuação e contagem em fluxos simultâneos exigem análise e validação próprias antes de integrarem a implementação. Assim, a Sprint 1 demonstra o núcleo de contagem local, e as demais capacidades serão incorporadas progressivamente conforme a viabilidade e o avanço do projeto.
+Assim, cada objetivo da seção 1.1 é atendido: a confirmação no totem substitui a lista em papel (objetivo 1); a sinalização aos 10 minutos e a última zona registrada apoiam a decisão e a orientação da busca (objetivos 2 e 3); a aplicação consolida a evacuação e guarda o histórico (objetivos 4 e 5); e a exibição restrita dos nomes protege os dados dos colaboradores (objetivo 6).
+
+O Termo de Abertura do Projeto de Inovação (TAPI) também prevê a orientação da rota de evacuação (Unipar, 2026a). Esse item ficou fora do escopo desta solução por dois motivos. Primeiro, as áreas de processo da Unipar são classificadas, com risco de vazamento e incêndio (Unipar, 2026a), o que restringe a instalação de sinalização eletrônica ao longo das rotas. Segundo, em um vazamento de cloro, o ponto de encontro usado depende da direção do vento e é definido pela SSMA no momento do incidente (informação verbal)[^1]. A solução apoia a orientação de outra forma: o CCO seleciona na aplicação os pontos de encontro ativos indicados pela SSMA, e os brigadistas recebem a última zona registrada de quem ainda não confirmou.
+
+O protótipo da Sprint 1 testou a contagem de entradas e saídas que deu origem ao dispositivo das portarias. A partir da Sprint 2, os protótipos passam a representar os três dispositivos da solução, detalhados nas seções 3.1.3 e 3.3.
 
 ## 1.3 Justificativa
 
-A conferência manual e a perda de registros de passagem quando as catracas são liberadas dificultam a consolidação rápida de informações durante a evacuação, conforme o contexto informado no kickoff. A proposta atua sobre esse problema ao experimentar uma contagem local que continua funcionando nos dois estados de sinalização, preservando a verificação humana. O benefício esperado é reduzir o esforço de apuração quantitativa e oferecer um dado adicional à equipe responsável pelo ponto de encontro.
+O cloro é um gás tóxico e mais denso que o ar, que se acumula perto do solo (NIOSH, 2019). Em um vazamento, cada minuto entre o alarme e a confirmação de que todos saíram conta. Hoje, essa confirmação depende de chamadas com lista e rádio nos pontos de encontro, sob ruído de sirene e vento, e o prazo interno de 10 minutos para decidir a busca corre enquanto os números ainda estão sendo somados (informação verbal)[^1].
 
-O diferencial do recorte da Sprint 1 é dispensar dispositivos individuais e identificação pessoal no fluxo de contagem: a interação se resume à passagem pelo acesso simulado e à leitura do total local. Isso permite verificar entradas, saídas, bloqueio de repetição e falhas de leitura com uma montagem pequena e reproduzível. Não há comprovação, nesta etapa, de redução de tempo, acurácia em campo ou cumprimento do prazo de dez minutos. As metas e o protocolo de validação estão nas seções 3.1.3.5 e 3.4.1.1.
+**Potencial e benefícios.** A solução troca a chamada manual por uma confirmação feita pela própria pessoa, ao aproximar o crachá do totem. Com isso, a SSMA passa a saber quem já chegou sem esperar a soma das listas, recebe aos 10 minutos quem ainda falta e tem a última zona registrada de cada pessoa para orientar a busca. Cada evacuação também passa a deixar um registro com horários, confirmações e alertas, o que atende ao pedido de rastreabilidade do TAPI (Unipar, 2026a) e serve para auditorias e simulados.
 
-A expansão para consolidação remota poderá melhorar a visibilidade do CCO/SSMA nas próximas sprints. O aproveitamento dos registros de acesso existentes poderá reduzir a necessidade de introduzir dispositivos pessoais adicionais, se a integração for viável. O acompanhamento agregado por pontos de encontro e a eventual consulta à última área registrada buscam oferecer contexto para a conferência, sem rastreamento contínuo de alta precisão. Esses diferenciais pertencem à visão planejada; a versão atual demonstra somente a contagem e a sinalização locais, mantendo a conferência nominal pelos procedimentos do parceiro.
+**Por que esta combinação de tecnologias.** Antes de chegar a essa solução, a equipe comparou três abordagens:
+
+- **Contagem anônima nas passagens:** diz quantas pessoas estão na planta, mas não diz quem falta nem onde procurar, e erros de contagem podem se compensar.
+- **Identificação individual com localização contínua:** diria onde cada pessoa está, mas exigiria equipamento em toda a área de processo e trataria dados de localização o tempo todo. Além disso, o TAPI deixa a localização precisa em ambientes internos fora do escopo do projeto (Unipar, 2026a).
+- **Confirmação por crachá em pontos definidos:** diz quem chegou e qual foi a última zona registrada, mas depende de a pessoa aproximar o crachá e não dá a posição exata.
+
+A solução combina a primeira e a terceira: a contagem anônima nas portarias dá a referência de quantas pessoas estavam na planta, e a leitura do crachá nas zonas e nos pontos de encontro diz quem chegou e onde procurar quem não chegou. Ela evita a localização contínua e reduz o uso de dados pessoais, o que facilita o atendimento à Lei Geral de Proteção de Dados Pessoais (Brasil, 2018): os nomes só aparecem durante a emergência e para quem coordena a resposta.
+
+**Diferencial.** A solução usa o crachá, que já é de uso obrigatório na planta (informação verbal)[^1], em vez de um novo dispositivo por pessoa, e não substitui o procedimento de emergência da Unipar: a decisão da busca continua com a SSMA. Os benefícios ainda dependem de validação em simulados, principalmente quanto ao tempo que a aproximação do crachá acrescenta à chegada nos pontos de encontro.
 
 # <a name="c2"></a>2. Metodologia (sprint 3)
 
