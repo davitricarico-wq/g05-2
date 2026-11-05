@@ -1256,9 +1256,14 @@ Os fios de interligação são representados no diagrama; a quantidade de jumper
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do primeiro protótipo de controle das portarias</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-contagem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 1</p>
+  <img src="../assets/prototipo_2/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 2</p>
+  <img src="../assets/prototipo_2/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
@@ -1296,9 +1301,26 @@ As tags compatíveis com a solução, de 13,56 MHz, são necessárias à intera�
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do protótipo de monitoramento por zonas</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-monitoramento-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de leitura RFID para monitoramento por zonas" width="100%">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 1</p>
+  <img src="../assets/prototipo_1/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 2</p>
+  <img src="../assets/prototipo_1/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 3</p>
+  <img src="../assets/prototipo_1/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 4</p>
+  <img src="../assets/prototipo_1/montagem-04.jpeg" alt="Vista 4 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
@@ -1337,9 +1359,20 @@ Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quan
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-totem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de totem para registro de crachás nos pontos de encontro" width="100%">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 1</p>
+  <img src="../assets/prototipo_3/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 2</p>
+  <img src="../assets/prototipo_3/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 3</p>
+  <img src="../assets/prototipo_3/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
