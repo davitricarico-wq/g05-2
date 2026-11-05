@@ -1109,6 +1109,8 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 
 Esta seção contextualiza o protótipo físico offline da Sprint 2 e sua relação com a solução proposta para a evacuação industrial. O conteúdo apresenta o cenário de uso e o papel esperado dos dispositivos; as subseções seguintes organizam a descrição funcional, os protótipos e os registros de validação, distinguindo o que foi implementado nesta etapa das capacidades previstas para a solução integrada.
 
+> **Maturidade das entregas:** o dispositivo 2, de monitoramento por zonas, constitui a entrega principal da Sprint 2. O dispositivo 1 preserva o protótipo de contagem da Sprint 1, com formalização da arquitetura e do desenho esquemático prevista para a Sprint 3. O dispositivo 3 é apresentado preliminarmente por suas montagens física e digital, funcionalidades, componentes e código; sua arquitetura, desenho esquemático formal, casos de teste, requisitos funcionais e regras de negócio específicos serão desenvolvidos na Sprint 3. Os três dispositivos são apresentados em escopo offline, ainda sem o sistema web de integração.
+
 #### 3.4.2.1. Contexto da Solução
 
 Em uma emergência industrial na unidade da Unipar em Cubatão, como um vazamento de cloro, os colaboradores e terceiros devem deixar as áreas de trabalho e dirigir-se ao ponto de encontro indicado. A conferência manual de quem chegou pode atrasar a consolidação das informações. A Unipar estabelece o prazo de 10 minutos para que pessoas ainda sem confirmação sejam consideradas para o acionamento dos Brigadistas. Nesse processo, o CCO inicia o protocolo de emergência, a SSMA acompanha a evacuação e coordena a resposta, e os Brigadistas podem realizar buscas quando necessário, mesmo se houver contato com áreas contaminadas pelo cloro.
@@ -1251,14 +1253,19 @@ Os fios de interligação são representados no diagrama; a quantidade de jumper
 
 <div align="center">
   <p>Figura – Montagem digital do primeiro protótipo de controle das portarias, com Arduino Uno</p>
-  <img src="../assets/casos_teste_prototipos/inicial/T01.png" alt="Montagem no Wokwi com Arduino Uno, dois sensores ultrassônicos, LCD, botão, LEDs, resistores e buzzer" width="100%">
+  <img src="../assets/prototipo_1/montagem-digital1.png" alt="Montagem no Wokwi com Arduino Uno, dois sensores ultrassônicos, LCD, botão, LEDs, resistores e buzzer" width="100%">
   <p><sub>Fonte: elaboração dos autores no Wokwi; captura do protótipo inicial já registrada na Sprint 1.</sub></p>
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do primeiro protótipo de controle das portarias</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-contagem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 1</p>
+  <img src="../assets/prototipo_2/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 2</p>
+  <img src="../assets/prototipo_2/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
@@ -1304,15 +1311,31 @@ Para reproduzir a montagem, devem prevalecer as conexões descritas acima e no `
 
 <div align="center">
   <p>Figura – Montagem digital do protótipo de monitoramento por zonas no Wokwi</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-monitoramento-digital.png" alt="Esquema digital do protótipo com ESP32, leitor RC522, botão, LEDs e buzzer" width="100%">
+  <img src="../assets/prototipo_2/montagem-digital2.png" alt="Esquema digital do protótipo com ESP32, leitor RC522, botão, LEDs e buzzer" width="100%">
   <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do protótipo de monitoramento por zonas</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-monitoramento-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de leitura RFID para monitoramento por zonas" width="100%">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 1</p>
+  <img src="../assets/prototipo_1/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 2</p>
+  <img src="../assets/prototipo_1/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 3</p>
+  <img src="../assets/prototipo_1/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 4</p>
+  <img src="../assets/prototipo_1/montagem-04.jpeg" alt="Vista 4 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
@@ -1343,15 +1366,25 @@ Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quan
 
 <div align="center">
   <p>Figura – Montagem digital do protótipo de confirmação nos pontos de encontro no Wokwi</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-totem-digital.png" alt="Esquema digital do totem offline com ESP32, leitor RC522, botão, LEDs azul e verde e buzzer" width="100%">
+  <img src="../assets/prototipo_3/montagem-digital3.png" alt="Esquema digital do totem offline com ESP32, leitor RC522, botão, LEDs azul e verde e buzzer" width="100%">
   <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
 </div>
 
 <div align="center">
-  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-totem-fisico.jpg" alt="Fotografia da montagem de bancada do protótipo de totem para registro de crachás nos pontos de encontro" width="100%">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 1</p>
+  <img src="../assets/prototipo_3/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 2</p>
+  <img src="../assets/prototipo_3/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 3</p>
+  <img src="../assets/prototipo_3/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
   <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
 </div>
 
@@ -1379,15 +1412,11 @@ _[Acrescente linhas para os demais casos planejados. Inclua pelo menos três cas
 
 #### 3.4.2.5. Conclusão e Ressalvas
 
-_[Resuma o que foi implementado e demonstrado pelos três protótipos físicos.]_
+A Sprint 2 amplia a solução com o protótipo 2, principal entrega desta etapa, baseado em ESP32 e leitor RFID para apoiar o monitoramento por zonas. O firmware realiza a leitura de crachás, a sinalização sonora e visual e a alternância do estado local pelo botão. Essa entrega estabelece a base física para o registro de passagens; a associação de pessoas a zonas depende da integração posterior. O protótipo 1, desenvolvido com Arduino Uno na Sprint 1, permanece como referência da contagem de entradas e saídas, enquanto o protótipo 3 introduz o totem offline de confirmação nos pontos de encontro, com leitura RFID e armazenamento local.
 
-_[Indique quais casos foram executados e seus resultados, com referência às evidências.]_
+O detalhamento dos dispositivos apresenta níveis distintos de maturidade. Para o protótipo 1, estão previstas para a Sprint 3 a atualização do controlador de Arduino Uno para ESP32 e a formalização da arquitetura e do desenho esquemático correspondentes, preservando-se o circuito inicial como registro histórico da Sprint 1. A inclusão do protótipo 3 nesta etapa é preliminar e abrange suas montagens física e digital, funcionalidades, componentes e código. Sua arquitetura, desenho esquemático formal, casos de teste, requisitos funcionais e regras de negócio específicos serão desenvolvidos na Sprint 3. Os diagramas de montagem no Wokwi servem de referência aos circuitos e não substituem essa documentação técnica.
 
-_[Registre falhas encontradas, limitações técnicas e condições ainda não testadas.]_
-
-_[Explique o que os resultados permitem concluir e quais afirmações ainda dependem de testes adicionais.]_
-
-_[Registre ressalvas sobre o uso do protótipo, incluindo que resultados de bancada não comprovam, por si só, desempenho ou segurança em ambiente industrial.]_
+Os protótipos operam localmente, sem o sistema web de integração, a consolidação dos registros entre dispositivos ou a sincronização em rede. A seção de testes da Sprint 2 ainda aguarda resultados e evidências, e os registros da Sprint 1 se aplicam ao primeiro protótipo. Assim, esta entrega documenta a evolução física e offline da solução; a validação do desempenho, da confiabilidade e da adequação ao ambiente industrial permanece dependente das próximas etapas de implementação e testes.
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
