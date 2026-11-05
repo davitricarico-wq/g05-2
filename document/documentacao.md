@@ -1251,7 +1251,7 @@ Os fios de interligação são representados no diagrama; a quantidade de jumper
 
 <div align="center">
   <p>Figura – Montagem digital do primeiro protótipo de controle das portarias, com Arduino Uno</p>
-  <img src="../assets/casos_teste_prototipos/inicial/T01.png" alt="Montagem no Wokwi com Arduino Uno, dois sensores ultrassônicos, LCD, botão, LEDs, resistores e buzzer" width="100%">
+  <img src="../assets/prototipo_1/montagem-digital1.png" alt="Montagem no Wokwi com Arduino Uno, dois sensores ultrassônicos, LCD, botão, LEDs, resistores e buzzer" width="100%">
   <p><sub>Fonte: elaboração dos autores no Wokwi; captura do protótipo inicial já registrada na Sprint 1.</sub></p>
 </div>
 
@@ -1295,8 +1295,7 @@ As tags compatíveis com a solução, de 13,56 MHz, são necessárias à intera�
 
 <div align="center">
   <p>Figura – Montagem digital do protótipo de monitoramento por zonas no Wokwi</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-monitoramento-digital.png" alt="Esquema digital do protótipo com ESP32, leitor RC522, botão, LEDs e buzzer" width="100%">
+  <img src="../assets/prototipo_2/montagem-digital2.png" alt="Esquema digital do protótipo com ESP32, leitor RC522, botão, LEDs e buzzer" width="100%">
   <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
 </div>
 
@@ -1353,8 +1352,7 @@ Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quan
 
 <div align="center">
   <p>Figura – Montagem digital do protótipo de confirmação nos pontos de encontro no Wokwi</p>
-  <!-- Substituir o caminho PLACEHOLDER pelo arquivo da imagem correspondente. -->
-  <img src="../assets/prototipos_fisicos/PLACEHOLDER-totem-digital.png" alt="Esquema digital do totem offline com ESP32, leitor RC522, botão, LEDs azul e verde e buzzer" width="100%">
+  <img src="../assets/prototipo_3/montagem-digital3.png" alt="Esquema digital do totem offline com ESP32, leitor RC522, botão, LEDs azul e verde e buzzer" width="100%">
   <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
 </div>
 
