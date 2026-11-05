@@ -852,7 +852,7 @@ A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa 
 
 #### Casos planejados para o protótipo físico offline
 
-Os casos CT11–CT15 abaixo pertencem à Sprint 2 e ainda **não foram executados**. Eles foram definidos para orientar a montagem do protótipo com ESP32, leitor RFID RC522 e LEDs verde e vermelho. O vínculo com RF011 é preliminar: antes de associar crachás reais ou integrar o protótipo ao sistema da Unipar, a equipe deve validar finalidade, autorização, privacidade e viabilidade com o parceiro. Nesta etapa, somente tags com identificadores fictícios devem ser utilizadas.
+CT11–CT15 estão planejados para a montagem física da Sprint 2 com ESP32 e RC522. Os vínculos abaixo são preliminares e dependem da revisão dos requisitos de leitura e validação de tags. As evidências de execução física permanecem pendentes.
 
 <p align="center">Quadro 10A – Rastreabilidade planejada do protótipo físico offline</p>
 
@@ -1135,39 +1135,17 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 
 ### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)
 
-Esta etapa prepara a primeira montagem física do C.R.I.S.I.S em bancada. O recorte definido utiliza uma placa **ESP32**, um leitor **RFID RC522** conectado por SPI, protoboard, alimentação USB e dois LEDs com resistores: verde para indicar uma leitura aceita e vermelho para indicar erro ou leitura rejeitada. Três cartões ou tags MIFARE de 13,56 MHz devem representar perfis fictícios. A lista detalhada de materiais e os cuidados elétricos estão no documento [Materiais para o primeiro protótipo físico (offline)](outros/materiais-prototipo-fisico-offline.md).
+O protótipo físico planejado utiliza ESP32, leitor RFID RC522 por SPI, alimentação USB e dois LEDs com resistores. Os ensaios CT11–CT15 avaliam inicialização, leitura de tags fictícias, repetição, rejeição e falha de comunicação. O LED verde representa leitura aceita, e o vermelho, erro ou rejeição nesse planejamento. Os componentes e a preparação da montagem estão na [lista de materiais](outros/materiais-prototipo-fisico-offline.md).
 
-O objetivo desta versão é validar localmente a leitura do sensor e a sinalização informacional. Ela não implementa MQTT, dashboard, integração com a base corporativa, identificação de pessoas reais ou controle de acesso. O uso de RFID representa uma hipótese técnica da Sprint 2 e requer validação do parceiro e revisão da política de privacidade antes de qualquer dado real. O protótipo anterior com Arduino Uno e sensores ultrassônicos permanece documentado em 3.4.1; seus resultados não podem ser atribuídos ao ESP32 com RC522.
+#### Estado da montagem e do firmware
 
-#### Protótipo e código
+O diretório [prototipo-fisico](../src/firmware/prototipo-fisico/) contém apenas o README. A integração do firmware e as evidências da montagem física estão pendentes. Antes dos ensaios, precisam ser definidos a pinagem, os intervalos dos LEDs, a política de leitura repetida e o diagnóstico de falha do RC522.
 
-O firmware físico será mantido em [`src/firmware/prototipo-fisico`](../src/firmware/prototipo-fisico/). O diretório contém a estrutura de integração e a lista de verificações necessárias para receber o código que está sendo refatorado. Até a incorporação dessa versão, não há firmware físico validado nesta branch.
-
-Para atender aos critérios de qualidade, a versão integrada deve:
-
-- utilizar nomes descritivos para pinos, estados, funções e variáveis;
-- manter `setup()` e `loop()` pequenos, delegando inicialização, leitura do RC522, validação de tags e sinalização dos LEDs a funções encapsuladas;
-- comentar o propósito de cada procedimento e decisões que não sejam evidentes, sem repetir literalmente o código;
-- não versionar UIDs reais, credenciais ou dados pessoais;
-- registrar no monitor serial somente os dados necessários ao diagnóstico, mascarando o UID nas evidências;
-- definir de forma verificável os intervalos de sinalização dos LEDs e a política para impedir leituras repetidas involuntárias;
-- identificar a versão ou commit ensaiado antes de registrar qualquer CT como aprovado.
-
-#### Montagem e figuras
-
-A montagem deve ser feita com o ESP32 e o RC522 na protoboard, fios organizados e identificáveis, alimentação e terra comuns e resistores em série com os LEDs. A tensão e a pinagem devem ser conferidas antes de energizar o conjunto; o RC522 não deve receber 5 V em entrada destinada a 3,3 V.
-
-As figuras abaixo devem ser inseridas após a montagem. Os espaços são intencionalmente mantidos sem imagens para não apresentar simulação ou material ilustrativo como evidência física.
-
-| Figura pendente | Conteúdo mínimo esperado | Arquivo sugerido |
-| --------------- | ----------------------- | ---------------- |
-| Figura A | Vista geral do ESP32, RC522, LEDs e organização dos jumpers na protoboard. | `assets/casos_teste_prototipos/fisico/montagem-geral.jpg` |
-| Figura B | Detalhe da alimentação, GND comum, conexão SPI e resistores dos LEDs. | `assets/casos_teste_prototipos/fisico/conexoes-detalhe.jpg` |
-| Figura C | Execução de CT12 ou CT14, mostrando a tag e o LED correspondente sem expor UID real. | `assets/casos_teste_prototipos/fisico/ct12-ou-ct14.jpg` |
+As fotos da montagem e das conexões, os registros seriais e os vídeos dos ensaios serão vinculados aos respectivos casos na tabela abaixo. A [pasta de evidências físicas](../assets/casos_teste_prototipos/fisico/) contém apenas o README.
 
 #### Casos de teste planejados
 
-Os casos a seguir foram preparados antes da disponibilidade da montagem física. Por isso, a coluna final descreve o resultado esperado e permanece com status **não executado**. Após cada ensaio, substituir o status pelo resultado observado, informar responsável, data, versão do firmware e anexar foto, captura serial ou vídeo. Uma evidência visual deve permitir relacionar a entrada aplicada ao estado do LED; uma captura isolada sem contexto não é suficiente.
+CT11–CT15 permanecem com status **não executado**. A coluna de resultado esperado define o comportamento a verificar, e a coluna final indica a evidência pendente. A montagem física deverá usar perfis fictícios e mascarar os identificadores nas capturas. A associação a pessoas reais depende de aprovação do parceiro e revisão dos requisitos e da documentação de privacidade.
 
 <p align="center">Quadro 14 – Casos de teste planejados para o protótipo físico offline</p>
 
@@ -1208,7 +1186,9 @@ Registrar para cada caso data, responsável, versão ensaiada, entrada aplicada,
 
 #### Registro dos resultados
 
-Após a execução, a equipe deve atualizar simultaneamente este quadro e a RTM da seção 3.3.4. Cada CT deverá informar `Aprovado`, `Reprovado` ou `Bloqueado`, acompanhado do resultado observado. Falhas não devem ser apagadas: devem registrar a diferença em relação ao esperado, a hipótese de causa e a decisão de corrigir, restringir ou repetir o teste. Para CT11–CT15, somente imagens e vídeos da montagem real podem comprovar a etapa física. CT16–CT23 possuem evidências de simulação online, identificadas como tal, devido à indisponibilidade da montagem física; não comprovam funcionamento elétrico no hardware real.
+O registro de cada ensaio reúne data, responsável, versão do firmware, entrada aplicada, resultado observado, evidência e status, com atualização correspondente na RTM da seção 3.3.4. Divergências entre o esperado e o observado devem acompanhar a decisão de corrigir ou repetir o teste.
+
+CT11–CT15 aguardam execução na montagem física. Os resultados de CT16–CT23 correspondem à simulação no Wokwi descrita acima, com as limitações indicadas em cada caso.
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 

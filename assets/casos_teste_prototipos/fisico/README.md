@@ -1,28 +1,7 @@
 # Evidências do protótipo físico offline
 
-Armazene aqui somente evidências produzidas durante a montagem e a execução reais dos casos CT11–CT15. Não use imagens geradas, simulações ou fotografias de terceiros como comprovação do protótipo físico.
+As evidências físicas de CT11–CT15 estão pendentes. Esta pasta contém apenas este README. O planejamento dos ensaios e os resultados esperados estão na [seção 3.4.2 da documentação](../../../document/documentacao.md).
 
-## Nomenclatura sugerida
+O registro de cada ensaio deverá identificar o caso de teste, a data, o responsável, a versão do firmware e o resultado observado, com fotos, vídeos ou capturas seriais que relacionem a entrada aplicada à resposta do circuito. Os testes usam perfis fictícios, com identificadores mascarados nas evidências.
 
-```text
-montagem-geral.jpg
-conexoes-detalhe.jpg
-CT11-inicializacao.png
-CT12-tag-valida.jpg
-CT12-monitor-serial.png
-CT13-leitura-repetida.mp4
-CT14-tag-nao-cadastrada.jpg
-CT14-monitor-serial.png
-CT15-falha-leitor.jpg
-CT15-monitor-serial.png
-```
-
-## Checklist por evidência
-
-- [ ] o arquivo identifica o CT correspondente;
-- [ ] a entrada aplicada e a saída observada podem ser relacionadas;
-- [ ] LEDs, ESP32, RC522 e conexões relevantes estão visíveis quando aplicável;
-- [ ] a captura serial informa o comportamento observado sem expor UID completo;
-- [ ] não aparecem nomes, crachás reais, credenciais ou outros dados pessoais;
-- [ ] a documentação registra data, responsável e versão/commit do firmware ensaiado;
-- [ ] o resultado observado foi transcrito para a seção 3.4.2 e para a RTM.
+As evidências da simulação de CT16–CT23 estão na pasta [wokwi-monitoramento](../wokwi-monitoramento/).
