@@ -18,6 +18,7 @@ namespace Configuracao
   constexpr unsigned long debounceMs = 25;
   constexpr unsigned int frequenciaBipeHz = 2000;
   constexpr unsigned long duracaoBipeMs = 50;
+  constexpr unsigned long duracaoPiscaVerdeMs = 150;
   constexpr unsigned long velocidadeSerial = 115200;
   constexpr byte maximoCartoes = 20;
 }
@@ -79,14 +80,38 @@ public:
 
   void mostrar(EstadoEmergencia estado)
   {
-    const bool emergencia = estado == EstadoEmergencia::Emergencia;
+    estado_ = estado;
+    piscandoVerde_ = false;
+    const bool emergencia = estado_ == EstadoEmergencia::Emergencia;
     digitalWrite(pinoVerde_, emergencia ? LOW : HIGH);
     digitalWrite(pinoVermelho_, emergencia ? HIGH : LOW);
+  }
+
+  void piscarVerde(unsigned long agora)
+  {
+    if (estado_ != EstadoEmergencia::Emergencia)
+      return;
+    inicioPiscaVerde_ = agora;
+    piscandoVerde_ = true;
+    digitalWrite(pinoVerde_, HIGH);
+  }
+
+  void atualizar(unsigned long agora)
+  {
+    if (piscandoVerde_ &&
+        agora - inicioPiscaVerde_ >= Configuracao::duracaoPiscaVerdeMs)
+    {
+      piscandoVerde_ = false;
+      digitalWrite(pinoVerde_, LOW);
+    }
   }
 
 private:
   const byte pinoVerde_;
   const byte pinoVermelho_;
+  EstadoEmergencia estado_ = EstadoEmergencia::Normal;
+  unsigned long inicioPiscaVerde_ = 0;
+  bool piscandoVerde_ = false;
 };
 
 class SinalizadorSonoro
@@ -254,7 +279,9 @@ public:
 
   void atualizar()
   {
-    if (botao_.foiPressionado(millis()))
+    const unsigned long agora = millis();
+    indicador_.atualizar(agora);
+    if (botao_.foiPressionado(agora))
     {
       estado_ = estado_ == EstadoEmergencia::Normal
                     ? EstadoEmergencia::Emergencia
@@ -266,6 +293,7 @@ public:
     MFRC522::Uid uid;
     if (leitor_.lerUid(uid))
     {
+      indicador_.piscarVerde(millis());
       bool dentro;
       if (armazenamentoDisponivel_ && presenca_.registrarLeitura(uid, dentro))
       {
@@ -273,7 +301,8 @@ public:
         for (byte i = 0; i < uid.size; ++i)
         {
           Serial.printf("%02X", uid.uidByte[i]);
-          if (i + 1 < uid.size) Serial.print(":");
+          if (i + 1 < uid.size)
+            Serial.print(":");
         }
         Serial.println(dentro ? " | DENTRO DA AREA" : " | FORA DA AREA");
         sinalizador_.confirmarLeitura();
