@@ -981,6 +981,42 @@ Na etapa final, Maria consulta as confirmações, pendências e horários dispon
 
 ##### 3.2.2.2.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
+O storyboard apresenta a perspectiva de Tuco Salamanca, Gestor de SSMA, durante uma situação de emergência operacional e abandono de área na planta química da Unipar em Cubatão, evidenciando como a solução Synthetix (C.R.I.S.I.S) subsidia a liderança tática e estratégica. Estruturado em sete quadros sequenciais, o storyboard descreve o fluxo completo de resposta: desde o monitoramento inicial dos indicadores de processo e fluxo de portaria, passando pela validação da anomalia com o CCO, o congelamento automático do contingente populacional ($B_0$) e a ativação dos dispositivos de campo, até o acompanhamento do balanço de evacuação em tempo real, o despacho cirúrgico da brigada guiado pela regra dos 10 minutos e a consolidação de relatórios periciais automatizados. Cada quadro detalha o contexto ambiental, as ações decisórias de Tuco, seus pensamentos e as respectivas reações dos sistemas cyber-físicos integrados, demonstrando a superação da "cegueira situacional" e a preservação da integridade física dos colaboradores e brigadistas.
+
+<div align="center">
+  <p>Figura 2 – Storyboard de Tuco Salamanca, Gestor de SSMA</p>
+  <img src="../assets/design/storyboard/storyboardTuco.png" alt="Storyboard de Tuco Salamanca, Gestor de SSMA." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
+</div>
+
+**Quadro 1 – Monitoramento da operação**
+
+Tuco está na sala de comando do Centro de Controle de Emergência (CCE), devidamente equipado com capacete e óculos de proteção, acompanhando os painéis operacionais, sistemas de alarmes e câmeras de monitoramento da planta em regime de rotina. Na interface digital, os sistemas operacionais exibem a estabilidade dos processos químicos e o fluxo de entrada e saída das portarias em tempo real, calculando a estimativa contínua do contingente de pessoas presentes na fábrica ($P(t)$). Confiante na normalidade dos parâmetros industriais, Tuco reflete:  _"Tudo está estável. Vou seguir acompanhando os indicadores."_
+
+**Quadro 2 – Verificação da ocorrência**
+
+Um alerta visual de anomalia surge na tela do CCE, destacando uma divergência em processo na Unidade B, classificada como em verificação pelo Plano de Ação de Emergência (PAE). Diante da sinalização, Tuco empunha o rádio comunicador (HT) para se comunicar diretamente com Maria Schrader no CCO e com os supervisores de área, buscando confirmar a gravidade da ocorrência no campo antes de disparar alarmes desnecessários: _"Recebi um alerta. Preciso confirmar se isso é uma emergência."_
+
+**Quadro 3 – Identificação e acionamento**
+
+Com a gravidade da ocorrência confirmada pela operação em campo, Tuco assume formalmente o comando da emergência no CCE e aciona o protocolo no console de segurança. O gestor estabelece comunicação imediata com as frentes operacionais: _"A ocorrência foi confirmada. Vou comunicar a SSMA, a brigada e a portaria."_ Simultaneamente, a infraestrutura da Synthetix comuta para o Modo de Emergência, registrando o carimbo de tempo oficial de deflagração, congelando o *baseline* populacional da fábrica ($B_0$) e ativando remotamente a rede de totens RFID nos Pontos de Encontro (PEs), além de acionar os sinalizadores visuais em LED vermelho nas portarias._
+
+**Quadro 4 – Registro da evacuação**
+
+O alarme geral ecoa pela fábrica e os colaboradores iniciam o abandono ordenado das edificações industriais pelas rotas de fuga. O ecossistema de hardware distribuído entra em plena operação de sensoriamento: sensores ultrassônicos nas portarias calculam o fluxo de evasão, nós RFID monitoram as passagens entre zonas críticas ($Z(t)$) e os totens inteligentes nos PEs registram as chegadas por aproximação de crachás funcionais. Observando o engajamento imediato dos dispositivos, Tuco constata: _"A evacuação começou e os dispositivos já estão registrando as movimentações."_
+
+**Quadro 5 – Acompanhamento em tempo real**
+
+No CCE, Tuco senta-se diante do dashboard central da Synthetix para monitorar o avanço da desocupação da planta. A tela exibe de forma clara e objetiva o *status* do protocolo ativo, confrontando o contingente inicial congelado ($B_0: 320$), o total acumulado de confirmados ($298$) e o saldo de pendentes em trânsito ($22$), acompanhado pelo mapa esquemático da fábrica com as zonas demarcadas em cores indicativas. A consolidação dos dados confere segurança tática à liderança: _"Já tenho a visão digital da evacuação e das confirmações em tempo real."_
+
+**Quadro 6 – Gestão de pendências (10 min)**
+
+Ao atingir a marca crítica de 10 minutos desde o início do alarme — limite de segurança estabelecido pelo PAE —, a aplicação web dispara um alerta audiovisual prioritário na tela de Tuco indicando pendências não resolvidas: dois colaboradores continuam sem registro nos pontos de encontro. O sistema libera temporariamente a visualização nominal dos indivíduos (em estrita conformidade com a exceção de emergência da LGPD) e aponta a última zona de passagem detectada: Zona B (Processo) às 10:14 e 10:15. Em posse de dados precisos, Tuco aciona a brigada de emergência pelo rádio com orientações cirúrgicas, eliminando buscas cegas: _"10 minutos atingidos! Temos 2 pendências na Zona B. Brigada, resgate direto lá!"_
+
+**Quadro 7 – Conferência e encerramento**
+
+As equipes de brigada concluem o resgate e os dois colaboradores pendentes têm sua presença confirmada com segurança no Ponto de Encontro. O dashboard do CCE atualiza o balanço para 320 confirmados e 0 pendentes, sinalizando na tela "Evacuação Concluída com Sucesso". Aliviado e satisfeito com a eficácia da operação e a preservação de todas as vidas, Tuco sorri e finaliza o protocolo: _"Com as confirmações concluídas, vou registrar a ocorrência e gerar o relatório."_ O sistema comuta automaticamente as catracas das portarias para sinalização em LED verde autorizando a circulação normal, encerra o estado de crise e gera um relatório pericial auditável com todo o histórico cronológico da evacuação.
+
 ## 3.3. Solução Técnica
 
 _Nesta seção, detalhe a especificação da solução, de acordo com o disposto nas subseções._
