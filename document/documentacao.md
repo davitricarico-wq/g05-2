@@ -111,7 +111,7 @@ A Figura 1 apresenta uma visão integrada da análise. A rivalidade ocupa a posi
 
 <div align="center">
   <p>Figura 1 – Cinco Forças de Porter aplicadas à Unipar</p>
-  <img src="../assets/5ForcasDePorter.png" alt="Cinco Forças de Porter aplicadas à Unipar: rivalidade alta, novos entrantes com ameaça baixa, substitutos com ameaça moderada, fornecedores com poder moderado e compradores com poder moderado a alto" width="100%">
+  <img src="../assets/negocios/5ForcasDePorter.png" alt="Cinco Forças de Porter aplicadas à Unipar: rivalidade alta, novos entrantes com ameaça baixa, substitutos com ameaça moderada, fornecedores com poder moderado e compradores com poder moderado a alto" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 </div>
 
@@ -147,7 +147,7 @@ A análise SWOT (ou FOFA) é uma ferramenta de planejamento estratégico que ava
 
 <div align="center">
   <p>Figura 2 – Análise SWOT da Unipar</p>
-  <img src="../assets/SWOT.png" alt="Análise SWOT da Unipar" width="100%">
+  <img src="../assets/negocios/SWOT.png" alt="Análise SWOT da Unipar" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 </div>
 
@@ -211,7 +211,7 @@ O Value Proposition Canvas organiza o perfil do cliente — tarefas, dores e gan
 
 <div align="center">
   <p>Figura 3 – Value Proposition Canvas do C.R.I.S.I.S</p>
-  <img src="../assets/value-proposition-canvas.png" alt="Value Proposition Canvas do C.R.I.S.I.S: perfil de SSMA e mapa de valor, com distinção entre protótipo da Sprint 1 e integrações planejadas" width="100%">
+  <img src="../assets/negocios/value-proposition-canvas.png" alt="Value Proposition Canvas do C.R.I.S.I.S: perfil de SSMA e mapa de valor, com distinção entre protótipo da Sprint 1 e integrações planejadas" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial, com base em Osterwalder et al. (2014).</sub></p>
 </div>
 
@@ -313,7 +313,7 @@ Probabilidade e impacto usam escala ordinal de 1 a 5. A probabilidade é uma est
 
 <div align="center">
   <p>Figura 4 – Matriz de riscos do C.R.I.S.I.S</p>
-  <img src="../assets/MatrizDeRisco.png" alt="Matriz de ameaças R01 a R12 e oportunidades O01 a O03, por probabilidade e impacto em escala ordinal de 1 a 5" width="100%">
+  <img src="../assets/negocios/MatrizDeRisco.png" alt="Matriz de ameaças R01 a R12 e oportunidades O01 a O03, por probabilidade e impacto em escala ordinal de 1 a 5" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial, adaptada do modelo disponibilizado à turma.</sub></p>
 </div>
 
@@ -524,7 +524,7 @@ A proto-persona Gustavo Fring, apresentada na Figura 5, representa necessidades 
 
 <div align="center">
   <p>Figura 5 – Proto-persona Gustavo Fring, técnico de operação</p>
-  <img src="../assets/personaGustavoFring.png" alt="Proto-persona Gustavo Fring, técnico de operação; perfil fictício e necessidades da solução planejada" width="100%">
+  <img src="../assets/design/personas/personaGustavoFring.png" alt="Proto-persona Gustavo Fring, técnico de operação; perfil fictício e necessidades da solução planejada" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
@@ -582,7 +582,7 @@ A Figura 6 apresenta Maria Schrader, proto-persona que representa a perspectiva 
 
 <div align="center">
   <p>Figura 6 – Proto-persona Maria Schrader, operadora de CCO</p>
-  <img src="../assets/personaMariaSchrader.png" alt="Proto-persona Maria Schrader, operadora de CCO; perfil fictício e necessidades da solução planejada" width="100%">
+  <img src="../assets/design/personas/personaMariaSchrader.png" alt="Proto-persona Maria Schrader, operadora de CCO; perfil fictício e necessidades da solução planejada" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
@@ -636,7 +636,7 @@ A Figura 7 apresenta Tuco Salamanca, proto-persona que representa a perspectiva 
 
 <div align="center">
   <p>Figura 7 – Proto-persona Tuco Salamanca, gestor de SSMA</p>
-  <img src="../assets/personaTucoSalamanca.png" alt="Proto-persona Tuco Salamanca, gestor de SSMA; necessidades desejadas, sem comprovação de identificação ou localização pelo protótipo" width="100%">
+  <img src="../assets/design/personas/personaTucoSalamanca.png" alt="Proto-persona Tuco Salamanca, gestor de SSMA; necessidades desejadas, sem comprovação de identificação ou localização pelo protótipo" width="100%">
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
@@ -739,11 +739,283 @@ Os **Brigadistas** e os profissionais de **Infraestrutura e TI** foram categoriz
 
 A caracterização das dores, necessidades e tarefas de cada perfil foi diretamente conectada ao _Value Proposition Canvas_ (seção 3.1.4) e à Matriz de Riscos (seção 3.1.5). Dores como a lentidão da contagem por papel, a perda de dados nas catracas liberadas e a ansiedade da liderança sem números confiáveis subsidiaram a especificação das Regras de Negócio RN01 a RN06 (seção 3.3.2) e dos Requisitos Funcionais de contagem local (RF001), totalização anônima (RF005) e alerta crítico aos 10 minutos (RF008).
 
-### 3.2.2. Jornada do Usuário e Storyboard (sprint 2)
+### 3.2.2. Jornada do Usuário e Storyboard
 
-_Coloque aqui seu Mapa de Jornada do Usuário (seguindo as instruções na descrição do artefato)_
+#### 3.2.2.1. Jornada do Usuário
 
-_Coloque aqui seu Storyboard (seguindo as instruções na descrição do artefato)_
+##### 3.2.2.1.1. Operadora de Centro de Controle Operacional (CCO)
+
+###### Situação-Problema Presente
+
+<div align="center">
+  <p>Figura 1 – Jornada do Usuário do Presente de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/jornada_usuario/presente/jornadaUsuarioMariaPresente.png" alt="Jornada do Usuário do Presente de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+</div>
+
+**Cenário**
+
+O cenário atual é caracterizado pela utilização de diferentes canais de comunicação entre o Centro de Controle Operacional (CCO), a equipe de Segurança, Saúde e Meio Ambiente (SSMA) e as equipes de campo, exigindo confirmações para garantir a transmissão adequada das informações. Durante a evacuação, o acompanhamento depende de relatos das equipes responsáveis e de conferências manuais realizadas nos pontos de encontro. Além disso, as informações sobre a presença das pessoas e suas últimas áreas conhecidas não estão disponíveis de forma integrada, dificultando a compreensão geral da situação. As informações sobre o andamento da evacuação e possíveis pendências também precisam ser consolidadas manualmente, aumentando a necessidade de organização e conferência dos dados recebidos.
+
+**Objetivo**
+
+O principal objetivo de Maria é identificar e comunicar rapidamente situações de emergência, garantindo que as equipes responsáveis recebam informações claras e confiáveis. Durante a ocorrência, busca acompanhar o andamento da evacuação e identificar pendências relacionadas à confirmação de pessoas nos pontos de encontro, sem assumir responsabilidades que pertencem às equipes de segurança. Além disso, procura organizar e transmitir as informações sobre a ocorrência para apoiar a atuação da SSMA e dos brigadistas, contribuindo para a continuidade operacional e para a comunicação entre as equipes e os turnos.
+
+**Fases da jornada**
+
+A jornada foi dividida em quatro fases principais, que representam a sequência de atividades desempenhadas pela operadora durante uma ocorrência. A primeira fase, Monitoramento e identificação, envolve o acompanhamento das condições operacionais e a identificação de possíveis alterações. Na segunda, Verificação e comunicação, Maria analisa os sinais disponíveis, consulta os procedimentos, confirma as informações com as equipes responsáveis e aciona o protocolo de emergência conforme as orientações estabelecidas. A terceira fase, Resposta e acompanhamento, corresponde à execução das ações autorizadas ao CCO e ao recebimento de atualizações da SSMA e dos brigadistas sobre o andamento da evacuação. Por fim, a fase de Conferência e registro envolve o acompanhamento dos relatos sobre pessoas presentes e ainda não confirmadas nos pontos de encontro, o registro das ocorrências e a transmissão das informações às equipes responsáveis ou ao próximo turno.
+
+**Emoções e pensamentos**
+
+As emoções e os pensamentos de Maria variam conforme a evolução da emergência. Inicialmente, ela demonstra atenção e familiaridade ao acompanhar os indicadores operacionais, atividade que faz parte de sua rotina. Quando identifica uma possível ocorrência, surge a preocupação de confirmar a situação e acionar as equipes responsáveis. Durante a resposta à emergência, a tensão aumenta devido à necessidade de acompanhar simultaneamente as condições operacionais e as atualizações recebidas, sem dispor de uma visão completa da evacuação. O maior vale de frustração ocorre quando Maria percebe que ainda podem existir pessoas sem confirmação nos pontos de encontro e não consegue identificar facilmente suas últimas áreas conhecidas. Na etapa final, ocorre uma recuperação emocional parcial, associada à organização dos registros e à transmissão das informações necessárias à continuidade do acompanhamento. Apesar disso, permanece a responsabilidade de garantir a clareza e a confiabilidade dos dados compartilhados.
+
+**Ações**
+
+As ações realizadas por Maria acompanham as quatro fases da jornada. Inicialmente, ela monitora indicadores, alarmes e câmeras da planta, identificando possíveis alterações operacionais e recebendo relatos das equipes de campo. Ao perceber uma ocorrência, verifica os sinais, consulta os procedimentos aplicáveis, confere as informações disponíveis e aciona o protocolo de emergência conforme as atribuições do CCO, comunicando as equipes responsáveis. Durante a resposta, executa as ações autorizadas ao CCO, acompanha as condições operacionais e recebe atualizações da SSMA e dos brigadistas sobre o andamento da evacuação. Na etapa final, acompanha os relatos sobre pessoas presentes e ainda não confirmadas nos pontos de encontro, registra alarmes, comunicações e providências realizadas e transmite as informações relevantes às equipes responsáveis ou ao próximo turno.
+
+**Touchpoints (Pontos de contato)**
+
+Os pontos de contato representam os recursos, canais e equipes com os quais Maria interage ao longo da jornada. Durante o monitoramento, utiliza painéis operacionais, sistemas de alarmes, câmeras e informações fornecidas pelas equipes de campo. Na verificação da ocorrência, consulta os procedimentos da unidade e utiliza radiocomunicadores e outros canais internos para interagir com a SSMA, a portaria e os brigadistas. Durante a resposta à emergência, mantém contato com a brigada, a SSMA e as equipes de campo, além de acompanhar os sistemas de monitoramento disponíveis e receber relatos sobre a evacuação. Na etapa final, utiliza informações provenientes das conferências manuais realizadas nos pontos de encontro, registros e relatórios de ocorrências e canais de comunicação com as equipes responsáveis e o próximo turno. Esses pontos de contato evidenciam a dependência de diferentes fontes para compreender o andamento da situação.
+
+**Dores**
+
+As principais dores identificadas estão relacionadas à dificuldade de interpretar, reunir e acompanhar informações durante uma emergência. Na primeira fase, a presença de alarmes simultâneos e o excesso de dados operacionais podem dificultar a identificação rápida de ocorrências críticas. Na segunda, a utilização de diferentes canais de comunicação e a necessidade de confirmação das informações podem aumentar o tempo necessário para compreender e comunicar a situação. Durante a resposta e o acompanhamento, a ausência de uma visão integrada sobre a ocupação da planta e o andamento da evacuação dificulta a compreensão geral da ocorrência. Além disso, a dificuldade para consultar informações sobre as últimas áreas conhecidas de pessoas ainda não confirmadas pode prejudicar o trabalho das equipes responsáveis pelas buscas. Na etapa final, a ausência de registros individuais integrados de confirmação nos pontos de encontro, a dependência de conferências manuais e a dificuldade para consolidar a quantidade de pessoas ainda sem confirmação representam desafios para o acompanhamento e a continuidade operacional.
+
+**Insights**
+
+A análise da jornada permite identificar que os desafios enfrentados por Maria não estão relacionados apenas à identificação de uma emergência, mas principalmente à disponibilidade e à confiabilidade das informações ao longo da ocorrência. A quantidade de alertas e dados operacionais pode dificultar a identificação de situações críticas, enquanto a comunicação entre equipes depende da clareza e da confirmação das informações compartilhadas. Durante a evacuação, a ausência de dados consolidados aumenta a incerteza sobre o andamento da resposta, especialmente pela dificuldade de consultar informações integradas sobre a ocupação da planta e as últimas áreas conhecidas das pessoas. Essa limitação também pode dificultar o direcionamento das buscas realizadas pelos brigadistas. Na etapa final, a ausência de confirmações individuais integradas dificulta a identificação de pessoas ainda não confirmadas nos pontos de encontro. Dessa forma, o principal aprendizado é a importância de disponibilizar informações organizadas, atualizadas e confiáveis para apoiar a comunicação, o acompanhamento da evacuação e a continuidade operacional.
+
+**Oportunidades de melhoria**
+
+As oportunidades de melhoria foram identificadas a partir das dificuldades observadas em cada fase da jornada e estão relacionadas às funcionalidades previstas na solução proposta. No monitoramento, destaca-se a possibilidade de integrar os registros de entrada e saída das portarias ao acompanhamento operacional, disponibilizando uma estimativa contínua da quantidade de pessoas na planta e facilitando a consulta aos registros e horários de atualização da contagem. Na fase de verificação e comunicação, surge a oportunidade de integrar o acionamento da emergência à ativação dos totens nos pontos de encontro, facilitar a comunicação entre CCO, portaria, SSMA e brigadistas e melhorar a rastreabilidade das informações e confirmações. Durante a resposta à emergência, a integração entre os registros das portarias, das zonas monitoradas e dos pontos de encontro pode proporcionar uma visão consolidada do andamento da evacuação. A consulta à última zona registrada das pessoas identificadas pelo sistema e a sinalização à SSMA das pendências de confirmação identificáveis após o prazo de dez minutos também podem apoiar a coordenação da resposta, sem representar uma localização precisa dos indivíduos. Na etapa final, as oportunidades envolvem centralizar as confirmações individuais registradas pelos totens RFID, organizar os registros de passagem e os horários de atualização e facilitar o compartilhamento das informações com as equipes responsáveis. Essas possibilidades representam funcionalidades planejadas para a solução final, cujos resultados ainda dependem de implementação e validação.
+
+**Considerações finais**
+
+A jornada atual evidencia que o acompanhamento de uma emergência industrial envolve diferentes atividades de monitoramento, verificação, comunicação e registro, que dependem da interação entre o CCO, a SSMA, os brigadistas e as equipes de campo. Entre os principais desafios identificados, destacam-se a ausência de informações integradas sobre a ocupação da planta, a dificuldade de consultar as últimas áreas conhecidas das pessoas e a dependência de conferências manuais para acompanhar as confirmações nos pontos de encontro. Essas limitações podem aumentar a incerteza durante a evacuação e dificultar a identificação de pendências e a organização das informações necessárias à continuidade operacional. Nesse contexto, a jornada atual permite compreender as necessidades que fundamentam a solução proposta, especialmente a integração de registros de passagem, monitoramento por zonas e confirmação nos pontos de encontro, preservando as responsabilidades das equipes de segurança e os procedimentos de emergência existentes.
+
+###### Situação-Problema Futura
+
+<div align="center">
+  <p>Figura 2 – Jornada do Usuário do Futuro de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/jornada_usuario/futuro/jornadaUsuarioMariaFuturo.png" alt="Jornada do Usuário do Futuro de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+</div>
+
+**Cenário**
+
+O cenário futuro considera a utilização da solução tecnológica desenvolvida pela Synthetix para apoiar o acompanhamento da evacuação em situações de emergência industrial. A proposta integra três tipos de dispositivos baseados em ESP32 a uma aplicação web: sensores ultrassônicos nas portarias para estimar a quantidade de pessoas na planta, leitores RFID nas zonas monitoradas para registrar as últimas passagens identificadas e totens RFID nos pontos de encontro para confirmar a chegada das pessoas. Nesse contexto, Maria passa a contar com informações integradas sobre a ocupação estimada da planta, as últimas zonas registradas, as confirmações nos pontos de encontro, possíveis pendências e horários de atualização. A aplicação web organiza esses dados para apoiar o acompanhamento da evacuação e a comunicação entre as equipes responsáveis, sem substituir os procedimentos operacionais e de segurança da Unipar.
+
+**Objetivo**
+
+O principal objetivo de Maria na jornada futura é acompanhar o andamento da evacuação com maior clareza e agilidade, utilizando informações organizadas sobre a ocupação estimada da planta, as últimas zonas registradas e as confirmações de chegada aos pontos de encontro. Com o apoio da aplicação web, ela busca consultar os registros disponíveis, identificar possíveis pendências e compartilhar informações relevantes com a equipe de Segurança, Saúde e Meio Ambiente (SSMA) e os brigadistas. Além disso, pretende utilizar os dados organizados para apoiar o registro das ocorrências e a transmissão das informações entre equipes e turnos, contribuindo para a continuidade operacional. A avaliação das pessoas ainda sem confirmação e a coordenação das buscas permanecem sob responsabilidade da SSMA, conforme os procedimentos estabelecidos.
+
+**Fases da jornada**
+
+A jornada futura permanece organizada em quatro fases principais: Monitoramento e identificação, Verificação e comunicação, Resposta e acompanhamento e Conferência e registro. Na primeira fase, Maria continua acompanhando os indicadores, alarmes e câmeras da planta para identificar possíveis alterações operacionais. Na segunda, verifica as informações disponíveis, consulta os procedimentos e aciona o protocolo de emergência conforme as atribuições do CCO, comunicando a SSMA, os brigadistas e a portaria. Esse acionamento permite iniciar o processo integrado de confirmação nos pontos de encontro designados pela SSMA, enquanto os porteiros são orientados a acionar os dispositivos locais das portarias. Na terceira fase, Maria utiliza a aplicação web para acompanhar os registros provenientes das portarias, das zonas monitoradas e dos pontos de encontro. Por fim, na etapa de conferência e registro, consulta as confirmações e possíveis pendências, verifica os horários de atualização e utiliza as informações disponíveis para apoiar a documentação e a comunicação com as equipes responsáveis.
+
+**Emoções e pensamentos**
+
+Na jornada futura, as emoções e os pensamentos de Maria apresentam uma evolução gradualmente mais positiva durante o acompanhamento da emergência. Inicialmente, ela mantém a atenção necessária ao monitoramento dos indicadores operacionais, atividade que faz parte de sua rotina. Ao identificar uma possível ocorrência, surge a preocupação de confirmar a situação e acionar o protocolo de emergência, representando o principal vale emocional da jornada, associado ao momento de maior tensão. Durante a resposta, a possibilidade de consultar os registros das zonas monitoradas e as confirmações nos pontos de encontro contribui para uma percepção de maior clareza sobre o andamento da evacuação. Essa percepção melhora quando Maria consegue identificar possíveis pendências e verificar os horários de atualização das informações, embora permaneça a necessidade de avaliar sua confiabilidade. Na etapa final, ocorre o principal pico de satisfação relativa, associado à organização dos registros e à transmissão das informações com maior clareza, sem eliminar completamente as incertezas relacionadas à ocorrência.
+
+**Ações**
+
+As ações realizadas por Maria na jornada futura continuam relacionadas ao monitoramento operacional, à verificação de ocorrências, à comunicação com as equipes e ao registro das informações. Inicialmente, ela acompanha os indicadores, alarmes e câmeras da planta, identifica possíveis alterações operacionais e recebe relatos das equipes de campo. Ao perceber uma ocorrência, verifica os sinais, consulta os procedimentos aplicáveis, confirma as informações disponíveis e aciona o protocolo de emergência, conforme as atribuições do CCO, comunicando a SSMA, os brigadistas e a portaria. Durante a resposta, executa as ações autorizadas ao CCO e consulta a aplicação web para acompanhar a estimativa de ocupação da planta, as últimas zonas registradas e as confirmações disponíveis de chegada aos pontos de encontro. Na etapa final, consulta os registros de confirmação e as possíveis pendências, verifica os horários de atualização e eventuais inconsistências e utiliza os dados disponíveis para apoiar os registros e a comunicação com as equipes responsáveis.
+
+**Touchpoints (Pontos de contato)**
+
+Os pontos de contato da jornada futura incluem os recursos operacionais já utilizados por Maria e as interfaces previstas na solução Synthetix. Durante o monitoramento, permanecem os painéis operacionais, sistemas de alarmes, câmeras e informações fornecidas pelas equipes de campo. Na verificação da ocorrência, Maria consulta os procedimentos da unidade e utiliza radiocomunicadores e outros canais internos para interagir com a SSMA, a portaria e os brigadistas. Durante a resposta à emergência, a aplicação web passa a representar um novo ponto de contato, reunindo informações provenientes dos sensores ultrassônicos das portarias, dos leitores RFID instalados nas zonas monitoradas e dos totens de confirmação nos pontos de encontro. Na etapa de conferência e registro, Maria utiliza a aplicação para consultar confirmações, possíveis pendências e horários de atualização, além de recorrer aos registros de ocorrências e aos canais de comunicação com as equipes responsáveis e o próximo turno. Esses recursos complementam os procedimentos de segurança existentes, sem substituir a atuação das equipes em campo.
+
+**Dores**
+
+Embora a solução proposta busque reduzir as dificuldades identificadas na jornada atual, alguns desafios ainda podem permanecer na experiência futura de Maria. Durante o monitoramento, a presença de alarmes simultâneos e o excesso de informações operacionais continuam exigindo atenção constante e interpretação cuidadosa. Na etapa de verificação e comunicação, a confirmação das ocorrências ainda depende das equipes responsáveis, enquanto possíveis falhas de conexão podem exigir o acionamento local dos totens por membros autorizados da SSMA ou brigadistas. Durante a resposta à emergência, interrupções de rede podem atrasar a atualização dos registros na aplicação web, e leituras RFID ausentes ou duplicadas podem provocar inconsistências nos estados das zonas monitoradas. Além disso, a última zona registrada representa apenas a última passagem detectada, não a localização exata da pessoa. Na etapa final, divergências entre a contagem estimada das portarias e as confirmações RFID podem dificultar a interpretação das pendências, tornando necessária a avaliação das informações pela SSMA antes de orientar as ações das equipes responsáveis.
+
+**Insights**
+
+Os insights da jornada futura evidenciam que a integração tecnológica pode melhorar o acompanhamento da evacuação, mas sua efetividade continua dependendo da qualidade dos registros e da comunicação entre as equipes. O monitoramento operacional e a interpretação adequada dos alertas permanecem fundamentais para identificar possíveis emergências. Na etapa de verificação, a integração entre o acionamento do protocolo e a ativação dos totens pode agilizar o início das confirmações, sem eliminar a necessidade de comunicação e validação entre os envolvidos. Durante a resposta, a integração dos dados das portarias, zonas monitoradas e pontos de encontro pode proporcionar uma visão mais abrangente da evacuação. Entretanto, a última zona registrada não representa a localização atual da pessoa, embora possa fornecer uma referência para apoiar buscas coordenadas pela SSMA. Na etapa final, as confirmações RFID facilitam a consulta às chegadas registradas nos pontos de encontro, enquanto as estimativas de ocupação e os indicadores de pendência precisam ser interpretados considerando possíveis erros de leitura, registros incompletos e diferenças entre as fontes de dados.
+
+**Oportunidades de melhoria**
+
+As oportunidades identificadas na jornada futura estão relacionadas ao aperfeiçoamento da solução e à ampliação de sua capacidade de apoiar o acompanhamento das emergências. Na fase de monitoramento, destacam-se possibilidades de melhorar a integração entre os sistemas operacionais e os dados da evacuação, identificar possíveis divergências na estimativa de ocupação da planta e aprimorar a clareza das informações apresentadas. Durante a verificação e comunicação, surgem oportunidades para facilitar o compartilhamento de informações entre equipes, melhorar o registro do acionamento do protocolo e da ativação dos pontos de encontro e aperfeiçoar os procedimentos de contingência em caso de falhas de conexão. Na resposta à emergência, destacam-se melhorias relacionadas à atualização dos dados, à identificação de registros incompletos ou inconsistentes e à comparação entre os registros das zonas monitoradas e as confirmações nos pontos de encontro. Por fim, na etapa de conferência e registro, as oportunidades envolvem facilitar a identificação e a análise de pendências de confirmação após o prazo de dez minutos, aprimorar a rastreabilidade e o histórico dos registros eletrônicos e melhorar a validação e a transmissão das informações entre equipes e turnos.
+
+**Considerações finais**
+
+A jornada futura de Maria demonstra como a solução Synthetix pode transformar o acompanhamento de uma evacuação industrial por meio da integração de informações provenientes das portarias, zonas monitoradas e pontos de encontro. Enquanto a jornada atual apresenta dificuldades relacionadas à dispersão das informações, à ausência de registros individuais integrados e à dependência de conferências manuais, o cenário futuro prevê a utilização de sensores ultrassônicos, leitores RFID, totens de confirmação e uma aplicação web para organizar os dados da evacuação. Essa integração tem potencial para reduzir incertezas, facilitar a identificação de possíveis pendências e apoiar a comunicação entre o CCO, a SSMA e os brigadistas. Entretanto, a solução não oferece localização precisa, não comprova automaticamente a segurança das pessoas e não substitui os procedimentos de emergência da Unipar. Seus benefícios dependem da confiabilidade dos sensores e leitores, da atualização dos registros, da integração entre os dispositivos e da validação das informações pelas equipes responsáveis.
+
+##### 3.2.2.1.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
+
+###### Situação-Problema Presente
+
+<div align="center">
+  <p>Figura 3 – Jornada do Usuário do Presente de Tuco Salamanca, Gestor de SSMA</p>
+  <img src="../assets/design/jornada_usuario/presente/jornadaUsuarioTucoPresente.png" alt="Jornada do Usuário do Presente de Tuco Salamanca, Gestor de SSMA." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+</div>
+
+**Cenário**
+
+O cenário atual da gestão de Segurança, Saúde e Meio Ambiente (SSMA) na fábrica de Cubatão durante situações de emergência é pautado pela fragmentação dos fluxos de comunicação e pela dependência de ferramentas manuais e analógicas. A troca de mensagens entre os setores operacionais, o Centro de Controle Operacional (CCO), o Centro de Controle de Emergência (CCE) e as frentes de campo ocorre quase que exclusivamente por meio de radiocomunicadores portáteis (HT) e confirmações verbais, frequentemente prejudicadas por ruídos industriais e sobrecarga de canal. O acompanhamento do abandono da planta baseia-se em relatos verbais descentralizados, estimativas visuais e conferências manuais com listas em papel afixadas em pranchetas nos Pontos de Encontro (PEs). Além disso, a ausência de uma base centralizada de dados em tempo real e a abertura compulsória das catracas no momento do alarme — necessária para viabilizar a fuga célere dos colaboradores — eliminam os registros convencionais de saída, criando um ponto cego crítico quanto ao contingente real de pessoas retidas no interior da fábrica.
+
+**Objetivo**
+
+O objetivo principal de Tuco Salamanca como Gestor de SSMA é exercer a liderança estratégica da emergência, garantindo a evacuação segura e ágil de 100% dos colaboradores diretos e prestadores de serviços terceirizados da unidade. Ele precisa identificar e validar rapidamente a gravidade das ocorrências operacionais (tais como vazamentos tóxicos de cloro ou incêndios industriais), determinar com exatidão quem são os indivíduos ausentes nos pontos de encontro e orientar a brigada de emergência com dados consistentes, evitando que equipes de resgate realizem buscas às cegas em áreas de risco iminente. Adicionalmente, busca assegurar o cumprimento rigoroso dos prazos do Plano de Ação de Emergência (PAE) e consolidar registros confiáveis para fins periciais, auditorias de segurança e conformidade perante órgãos fiscalizadores (como Cetesb e Ministério do Trabalho e Emprego).
+
+**Fases da jornada**
+
+A jornada do presente estrutura-se em quatro fases sequenciais que definem a dinâmica de resposta sob a liderança de SSMA. A primeira fase, Monitoramento e identificação, consiste no acompanhamento de indicadores no painel operacional, na detecção de oscilações anômalas no processo químico e na recepção de relatos preliminares de campo via rádio. A segunda fase, Verificação e comunicação, envolve a consulta aos protocolos técnicos do PAE, o diálogo por rádio com a operação para averiguar a gravidade do evento e a solicitação formal de acionamento das sirenes gerais de evacuação. A terceira fase, Resposta e acompanhamento, corresponde à instalação do CCE, à tentativa de quantificação dos evacuados a partir de escuta atenta dos canais de rádio e à coordenação do envio da brigada a partir de relatos verbais. Por fim, a fase de Conferência e registro engloba o recolhimento físico das listas de presença nos pontos de encontro, a conciliação manual desses papéis com listagens do RH e da portaria e o preenchimento manual dos relatórios preliminares de ocorrência.
+
+**Emoções e pensamentos**
+
+A curva emocional de Tuco no cenário presente reflete uma crescente tensão psicológica, atingindo um vale profundo de angústia e sobrecarga cognitiva no instante mais decisivo da crise. Inicialmente, durante o monitoramento de rotina, apresenta postura vigilante e controlada, expressando: _"Preciso acompanhar os indicadores no painel e validar se é um alarme real antes que a situação escale"_. Ao adentrar a fase de verificação e comunicação, o estresse se acentua pela hesitação inerente à falta de clareza situacional: _"Preciso confirmar a gravidade no campo. As informações estão dispersas no rádio e o tempo está passando!"_. O momento de maior desespero e frustração (vale mais agudo da jornada) manifesta-se na fase de resposta e acompanhamento, quando as incertezas colocam vidas humanas em risco: _"As informações dos pontos de encontro chegam separadas. Quem ainda está preso? A brigada vai entrar no escuro!"_. Na fase final, após a normalização das áreas, Tuco sente alívio parcial mesclado a exaustão e insegurança jurídica diante da lentidão dos métodos manuais: _"Demoramos 40 minutos para checar tudo. Faltam nomes na lista. Eles já foram embora ou estão presos lá dentro?"_.
+
+**Ações**
+
+As ações desempenhadas por Tuco traduzem a árdua rotina de preenchimento de lacunas informacionais por métodos manuais. No monitoramento e identificação, ele acompanha indicadores de processo, alarmes e imagens de câmeras no painel SCADA, identifica flutuações atípicas e recebe alertas e chamados preliminares de técnicos de operação pelo rádio HT. Na etapa de verificação e comunicação, confere os sinais de instrumentação, consulta as diretrizes operacionais do PAE, estabelece contato com as equipes de campo para validar o sinistro e autoriza o acionamento dos sinais sonoros de evacuação geral. Durante a resposta e acompanhamento, assume o comando da emergência no CCE, monitora os canais de rádio em busca de informes sobre a movimentação das equipes e autoriza o despacho dos brigadistas com base em estimativas orais. Por fim, na conferência e registro, recebe fisicamente as pranchas e folhas recolhidas pelos líderes de ponto de encontro, tenta cruzar manualmente os nomes assinalados com as listas de acesso da portaria e formulários de terceiros e redige o relatório inicial de sinistro em formulários físicos.
+
+**Touchpoints (Pontos de contato)**
+
+Os pontos de contato evidenciam a predominância de interfaces dispersas, equipamentos analógicos e comunicações verbais. No monitoramento, Tuco interage com as telas do sistema supervisório (SCADA), detectores fixos de gás, painéis de alarme e imagens de câmeras de segurança, além do canal de rádio HT. Na fase de verificação, os pontos de contato são as pastas físicas e procedimentos documentados do PAE, os canais de rádio compartilhados com líderes industriais e a botoeira de sirene geral da planta. Na resposta à emergência, as interações ocorrem pelos canais de rádio da brigada e dos líderes de área, pranchetas com papel e caneta nos pontos de encontro e a realização de chamadas orais nominais em campo aberto. No encerramento e registro, os pontos de contato são as próprias listas de papel recolhidas dos PEs, relatórios impressos de controle de acesso, telefonemas para conferência com gestores de contratadas e formulários físicos padronizados de ocorrência.
+
+**Dores**
+
+As dores identificadas retratam severas fragilidades operacionais decorrentes da dependência de registros manuais e processos analógicos. Na primeira fase, manifesta-se o problema do _alarm flood_ (avalanche de alarmes simultâneos), gerando excesso de ruído visual no painel e privando a liderança de uma visão imediata da quantidade exata de pessoas presentes na fábrica. Na segunda fase, destacam-se as informações desencontradas entre setores fabris, a saturação ruidosa dos canais de rádio e a perda irreversível do controle de fluxo causada pela liberação compulsória das catracas de portaria. Durante a resposta e acompanhamento, a dor culminante é a "cegueira situacional": a liderança não consegue determinar com exatidão quem está ausente nem em qual setor da planta realizar as buscas; paralelamente, a contagem física em papel mostra-se lenta e suscetível a erros humanos, forçando os brigadistas a realizarem buscas exploratórias às cegas, com grave exposição a atmosferas perigosas. Na fase final, a dispersão e as inconsistências entre listas descentralizadas demandam horas de conciliação pós-crise, gerando insegurança jurídica e vulnerabilidade em auditorias e fiscalizações externas.
+
+**Insights**
+
+A análise da jornada atual proporciona aprendizados decisivos para a concepção de uma solução tecnológica eficaz. Inicialmente, constata-se que a agilidade na detecção de sinistros químicos depende diretamente da centralização de dados operacionais e da minimização de ruídos cognitivos. Em segundo lugar, a hesitação humana decorrente de informações fragmentadas consome minutos vitais, retardando a tomada de decisão formal de evacuação preventiva e expondo os trabalhadores à inalação de substâncias tóxicas. Em terceiro lugar, a ausência de telemetria em tempo real no CCE provoca sobrecarga cognitiva e desgaste emocional extremo no gestor de crise. Por fim, evidencia-se que o maior perigo para a brigada de resgate reside no desconhecimento da última localização conhecida dos indivíduos ausentes, demonstrando que métodos estritamente baseados em papel inviabilizam o cumprimento do SLA crítico de resgate e comprometem a rastreabilidade necessária à melhoria contínua do PAE.
+
+**Oportunidades de melhoria**
+
+As dores mapeadas no presente fundamentam diretamente as especificações funcionais da solução proposta pela Synthetix. Na fase de monitoramento, destaca-se a oportunidade de integrar sensores nas portarias para calcular e exibir um contingente global objetivo em tempo real, permitindo identificar precocemente variações críticas. Na verificação e comunicação, surge a necessidade de automatizar a ativação de emergência entre CCO, SSMA e portarias, armando digitalmente os pontos de encontro ao toque da sirene e registrando com precisão o marco temporal de início da evasão. Na resposta e acompanhamento, desponta a exigência de prover um dashboard no CCE com a curva de confirmação em tempo real, digitalizar a validação nos PEs por aproximação de crachás RFID e disparar alertas automáticos com a última zona de passagem registrada dos colaboradores ausentes. Na conferência e registro, a oportunidade reside em centralizar o fechamento da emergência em uma plataforma web auditável, gerando automaticamente relatórios consolidados com carimbos de tempo (_timestamps_), dispensando digitações manuais e assegurando conformidade regulatória.
+
+**Considerações finais**
+
+A jornada do presente vivenciada por Tuco Salamanca sintetiza o esgotamento dos modelos convencionais de evacuação baseados em contagem por papel e comunicação verbal descentralizada. Em um ambiente industrial de alto risco com agentes químicos voláteis como o cloro, no qual cada fração de minuto é determinante para a preservação de vidas, a dependência de processos manuais que levam até 40 minutos para conciliar dados torna a operação vulnerável e eleva drasticamente o risco para as equipes de busca. Esse cenário evidencia a imperativa urgência de dotar o Gestor de SSMA de ferramentas digitais capazes de automatizar o balanço populacional da fábrica, fornecer telemetria em tempo real e transformar o resgate em uma intervenção tática orientada por dados precisos.
+
+###### Situação-Problema Futura
+
+<div align="center">
+  <p>Figura 4 – Jornada do Usuário do Futuro de Tuco Salamanca, Gestor de SSMA</p>
+  <img src="../assets/design/jornada_usuario/futuro/jornadaUsuarioTucoFuturo.png" alt="Jornada do Usuário do Futuro de Tuco Salamanca, Gestor de SSMA." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+</div>
+
+**Cenário**
+
+O cenário futuro apoia-se na implementação da solução tecnológica desenvolvida pela Synthetix (C.R.I.S.I.S), que integra dispositivos embarcados em microcontroladores ESP32 a uma plataforma web centralizada no Centro de Controle de Emergência (CCE). Nas portarias de pedestres e veículos, nós IoT com sensores ultrassônicos estimam a presença contínua ($P(t)$), congelando instantaneamente a população de referência ($B_0$) assim que o alarme de emergência é deflagrado. Nos limites dos setores industriais, nós RFID RC522 registram as transições entre zonas críticas ($Z(t)$), mapeando a última passagem válida de cada trabalhador. Nos Pontos de Encontro (PEs), totens inteligentes autônomos realizam a confirmação de chegada por aproximação do crachá funcional, fornecendo feedback audiovisual imediato (LED verde e sinal sonoro) e operando com memória local resiliente (_buffer offline_) para tolerância a eventuais oscilações de rede. Nesse contexto, Tuco gerencia a crise por meio de uma aplicação web que consolida em tempo real o balanço de evacuação ($D(t) = B_0 - M(t)$), assegurando visibilidade situacional total e conformidade com a LGPD.
+
+**Objetivo**
+
+O objetivo principal de Tuco na jornada futura é alcançar o domínio situacional absoluto durante a evacuação, confirmando digitalmente a presença de 100% dos colaboradores nos pontos de encontro em tempo recorde ($M(t)$). Ele almeja extinguir as buscas às cegas, direcionando os brigadistas com precisão cirúrgica para a última zona de passagem registrada ($Z(t)$) de qualquer trabalhador ausente após o limite de 10 minutos estabelecido pelo PAE. Além disso, busca preservar rigorosamente a privacidade dos colaboradores conforme a LGPD, mantendo nomes e dados individualizados protegidos em rotina normal e liberando a visualização nominal exclusivamente na interface de emergência ativa do CCE. Por fim, objetiva encerrar o protocolo de emergência com total rastreabilidade digital, exportando relatórios periciais instantâneos com _timestamps_ para auditorias da Cetesb, MTE e diretoria executiva.
+
+**Fases da jornada**
+
+A jornada futura organiza-se em quatro fases coordenadas que modernizam a tomada de decisão do Gestor de SSMA. A primeira fase, Detecção e ativação coordenada, tem início no instante em que o alarme soa: a aplicação web da Synthetix congela o _baseline_ ($B_0$), arma os totens nos PEs e sincroniza os alertas luminosos das portarias (LEDs vermelhos ativos). A segunda fase, Evacuação e telemetria em tempo real, envolve o acompanhamento dinâmico da curva ascendente de confirmações nos totens ($M(t)$), a visualização da redução contínua do contingente em trânsito e a manutenção dos canais de rádio desobstruídos para diretrizes estratégicas. A terceira fase, Gestão de pendências e resgate direcionado, é disparada pelo temporizador automático aos 10 minutos de alarme: o sistema exibe os nomes dos pendentes e suas respectivas últimas zonas de passagem, permitindo o despacho imediato e focado da brigada. A quarta fase, Encerramento seguro e auditoria automatizada, compreende a validação de que 100% dos colaboradores estão seguros, o comando de normalização das portarias (restabelecimento do LED verde) e a exportação automática do dossiê de auditoria da emergência.
+
+**Emoções e pensamentos**
+
+A trajetória emocional de Tuco na jornada futura demonstra clareza mental, controle situacional e estabilidade emocional ao longo de todo o ciclo da emergência. Na fase de detecção e ativação coordenada, Tuco experimenta segurança e prontidão operacional ao ver o sistema responder instantaneamente: _"Alarme acionado. O sistema congelou o baseline de pessoas na planta e os totens de evacuação já estão prontos"_. Durante a evacuação e telemetria em tempo real, a ansiedade dá lugar a um visível otimismo impulsionado pela velocidade da apuração digital: _"O fluxo nos totens está rápido. Já temos 85% dos colaboradores confirmados digitalmente em menos de 4 minutos"_. Ao completar 10 minutos de emergência, ocorre uma breve elevação de seriedade e foco resolutivo diante do acionamento do resgate tático: _"10 minutos batidos! A aplicação me lista 2 colaboradores pendentes e sua última zona de passagem. Brigada, foco na Unidade B!"_. Por fim, na conclusão da ocorrência, o gestor atinge o ápice de satisfação e alívio com a certeza do dever cumprido e a proteção integral das vidas: _"100% das pessoas confirmadas com segurança. Protocolo encerrado com rastreabilidade total e relatório de auditoria pronto"_.
+
+**Ações**
+
+As ações do gestor passam a ser focadas na tomada de decisão estratégica e na governança dos recursos de socorro. Na detecção e ativação, Tuco acessa o dashboard da Synthetix no CCE, visualiza a estimativa de presença ($P(t)$), confere o congelamento do contingente inicial ($B_0$) ao soar o alarme geral e valida o acionamento dos sinalizadores de emergência nas portarias (LEDs vermelhos ativados). Na etapa de evacuação e telemetria, observa a progressão contínua da curva de confirmações nos totens dos PEs ($M(t)$), monitora a redução do número de trabalhadores pendentes e preserva a rede de rádio limpa de chamadas repetitivas. Na gestão de pendências e resgate direcionado, ao ser notificado pelo alerta sonoro e visual aos 10 minutos, consulta a listagem nominal autorizada de ausentes e a última zona registrada de cada um, despachando a brigada via HT com coordenadas objetivas de localização. No encerramento e auditoria, valida no dashboard que a totalidade dos colaboradores está a salvo, encerra o protocolo na aplicação web, comanda a reabertura e normalização visual das portarias (LEDs verdes) e faz o download do relatório completo gerado pelo sistema.
+
+**Touchpoints (Pontos de contato)**
+
+Os pontos de contato estruturam-se na convergência entre o hardware IoT instalado em campo e a plataforma de supervisão do gestor. Na detecção e ativação, destacam-se a aplicação web Synthetix no monitor principal do CCE, os módulos ESP32 integrados aos sensores das portarias e a sinalização luminosa por LEDs vermelhos. Na fase de evacuação, os touchpoints englobam os totens ESP32 com módulos leitores RFID RC522 e sinalizadores óptico-acústicos (LED verde e bip confirmatório), os nós leitores de zona instalados nos acessos industriais e a memória local dos nós (_buffer offline_) para tolerância a desconexões temporárias. Na gestão de pendências, o ponto de contato é a interface web de gestão de crise, equipada com alerta sonoro e visual aos 10 minutos, o módulo criptografado de liberação nominal restrita e o rádio HT utilizado exclusivamente para coordenação direta com o líder dos brigadistas. No encerramento, os pontos de contato são o botão de finalização de emergência na aplicação, as catracas com sinalização em LED verde e os relatórios digitais consolidados com registros cronológicos invioláveis (_timestamps_).
+
+**Dores**
+
+A modernização promovida pela solução supera as dores históricas do processo analógico, embora introduza novos cuidados operacionais e técnicos que devem ser administrados por SSMA. São eliminadas a incerteza quanto ao contingente inicial presente na planta, a morosidade e o risco de falhas das chamadas nominais por pranchetas e o envio de brigadistas para buscas indiscriminadas em áreas contaminadas. Entre os desafios remanescentes que demandam atenção contínua, figuram a necessidade de manter a infraestrutura de sensores ultrassônicos calibrada para evitar distorções nas contagens de portaria, a garantia de que colaboradores não transitem sem crachá (ou o tratamento de crachás danificados por meio de botões de contingência e checagem de líderes) e a necessidade de resiliência nos nós de rede para manter a sincronização fluida entre os totens e o servidor central. Ademais, Tuco e sua equipe devem ter plena consciência de que a última zona registrada ($Z(t)$) representa a última passagem detectada por RFID, e não uma coordenada de posicionamento contínuo em tempo real (RTLS), exigindo varredura cautelosa da brigada no setor indicado.
+
+**Insights**
+
+Os aprendizados gerados pela jornada futura comprovam a transformação da gestão de segurança proporcionada pela automação inteligente. Em primeiro lugar, o congelamento automático do _baseline_ populacional ($B_0$) no instante exato do alarme define uma meta objetiva e incontestável para a equipe de SSMA, extinguindo divergências e suposições no cálculo de evacuados. Em segundo lugar, a confirmação instantânea por RFID combinada ao retorno sensorial (bip sonoro e LED verde) transmite segurança psicológica imediata aos trabalhadores nos pontos de encontro e confere ao CCE uma telemetria baseada em fatos quantitativos. Em terceiro lugar, a visualização da última zona de passagem transforma o resgate de uma busca aleatória de alto risco em uma operação tática de precisão cirúrgica, enquanto o cronômetro automatizado de 10 minutos estabelece um padrão rigoroso para a transição entre o abandono passivo e a intervenção ativa. Por fim, a rastreabilidade digital comprova de maneira incontestável a conformidade dos procedimentos perante os órgãos reguladores e gera um acervo qualificado de dados históricos para o aperfeiçoamento contínuo dos simulados periódicos do PAE.
+
+**Oportunidades de melhoria**
+
+O fluxo concebido para a jornada futura abre perspectivas consistentes para o aprimoramento contínuo do sistema nas próximas etapas de desenvolvimento. Na fase de detecção e ativação, vislumbra-se o emprego de algoritmos de filtragem adaptativa nos sensores ultrassônicos das portarias para compensar aproximações sucessivas em horários de pico, além da integração com estações meteorológicas locais para sobrepor modelos de pluma de gás tóxico ao mapa de zonas. Na fase de evacuação e telemetria, despontam oportunidades para aperfeiçoar os mecanismos de reconciliação de dados pós-retorno de conexão do _buffer offline_ e a inclusão de biometria facial nos totens como alternativa redundante ao crachá. Na gestão de pendências, sobressaem o envio de mensagens automáticas de confirmação via SMS/aplicativo institucional para colaboradores pendentes antes do envio físico de resgate e a geração de mapas de calor (_heatmaps_) das zonas de maior retenção. No encerramento, destacam-se a integração nativa dos relatórios digitais aos módulos de saúde e segurança de sistemas integrados de gestão (como o SAP) e a automação do envio de notificações pós-evento às instâncias regulatórias competentes.
+
+**Considerações finais**
+
+A jornada futura de Tuco Salamanca demonstra de que maneira a solução Synthetix reconfigura integralmente o papel do Gestor de SSMA no ecossistema industrial da Unipar em Cubatão. Ao substituir a fragilidade e a lentidão das listas de papel por um sistema integrado de contagem de acesso, identificação por RFID e visualização de dados em tempo real, a solução estabelece um novo patamar de excelência em segurança do trabalho e gerenciamento de crises. A capacidade de saber com exatidão a quantidade de pessoas presentes, monitorar a curva de acolhimento nos pontos de encontro e acionar resgates cirúrgicos guiados pela última zona de trânsito em até 10 minutos reduz a níveis mínimos o tempo de exposição humana ao perigo químico. Dessa forma, Tuco passa a operar como um decisor estratégico respaldado por dados confiáveis, unindo a preservação da vida, o respeito à privacidade dos indivíduos e a conformidade regulatória plena em uma resposta integrada e moderna.
+
+#### 3.2.2.2. Storyboard
+
+##### 3.2.2.2.1. Operadora de Centro de Controle Operacional (CCO)
+
+O storyboard apresenta a jornada de Maria Schrader, operadora do Centro de Controle Operacional (CCO), durante uma situação de emergência industrial, ilustrando como a solução Synthetix apoia o acompanhamento da evacuação. Organizado em sete quadros sequenciais, o storyboard retrata desde o monitoramento inicial da planta e a verificação da ocorrência até o acionamento do protocolo de emergência, o acompanhamento da evacuação e o registro das informações. Cada quadro evidencia o ambiente, as ações e decisões de Maria e as respostas dos sistemas envolvidos, demonstrando como a integração de sensores, leitores RFID e uma aplicação web pode facilitar o acesso às informações, a identificação de possíveis pendências e a comunicação entre as equipes responsáveis, sem substituir os procedimentos de segurança existentes.
+
+<div align="center">
+  <p>Figura 1 – Storyboard de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)</p>
+  <img src="../assets/design/storyboard/storyboardMaria.png" alt="Storyboard de Maria Schrader, Operadora de Centro de Controle Operacional (CCO)." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
+</div>
+
+**Quadro 1 – Monitoramento da operação**
+
+Maria está no Centro de Controle Operacional (CCO), acompanhando os indicadores, alarmes e câmeras da planta durante sua rotina. Os sistemas operacionais exibem as condições monitoradas em tempo real, permitindo que ela identifique possíveis alterações e mantenha a atenção sobre o funcionamento da unidade.
+
+**Quadro 2 – Verificação da ocorrência**
+
+Ao receber um alerta, Maria analisa os indicadores, consulta as câmeras e verifica os procedimentos da unidade para determinar se a situação representa uma emergência. Enquanto realiza essa avaliação, os sistemas operacionais continuam exibindo os dados da área afetada. Com base nas informações disponíveis, Maria decide se deve prosseguir com o protocolo de emergência.
+
+**Quadro 3 – Identificação e acionamento**
+
+Após confirmar a ocorrência, Maria segue os procedimentos da unidade e comunica a situação à SSMA, aos brigadistas e à portaria, respeitando suas atribuições no CCO. Com o acionamento do protocolo de emergência, a solução Synthetix inicia o acompanhamento da evacuação, preparando a integração dos registros provenientes dos dispositivos instalados na planta.
+
+**Quadro 4 – Registro da evacuação**
+
+Com a evacuação em andamento, os trabalhadores se deslocam até os pontos de encontro definidos pelas equipes responsáveis. Durante esse processo, os sensores ultrassônicos das portarias fornecem dados para estimar a ocupação da planta, os leitores RFID registram as passagens pelas zonas monitoradas e os totens RFID confirmam as chegadas aos pontos de encontro. A solução integra essas informações e as disponibiliza na aplicação web.
+
+**Quadro 5 – Acompanhamento em tempo real**
+
+Maria acessa a aplicação web da Synthetix para acompanhar o andamento da evacuação. O sistema apresenta a ocupação estimada da planta, as últimas zonas registradas pelos leitores RFID e as confirmações nos pontos de encontro, destacando possíveis pendências. Com essas informações organizadas e atualizadas conforme os registros recebidos, Maria consegue acompanhar a situação com maior clareza.
+
+**Quadro 6 – Análise e alinhamento**
+
+Ao identificar possíveis pendências na aplicação, Maria consulta os últimos registros RFID e verifica os horários de atualização das informações. O sistema apresenta os dados disponíveis sobre as pessoas ainda sem confirmação, permitindo que ela compartilhe essas informações com a SSMA. A equipe responsável utiliza os registros como apoio à verificação em campo, considerando que a última zona registrada não representa necessariamente a localização atual da pessoa.
+
+**Quadro 7 – Conferência e registro**
+
+Na etapa final, Maria consulta as confirmações, pendências e horários disponíveis na aplicação para apoiar a documentação da ocorrência. A solução mantém os registros eletrônicos acessíveis para consulta, facilitando a organização das informações. Com esses dados, Maria registra as informações relevantes e comunica a situação às equipes responsáveis e ao próximo turno, contribuindo para a continuidade do acompanhamento operacional.
+
+##### 3.2.2.2.2. Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
+
+O storyboard apresenta a perspectiva de Tuco Salamanca, Gestor de SSMA, durante uma situação de emergência operacional e abandono de área na planta química da Unipar em Cubatão, evidenciando como a solução Synthetix (C.R.I.S.I.S) subsidia a liderança tática e estratégica. Estruturado em sete quadros sequenciais, o storyboard descreve o fluxo completo de resposta: desde o monitoramento inicial dos indicadores de processo e fluxo de portaria, passando pela validação da anomalia com o CCO, o congelamento automático do contingente populacional ($B_0$) e a ativação dos dispositivos de campo, até o acompanhamento do balanço de evacuação em tempo real, o despacho cirúrgico da brigada guiado pela regra dos 10 minutos e a consolidação de relatórios periciais automatizados. Cada quadro detalha o contexto ambiental, as ações decisórias de Tuco, seus pensamentos e as respectivas reações dos sistemas cyber-físicos integrados, demonstrando a superação da "cegueira situacional" e a preservação da integridade física dos colaboradores e brigadistas.
+
+<div align="center">
+  <p>Figura 2 – Storyboard de Tuco Salamanca, Gestor de SSMA</p>
+  <img src="../assets/design/storyboard/storyboardTuco.png" alt="Storyboard de Tuco Salamanca, Gestor de SSMA." width="100%">
+  <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
+</div>
+
+**Quadro 1 – Monitoramento da operação**
+
+Tuco está na sala de comando do Centro de Controle de Emergência (CCE), devidamente equipado com capacete e óculos de proteção, acompanhando os painéis operacionais, sistemas de alarmes e câmeras de monitoramento da planta em regime de rotina. Na interface digital, os sistemas operacionais exibem a estabilidade dos processos químicos e o fluxo de entrada e saída das portarias em tempo real, calculando a estimativa contínua do contingente de pessoas presentes na fábrica ($P(t)$). Confiante na normalidade dos parâmetros industriais, Tuco reflete:  _"Tudo está estável. Vou seguir acompanhando os indicadores."_
+
+**Quadro 2 – Verificação da ocorrência**
+
+Um alerta visual de anomalia surge na tela do CCE, destacando uma divergência em processo na Unidade B, classificada como em verificação pelo Plano de Ação de Emergência (PAE). Diante da sinalização, Tuco empunha o rádio comunicador (HT) para se comunicar diretamente com Maria Schrader no CCO e com os supervisores de área, buscando confirmar a gravidade da ocorrência no campo antes de disparar alarmes desnecessários: _"Recebi um alerta. Preciso confirmar se isso é uma emergência."_
+
+**Quadro 3 – Identificação e acionamento**
+
+Com a gravidade da ocorrência confirmada pela operação em campo, Tuco assume formalmente o comando da emergência no CCE e aciona o protocolo no console de segurança. O gestor estabelece comunicação imediata com as frentes operacionais: _"A ocorrência foi confirmada. Vou comunicar a SSMA, a brigada e a portaria."_ Simultaneamente, a infraestrutura da Synthetix comuta para o Modo de Emergência, registrando o carimbo de tempo oficial de deflagração, congelando o *baseline* populacional da fábrica ($B_0$) e ativando remotamente a rede de totens RFID nos Pontos de Encontro (PEs), além de acionar os sinalizadores visuais em LED vermelho nas portarias._
+
+**Quadro 4 – Registro da evacuação**
+
+O alarme geral ecoa pela fábrica e os colaboradores iniciam o abandono ordenado das edificações industriais pelas rotas de fuga. O ecossistema de hardware distribuído entra em plena operação de sensoriamento: sensores ultrassônicos nas portarias calculam o fluxo de evasão, nós RFID monitoram as passagens entre zonas críticas ($Z(t)$) e os totens inteligentes nos PEs registram as chegadas por aproximação de crachás funcionais. Observando o engajamento imediato dos dispositivos, Tuco constata: _"A evacuação começou e os dispositivos já estão registrando as movimentações."_
+
+**Quadro 5 – Acompanhamento em tempo real**
+
+No CCE, Tuco senta-se diante do dashboard central da Synthetix para monitorar o avanço da desocupação da planta. A tela exibe de forma clara e objetiva o *status* do protocolo ativo, confrontando o contingente inicial congelado ($B_0: 320$), o total acumulado de confirmados ($298$) e o saldo de pendentes em trânsito ($22$), acompanhado pelo mapa esquemático da fábrica com as zonas demarcadas em cores indicativas. A consolidação dos dados confere segurança tática à liderança: _"Já tenho a visão digital da evacuação e das confirmações em tempo real."_
+
+**Quadro 6 – Gestão de pendências (10 min)**
+
+Ao atingir a marca crítica de 10 minutos desde o início do alarme — limite de segurança estabelecido pelo PAE —, a aplicação web dispara um alerta audiovisual prioritário na tela de Tuco indicando pendências não resolvidas: dois colaboradores continuam sem registro nos pontos de encontro. O sistema libera temporariamente a visualização nominal dos indivíduos (em estrita conformidade com a exceção de emergência da LGPD) e aponta a última zona de passagem detectada: Zona B (Processo) às 10:14 e 10:15. Em posse de dados precisos, Tuco aciona a brigada de emergência pelo rádio com orientações cirúrgicas, eliminando buscas cegas: _"10 minutos atingidos! Temos 2 pendências na Zona B. Brigada, resgate direto lá!"_
+
+**Quadro 7 – Conferência e encerramento**
+
+As equipes de brigada concluem o resgate e os dois colaboradores pendentes têm sua presença confirmada com segurança no Ponto de Encontro. O dashboard do CCE atualiza o balanço para 320 confirmados e 0 pendentes, sinalizando na tela "Evacuação Concluída com Sucesso". Aliviado e satisfeito com a eficácia da operação e a preservação de todas as vidas, Tuco sorri e finaliza o protocolo: _"Com as confirmações concluídas, vou registrar a ocorrência e gerar o relatório."_ O sistema comuta automaticamente as catracas das portarias para sinalização em LED verde autorizando a circulação normal, encerra o estado de crise e gera um relatório pericial auditável com todo o histórico cronológico da evacuação.
 
 ## 3.3. Solução Técnica
 
