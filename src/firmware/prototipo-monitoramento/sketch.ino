@@ -1,5 +1,7 @@
 #include <SPI.h>
 #include <MFRC522.h>
+#include <Preferences.h>
+#include <string.h>
 
 namespace Configuracao
 {
@@ -16,7 +18,9 @@ namespace Configuracao
   constexpr unsigned long debounceMs = 25;
   constexpr unsigned int frequenciaBipeHz = 2000;
   constexpr unsigned long duracaoBipeMs = 50;
+  constexpr unsigned long duracaoPiscaVerdeMs = 150;
   constexpr unsigned long velocidadeSerial = 115200;
+  constexpr byte maximoCartoes = 20;
 }
 
 enum class EstadoEmergencia
@@ -76,14 +80,38 @@ public:
 
   void mostrar(EstadoEmergencia estado)
   {
-    const bool emergencia = estado == EstadoEmergencia::Emergencia;
+    estado_ = estado;
+    piscandoVerde_ = false;
+    const bool emergencia = estado_ == EstadoEmergencia::Emergencia;
     digitalWrite(pinoVerde_, emergencia ? LOW : HIGH);
     digitalWrite(pinoVermelho_, emergencia ? HIGH : LOW);
+  }
+
+  void piscarVerde(unsigned long agora)
+  {
+    if (estado_ != EstadoEmergencia::Emergencia)
+      return;
+    inicioPiscaVerde_ = agora;
+    piscandoVerde_ = true;
+    digitalWrite(pinoVerde_, HIGH);
+  }
+
+  void atualizar(unsigned long agora)
+  {
+    if (piscandoVerde_ &&
+        agora - inicioPiscaVerde_ >= Configuracao::duracaoPiscaVerdeMs)
+    {
+      piscandoVerde_ = false;
+      digitalWrite(pinoVerde_, LOW);
+    }
   }
 
 private:
   const byte pinoVerde_;
   const byte pinoVermelho_;
+  EstadoEmergencia estado_ = EstadoEmergencia::Normal;
+  unsigned long inicioPiscaVerde_ = 0;
+  bool piscandoVerde_ = false;
 };
 
 class SinalizadorSonoro
@@ -132,6 +160,96 @@ private:
   const byte pinoSs_;
 };
 
+class ControlePresenca
+{
+public:
+  bool iniciar()
+  {
+    if (!preferencias_.begin("controle-rfid", false))
+    {
+      return false;
+    }
+
+    const size_t tamanhoSalvo = preferencias_.getBytesLength("cartoes");
+    if (tamanhoSalvo == sizeof(cartoes_))
+    {
+      if (preferencias_.getBytes("cartoes", cartoes_, sizeof(cartoes_)) != sizeof(cartoes_))
+      {
+        return false;
+      }
+    }
+    else if (tamanhoSalvo != 0)
+    {
+      Serial.println("Aviso: dados antigos invalidos; iniciando lista vazia.");
+    }
+    return true;
+  }
+
+  // Consulta o estado anterior do UID e grava o estado inverso.
+  bool registrarLeitura(const MFRC522::Uid &uid, bool &dentro)
+  {
+    if (uid.size == 0 || uid.size > sizeof(cartoes_[0].uid))
+    {
+      return false;
+    }
+
+    int indice = -1;
+    int primeiraVaga = -1;
+    for (byte i = 0; i < Configuracao::maximoCartoes; ++i)
+    {
+      if (cartoes_[i].tamanho == uid.size &&
+          memcmp(cartoes_[i].uid, uid.uidByte, uid.size) == 0)
+      {
+        indice = i;
+        break;
+      }
+      if (primeiraVaga < 0 && cartoes_[i].tamanho == 0)
+      {
+        primeiraVaga = i;
+      }
+    }
+
+    if (indice < 0)
+    {
+      indice = primeiraVaga;
+    }
+    if (indice < 0)
+    {
+      Serial.println("Limite de cartoes atingido.");
+      return false;
+    }
+
+    RegistroCartao anterior = cartoes_[indice];
+    if (anterior.tamanho == 0)
+    {
+      memcpy(cartoes_[indice].uid, uid.uidByte, uid.size);
+      cartoes_[indice].tamanho = uid.size;
+    }
+    cartoes_[indice].dentro = !anterior.dentro;
+
+    if (preferencias_.putBytes("cartoes", cartoes_, sizeof(cartoes_)) != sizeof(cartoes_))
+    {
+      cartoes_[indice] = anterior;
+      Serial.println("Falha ao salvar o estado do cartao.");
+      return false;
+    }
+
+    dentro = cartoes_[indice].dentro;
+    return true;
+  }
+
+private:
+  struct RegistroCartao
+  {
+    byte uid[10] = {};
+    byte tamanho = 0; // zero indica vaga livre
+    bool dentro = false;
+  };
+
+  Preferences preferencias_;
+  RegistroCartao cartoes_[Configuracao::maximoCartoes] = {};
+};
+
 class SistemaMonitoramento
 {
 public:
@@ -148,15 +266,22 @@ public:
     indicador_.iniciar();
     sinalizador_.iniciar();
     indicador_.mostrar(estado_);
+    armazenamentoDisponivel_ = presenca_.iniciar();
     leitor_.iniciar();
 
     Serial.println("Sistema inicializado!");
     Serial.println("STATUS: NORMAL");
+    if (!armazenamentoDisponivel_)
+    {
+      Serial.println("Erro: memoria de cartoes indisponivel.");
+    }
   }
 
   void atualizar()
   {
-    if (botao_.foiPressionado(millis()))
+    const unsigned long agora = millis();
+    indicador_.atualizar(agora);
+    if (botao_.foiPressionado(agora))
     {
       estado_ = estado_ == EstadoEmergencia::Normal
                     ? EstadoEmergencia::Emergencia
@@ -168,13 +293,20 @@ public:
     MFRC522::Uid uid;
     if (leitor_.lerUid(uid))
     {
-      Serial.print("Cartao detectado! UID: ");
-      sinalizador_.confirmarLeitura();
-      for (byte i = 0; i < uid.size; ++i)
+      indicador_.piscarVerde(millis());
+      bool dentro;
+      if (armazenamentoDisponivel_ && presenca_.registrarLeitura(uid, dentro))
       {
-        Serial.printf("%02X ", uid.uidByte[i]);
+        Serial.print("Cartao UID: ");
+        for (byte i = 0; i < uid.size; ++i)
+        {
+          Serial.printf("%02X", uid.uidByte[i]);
+          if (i + 1 < uid.size)
+            Serial.print(":");
+        }
+        Serial.println(dentro ? " | DENTRO DA AREA" : " | FORA DA AREA");
+        sinalizador_.confirmarLeitura();
       }
-      Serial.println();
     }
   }
 
@@ -184,6 +316,8 @@ private:
   IndicadorEstado indicador_;
   SinalizadorSonoro sinalizador_;
   LeitorCracha leitor_;
+  ControlePresenca presenca_;
+  bool armazenamentoDisponivel_ = false;
 };
 
 SistemaMonitoramento sistema;

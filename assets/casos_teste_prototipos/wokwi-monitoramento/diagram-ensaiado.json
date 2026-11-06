@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard", "id": "bb2", "top": -12.6, "left": 22, "attrs": {} },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -232.06,
+      "left": 387.7,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "board-mfrc522",
+      "id": "rfid1",
+      "top": -215.55,
+      "left": 59.56,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 40.8,
+      "left": 405,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 66.6,
+      "left": 588.6,
+      "rotate": 90,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 82.8,
+      "left": 531.8,
+      "attrs": { "color": "limegreen" }
+    },
+    { "type": "wokwi-led", "id": "led2", "top": 82.8, "left": 483.8, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 70.6,
+      "left": 479.15,
+      "rotate": 270,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 70.6,
+      "left": 527.15,
+      "rotate": 270,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 70.6,
+      "left": 411.95,
+      "rotate": 270,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5", "rfid1:SDA", "green", [ "v-9.08", "h108.4", "v124.8", "h-259.2", "v-48" ] ],
+    [ "rfid1:SCK", "esp:18", "blue", [ "h28.8", "v67.2", "h259.2", "v-144", "h-127.6" ] ],
+    [ "rfid1:MISO", "esp:19", "orange", [ "h38.4", "v-57.6", "h112.4" ] ],
+    [ "rfid1:RST", "esp:17", "violet", [ "h28.8", "v-38.4", "h153.6" ] ],
+    [ "rfid1:3.3V", "esp:3V3", "red", [ "h9.6", "v96" ] ],
+    [ "rfid1:MOSI", "esp:23", "gold", [ "h48", "v-57.6", "h9.6" ] ],
+    [ "esp:GND.2", "bb2:tn.50", "black", [ "v-37.88", "h262", "v144", "h0.8" ] ],
+    [ "rfid1:GND", "bb2:tn.32", "black", [ "h0" ] ],
+    [ "bb2:42t.a", "esp:25", "#8f4814", [ "v-86.4", "h105.6" ] ],
+    [ "bb2:60t.b", "esp:27", "purple", [ "v-115.2", "h-153.6" ] ],
+    [ "bb2:tn.1", "bb2:bn.1", "black", [ "v0" ] ],
+    [ "bb2:bn.50", "bb2:62b.i", "black", [ "v0" ] ],
+    [ "bb2:bn.43", "bb2:53b.j", "black", [ "v0" ] ],
+    [ "bb2:bn.39", "bb2:48b.j", "black", [ "v0" ] ],
+    [ "esp:33", "bb2:49t.a", "purple", [ "v48.37", "h2.8" ] ],
+    [ "esp:26", "bb2:54t.a", "magenta", [ "v38.77", "h2.8" ] ],
+    [ "bb2:41b.j", "bb2:bn.33", "black", [ "v0" ] ],
+    [ "btn1:1.l", "bb2:62t.c", "", [ "$bb" ] ],
+    [ "btn1:2.l", "bb2:60t.c", "", [ "$bb" ] ],
+    [ "btn1:1.r", "bb2:62b.h", "", [ "$bb" ] ],
+    [ "btn1:2.r", "bb2:60b.h", "", [ "$bb" ] ],
+    [ "led1:A", "bb2:54b.h", "", [ "$bb" ] ],
+    [ "led1:C", "bb2:53b.h", "", [ "$bb" ] ],
+    [ "led2:A", "bb2:49b.h", "", [ "$bb" ] ],
+    [ "led2:C", "bb2:48b.h", "", [ "$bb" ] ],
+    [ "r2:1", "bb2:54b.f", "", [ "$bb" ] ],
+    [ "r2:2", "bb2:54t.b", "", [ "$bb" ] ],
+    [ "r1:1", "bb2:49b.f", "", [ "$bb" ] ],
+    [ "r1:2", "bb2:49t.b", "", [ "$bb" ] ],
+    [ "r3:1", "bb2:42b.f", "", [ "$bb" ] ],
+    [ "r3:2", "bb2:42t.b", "", [ "$bb" ] ],
+    [ "bz1:1", "bb2:41b.h", "", [ "$bb" ] ],
+    [ "bz1:2", "bb2:42b.h", "", [ "$bb" ] ]
+  ],
+  "dependencies": {}
+}

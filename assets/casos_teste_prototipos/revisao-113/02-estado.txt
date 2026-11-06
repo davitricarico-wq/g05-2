@@ -1,0 +1,4 @@
+Browser tab: 1, Title: "PrototipoMonitoramento - Wokwi ESP32, STM32, Arduino Simulator", URL: "https://wokwi.com/projects/479252249534862337".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~			33 text 00:33.016 56%
+The focused UI element is 0 AXWebArea PrototipoMonitoramento - Wokwi ESP32, STM32, Arduino Simulator, URL: wokwi.com/projects/479252249534862337
