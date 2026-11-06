@@ -37,9 +37,11 @@
 
 ## 📜 Descrição
 
-Descreva seu projeto (até 600 palavras)
+O C.R.I.S.I.S (Controle e Resposta Inteligente em Situações de Incidente e Segurança) é um projeto de Internet das Coisas desenvolvido pela equipe Synthetix, do Inteli, em parceria com a Unipar. Seu objetivo é apoiar a evacuação da fábrica de Cubatão em situações de emergência, com foco em vazamento de cloro. Atualmente, a confirmação da chegada das pessoas aos pontos de encontro depende de chamadas manuais, enquanto a liberação das catracas durante uma emergência dificulta saber quantas pessoas permanecem na planta. Isso atrasa a identificação de quem ainda pode precisar de ajuda.
 
-Inclua um link para o vídeo de demonstração do funcionamento de seu projeto (sprint 5)
+A solução proposta combina três tipos de dispositivo. Sensores ultrassônicos junto às catracas das portarias contam passagens de entrada e saída para estimar, de forma anônima, quantas pessoas estão na fábrica; eles não leem crachás nem identificam quem passou. Leitores RFID nas passagens de zonas monitoradas registram a última área pela qual cada pessoa passou. Nos pontos de encontro, totens permitem que cada pessoa confirme sua chegada aproximando o crachá. Os leitores RC522 previstos para os protótipos exigem essa aproximação. Uma eventual leitura automática à distância nas zonas, em uma instalação industrial, dependeria da escolha e validação de outra tecnologia RFID. Uma aplicação web deverá reunir esses dados para o Centro de Controle Operacional, mostrando as confirmações e as pessoas que ainda não chegaram e a localização final de cada. Assim, estes profissionais poderão usar a aplicação web para acompanhar as informações e orientar o SSMA e as equipes devidas para apoio à operação de evacuação e contagem e assistência dos evacuados.
+
+O desenvolvimento ocorre em sprints. O primeiro protótipo, feito com Arduino Uno e simulado no Wokwi, testou a contagem de entradas e saídas. O repositório também reúne os firmwares dos protótipos de monitoramento por crachá e de confirmação no totem, além da documentação e dos casos de teste. A integração dos dispositivos à aplicação e seus benefícios operacionais ainda dependem de validação nas próximas etapas. O vídeo de demonstração do funcionamento do projeto será incluído após a Sprint 5.
 
 ## 📁 Estrutura de pastas
 
@@ -61,11 +63,12 @@ Posicione aqui um link para o Manual de Instruções. (Link do Template: https:/
 
 ## 🗃 Histórico de lançamentos
 
-| Versão | Sprint | Data | Principais atualizações |
-| --- | --- | --- | --- |
-| 0.1.0 | 1 | 23/10/2026 | Protótipo inicial de contagem de pessoas no Wokwi com Arduino Uno, sensores HC-SR04, LCD, buzzer e LEDs; documentação dos requisitos, regras de negócio, riscos e casos de teste CT01 a CT10. |
+| Versão | Sprint | Data       | Principais atualizações                                                                                                                                                                       |
+| ------ | ------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.1.0  | 1      | 23/10/2026 | Protótipo inicial de contagem de pessoas no Wokwi com Arduino Uno, sensores HC-SR04, LCD, buzzer e LEDs; documentação dos requisitos, regras de negócio, riscos e casos de teste CT01 a CT10. |
+| 0.2.0  | 2      | 06/11/2026 | Definição da solução com contagem nas portarias, monitoramento RFID por zonas e confirmação nos pontos de encontro; protótipo offline de monitoramento com ESP32 e RC522, incluindo firmware, circuito, montagem e testes simulados CT16 a CT23 com ressalvas; protótipo preliminar de totem offline; revisão dos requisitos funcionais e não funcionais, regras de negócio, rastreabilidade, privacidade e critérios de teste; documentação de personas, jornadas de usuário, storyboards e proposta de valor. A aplicação web e a integração entre dispositivos permanecem previstas para as próximas sprints. |
 
-Os lançamentos das sprints 2 a 5 serão registrados após as respectivas entregas.
+Os lançamentos das sprints 3 a 5 serão registrados após as respectivas entregas.
 
 ## 📋 Licença/License
 
