@@ -879,7 +879,7 @@ Os identificadores PV representam validações planejadas para os RFs, RNs e RNF
 
 #### Casos revisados do modelo 2
 
-Os CT16–CT23 estão documentados na [seção consolidada de testes do modelo 2](https://git.inteli.edu.br/graduacao/2026-2b/t25/g05/-/blob/6a627f1/document/documentacao.md#testes-prototipos), na revisão 6a627f1 da branch docs/prototipo-fisico-3.4.2. A referência fixa preserva a correspondência entre caso, resultado e evidência até a integração dessa entrega à develop.
+Os CT16–CT23 estão documentados na [seção consolidada de testes do modelo 2](https://git.inteli.edu.br/graduacao/2026-2b/t25/g05/-/blob/7b3e4a6/document/documentacao.md#testes-prototipos), na revisão 7b3e4a6 da branch docs/prototipo-fisico-3.4.2. A referência fixa preserva a correspondência entre caso, resultado e evidência até a integração dessa entrega à develop.
 
 | Casos oficiais | Persona e necessidade | RF/RN e alcance | RNF relacionado | Evidência e status |
 | --- | --- | --- | --- | --- |
@@ -888,7 +888,7 @@ Os CT16–CT23 estão documentados na [seção consolidada de testes do modelo 2
 | CT20–CT22 | Gustavo, Tuco — observar a aquisição de UID | RF011/RN09 tratam da integração identificada futura. A leitura local ainda não comprova cadastro, autorização ou confirmação. | RNF03 e RNF05 como metas futuras. | Capturas de dois UIDs fictícios nos modos normal e emergência. Resultado parcial por ausência de medição do áudio. |
 | CT23 | Maria, Tuco — conhecer a recuperação após reinício | Requisito do estado de emergência do ESP32 a formalizar. RN15 trata da recuperação da etapa conectada. | RNF02 como meta futura de preservação e reconciliação. | Capturas antes/depois. Retorno implementado a NORMAL observado, com perda da emergência registrada como limitação. |
 
-A execução visual/serial desses CTs não aprova os RNFs relacionados. A revisão técnica está no [parecer da #113](https://git.inteli.edu.br/graduacao/2026-2b/t25/g05/-/blob/6a627f1/document/outros/revisao-prototipo-digital-113.md). CT11–CT15 permanecem identificados nessa mesma entrega como planejamento anterior a readequar.
+A execução visual/serial desses CTs não aprova os RNFs relacionados. As [ressalvas técnicas da #113](https://git.inteli.edu.br/graduacao/2026-2b/t25/g05/-/blob/7b3e4a6/document/documentacao.md#ressalvas-modelo-2) delimitam o alcance das evidências. CT11–CT15 permanecem identificados nessa mesma entrega como planejamento anterior a readequar.
 
 #### Cobertura e atualização
 
