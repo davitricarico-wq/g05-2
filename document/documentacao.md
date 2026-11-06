@@ -37,41 +37,56 @@ A Unipar é uma empresa brasileira do setor químico e petroquímico, com mais d
 
 Este projeto é feito com a fábrica de Cubatão, a unidade com a maior capacidade de produção de cloro da empresa (Unipar Carbocloro S.A., 2023), onde trabalham cerca de 355 funcionários diretos e cerca de 400 de empresas parceiras (informação verbal)[^1]. Em uma emergência, como um vazamento de cloro, essas pessoas precisam sair da área rápido e chegar aos pontos de encontro. Hoje, esse processo é quase todo manual: o alarme é acionado por um operador, a empresa só sabe quem entrou e saiu pela portaria, sem saber onde cada pessoa está dentro da planta, e a confirmação de quem chegou ao ponto de encontro é feita pelos líderes, por chamada. Além disso, durante a emergência, as catracas são liberadas para dar vazão e deixam de registrar quem passa. Com isso, a evacuação fica mais lenta e é difícil saber, rápido, quem ainda não chegou (informação verbal)[^1].
 
+Para isso, a Synthetix propõe o C.R.I.S.I.S, uma solução de Internet das Coisas (IoT) que confirma a chegada de cada pessoa ao ponto de encontro pela leitura do crachá, registra a última zona por onde ela passou e reúne essas informações em uma aplicação web para a equipe de Segurança, Saúde e Meio Ambiente (SSMA) e para o Centro de Controle Operacional (CCO).
+
 [^1]: Informação fornecida por representantes da Unipar na reunião de kickoff do projeto, em 16 de outubro de 2026.
 
 ## 1.1 Objetivos
 
 Os objetivos abaixo foram definidos a partir do Termo de Abertura do Projeto (Unipar, 2026a) e da reunião de kickoff com a Unipar (informação verbal)[^1].
 
-**Objetivo geral**
+**Objetivo geral:** tornar a evacuação das áreas fabris da Unipar em Cubatão mais rápida, precisa e rastreável, permitindo saber quem já chegou aos pontos de encontro e quem ainda precisa ser procurado durante uma emergência (Unipar, 2026a).
 
-Aumentar a rapidez, a precisão e a rastreabilidade da evacuação da fábrica de Cubatão em situações de emergência, fortalecendo a gestão de emergências e a proteção das pessoas que estão na planta.
+**Objetivos específicos:**
 
-**Objetivos específicos**
-
-- Melhorar a visibilidade sobre a população presente na planta e as pendências de conferência durante a evacuação;
-- Apoiar a apuração quantitativa mesmo quando as catracas e portas são liberadas durante a emergência;
-- Agilizar a conferência nos pontos de encontro, reduzindo o esforço manual sem dispensar a confirmação individual quando necessária;
-- Apoiar a apuração de pessoas ainda não confirmadas em até dez minutos após o alarme, conforme o prazo interno informado pela Unipar;
-- Avisar a sala de controle e as equipes de resposta sobre o andamento da evacuação, dando mais agilidade às decisões.
+1. Confirmar individualmente a chegada de cada pessoa ao ponto de encontro, substituindo a conferência manual por listas.
+2. Identificar quem ainda não confirmou a chegada a tempo de a SSMA decidir a busca dentro do prazo interno de 10 minutos informado pela Unipar (informação verbal)[^1].
+3. Apoiar a orientação da busca feita pelos brigadistas com a última área registrada de cada pessoa não confirmada.
+4. Dar à SSMA e ao CCO uma visão consolidada da evacuação, com a estimativa de pessoas na planta e as confirmações em cada ponto de encontro.
+5. Manter registros rastreáveis de cada evacuação, para auditorias, simulados e melhoria do plano de emergência.
+6. Proteger os dados dos colaboradores, usando a identificação nominal somente durante a emergência e somente por quem coordena a resposta.
 
 ## 1.2 Proposta da solução
 
-A proposta do C.R.I.S.I.S é apoiar a conferência da evacuação da Unipar em Cubatão por meio de contagem quantitativa nos acessos aos pontos de encontro. Na Sprint 1, o protótipo desenvolvido demonstra entradas e saídas simuladas, mantém um total local e oferece retorno visual e sonoro. Esse recorte permite estudar a lógica de contagem e suas falhas antes de ampliar a solução.
+O C.R.I.S.I.S, solução proposta pela Synthetix, é um sistema de Internet das Coisas (IoT) que acompanha a evacuação em três pontos da planta e reúne as informações em uma aplicação web:
 
-Na Sprint 1, a contagem do protótipo é anônima: informa passagens e saldo local, sem identificar pessoas. Na solução integrada, a leitura de crachá no ponto de encontro (PE) identifica quem chegou; os protótipos das catracas continuam contabilizando entradas e saídas identificadas durante a emergência. A equipe continua responsável pela conferência humana e pelas decisões de emergência. O protótipo não orienta rotas nem controla catracas.
+- **Nas portarias**, sensores contam as entradas e saídas e estimam quantas pessoas estão dentro da planta, sem identificar ninguém.
+- **Nas portas das zonas monitoradas**, leitores registram o crachá de quem passa e guardam a última zona de cada pessoa.
+- **Nos pontos de encontro**, totens confirmam a chegada de cada pessoa quando ela aproxima o crachá do leitor.
 
-Na visão completa pensada para a solução, os registros de crachá e das portarias poderão fornecer a população de referência da planta. Os dispositivos dos pontos de encontro enviarão confirmações identificadas e contagens para um painel compartilhado pelo CCO e pela SSMA, com ocupação por ponto, diferença quantitativa em relação à referência, tempo desde o alarme, alertas e histórico. Essa integração busca apoiar a conferência dentro do prazo interno de dez minutos.
+Em uma emergência, o CCO inicia o protocolo na aplicação e indica os pontos de encontro ativos, conforme a orientação da SSMA. A aplicação mostra em um só lugar a estimativa de pessoas na planta, as confirmações em cada ponto e quem ainda não confirmou. Aos 10 minutos, a SSMA recebe a lista de quem não confirmou, com a última zona registrada, e decide a busca dos brigadistas. Os nomes só aparecem enquanto a emergência está ativa e para quem coordena a resposta.
 
-Também se pretende analisar a viabilidade de aproveitar os registros de acesso entre áreas para informar a última área registrada antes do alarme. Esse dado seria uma referência histórica, não a localização atual de alguém nem prova de quem deixou de chegar ao ponto de encontro. Sua integração depende da disponibilidade dos dados, das permissões e da revisão de privacidade. Monitoramento por áreas, orientação durante a evacuação e contagem em fluxos simultâneos exigem análise e validação próprias antes de integrarem a implementação. Assim, a Sprint 1 demonstra o núcleo de contagem local, e as demais capacidades serão incorporadas progressivamente conforme a viabilidade e o avanço do projeto.
+Assim, cada objetivo da seção 1.1 é atendido: a confirmação no totem substitui a lista em papel (objetivo 1); a sinalização aos 10 minutos e a última zona registrada apoiam a decisão e a orientação da busca (objetivos 2 e 3); a aplicação consolida a evacuação e guarda o histórico (objetivos 4 e 5); e a exibição restrita dos nomes protege os dados dos colaboradores (objetivo 6).
+
+O Termo de Abertura do Projeto de Inovação (TAPI) também prevê a orientação da rota de evacuação (Unipar, 2026a). Esse item ficou fora do escopo desta solução por dois motivos. Primeiro, as áreas de processo da Unipar são classificadas, com risco de vazamento e incêndio (Unipar, 2026a), o que restringe a instalação de sinalização eletrônica ao longo das rotas. Segundo, em um vazamento de cloro, o ponto de encontro usado depende da direção do vento e é definido pela SSMA no momento do incidente (informação verbal)[^1]. A solução apoia a orientação de outra forma: o CCO seleciona na aplicação os pontos de encontro ativos indicados pela SSMA, e os brigadistas recebem a última zona registrada de quem ainda não confirmou.
+
+O protótipo da Sprint 1 testou a contagem de entradas e saídas que deu origem ao dispositivo das portarias. A partir da Sprint 2, os protótipos passam a representar os três dispositivos da solução, detalhados nas seções 3.1.3 e 3.3.
 
 ## 1.3 Justificativa
 
-A conferência manual e a perda de registros de passagem quando as catracas são liberadas dificultam a consolidação rápida de informações durante a evacuação, conforme o contexto informado no kickoff. A proposta atua sobre esse problema ao experimentar uma contagem local que continua funcionando nos dois estados de sinalização, preservando a verificação humana. O benefício esperado é reduzir o esforço de apuração quantitativa e oferecer um dado adicional à equipe responsável pelo ponto de encontro.
+O cloro é um gás tóxico e mais denso que o ar, que se acumula perto do solo (NIOSH, 2019). Em um vazamento, cada minuto entre o alarme e a confirmação de que todos saíram conta. Hoje, essa confirmação depende de chamadas com lista e rádio nos pontos de encontro, sob ruído de sirene e vento, e o prazo interno de 10 minutos para decidir a busca corre enquanto os números ainda estão sendo somados (informação verbal)[^1].
 
-O diferencial do recorte da Sprint 1 é dispensar dispositivos individuais e identificação pessoal no fluxo de contagem: a interação se resume à passagem pelo acesso simulado e à leitura do total local. Isso permite verificar entradas, saídas, bloqueio de repetição e falhas de leitura com uma montagem pequena e reproduzível. Não há comprovação, nesta etapa, de redução de tempo, acurácia em campo ou cumprimento do prazo de dez minutos. As metas e o protocolo de validação estão nas seções 3.1.3.5 e 3.4.1.1.
+**Potencial e benefícios.** A solução troca a chamada manual por uma confirmação feita pela própria pessoa, ao aproximar o crachá do totem. Com isso, a SSMA passa a saber quem já chegou sem esperar a soma das listas, recebe aos 10 minutos quem ainda falta e tem a última zona registrada de cada pessoa para orientar a busca. Cada evacuação também passa a deixar um registro com horários, confirmações e alertas, o que atende ao pedido de rastreabilidade do TAPI (Unipar, 2026a) e serve para auditorias e simulados.
 
-A expansão para consolidação remota poderá melhorar a visibilidade do CCO/SSMA nas próximas sprints. O aproveitamento dos registros de acesso existentes poderá reduzir a necessidade de introduzir dispositivos pessoais adicionais, se a integração for viável. O acompanhamento agregado por pontos de encontro e a eventual consulta à última área registrada buscam oferecer contexto para a conferência, sem rastreamento contínuo de alta precisão. Esses diferenciais pertencem à visão planejada; a versão atual demonstra somente a contagem e a sinalização locais, mantendo a conferência nominal pelos procedimentos do parceiro.
+**Por que esta combinação de tecnologias.** Antes de chegar a essa solução, a equipe comparou três abordagens:
+
+- **Contagem anônima nas passagens:** diz quantas pessoas estão na planta, mas não diz quem falta nem onde procurar, e erros de contagem podem se compensar.
+- **Identificação individual com localização contínua:** diria onde cada pessoa está, mas exigiria equipamento em toda a área de processo e trataria dados de localização o tempo todo. Além disso, o TAPI deixa a localização precisa em ambientes internos fora do escopo do projeto (Unipar, 2026a).
+- **Confirmação por crachá em pontos definidos:** diz quem chegou e qual foi a última zona registrada, mas depende de a pessoa aproximar o crachá e não dá a posição exata.
+
+A solução combina a primeira e a terceira: a contagem anônima nas portarias dá a referência de quantas pessoas estavam na planta, e a leitura do crachá nas zonas e nos pontos de encontro diz quem chegou e onde procurar quem não chegou. Ela evita a localização contínua e reduz o uso de dados pessoais, o que facilita o atendimento à Lei Geral de Proteção de Dados Pessoais (Brasil, 2018): os nomes só aparecem durante a emergência e para quem coordena a resposta.
+
+**Diferencial.** A solução usa o crachá, que já é de uso obrigatório na planta (informação verbal)[^1], em vez de um novo dispositivo por pessoa, e não substitui o procedimento de emergência da Unipar: a decisão da busca continua com a SSMA. Os benefícios ainda dependem de validação em simulados, principalmente quanto ao tempo que a aproximação do crachá acrescenta à chegada nos pontos de encontro.
 
 # <a name="c2"></a>2. Metodologia (sprint 3)
 
@@ -171,43 +186,119 @@ Por fim, as ameaças estão relacionadas às condições externas do mercado e �
 
 #### 3.1.3.1 Qual é o problema a ser resolvido
 
-A Unipar opera uma planta química em Cubatão (SP), onde vazamentos de cloro ou incêndios exigem abandono de área e conferência rápida nos Pontos de Encontro (PEs). Segundo o contexto operacional fornecido ao projeto, a população de referência é de aproximadamente 755 pessoas, sendo 355 colaboradores próprios e 400 terceirizados. Esses valores orientam o dimensionamento preliminar; a população de cada emergência depende do saldo efetivo das portarias.
+A Unipar opera uma planta química em Cubatão (SP), onde emergências operacionais como vazamentos de cloro gasoso ou incêndios exigem abandono imediato de área e conferência rápida nos Pontos de Encontro (PEs). Segundo o contexto operacional fornecido ao projeto, a população de referência para dimensionamento preliminar é de aproximadamente 755 pessoas, compreendendo cerca de 355 colaboradores próprios e 400 terceirizados (além de eventuais visitantes). Na prática operacional, a população presente em cada ocorrência depende do fluxo efetivo de entradas e saídas nas portarias da unidade.
 
-No alarme, a liberação das catracas permite a evasão, mas interrompe o registro individual das passagens. A chamada manual nos PEs dificulta a consolidação pelo Centro de Controle Operacional (CCO). A regra interna informada pela Unipar determina que pessoas não confirmadas em até dez minutos após o alarme sejam tratadas como casos críticos, com acionamento imediato da brigada. Esse prazo é uma diretriz do parceiro, não um prazo estabelecido pela NR-23.
+Em situação de alarme de emergência, a liberação das catracas permite a vazão física rápida para evasão, conforme o princípio geral da Norma Regulamentadora NR-23 de manter saídas desobstruídas para abandono seguro (BRASIL, 2022), mas interrompe o registro eletrônico individual das passagens. Ao mesmo tempo, a ausência de visibilidade sobre a última zona acessada pelos trabalhadores e a dependência de chamadas manuais com listas em papel nos Pontos de Encontro dificultam e retardam a consolidação das informações pelo Centro de Controle Operacional (CCO) e pela equipe de Saúde, Segurança e Meio Ambiente (SSMA). Pela diretriz interna informada pela Unipar no Termo de Abertura do Projeto de Inovação (TAPI) e no kickoff, qualquer pessoa não confirmada em até 10 minutos após o acionamento do alarme é classificada como caso crítico, exigindo o acionamento imediato da Brigada de Emergência para busca e resgate. Esse limite de 10 minutos constitui uma regra operacional interna da parceira, e não um prazo fixado pela NR-23.
 
 O cloro é tóxico, mais denso que o ar e não inflamável, embora seja um forte oxidante (NIOSH, 2019). Seu risco tóxico não caracteriza, por si só, uma área com atmosfera explosiva. A NR-20 trata de inflamáveis e combustíveis; sua aplicação depende das substâncias e atividades presentes. A classificação de áreas e a adequação dos equipamentos dependem de avaliação técnica específica. A NR-23 exige condições de abandono rápido e seguro, sem obstrução das passagens (Brasil, 2022, 2025).
 
-**Rastreabilidade das informações internas:** população, procedimento de portaria, SLA e restrição do TAPI foram fornecidos no contexto do projeto. O kickoff ocorreu em **16/10/2026**, conforme confirmação de Arthur Davi da Silva Rodrigues em 23/10/2026. A ata e a versão/data do TAPI ainda não estão disponíveis no repositório. Não se atribuem esses dados operacionais ao relatório público de sustentabilidade.
+**Rastreabilidade das informações internas:** dados de população aproximada, procedimento de liberação de catracas, conferência manual, prazo interno de 10 minutos, atuação do CCO a partir de sala segura e restrição de não realizar localização contínua de alta precisão em ambientes internos foram fornecidos no contexto do projeto (TAPI e reunião de kickoff realizada em **16/10/2026**, conforme confirmação registrada em 23/10/2026). A ata formal e a versão/data publicada do TAPI permanecem pendentes de disponibilização no repositório, não sendo tais parâmetros operacionais atribuídos ao relatório público de sustentabilidade.
 
 #### 3.1.3.2 Qual a solução proposta (visão de negócios)
 
-Propõe-se apoiar a SSMA com confirmação identificada por crachá nos PEs e contagem quantitativa nas catracas, sem rastreamento contínuo de alta precisão em ambientes internos. No modelo integrado futuro, o saldo das Portarias P1/P2 será congelado no alarme como população inicial `B`. Nesta documentação, **`A` significa a quantidade estimada de pessoas atualmente nos PEs: entradas somadas e saídas descontadas**, e não o total histórico de chegadas. O saldo `D = B - A` apoiará a apuração de pendências, preservando a conferência humana: igualdade numérica não identifica pessoas nem garante que todos estejam seguros.
+A solução proposta pela equipe Synthetix (Grupo G05) integra **três tipos de dispositivos baseados em ESP32** a uma **aplicação web centralizada** para apoiar o monitoramento e a confirmação da evacuação em emergências industriais na planta de Cubatão, respeitando a restrição do TAPI de não realizar localização contínua precisa em ambientes internos e sem substituir os procedimentos institucionais de emergência da Unipar. A implantação real poderá demandar múltiplas unidades físicas de cada tipo de dispositivo, conforme a quantidade de portarias, portas de zonas e pontos de encontro monitorados.
 
-Na Sprint 1, o protótipo Wokwi utiliza Arduino Uno e **dois sensores HC-SR04**, um para entrada e outro para saída, LCD, buzzer e LEDs. O botão alterna os LEDs para **simular a mudança para o estado de emergência** e não pausa a contagem; no sistema real, a mudança de estado virá da integração com o alarme da empresa. A detecção usa sensores dedicados a cada sentido; não há algoritmo implementado de direção pela ordem de acionamento de dois feixes. A evolução futura poderá adotar ESP32, após definição de arquitetura. Dashboard, comunicação em rede, integração às portarias, registros de horário, histórico e alerta automático ao CCO/brigada ainda são funcionalidades futuras. A seção 3.3.8 detalha os limites e o modelo técnico; a seção 3.4.1 registra CT01–CT10.
+Na Sprint 1, o protótipo Wokwi utiliza Arduino Uno e **dois sensores HC-SR04**, um para entrada e outro para saída, LCD, buzzer e LEDs. O botão apenas alterna os LEDs e **não pausa a contagem**. A detecção usa sensores dedicados a cada sentido; não há algoritmo implementado de direção pela ordem de acionamento de dois feixes. Dashboard, comunicação em rede, integração às portarias, registros de horário, histórico e alerta automático ao CCO/brigada ainda são funcionalidades futuras. A seção 3.3.8 detalha os limites e o modelo técnico; a seção 3.4.1 registra CT01–CT10.
+
+Os três módulos de hardware e a camada de software que compõem a arquitetura proposta são:
+
+1. **Dispositivo de controle de entradas e saídas da planta (Portarias / Catracas):**
+   - Utiliza **dois sensores ultrassônicos HC-SR04** (um dedicado ao registro de passagens de entrada e outro ao de saída) acoplados a um microcontrolador (evoluindo do protótipo inicial em Arduino Uno da Sprint 1 para **ESP32** na versão final conectada via Wi-Fi e MQTT) para calcular continuamente uma estimativa da quantidade de pessoas na planta, $P(t)$.
+   - Como os sensores ultrassônicos não leem crachás, a contagem das portarias é **estritamente anônima e quantitativa**, servindo como referência numérica, mas sujeita a erros de medição (especialmente quando as catracas estão liberadas e múltiplas pessoas passam simultaneamente ou quando ocorre falha de leitura), não informando nominalmente quem está na planta.
+
+2. **Dispositivo de monitoramento por zonas (Acessos às Zonas Monitoradas):**
+   - Utiliza **ESP32** e **leitores RFID RC522** compatíveis com **tags MIFARE de 13,56 MHz**, instalando-se um nó junto ao leitor de cada porta monitorada (no protótipo acadêmico pode-se simular mais de uma porta, o que não comprova por si só a viabilidade física em locais distantes na fábrica).
+   - A leitura válida de uma tag atualiza o estado da pessoa na zona correspondente por lógica de alternância: a primeira leitura no acesso registra a entrada na zona e a leitura seguinte registra a saída. Quando uma tag é lida em uma nova zona, a aplicação web encerra automaticamente a associação ativa à zona anterior e registra a nova zona. De modo análogo, a confirmação posterior em um Ponto de Encontro encerra a associação ativa à zona, preservando o histórico permitido para o evento.
+   - Esse modelo atende à restrição do TAPI: o sistema registra apenas a **última passagem detectada em porta de zona**, sem acompanhar a trajetória da pessoa entre leitores nem determinar sua posição exata no interior do ambiente.
+
+3. **Dispositivo de confirmação nos Pontos de Encontro (Totens nos PEs):**
+   - Os Pontos de Encontro são áreas abertas situadas entre as portarias de entrada da planta e as zonas monitoradas; como não possuem leitores de zona em seus acessos, as pessoas nesses espaços abertos compõem o contingente não associado a nenhuma zona monitorada.
+   - Cada Ponto de Encontro contará com um **totem baseado em ESP32 e leitor RFID** compatível com as tags adotadas, além de sinalização local por LED e buzzer (que confirmam unicamente o registro da leitura do crachá, e não a segurança física da pessoa).
+   - Durante a evacuação, cada pessoa aproxima seu crachá RFID do totem para confirmar sua chegada, permitindo à aplicação associar o identificador ao cadastro correspondente. Caso ocorra falha de conexão de rede, o totem pode ser ativado por botão local e armazena as leituras em memória local para sincronização automática assim que a conectividade for restabelecida.
+
+4. **Aplicação Web e Modelo de Indicadores do Balanço ($P(t)$, $B_0$, $Z(t)$, $M(t)$ e $G(t)$):**
+   - A aplicação web reúne os dados dos três tipos de dispositivos e apresenta à SSMA, ao CCO e aos brigadistas a estimativa de pessoas na planta, as pessoas com última zona registrada, as confirmações nos Pontos de Encontro e o horário da última atualização.
+   - Para fundamentar a interpretação operacional e explicitar seus limites, o modelo considera cinco variáveis:
+     - $P(t)$: estimativa anônima da quantidade de pessoas dentro da planta no instante $t$, calculada pelos sensores ultrassônicos das portarias;
+     - $B_0$: estimativa anônima de pessoas na planta no início da emergência, congelada no instante do alarme ($t_0$);
+     - $Z(t)$: conjunto de identificadores RFID distintos associados ativamente a uma zona monitorada no instante $t$;
+     - $M(t)$: conjunto de identificadores RFID distintos com confirmação registrada em Ponto de Encontro ativo no instante $t$;
+     - $G(t)$: estimativa de pessoas dentro da planta que não estão associadas a uma zona monitorada ("gap" em áreas abertas/circulação), dada por:
+
+$$G(t) = P(t) - |Z(t)|$$
+
+   - Como os Pontos de Encontro situam-se fora das zonas monitoradas, as pessoas que neles se encontram integram $G(t)$ até que confirmem presença no totem. Sendo os registros ativos de zona e de Ponto de Encontro mutuamente exclusivos no mesmo instante $t$, a expressão $G(t) - |M(t)|$ estima quantas pessoas permanecem sem associação ativa a uma zona e sem confirmação em Ponto de Encontro.
+   - Complementarmente, $B_0 - |M(t)|$ indica quantas pessoas da população de referência inicial ainda não foram confirmadas em um Ponto de Encontro (sem identificá-las nominalmente por si só e podendo incluir quem saiu da planta sem passar por um PE), enquanto $B_0 - |Z(t)|$ indica quantas pessoas da referência inicial não estão associadas ativamente a uma zona monitorada.
+
+**Separação entre o escopo implementado na Sprint 1 e a solução final proposta:**
+- **Planejado para a solução final (próximas sprints):** migração do contador das portarias para **ESP32** com nova lógica de botão/LEDs de emergência, inclusão dos nós **ESP32 + RFID RC522** nas portas de zonas e nos totens dos Pontos de Encontro, conectividade **Wi-Fi/MQTT**, armazenamento offline temporário nos totens e construção da **aplicação web** com controle de acesso e regras de privacidade atualizadas para tratamento de identificadores RFID. A solução **não calcula rotas de evacuação** (pilar de Orientação fora do escopo completo do grupo G05, tratado apenas parcialmente pelo apoio informativo à coordenação da SSMA, do CCO e dos brigadistas).
 
 #### 3.1.3.3 Como a solução proposta deverá ser utilizada
 
-A jornada prevista compreende **cinco etapas**:
+A operação da solução proposta envolve a atuação coordenada do **Operador do CCO**, dos **Porteiros**, dos **Colaboradores, Terceiros e Visitantes**, dos **Brigadistas** e da **Equipe de SSMA**, distribuindo-se em cinco etapas operacionais:
 
-1. **Rotina:** na visão futura, os registros das portarias poderão sustentar o saldo da planta; essa integração ainda depende de validação. O protótipo local permanece contando nos dois estados dos LEDs.
-2. **Alarme:** as catracas são liberadas conforme o procedimento da Unipar. No sistema integrado futuro, serão congelados `B` e o instante inicial do evento. O botão do protótipo simula a alternância do estado de emergência, mas não aciona o alarme real, não abre evento na plataforma e não zera o contador.
-3. **Chegada e saída nos PEs:** os líderes orientam as passagens pelos acessos monitorados. Cada entrada válida incrementa o total local e cada saída válida o reduz, com indicação no LCD e buzzer. A quantidade de acessos deve ser dimensionada para evitar retenção, conforme a seção 3.3.8.
-4. **Conferência e resposta:** atualmente, a leitura é local e a consolidação depende das equipes. Futuramente, o CCO acompanhará `D`; se `D > 0` aos dez minutos, haverá alerta automático para acionamento imediato da brigada conforme a regra interna. A SSMA coordena as ações. Baixo fluxo **pode indicar um problema que precisa ser investigado**, sem permitir concluir que uma rota está bloqueada.
-5. **Contingência e reconciliação:** falha de sensor, referência inconsistente, saída não registrada ou perda de comunicação na versão futura exigem conferência manual. `A > B` representa inconsistência; `D = 0` exige validação operacional e não encerra automaticamente a emergência.
+1. **Operação de Rotina (Controle de Portarias e Monitoramento por Zonas):**
+   - Nas portarias da planta, os dispositivos com dois sensores ultrassônicos contabilizam continuamente as entradas e saídas para atualizar a estimativa $P(t)$, mantendo o **LED verde aceso** e o **LED vermelho apagado** em estado normal.
+   - Nas portas das zonas monitoradas, os colaboradores, terceiros e visitantes (previamente cadastrados e portando tags RFID MIFARE de 13,56 MHz) registram suas passagens nos leitores RC522. O sistema alterna o estado da tag entre entrada e saída naquela zona (ou transfere a associação ativa quando a tag é lida em nova zona), partindo de um estado inicial reconciliado e zerado nas trocas de turno ou quando a planta fica vazia. Fora de situações de emergência ativa, a identificação nominal permanece oculta na aplicação web.
+
+2. **Deflagração da Emergência e Ativação Coordenada (CCO e Porteiros):**
+   - Diante de uma emergência (como vazamento de cloro), o **CCO** aciona o protocolo de dentro da sala segura por meio da aplicação web, congelando a estimativa inicial $B_0$ no instante $t_0$, iniciando a contagem do prazo interno de 10 minutos e ativando remotamente o modo de leitura dos totens RFID nos Pontos de Encontro designados pela SSMA (selecionados conforme a área afetada e a direção do vento).
+   - Simultaneamente, o CCO comunica-se por **radiocomunicador com os porteiros** para que pressionem o botão físico nos dispositivos instalados nos acessos de entrada e saída da planta. Na versão ESP32 final, esse acionamento apaga o LED verde e mantém o **LED vermelho aceso**, sinalizando localmente o protocolo de emergência ativo nas portarias.
+   - Caso ocorra falha de comunicação de rede antes que algum totem de Ponto de Encontro receba o comando remoto do CCO, um integrante da SSMA ou brigadista ativa o modo de leitura pressionando o **botão físico local do totem**.
+
+3. **Deslocamento e Confirmação Nominal por RFID nos Pontos de Encontro:**
+   - Durante a evacuação, os trabalhadores dirigem-se aos Pontos de Encontro ativos. Ao chegar ao totem do Ponto de Encontro, cada pessoa **aproxima seu crachá/tag RFID do leitor**.
+   - A leitura válida aciona a sinalização visual e sonora local do totem (LED e buzzer, que indicam apenas que o crachá foi lido), encerra a associação ativa daquela pessoa à última zona monitorada e registra sua confirmação no conjunto $M(t)$ da aplicação web (ou armazena o evento localmente no ESP32 caso a rede esteja indisponível, sincronizando-o quando a conexão retornar).
+
+4. **Monitoramento na Aplicação Web e Coordenação de Resgate aos 10 Minutos:**
+   - Durante a emergência ativa, a aplicação web habilita a visualização nominal restrita aos usuários autorizados da SSMA e do CCO, exibindo $P(t)$, $B_0$, as pessoas confirmadas nos Pontos de Encontro ($M(t)$), as pessoas que permanecem com última passagem registrada em alguma zona monitorada ($Z(t)$), os indicadores de diferença ($G(t) = P(t) - |Z(t)|$, $G(t) - |M(t)|$, $B_0 - |M(t)|$ e $B_0 - |Z(t)|$) e o horário da última atualização.
+   - Quando o limite interno de **10 minutos** definido no TAPI é atingido, a aplicação sinaliza à SSMA as pessoas ainda sem confirmação em Ponto de Encontro. A equipe de SSMA analisa os dados, coordena a resposta e orienta os brigadistas pelos canais operacionais da Unipar, utilizando o registro da última zona conhecida ($Z(t)$) como subsídio investigativo de busca (ciente de que esse dado informa apenas a última porta lida, e não a localização exata do indivíduo).
+
+5. **Tratamento de Limitações Operacionais e Encerramento do Protocolo:**
+   - **Limitações e contingências na interpretação:** (i) leituras perdidas ou duplicadas nos leitores RFID de zona podem inverter o estado de entrada/saída e exigem conferência operacional; (ii) a contagem ultrassônica nas portarias ($P(t)$ e $B_0$) é anônima e tem maior risco de erro com catracas liberadas e pessoas passando juntas; (iii) para obter uma lista nominal completa de esperados no início da emergência, é indispensável uma fonte cadastral confiável de quem entrou na planta (incluindo terceiros e visitantes com tags distribuídas), pois o sensor ultrassônico não gera lista nominal e as zonas monitoradas não cobrem áreas abertas; e (iv) se uma pessoa sair diretamente da planta sem passar por um Ponto de Encontro, ela poderá continuar constando como não confirmada em $B_0 - |M(t)|$ até a reconciliação.
+   - **Encerramento formal:** somente após a equipe de SSMA avaliar e confirmar que todos estão seguros, o protocolo é encerrado na aplicação web e a SSMA comunica os porteiros para que pressionem novamente o botão nos dispositivos das catracas, apagando o LED vermelho e reacendendo o LED verde.
 
 #### 3.1.3.4 Quais os benefícios trazidos pela solução proposta
 
-Espera-se agilizar a apuração quantitativa, melhorar a visibilidade para SSMA/CCO e apoiar a identificação de pendências dentro do prazo interno de dez minutos. O LCD já fornece o total local; consolidação remota, histórico e análise temporal de simulados dependem das integrações futuras. Os benefícios são esperados, sem redução de tempo ou desempenho industrial comprovados nesta sprint.
+Os benefícios descritos a seguir representam **resultados esperados e potenciais** da arquitetura completa proposta (versão 7), cuja comprovação dependerá das próximas etapas de desenvolvimento, integração e testes em simulados:
+
+1. **Apoio à Proteção da Vida e Resposta dentro do Prazo de 10 Minutos:**
+   - Potencial para substituir a chamada manual em papel nos Pontos de Encontro pela confirmação rápida via aproximação de crachá RFID nos totens, agilizando a identificação de quem já atingiu local seguro ($M(t)$);
+   - Apoio informativo à atuação da Brigada de Emergência e da SSMA ao atingir o limite de 10 minutos, fornecendo a última zona registrada ($Z(t)$) das pessoas ainda não confirmadas para orientar a priorização de buscas sem depender exclusivamente de relatos verbais.
+
+2. **Visibilidade Situacional Integrada e Resiliência Operacional:**
+   - Consolidação, em uma única aplicação web para a SSMA e o CCO, das três camadas do fluxo de evacuação: portarias ($P(t)$ e $B_0$), zonas internas monitoradas ($Z(t)$) e Pontos de Encontro ($M(t)$), permitindo estimar inclusive o contingente em áreas abertas intermediárias ($G(t)$);
+   - Redundância operacional nos acionamentos críticos e na coleta: combinação de ativação remota pelo CCO com acionamento físico local nas portarias (via porteiros avisados por rádio) e nos totens dos PEs (via botão local e armazenamento offline temporário em caso de queda de Wi-Fi/MQTT).
+
+3. **Governança, Privacidade por Contexto e Escalabilidade Modular:**
+   - Cumprimento da diretriz do TAPI de não realizar rastreamento contínuo de alta precisão em ambiente interno, trabalhando apenas com eventos discretos de passagem em portas de zona e confirmação em totens;
+   - Proteção de dados pessoais alinhada à finalidade de salvamento de vidas: embora a solução final trate dados vinculados a indivíduos via RFID, a exibição nominal na aplicação web fica bloqueada na rotina e restrita a usuários autorizados exclusivamente durante emergências ativas;
+   - Arquitetura modular em ESP32 que, após validação técnica de segurança e capacidade em Cubatão, poderá servir de base para estudos de expansão em outras unidades da Unipar.
 
 #### 3.1.3.5 Qual será o critério de sucesso e qual medida será utilizada para o avaliar
 
 **Aceitação da Sprint 1:** o protótipo deve reproduzir CT01–CT10 com as entradas e saídas da seção 3.4.1, ter código e circuito versionados, funções `setup()` e `loop()`, ao menos duas funções auxiliares utilizadas e uma classe instanciada em uso. A medida é a quantidade de casos aprovados sobre dez, acompanhada das evidências e da versão ensaiada. A revisão do diagrama exige nova execução antes de confirmar a aprovação da versão corrigida.
 
-**Metas exploratórias das próximas sprints, ainda sujeitas ao parceiro:** os critérios propostos são redução de pelo menos 60% no tempo de apuração quantitativa frente ao processo manual, capacidade para atender a população dentro do SLA e meta de acurácia por evento de pelo menos 99% em condições definidas. O protocolo, os limites de medição e o dimensionamento estão nas seções 3.3.8 e 3.4.1.1. Os dez casos funcionais documentados em Wokwi constituem evidência inicial de comportamento, sem comprovar essas metas. Resultado de 90% em estresse não aprova uso real.
+A avaliação da arquitetura integrada, ainda sujeita à validação com a parceira, combina critérios quantitativos de desempenho operacional, fidelidade de leitura/contagem e resiliência técnica, distinguindo o que foi verificado no protótipo da Sprint 1 do que será validado na arquitetura integrada com três dispositivos ESP32 e aplicação web:
+
+1. **Tempo de Confirmação e Atendimento ao Prazo Interno de 10 Minutos:**
+   - **Meta proposta:** redução mínima de 60% no tempo de apuração nos Pontos de Encontro em comparação ao procedimento manual em papel, assegurando que o dimensionamento de totens RFID nos PEs e de acessos comporte o fluxo da população dentro da janela crítica de 10 minutos (600 s) definida no TAPI.
+   - **Condição de avaliação:** como a confirmação nos Pontos de Encontro na solução final exige a interação física de aproximar o crachá do leitor RFID no totem (e, nas portarias, respeitar o tempo de rearmamento dos sensores ultrassônicos), a vazão efetiva por dispositivo deverá ser medida empiricamente em ensaios controlados e simulados de evacuação, dimensionando-se a quantidade necessária de totens e nós para evitar filas que atrasem a confirmação (conforme modelagem das seções 3.3.8 e 3.4.1.1).
+
+2. **Acurácia de Contagem nas Portarias e Confiabilidade de Leitura RFID (Zonas e PEs):**
+   - **Meta proposta:** atingir taxa de acurácia por evento igual ou superior a 99% em condições controladas tanto na detecção bidirecional de passagem pelos sensores ultrassônicos das portarias quanto no registro e associação de tags RFID MIFARE (13,56 MHz) nos leitores RC522 de zonas e totens de Ponto de Encontro.
+   - **Medidas decompostas:** nos sensores ultrassônicos das portarias, avaliar separadamente omissões, duplicidades, erros de sentido e falhas por passagem simultânea com catracas liberadas; nos nós RFID de zonas e PEs, medir a taxa de leituras válidas na primeira aproximação, a ausência de leituras fantasma/duplicadas que desalinhem o estado de entrada/saída da zona ($Z(t)$) e a exatidão da baixa automática da zona quando a tag é confirmada no totem do Ponto de Encontro ($M(t)$). Resultados inferiores (como 90% em ensaios de estresse) são tratados como diagnóstico de falha que exige correção, e não como aprovação operacional.
+
+3. **Latência de Sincronização na Aplicação Web e Persistência Offline nos Totens:**
+   - **Meta proposta:** resposta local imediata nos dispositivos de borda (até 0,5 s para sinalização de LED/buzzer/LCD) e atualização remota na aplicação web via Wi-Fi/MQTT em até 3,0 segundos após o evento em condições normais de rede, além de 0% de perda de confirmações registradas nos totens durante interrupções temporárias de conectividade (com sincronização integral do buffer local após o restabelecimento da conexão).
+
+4. **Verificação Funcional por Etapa do Projeto:**
+   - **Evidência atual da Sprint 1 (Protótipo Wokwi):** execução documentada dos dez casos de teste funcionais `CT01` a `CT10` (seção 3.4.1) no protótipo inicial com Arduino Uno e dois sensores HC-SR04 (cobrindo inicialização, entrada, liberação, saída, botão/LEDs, proteção contra saldo negativo, objeto fora de alcance, bloqueio de leitura conflitante e falha do pino `ECHO`), os quais constituem validação funcional preliminar em simulador e não comprovam ainda as metas de tempo, acurácia estatística ou operação industrial.
+   - **Validação das próximas sprints:** execução de baterias de teste integrando os três dispositivos ESP32 (portaria ultrassônica com botão de protocolo de emergência, porta de zona RFID RC522 e totem RFID de Ponto de Encontro com armazenamento offline) à aplicação web, verificando a consistência dos indicadores $P(t)$, $B_0$, $Z(t)$, $M(t)$ e $G(t)$ e o disparo do alerta de não confirmados aos 10 minutos.
 
 ### 3.1.4. Value Proposition Canvas
 
-O Value Proposition Canvas organiza o perfil do cliente — tarefas, dores e ganhos — e o mapa de valor — produtos e serviços, aliviadores de dor e criadores de ganho (Osterwalder et al., 2014). Neste projeto, considera a visão da solução descrita nas seções 1.2 e 3.1.3. As necessidades representam o contexto reunido pela equipe e hipóteses das proto-personas; o mapa diferencia a entrega da Sprint 1 das integrações planejadas, cuja implementação depende de viabilidade e validação nas próximas sprints.
+O Value Proposition Canvas relaciona o perfil do cliente (tarefas, dores e ganhos) com o mapa de valor (produtos e serviços, aliviadores de dor e criadores de ganho) da solução (Osterwalder et al., 2014). O cliente considerado é a gestão de SSMA, representada pela persona Tuco Salamanca (seção 3.2.1.3), que coordena a resposta à emergência e os brigadistas e líderes de ponto responsáveis pela conferência nos pontos de encontro.
 
 <div align="center">
   <p>Figura 3 – Value Proposition Canvas do C.R.I.S.I.S</p>
@@ -215,72 +306,25 @@ O Value Proposition Canvas organiza o perfil do cliente — tarefas, dores e gan
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial, com base em Osterwalder et al. (2014).</sub></p>
 </div>
 
-**Segmento de cliente**
-
-O cliente considerado no Canvas é o gestor de SSMA da fábrica de Cubatão, representado pela proto-persona Tuco Salamanca (seção 3.2). Seu perfil reúne necessidades de coordenação da resposta e de conferência da evacuação junto ao CCO e à brigada. As atribuições e permissões específicas devem seguir os procedimentos do parceiro; a proto-persona não constitui comprovação individual dessas responsabilidades.
+**Proposta de valor:** saber quem chegou aos pontos de encontro e onde procurar quem falta.
 
 **Perfil do cliente**
 
-_Tarefas_
-
-- Coordenar a resposta à emergência junto com o Centro de Controle Operacional (CCO);
-- Apurar as presenças e as pendências nos pontos de encontro dentro do prazo interno de dez minutos após o alarme;
-- Decidir se e para onde a brigada deve ser enviada para busca e resgate;
-- Elaborar e revisar o Plano de Ação de Emergência (PAE);
-- Acompanhar os indicadores de SSMA da unidade.
-
-_Dores_
-
-- Depender de contagem visual e de chamada em papel nos pontos de encontro;
-- Não saber com precisão se ainda existem colaboradores ou terceiros em zonas de risco;
-- Perder registro de quem passa, porque as catracas são liberadas durante a emergência;
-- Trabalhar com listas impressas que não refletem visitantes, terceiros com crachá provisório e trocas de turno do dia;
-- Ter a chamada atrapalhada pelo barulho das sirenes e dos equipamentos;
-- Lidar com pessoas que vão para um ponto de encontro diferente do previsto, por causa da direção do vento, o que gera falsas ausências em um ponto e contagens duplicadas em outro;
-- Perder minutos para direcionar a brigada enquanto os dados da evacuação ainda estão sendo consolidados;
-- Expor os brigadistas a buscas em áreas de risco sem saber onde procurar, ou procurando pessoas que já saíram.
-
-_Ganhos_
-
-- Consultar um painel com contagens consolidadas e pendências claramente diferenciadas de confirmações individuais;
-- Saber quantas pessoas ainda precisam de conferência e reunir informações complementares para orientar a resposta;
-- Dispor de informação útil dentro do prazo de dez minutos, inclusive quando a conferência estiver incompleta;
-- Apoiar o direcionamento da brigada com dados verificados e informações de campo;
-- Ter o registro da evacuação com horários, para relatórios pós-incidente e para melhorar o PAE;
-- Trabalhar com a mesma informação que o CCO, em tempo real.
+- **Tarefas:** coordenar a evacuação e a resposta à emergência; saber quem chegou aos pontos de encontro; decidir quando e onde fazer buscas; registrar a ocorrência para auditorias; revisar o Plano de Ação de Emergência e conduzir simulados.
+- **Dores:** contagem manual por listas e rádio, lenta e sujeita a erro; não saber quem falta nem onde procurar; números que chegam fragmentados e fora de ordem; o prazo de 10 minutos correndo durante a conferência; falta de registro confiável para análise posterior.
+- **Ganhos:** saber em minutos quem já chegou e quem falta; decidir a busca com uma pista de onde procurar; números confiáveis, com origem e horário; registro de cada evacuação para auditorias e simulados.
 
 **Mapa de valor**
 
-A proposta de valor é agilizar a apuração quantitativa nos pontos de encontro e, na evolução integrada, consolidá-la para apoiar as decisões de SSMA/CCO dentro do prazo interno de dez minutos. A confirmação por crachá no PE permite saber quem chegou; os registros identificados das catracas permitem conferir entradas e saídas, mas não provam a localização atual de ausentes, e nenhum indicador autoriza concluir a emergência automaticamente.
+- **Produtos e serviços:** dispositivo de contagem nas portarias, leitores de crachá nas zonas monitoradas, totens de confirmação nos pontos de encontro e aplicação web para a SSMA e o CCO.
+- **Aliviadores de dor:** confirmação pelo crachá no totem no lugar da chamada manual; lista de quem não confirmou aos 10 minutos, com a última zona registrada; portarias, zonas e pontos de encontro consolidados em uma só tela, com o horário de cada dado; registro automático de horários e confirmações.
+- **Criadores de ganho:** sinalização à SSMA no prazo de 10 minutos para decidir a busca; aviso quando os dados não são confiáveis, como dispositivo sem conexão ou leituras pendentes; relatório do evento após o encerramento; nomes exibidos só durante a emergência, protegendo os dados dos colaboradores.
 
-_Produtos e serviços_
+**Encaixe entre perfil e mapa de valor**
 
-- **Sprint 1:** protótipo simulado com sensores dedicados de entrada e saída, total local no LCD, buzzer por detecção e botão que alterna LEDs sem pausar a contagem. O LED não confirma uma chegada individual;
-- **Planejado:** população de referência das portarias P1/P2, reconciliada e congelada no alarme;
-- **Planejado:** dispositivos conectados e painel de CCO/SSMA com ocupação por ponto, saldo quantitativo pendente, tempo desde o alarme e alertas;
-- **Planejado:** histórico dos eventos de contagem com horários. Eventual consulta aos crachás e às últimas áreas registradas será avaliada separadamente.
+Cada dor principal tem um aliviador correspondente: a contagem manual é substituída pela confirmação no totem; o "não saber quem falta nem onde procurar" é respondido pela lista dos 10 minutos com a última zona registrada; os números fragmentados passam a aparecer consolidados e com horário; e a falta de registro é suprida pelo histórico de cada evento e pelo relatório após o encerramento.
 
-_Aliviadores de dor_
-
-- **Sprint 1:** o total local é atualizado por detecções simuladas, reduzindo a necessidade de somar manualmente cada evento no ensaio;
-- **Sprint 1:** o bloqueio de repetição e o descarte de eco inválido evitam alguns registros espúrios; permanecem limitações de fluxo e possíveis perdas, conforme a matriz de riscos;
-- **Sprint 1:** o LCD oferece leitura visual do saldo, enquanto o buzzer sinaliza detecção; a legibilidade e a audibilidade em campo ainda precisam ser testadas;
-- **Planejado:** a referência congelada preservará a base quantitativa do início do alarme, desde que os registros de acesso estejam completos e reconciliados, inclusive para terceiros e visitantes;
-- **Planejado:** a consolidação somará a ocupação dos PEs designados, com entradas e saídas, apoiando a reconciliação de transferências sem prometer eliminar erros;
-- **Planejado:** o painel indicará pendência ou dados inconclusivos aos dez minutos e apoiará a conferência e o acionamento da brigada conforme o procedimento do parceiro.
-
-_Criadores de ganho_
-
-- **Sprint 1:** saldo local visível e cenários reproduzíveis para estudar contagem e falhas, sem identificação pessoal no fluxo;
-- **Planejado:** visão compartilhada da ocupação estimada por PE e da atualização dos dispositivos, facilitando a comunicação entre CCO e SSMA;
-- **Planejado:** cronômetro e alerta no prazo interno para apoiar decisões, sem promessa de que toda a evacuação será concluída nesse intervalo;
-- **Planejado:** histórico para analisar simulados e revisar procedimentos, com metas de desempenho medidas em etapas posteriores;
-- **Possibilidade a avaliar:** consulta autorizada aos registros de acesso como contexto complementar. Última área registrada ou setor de trabalho não equivale à localização atual de uma pessoa pendente;
-- **Limite permanente:** saldo zero representa convergência numérica e exige conferência. Não dispensa automaticamente busca, brigada ou confirmação nominal.
-
-**Encaixe entre o perfil e o mapa de valor**
-
-A entrega atual se relaciona à necessidade de apuração quantitativa por meio de RF001 e CT02/CT04, à sinalização local por RF014 e CT01/CT06 e ao tratamento de repetição e leitura inválida por RF015 e CT03/CT05/CT09/CT10. A consolidação remota e os alertas dependem de RF003–RF010 e RF016, ainda planejados. A solução busca reduzir esforço e incerteza, mas esses ganhos ainda precisam ser medidos. Nem o saldo anônimo nem uma eventual lista de pessoas presentes no alarme permitem identificar, por subtração, quem falta ou localizar ausentes. A conferência individual e as informações de campo permanecem necessárias.
+O canvas também deixa claro o que a solução não promete. Ela não informa a posição exata das pessoas, não aciona a brigada sozinha e não considera a evacuação concluída só porque os números se igualaram: essas decisões continuam com a SSMA. Os ganhos são esperados e dependem de validação em simulados.
 
 ### 3.1.5. Matriz de Riscos
 
@@ -333,104 +377,109 @@ A figura usa posições, sem codificação de prioridade por cor. Na metade das 
 
 As oportunidades usam a mesma escala com impacto entendido como benefício: O01 em (P4,I3), O02 em (P4,I4) e O03 em (P3,I4). Sua distribuição é separada das ameaças para não confundir benefício com severidade. Os responsáveis são papéis propostos, sujeitos à divisão de tarefas do grupo. As prioridades imediatas são R01, R02, R05 e R12; as demais serão reavaliadas a cada sprint. Nenhuma resposta planejada deve ser interpretada como mitigação já testada.
 
-### 3.1.6. Política de privacidade do projeto (Sprint 1)
+### 3.1.6. Política de privacidade do projeto
 
-Esta política preliminar considera exclusivamente o escopo do MVP definido até o momento: um protótipo de bancada com Arduino Uno, dois sensores ultrassônicos HC-SR04 para contar separadamente entradas e saídas, display LCD 16 × 2 para apresentar o total, botão para simular a alternância do estado de emergência pela sinalização verde/vermelha sem pausar a contagem, LEDs verde e vermelho e buzzer para sinalização. Não fazem parte deste escopo cadastro de pessoas, crachá ou RFID, câmera, biometria, painel web, conexão de rede, banco de dados, nuvem ou rastreamento individual.
+Esta política preliminar contempla a solução integrada da Synthetix: três tipos de dispositivos baseados em ESP32, responsáveis pela contagem nas portarias, pelo monitoramento por zonas e pela confirmação nos pontos de encontro, conectados a uma aplicação web. As disposições a seguir orientam o desenvolvimento e distinguem o tratamento previsto das funcionalidades já demonstradas; não constituem evidência de controles implementados ou de homologação para uso industrial.
 
-Parte-se do pressuposto técnico de que cada HC-SR04 fornece apenas medições de distância usadas para detectar uma passagem, sem produzir imagem, áudio ou qualquer identificador da pessoa. Também se pressupõe que o firmware mantém somente a contagem agregada necessária ao funcionamento imediato e não grava histórico na memória EEPROM ou em outro meio persistente. Nessas condições, as informações do fluxo principal não se relacionam a uma pessoa natural identificada ou identificável e, portanto, não caracterizam dados pessoais para os fins da LGPD. Essa conclusão decorre dos conceitos de dado pessoal e dado anonimizado previstos nos arts. 5º e 12 da Lei nº 13.709/2018 (Brasil, 2018). Caso qualquer um desses pressupostos deixe de ser verdadeiro, a análise deverá ser refeita antes do teste ou da implantação.
+A análise do primeiro protótipo permanece válida para as condições da Sprint 1, documentadas na Seção 3.4.1: Arduino Uno, contagem ultrassônica agregada, sinalização local e ausência de RFID, rede e histórico persistente. Sob esses pressupostos, sem associação das passagens a indivíduos ou combinação com fontes identificáveis, o fluxo de contagem não caracteriza tratamento de dados pessoais. Essa conclusão não se estende à solução integrada, cujos identificadores RFID podem ser associados a pessoas, zonas e horários, mesmo quando os nomes não são exibidos (Brasil, 2018).
 
 #### 3.1.6.1 Informações gerais sobre a empresa / organização
 
-O projeto é desenvolvido pelo Inteli em parceria com a Unipar, denominação que abrange a Unipar Carbocloro S.A. e suas sociedades controladas diretas e indiretas, conforme o Aviso de Privacidade da empresa (Unipar, [s. d.]a). O MVP tem finalidade acadêmica e busca validar a lógica de contagem agregada de entradas e saídas e a sinalização local do protótipo; ele não representa, nesta etapa, um sistema industrial pronto para operação.
+O projeto é desenvolvido pela equipe Synthetix, no Inteli, em parceria com a Unipar. O Aviso de Privacidade da empresa abrange a Unipar Carbocloro S.A. e suas sociedades controladas diretas e indiretas (Unipar, [s. d.]a). A solução tem finalidade acadêmica de desenvolvimento e validação de recursos de apoio à evacuação, considerando o contexto operacional da unidade de Cubatão.
 
-Como o fluxo descrito não trata dados pessoais, não há, para ele, a atribuição de papéis de controlador e operador. Se uma evolução passar a coletar informações identificáveis, a entidade da Unipar responsável pelas decisões sobre esse tratamento deverá ser indicada como controladora, e a participação do Inteli ou de terceiros deverá ser avaliada e documentada conforme as atividades efetivamente desempenhadas e as orientações da ANPD (ANPD, 2022).
+Antes do tratamento de dados reais, devem ser formalizadas as entidades responsáveis e suas atribuições: quem decide as finalidades e os meios do tratamento, quem o executa em nome de outra organização e quem atende aos titulares. A parceria não determina automaticamente os papéis de controlador e operador, nem atribui à Unipar responsabilidade por todos os tratamentos acadêmicos do Inteli. Essa definição depende das atividades efetivamente desempenhadas (ANPD, 2022; Brasil, 2018).
 
 #### 3.1.6.2 Informações sobre o tratamento de dados
 
-Os sensores detectam passagens em dois pontos distintos. O sensor dedicado acionado determina se o Arduino aumenta ou diminui um contador agregado, cujo valor é exibido no LCD. O botão simula o estado de emergência pela sinalização verde/vermelha sem abrir um evento na plataforma, os LEDs indicam o estado selecionado e o buzzer fornece aviso sonoro durante as contagens. O sistema não identifica quem passou, não cria um registro por pessoa e não confirma a localização ou a situação individual de ninguém.
+Os sensores ultrassônicos das portarias produzem uma estimativa anônima da quantidade de pessoas na planta. Os leitores RFID das zonas registram passagens por aproximação, enquanto os totens dos pontos de encontro registram confirmações durante a emergência. Os dispositivos enviam identificadores e eventos; cabe à aplicação associá-los ao cadastro correspondente. O registro de zona representa a última passagem detectada, sem fornecer localização precisa ou acompanhamento contínuo entre leitores.
 
-A avaliação desta política depende dos seguintes pressupostos:
+A identificação nominal deve ser apresentada na aplicação somente durante uma emergência ativa e a usuários autorizados para a resposta ao incidente. Fora desse período, nomes e associações que permitam consultar nominalmente as leituras devem permanecer indisponíveis na interface e nos serviços que a atendem. A restrição de exibição não torna os registros anônimos: a coleta rotineira de identificadores vinculáveis a pessoas continua sendo tratamento de dados pessoais.
 
-- os sensores não capturam imagens, áudio, biometria ou identificadores;
-- nenhuma detecção é associada a nome, matrícula, crachá, dispositivo ou perfil;
-- o circuito não está integrado a sistemas de controle de acesso ou bases corporativas;
-- não há comunicação por rede, painel remoto ou armazenamento persistente;
-- os ensaios são realizados em ambiente acadêmico controlado, e não em operação industrial real.
-
-Se o protótipo for utilizado em local ou configuração que permita combinar o horário da passagem com câmeras, registros de acesso ou outras fontes capazes de identificar a pessoa, o evento poderá se tornar dado pessoal por associação. Nesse caso, será necessário mapear o novo tratamento, definir finalidade, base legal, retenção, agentes e salvaguardas antes do uso.
+As bases legais devem ser definidas e documentadas por finalidade antes do uso de dados reais, distinguindo o registro rotineiro por zonas do uso de informações durante emergências. A finalidade de segurança não autoriza automaticamente qualquer forma de monitoramento, e a condição acadêmica do projeto não dispensa a análise das hipóteses legais aplicáveis. Esta política não presume consentimento, legítimo interesse ou outra base ainda não definida com os responsáveis (Brasil, 2018).
 
 #### 3.1.6.3 Quais são os dados coletados
 
-O MVP processa somente dados operacionais do circuito:
+O quadro apresenta as categorias necessárias à solução planejada e seus limites de utilização.
 
-- medições de distância e pulsos de detecção gerados pelos dois sensores;
-- indicação de entrada ou saída determinada pelo sensor dedicado acionado;
-- quantidade agregada calculada pelo Arduino;
-- estado visual selecionado pelo botão, verde ou vermelho;
-- estados dos LEDs, do display e do buzzer.
+| Origem ou processo | Dados previstos | Condição de tratamento |
+|---|---|---|
+| Controle das portarias | Leituras de distância, eventos de entrada/saída, contagem agregada, identificador do dispositivo e horário de atualização. | A leitura ultrassônica não fornece identidade. A associação com outras fontes identificáveis exige avaliação específica. |
+| Monitoramento por zonas | Identificador da tag, leitor/zona, horário e estado de passagem inferido pela regra de atualização. | São dados pessoais quando vinculáveis a alguém; indicam a última zona registrada, não a posição exata. |
+| Confirmação nos pontos de encontro | Identificador da tag, ponto de encontro, horário de leitura e vínculo com o evento de emergência. | Confirmam uma leitura de chegada; não comprovam, por si, condição clínica ou ausência de risco. |
+| Cadastro de pessoas e tags | Identificador interno, nome e vínculo com a tag, limitados ao necessário à identificação na emergência. | A origem e a manutenção do cadastro, inclusive de terceiros e visitantes, ainda precisam ser definidas. |
+| Acesso à aplicação | Identificador da conta, perfil de permissão e registros necessários à autenticação e à auditoria de acesso. | O mecanismo e os campos técnicos devem ser especificados conforme a implementação, com minimização. |
 
-Não são coletados nome, matrícula, CPF, RG, imagem, voz, biometria, dado de saúde, localização individual, identificador de crachá ou dispositivo, endereço IP ou credencial de acesso. Pelos pressupostos apresentados, as medições e a contagem agregada não permitem identificar as pessoas detectadas e não constituem dados pessoais. Também não se deve registrar manualmente informações que permitam associar as contagens a indivíduos durante os testes.
+Não se prevê coleta de CPF, RG, imagem, voz, biometria ou dados de saúde. Nos testes acadêmicos, devem ser usados cadastros e situações fictícios. Uma tag associada a um participante real, mesmo sob um código, deixa de representar um dado exclusivamente fictício e exige avaliação do tratamento. Capturas de tela e evidências públicas não devem expor registros identificáveis.
 
 #### 3.1.6.4 Onde os dados são coletados
 
-As medições são geradas localmente no campo de alcance dos dois sensores instalados no protótipo de bancada, simulando um ponto de entrada e um ponto de saída. O contexto de negócio é a unidade de Cubatão, mas nenhum acesso real foi homologado: os testes desta etapa são simulados e a montagem física ficará em ambiente acadêmico controlado. A escolha de um local real de operação está fora do escopo atual e exigirá nova avaliação, inclusive sobre a possibilidade de identificação indireta das pessoas.
+Na solução proposta, as leituras são obtidas nas portarias, nas portas de zonas monitoradas e nos totens dos pontos de encontro, situados em áreas abertas dentro da planta. A aplicação recebe os eventos dos dispositivos e os dados necessários ao cadastro e ao acesso dos usuários autorizados. A fonte de uma relação nominal confiável de pessoas presentes no início da emergência permanece pendente; ela não pode ser deduzida do contador ultrassônico nem de leituras parciais das zonas.
+
+Os protótipos acadêmicos representam esses locais em ambiente controlado. Uma implantação real depende da definição dos locais, dos fluxos de cadastro e da informação aos colaboradores, terceiros e visitantes sobre quais dados são tratados, para quais finalidades e por quais responsáveis.
 
 #### 3.1.6.5 Para quais finalidades os dados serão utilizados
 
-Os dados operacionais são utilizados exclusivamente para:
+O tratamento previsto destina-se a:
 
-- detectar e diferenciar movimentos de entrada e saída no cenário simulado;
-- atualizar e exibir a quantidade agregada no LCD;
-- validar o funcionamento do botão e da sinalização visual e sonora;
-- avaliar erros de contagem e aperfeiçoar o firmware e a montagem do MVP.
+- estimar a quantidade de pessoas na planta e apresentar indicadores agregados;
+- manter a última zona registrada para apoiar a busca durante uma emergência;
+- registrar confirmações nos pontos de encontro e apoiar a análise de pendências;
+- disponibilizar informações necessárias à coordenação do CCO, da SSMA e dos brigadistas;
+- controlar acessos à aplicação e avaliar o funcionamento da solução com dados de teste adequados.
 
-O protótipo não deve ser usado para identificar pessoas, controlar acesso, registrar presença ou jornada, avaliar produtividade, acompanhar trajetórias ou tomar decisões sobre indivíduos. Essas finalidades não são necessárias para validar o MVP e representariam mudança de escopo.
+O escopo não contempla controle de jornada, avaliação de produtividade, vigilância disciplinar, publicidade ou cálculo de rotas individuais. Os indicadores não autorizam conclusões automáticas sobre quem está em perigo ou onde uma pessoa se encontra. As decisões de resposta permanecem sob responsabilidade das equipes de emergência. Uma nova finalidade exige avaliação própria e atualização desta política.
 
 #### 3.1.6.6 Onde os dados ficam armazenados
 
-O escopo atual não inclui banco de dados, cartão de memória, serviço de nuvem ou conexão de rede. Assim, as medições são processadas localmente e de forma transitória pelo Arduino; apenas o valor corrente do contador e o estado do sistema permanecem na memória necessária à execução e são apresentados no LCD.
+A solução prevê processamento nos ESP32 e armazenamento dos registros necessários à integração na infraestrutura da aplicação web. A tecnologia de persistência, a hospedagem, a localização dos servidores, os fornecedores e eventuais cópias mantidas pelo serviço MQTT ainda devem ser especificados; esta política não pressupõe banco de dados ou serviço de nuvem já implementado.
 
-A inspeção de `sketch.ino` nesta revisão não encontrou gravação em EEPROM, arquivos ou rede. O código emite mensagens no monitor serial, que podem aparecer nas capturas acadêmicas; isso não constitui histórico persistente implementado no dispositivo. Qualquer gravação futura exigirá especificar conteúdo, finalidade, prazo e exclusão. As evidências de teste devem conter apenas código, circuito e resultados simulados, sem dados pessoais de participantes, listas de presença ou credenciais. Os nomes e links profissionais dos autores no README são créditos acadêmicos separados do fluxo de contagem; sua publicação deve ser validada pela equipe.
+Durante falhas de conexão, os totens devem preservar localmente as leituras para posterior sincronização. Essa cópia também integra o tratamento de dados pessoais e precisa de proteção, controle de acesso e regra de descarte após confirmação de recebimento pela aplicação, conforme a política de retenção. A ativação local por SSMA ou brigadista não elimina essas obrigações.
+
+Repositórios, capturas e relatórios acadêmicos devem conter código, circuitos e resultados simulados, sem listas nominais, identificadores vinculados a participantes reais ou credenciais. Créditos dos autores no README são um tratamento separado do fluxo de evacuação e devem ser avaliados conforme sua finalidade de publicação.
 
 #### 3.1.6.7 Qual o período de armazenamento dos dados (retenção)
 
-Cada medição de distância é descartada após ser usada no cálculo da detecção. A contagem agregada e o modo selecionado permanecem somente enquanto o protótipo está ligado ou até que o sistema seja reiniciado, conforme o pressuposto de ausência de gravação persistente. Portanto, não há prazo de retenção de dados pessoais a definir para o fluxo atual.
+Os prazos ainda não foram definidos com a Unipar. Antes do uso de dados reais, deve existir uma tabela de retenção por categoria, abrangendo cadastros, passagens por zonas, confirmações, registros de acesso, cópias locais e eventuais cópias de segurança. Ela deve indicar finalidade, prazo ou critério de término, responsável e procedimento de exclusão ou anonimização, observadas as hipóteses legais de conservação (Brasil, 2018).
 
-Resultados agregados, como número de acertos, falhas e contagens simuladas, podem ser mantidos no repositório pelo período necessário à avaliação acadêmica, pois não identificam participantes. Se os testes passarem a registrar horário detalhado, vídeo ou qualquer elemento que permita reconhecer alguém, deverá ser definida previamente uma tabela de retenção e descarte conforme a finalidade e a LGPD (Brasil, 2018).
+O encerramento da emergência interrompe a exibição nominal operacional, mas não equivale à exclusão de todos os registros. Da mesma forma, atualizar ou zerar um estado de zona não significa apagar seu histórico. Nenhum desses eventos justifica retenção indefinida. Os registros locais sincronizados devem ser descartados segundo a regra definida, sem eliminar a única cópia antes da confirmação de recebimento. Resultados acadêmicos agregados e não identificáveis podem ser preservados para avaliação do projeto.
 
 #### 3.1.6.8 Uso de cookies e/ou tecnologias semelhantes
 
-O firmware do MVP não possui site, painel web ou conexão com a internet e não utiliza cookies. O Wokwi e o GitLab são serviços externos usados para desenvolvimento e publicação; contas, IPs, cookies e registros de uso dessas plataformas são tratados conforme suas próprias políticas, separadamente do fluxo do circuito. A presente política não afirma ausência de tratamento pelas plataformas. A futura inclusão de uma interface conectada estará fora deste escopo e exigirá atualização desta política antes da coleta.
+Os circuitos não utilizam cookies de navegador. A aplicação web poderá necessitar de cookies ou mecanismos equivalentes para autenticação e sessão; sua utilização efetiva, finalidade e duração devem ser informadas quando a implementação for definida. Não se prevê uso de rastreadores publicitários. A presença de uma interface web, por si só, não permite afirmar quais cookies existem.
+
+Wokwi e GitLab são serviços externos usados no desenvolvimento. O tratamento de contas, cookies e registros de uso dessas plataformas segue suas próprias políticas e não deve ser confundido com o fluxo de dados dos dispositivos.
 
 #### 3.1.6.9 Com quem esses dados são compartilhados (parceiros, fornecedores, subcontratados)
 
-Não há compartilhamento de dados pessoais, pois o protótipo não os coleta. A equipe do Inteli, os avaliadores acadêmicos e os representantes da Unipar poderão acessar o valor agregado exibido e os resultados técnicos dos testes. O circuito não envia telemetria a fornecedores. Código e capturas simuladas são disponibilizados pelo Wokwi e pelo repositório GitLab, conforme as permissões desses serviços; o compartilhamento de evidências deve excluir dados identificáveis de participantes.
+Durante uma emergência ativa, usuários autorizados da SSMA e do CCO devem acessar somente as informações necessárias às suas atribuições. Os brigadistas recebem os dados necessários à busca pelo canal operacional definido com a Unipar; isso não implica acesso irrestrito ao cadastro ou ao histórico. A matriz de permissões ainda precisa detalhar os acessos de cada perfil.
 
-Se uma evolução depender de terceiro ou de integração corporativa e envolver dados pessoais, os participantes e suas responsabilidades deverão ser identificados antes do tratamento, com regras de finalidade, acesso, segurança, retenção e exclusão.
+A equipe acadêmica e os avaliadores devem utilizar dados fictícios ou resultados efetivamente anonimizados. Eventual acesso a dados reais, uso de fornecedores de infraestrutura ou integração com sistemas corporativos exige identificação dos envolvidos e definição de responsabilidades, finalidade, segurança, retenção e condições de compartilhamento. O Aviso de Privacidade institucional da Unipar não substitui essas definições específicas do projeto.
 
 #### 3.1.6.10 Informações sobre medidas de segurança adotadas pela empresa
 
-Embora o fluxo atual não contenha dados pessoais, o projeto adota minimização desde a concepção: realiza a contagem sem criar identificadores individuais e mantém o processamento local. Também devem ser observadas as seguintes medidas:
+Para a solução integrada, as medidas abaixo constituem requisitos de proteção a implementar e verificar, sem afirmar que já estejam disponíveis:
 
-- limitar o acesso físico ao protótipo durante os testes;
-- revisar o firmware para confirmar que não há gravação na EEPROM, telemetria ou bibliotecas que enviem dados;
-- não conectar o circuito a bases, câmeras ou sistemas de controle de acesso;
-- não inserir credenciais, dados reais ou listas de pessoas no código e no repositório;
-- registrar a versão do firmware e os pressupostos usados em cada ensaio;
-- reiniciar o contador e apagar arquivos auxiliares quando deixarem de ser necessários;
-- utilizar apenas resultados agregados nas evidências acadêmicas.
+- autenticar usuários e aplicar permissões por perfil, inclusive nos serviços da aplicação;
+- restringir a consulta nominal operacional ao período de emergência ativa e aos usuários autorizados;
+- proteger a transmissão e o armazenamento, incluindo os registros mantidos localmente durante falhas de rede;
+- limitar o acesso físico aos dispositivos e o acesso lógico aos cadastros e registros;
+- manter credenciais fora do código público e impedir a divulgação de dados reais nas evidências;
+- preservar a integridade das associações entre tags e pessoas e tratar duplicidades na sincronização;
+- registrar acessos relevantes e prever procedimentos de correção, descarte e resposta a incidentes.
 
-Essas medidas reduzem o risco de uma mudança informal transformar a contagem anônima em acompanhamento individual. Se houver tratamento futuro de dados pessoais, deverão ser adotadas medidas técnicas e administrativas proporcionais ao risco, em conformidade com os arts. 46 a 49 da LGPD e com as orientações da ANPD (ANPD, 2021; Brasil, 2018).
+As medidas devem ser proporcionais ao tratamento e verificadas na implementação, conforme a LGPD e as orientações da ANPD (ANPD, 2021; Brasil, 2018). A apresentação de controles no aviso institucional da Unipar não comprova sua adoção no protótipo acadêmico.
 
 #### 3.1.6.11 Orientações sobre como a empresa/organização atende aos direitos dos usuários
 
-Como o contador não registra nem identifica pessoas, a equipe não consegue localizar, consultar, corrigir ou excluir uma passagem atribuída a determinado indivíduo. Também não há decisão automatizada que produza efeito sobre uma pessoa. Isso não impede que alguém peça esclarecimentos sobre o funcionamento do protótipo ou informe suspeita de coleta indevida.
+Para os tratamentos identificáveis, a organização responsável deve disponibilizar meios para confirmação da existência de tratamento, acesso, correção e informação sobre compartilhamento, além dos demais direitos aplicáveis, como anonimização, bloqueio, eliminação, portabilidade e revogação de consentimento quando essa for a base utilizada. O atendimento deve observar as condições legais de cada direito (Brasil, 2018).
 
-Se o escopo passar a envolver dados pessoais, a organização responsável deverá assegurar os direitos previstos no art. 18 da LGPD, incluindo confirmação, acesso, correção, informação sobre compartilhamento e, quando aplicável, anonimização, bloqueio, portabilidade, oposição ou eliminação (ANPD, [s. d.]; Brasil, 2018).
+Uma leitura incorreta ou uma associação equivocada entre tag e pessoa deve poder ser analisada e corrigida pelo responsável autorizado. O atendimento aos direitos dos titulares constitui um procedimento próprio, separado do painel operacional: a restrição de nomes fora da emergência não impede o atendimento legítimo de uma solicitação. No fluxo exclusivamente agregado do contador, pode não existir registro individual recuperável, limitação que deve ser explicada ao solicitante.
 
 #### 3.1.6.12 Informações sobre como o titular de dados pode solicitar e exercer os seus direitos
 
-Uma pessoa que queira esclarecer o uso do protótipo ou suspeite que houve coleta de dado pessoal poderá contatar o encarregado da Unipar pelo e-mail **lgpd-encarregado@unipar.com**, canal divulgado no Aviso de Privacidade da empresa (Unipar, [s. d.]a). O pedido deve indicar o contexto do teste e a dúvida ou o direito que se pretende exercer. Como a solução atual mantém apenas uma contagem anônima, pode não existir registro que permita vincular uma passagem ao solicitante; essa limitação deverá ser explicada com clareza na resposta.
+Para tratamentos sob responsabilidade da Unipar, o titular pode utilizar o canal institucional **lgpd-encarregado@unipar.com**, divulgado em seu Aviso de Privacidade (Unipar, [s. d.]a). O pedido deve indicar o contexto e o direito ou esclarecimento pretendido; a verificação da identidade deve solicitar apenas as informações necessárias ao atendimento seguro.
+
+O canal e o responsável pelo atendimento de participantes de testes acadêmicos ainda precisam ser definidos pelo Inteli e pelos envolvidos no tratamento. O contato da Unipar não deve ser apresentado automaticamente como responsável por esses testes. Antes da coleta de dados reais, os participantes devem receber informações claras sobre o tratamento e o canal aplicável.
 
 #### 3.1.6.13 Informações de contato do Data Protection Officer (DPO) ou encarregado de proteção de dados da organização
 
@@ -439,9 +488,9 @@ O canal oficial publicado pela Unipar para contato com seu Encarregado de Prote�
 - **E-mail:** lgpd-encarregado@unipar.com
 - **Aviso de Privacidade:** <https://unipar.com/aviso-de-privacidade>
 
-O nome da pessoa que exerce a função não é apresentado no aviso público consultado; por isso, registra-se somente o canal institucional confirmado (Unipar, [s. d.]a).
+O aviso público consultado não informa o nome da pessoa que exerce a função. O canal institucional foi mantido como referência, sem presumir a designação desse encarregado para os tratamentos acadêmicos do projeto (Unipar, [s. d.]a).
 
-Esta política deverá ser revisada antes de qualquer alteração que inclua identificação por crachá ou RFID, cadastro, câmera, áudio, biometria, registro individual de horário ou localização, integração com sistemas corporativos, painel conectado, banco de dados, nuvem ou armazenamento persistente. Esses recursos não estão previstos no MVP analisado e não podem ser tratados como se já fizessem parte da entrega da Sprint 1. O contato institucional da Unipar foi conferido no aviso público nesta revisão; ele não comprova a designação do encarregado para tratamentos acadêmicos do Inteli, cuja responsabilidade deverá ser definida se houver pesquisa identificável.
+Permanecem pendentes de formalização os agentes responsáveis, as bases legais por finalidade, a origem e a manutenção dos cadastros, a matriz de permissões, os prazos de retenção, a infraestrutura de armazenamento e o canal de atendimento acadêmico. Essas definições devem anteceder o uso de dados reais. A política deve acompanhar a implementação e qualquer mudança de finalidade, dados, integrações ou fornecedores.
 
 ### 3.1.7. Bill of Material (BOM) (sprint 1)
 
@@ -506,21 +555,19 @@ Assim, a BOM preserva o levantamento inicial, explicita suas correções e ident
 
 ### 3.2.1. Personas
 
-Esta seção apresenta as **proto-personas** que orientam a compreensão inicial das necessidades dos públicos envolvidos no processo de evacuação do complexo industrial da Unipar em Cubatão. São perfis preliminares, elaborados com base nas informações disponíveis e nas hipóteses da equipe, ainda sem validação por pesquisa com os usuários. Os perfis organizam contextos de trabalho, dores, necessidades e tarefas para apoiar as decisões iniciais de experiência do usuário e a definição dos requisitos de uma solução de acompanhamento da evacuação e confirmação de presença nos pontos de encontro.
+Esta seção apresenta as proto-personas que orientam a compreensão das necessidades dos públicos envolvidos na evacuação do complexo industrial da Unipar em Cubatão. Os perfis organizam contextos de trabalho, comportamentos, dores, necessidades e desejos, e servem de base para os requisitos (seção 3.3), as jornadas e os storyboards (seção 3.2.2).
 
-O mapeamento inicial considera cinco grupos de partes interessadas: colaboradores, operadores do Centro de Controle Operacional (CCO), gestores de Segurança, Saúde e Meio Ambiente (SSMA), brigadistas e responsáveis por Infraestrutura e TI. Nesta seção, são detalhadas três personas primárias: Gustavo Fring, técnico de operação, representa a perspectiva de quem precisa evacuar e ter sua chegada reconhecida; Maria Schrader, operadora de CCO, reúne as necessidades de monitoramento operacional e comunicação durante uma ocorrência; e Tuco Salamanca, gestor de SSMA, representa a perspectiva de gestão da emergência e uso das informações consolidadas. Brigadistas e responsáveis por Infraestrutura e TI são considerados públicos secundários neste recorte, com participação na resposta em campo e no suporte tecnológico, mas ainda não possuem perfis detalhados nesta seção.
+O mapeamento considera cinco grupos de partes interessadas: colaboradores, operadores do Centro de Controle Operacional (CCO), gestores de Segurança, Saúde e Meio Ambiente (SSMA), brigadistas e líderes de ponto de encontro, e profissionais de Infraestrutura e TI. Três personas são detalhadas: Gustavo Fring, técnico de operação, representa quem precisa evacuar e ter a chegada confirmada; Maria Schrader, operadora de CCO, representa quem inicia o protocolo de emergência e acompanha a ocorrência; e Tuco Salamanca, gestor de SSMA, representa quem coordena a resposta e decide a busca. Os brigadistas e líderes de ponto, que fazem a conferência nos pontos de encontro, são representados dentro da persona de Tuco, porque atuam sob a coordenação da SSMA. Infraestrutura e TI é um público secundário, ligado ao suporte dos dispositivos e da rede.
 
-Os três perfis apresentados — Gustavo Fring, Maria Schrader e Tuco Salamanca — são **proto-personas**. Não houve entrevistas com usuários. A equipe obteve informações em reuniões de kickoff e reviews, no TAPI, no estudo de caso e nos demais materiais de contexto do projeto. Esses insumos apoiam hipóteses sobre necessidades e responsabilidades; não equivalem à observação direta ou à validação dos perfis com os trabalhadores. As referências a “personas” nos títulos e nas imagens devem ser entendidas nesse sentido preliminar.
+Os três perfis são proto-personas: foram construídos a partir do kickoff e das reviews com a Unipar, do Termo de Abertura do Projeto de Inovação (TAPI) e dos demais materiais do projeto, sem entrevistas com usuários. Nomes, idades, famílias, hábitos e falas são fictícios. As descrições a seguir são hipóteses da equipe e devem ser validadas em pesquisa com os públicos representados.
 
-**Processo de construção:** a equipe reuniu os relatos e materiais disponíveis sobre evacuação, conferência e comunicação; organizou as necessidades por papel; e sintetizou três perfis em um template com apresentação, demografia, biografia, dores, necessidades, desejos, tarefas, cenários e letramento digital. Nomes, idades, famílias, hábitos e falas são elementos fictícios de representação. Informações específicas sobre rotinas, permissões e infraestrutura permanecem hipóteses quando não há registro que as sustente. A evolução dos perfis deverá incorporar o retorno das próximas reviews e, se viável, pesquisa direta com os públicos representados.
+**Processo de construção:** a equipe reuniu os relatos e materiais sobre evacuação, conferência e comunicação, organizou as necessidades por papel e sintetizou três perfis em um template com dados demográficos, perfil socioeconômico, biografia, dores, necessidades, desejos, tarefas, comportamento em emergência e letramento digital. Na Sprint 2, os perfis foram atualizados com o retorno da avaliação da Sprint 1 e com a solução definida na seção 3.1.3.
 
-**Uso de inteligência artificial:** as imagens foram produzidas com apoio do ChatGPT, conforme suas legendas. Nesta revisão, a IA também auxiliou a organização textual e a verificação de coerência com os requisitos e o protótipo. Não foram produzidas entrevistas, depoimentos reais ou evidências de validação por IA. O uso anterior de IA além do registrado nas legendas não está detalhado nos materiais disponíveis.
-
-**Relação com a entrega:** as imagens retratam necessidades e aspirações da solução completa, não uma lista de funcionalidades já entregues. Confirmação individual, localização, painel e pedidos de ajuda não são capacidades do contador da Sprint 1. Os cenários abaixo distinguem a rotina considerada, a interação com o protótipo e as possibilidades de integração futura.
+**Uso de inteligência artificial:** as imagens das personas foram geradas com o ChatGPT e o Gemini. Os textos foram escritos pela equipe, com apoio de IA na revisão. Na atualização da Sprint 2, a IA (Claude) apoiou a revisão e a reorganização do texto a partir do feedback e da nova solução; as decisões de conteúdo foram da equipe. Nenhuma fala, entrevista ou validação foi produzida por IA.
 
 #### 3.2.1.1. Persona – Técnico de Operação
 
-A proto-persona Gustavo Fring, apresentada na Figura 5, representa necessidades iniciais de trabalhadores operacionais do complexo de Cubatão, sem pressupor que um único perfil descreva todos os vínculos, turnos e necessidades de acessibilidade.
+A Figura 5 apresenta Gustavo Fring, que representa os trabalhadores das áreas operacionais do complexo de Cubatão.
 
 <div align="center">
   <p>Figura 5 – Proto-persona Gustavo Fring, técnico de operação</p>
@@ -528,57 +575,66 @@ A proto-persona Gustavo Fring, apresentada na Figura 5, representa necessidades 
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
-**Nome:** Gustavo Fring.
-
 **Dados demográficos**
 
-Gustavo tem 32 anos, possui formação técnica em Química e atua como técnico de operação industrial em Cubatão, São Paulo. Suas atividades envolvem a operação de máquinas industriais.
+- **Nome:** Gustavo Fring
+- **Idade:** 32 anos
+- **Formação:** técnico em Química
+- **Ocupação:** técnico de operação industrial
+- **Local:** Cubatão, São Paulo
+- **Perfil socioeconômico:** classe média; renda de técnico industrial com adicional de turno; mora em casa financiada em Cubatão
 
 **Biografia**
 
-No perfil fictício, Gustavo trabalha há oito anos em ambiente industrial e conhece os procedimentos de sua área, mas pode estar em outra zona quando surge um alarme. Vive com a esposa e um filho pequeno; nos dias de folga, joga futebol e visita familiares. Usa os EPIs exigidos e prioriza sair com segurança e conseguir comunicar a necessidade de ajuda pelos meios previstos no procedimento local.
+Gustavo trabalha há oito anos em ambiente industrial. Conhece bem os procedimentos da área dele, mas circula por outras zonas durante o turno. Vive com a esposa e um filho pequeno. Nas folgas, joga futebol e visita a família. Usa todos os EPIs exigidos. Numa emergência, a prioridade dele é sair com segurança e saber que alguém sabe que ele saiu.
 
-<p align="center">Quadro 4 – Dores e necessidades da proto-persona Gustavo Fring</p>
+<p align="center">Quadro 4 – Dores, necessidades e desejos da proto-persona Gustavo Fring</p>
 
-| Prioridade      | Dor ou necessidade                                                          | O que espera da solução (desejos)                                                                            |
-| :-------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
-| **1 — Crítica** | Perceber o alarme e entender qual procedimento se aplica à área onde está.  | Em ambiente ruidoso, com EPI e sob pressão, depende do treinamento, da sinalização e das orientações locais. |
-| **2 — Crítica** | Encontrar uma saída segura se a rota habitual estiver indisponível.         | Precisa seguir a orientação da brigada e a sinalização existente, sem improvisar um caminho.                 |
-| **3 — Alta**    | Comunicar que precisa de ajuda caso esteja ferido, isolado ou desorientado. | Depende de contato com colegas, brigadistas ou outros meios previstos no procedimento local.                 |
-| **4 — Alta**    | Ter sua chegada reconhecida no ponto de encontro.                           | Aguarda a chamada ou contagem manual, que pode demorar ou exigir nova conferência.                           |
-| **5 — Média**   | Lembrar o procedimento em áreas menos familiares e em diferentes turnos.    | Recorre aos treinamentos, à liderança local e à equipe de resposta.                                          |
+| Prioridade | Dor ou necessidade | O que deseja da solução |
+| :--- | :--- | :--- |
+| **1. Crítica** | Perceber o alarme e entender o que fazer na área onde está. | Que nenhum dispositivo novo deixe a saída mais lenta ou mais confusa. |
+| **2. Crítica** | Encontrar uma saída segura quando a rota habitual está bloqueada. | Que, se ele não chegar ao ponto de encontro, a brigada saiba a última zona onde ele passou. |
+| **3. Alta** | Conseguir ajuda se estiver ferido, isolado ou desorientado. | Que a falta de confirmação dele vire um alerta para a SSMA, sem depender de ele conseguir pedir ajuda. |
+| **4. Alta** | Ter a chegada reconhecida no ponto de encontro. | Confirmar a chegada aproximando o crachá do totem, com sinal sonoro e luminoso, sem esperar a chamada. |
+| **5. Média** | Lembrar o procedimento em áreas menos familiares e em outros turnos. | Treinamentos e simulados que incluam o uso do crachá nos leitores das portas e no totem. |
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
 **Tarefas**
 
-Gustavo opera equipamentos, acompanha as condições da máquina e da área de trabalho e realiza as inspeções e atividades de manutenção previstas para sua função. Utiliza os equipamentos de proteção individual (EPIs) exigidos e segue os procedimentos de segurança e as orientações da liderança. Também participa de treinamentos e simulados para reconhecer os alarmes, as rotas de saída e os pontos de encontro.
+Gustavo opera equipamentos, acompanha as condições das máquinas e da área e faz as inspeções e manutenções previstas para a função. Participa de treinamentos e simulados de emergência. Numa emergência, interrompe a atividade, segue a orientação da brigada até o ponto de encontro e informa sua chegada.
 
-Em uma emergência, interrompe a atividade conforme o procedimento, segue a orientação da brigada e se desloca ao ponto de encontro. Quando necessário, comunica pedidos de ajuda pelos meios disponíveis e, ao chegar, informa sua presença para a conferência presencial.
+**Comportamento em uma emergência**
 
-**Cenários de interação atuais:** no início do turno, Gustavo Fring recebe orientações de segurança aplicáveis à sua atividade e utiliza o crachá de identificação e os EPIs exigidos para o local. Em um simulado, pratica as rotas e o deslocamento até o ponto de encontro. Em um alarme real, segue o procedimento da unidade e as orientações da brigada para evacuar a área afetada. Se não conseguir sair ou se alguém precisar de ajuda, busca contato pelos meios existentes. Ao chegar ao ponto de encontro, informa sua presença para a conferência manual por lista ou contagem. **Assim, atualmente não há um dispositivo individual de confirmação automática ou um aplicativo de evacuação em uso.**
+Quando o alarme toca numa área que ele não conhece, Gustavo para o que está fazendo, procura a placa de rota mais próxima e segue o brigadista ou o colega que trabalha ali. Se não encontra ninguém, volta pelo caminho por onde entrou. No ponto de encontro, procura o líder de ponto para dizer que chegou e fica perto dele até ouvir o próprio nome na chamada. Se a chamada demora, pergunta aos colegas se alguém da equipe dele ainda não apareceu.
 
-**Interesses e hábitos relacionados ao processo:** Gustavo Fring valoriza procedimentos claros, sinalização compreensível, equipamentos de proteção adequados e treinamentos que se pareçam com a rotina real. Sua interação com a evacuação ocorre em orientações, simulados e eventuais alarmes; no cotidiano, está concentrado nas tarefas operacionais. Não consulta o painel de SSMA durante a evacuação, pois o painel digital faz parte da proposta do projeto, não da situação atual.
+**Interesses e hábitos**
 
-**Nível de letramento digital:** Gustavo apresenta nível intermediário e utiliza aplicativos comuns e ferramentas de trabalho. Entretanto, o processo de evacuação documentado para o projeto depende principalmente de sinais físicos, instruções da equipe e confirmação presencial. Não se pressupõe o uso de telefone pessoal em área operacional.
+Gustavo valoriza procedimentos claros, sinalização fácil de entender e treinamentos parecidos com a rotina real. No dia a dia, está concentrado nas tarefas operacionais; a evacuação aparece nos treinamentos, nos simulados e nos alarmes reais.
+
+**Letramento digital**
+
+Intermediário. Usa aplicativos comuns e as ferramentas do trabalho, mas não usa celular na área operacional. Na evacuação, depende de sinais físicos, das orientações da equipe e, na solução, do crachá.
 
 **Falas ilustrativas, não coletadas em entrevista**
 
-> “Quando o alarme toca, procuro a orientação da brigada e sigo para o ponto de encontro.”
+> "Quando o alarme toca, procuro a orientação da brigada e sigo para o ponto de encontro."
 
-> “Depois que chego, preciso esperar a conferência para saberem que estou aqui.”
+> "Depois que chego, preciso esperar a chamada para saberem que estou aqui."
 
-> “Se eu estiver em outra área, quero reconhecer rapidamente o caminho previsto para sair.”
+> "Se eu estiver em outra área, sigo quem trabalha ali, porque eles conhecem a saída."
 
-**Interação com o projeto:** na demonstração da Sprint 1, uma aproximação simulada representa a entrada ou saída de Gustavo, alterando o total no LCD e acionando o buzzer. Não é necessário crachá ou aplicativo para esse ensaio, e a detecção não confirma sua identidade. Nas próximas sprints, a equipe avaliará passagens físicas, acessibilidade e entendimento do retorno local, além da integração das contagens ao painel.
+**Interação com a solução**
 
-**Variações do público e limites da persona:** Gustavo Fring representa um trabalhador habitual de área operacional, não todas as pessoas presentes na planta. Terceirizados, equipes de manutenção, visitantes, pessoas com deficiência e novos colaboradores podem conhecer menos as rotas, ter vínculos de identificação diferentes ou precisar de outro tipo de apoio. Essas diferenças precisam ser investigadas antes de generalizar a persona para todo o complexo.
+Gustavo não usa a aplicação. Na solução descrita na seção 3.1.3, ele interage com três pontos: passa pela catraca, onde a contagem é anônima; aproxima o crachá dos leitores nas portas das zonas monitoradas; e, numa evacuação, aproxima o crachá do totem no ponto de encontro e recebe um sinal sonoro e luminoso de que a leitura foi registrada. Os protótipos da Sprint 2 simulam essas leituras em bancada (seção 3.4.2).
 
-**Abrangência e variações do público:** a persona reúne a necessidade comum de **todos os funcionários e colaboradores que trabalham no complexo**: perceber o alerta, sair da área afetada, receber apoio quando necessário e ser contabilizado. Função, turno, vínculo, área autorizada, conhecimento das rotas, EPI e necessidades de acessibilidade variam. Essas diferenças devem ser observadas na pesquisa para evitar que a experiência de um setor seja tomada como padrão para todos. Visitantes ocasionais ficam fora do público de trabalhadores representado por Gustavo Fring.
+**Abrangência e limites**
+
+Gustavo representa o trabalhador habitual de área operacional. Terceirizados, equipes de manutenção, novos colaboradores e pessoas com deficiência podem conhecer menos as rotas, ter outro tipo de crachá ou precisar de apoio diferente. Visitantes ficam fora do público representado por ele.
 
 #### 3.2.1.2. Persona – Operadora de Centro de Controle Operacional (CCO)
 
-A Figura 6 apresenta Maria Schrader, proto-persona que representa a perspectiva de operação do Centro de Controle Operacional.
+A Figura 6 apresenta Maria Schrader, que representa os profissionais de operação do Centro de Controle Operacional.
 
 <div align="center">
   <p>Figura 6 – Proto-persona Maria Schrader, operadora de CCO</p>
@@ -586,53 +642,66 @@ A Figura 6 apresenta Maria Schrader, proto-persona que representa a perspectiva 
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
-Maria Schrader é um nome fictício. A proto-persona tem 38 anos e atua como operadora do Centro de Controle Operacional (CCO) em Cubatão, São Paulo. Possui formação técnica em Automação Industrial e participa dos treinamentos internos aplicáveis à operação.
+**Dados demográficos**
+
+- **Nome:** Maria Schrader
+- **Idade:** 38 anos
+- **Formação:** técnica em Automação Industrial
+- **Ocupação:** operadora do Centro de Controle Operacional (CCO)
+- **Local:** Cubatão, São Paulo
+- **Perfil socioeconômico:** classe média; trabalha em regime de turnos; mora em Cubatão com o companheiro e a filha
 
 **Biografia**
 
-No retrato fictício, Maria trabalhou em funções de apoio antes de passar para a sala de controle. Atua em turnos, acompanha indicadores e alarmes, recebe informações de campo e registra alterações para a equipe seguinte. Mora com o companheiro e uma filha; gosta de fotografia e passeios de bicicleta. Sua participação no acionamento de alarmes e na resposta à emergência deve respeitar os procedimentos da unidade, cujas permissões específicas ainda precisam ser detalhadas com o parceiro.
+Maria trabalhou em funções de apoio à operação antes de ir para a sala de controle. Trabalha em turnos. Acompanha indicadores e alarmes, recebe informações do campo e registra tudo para a equipe seguinte. É ela quem inicia o protocolo de emergência no CCO. Nas folgas, gosta de fotografia e de andar de bicicleta.
 
-<p align="center">Quadro 5 – Dores e necessidades da proto-persona Maria Schrader</p>
+<p align="center">Quadro 5 – Dores, necessidades e desejos da proto-persona Maria Schrader</p>
 
-| Prioridade      | Dor ou necessidade atual                                                                                | Consequência na rotina                                                                                                                                            |
-| :-------------- | :------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1 — Crítica** | Distinguir rapidamente um alarme operacional relevante de outros avisos simultâneos.                    | Precisa verificar os sinais e seguir os critérios e responsáveis previstos nos procedimentos da unidade.                                                          |
-| **2 — Crítica** | Comunicar a alteração observada às equipes certas, sem perda de contexto.                               | Depende dos canais e das confirmações de recebimento usados atualmente pela operação, pelo SSMA e pela brigada.                                                   |
-| **3 — Alta**    | Acompanhar a condição do processo enquanto chegam relatos de campo sobre o mesmo evento.                | Informações podem chegar em momentos diferentes e exigir reconciliação antes de repassá-las.                                                                      |
-| **4 — Alta**    | Entender o andamento da evacuação sem confundir status operacional de uma área com presença de pessoas. | A contagem de pessoas ocorre predominantemente por listas e confirmação manual nos pontos de encontro, fora dos painéis de processo descritos para esta hipótese. |
-| **5 — Média**   | Deixar um histórico claro para a troca de turno e a análise posterior.                                  | Horários de alarmes, comunicações e providências precisam ser registrados e conferidos.                                                                           |
+| Prioridade | Dor ou necessidade | O que deseja da solução |
+| :--- | :--- | :--- |
+| **1. Crítica** | Distinguir rapidamente um alarme relevante de outros avisos simultâneos. | Que a solução não acrescente alarmes às telas que ela já acompanha, e que o alerta dos 10 minutos vá para a SSMA. |
+| **2. Crítica** | Comunicar a ocorrência às equipes certas, sem perder informação. | Iniciar o modo de emergência na aplicação, o que ativa os totens dos pontos de encontro selecionados, e avisar os porteiros por rádio. |
+| **3. Alta** | Acompanhar o processo enquanto chegam relatos do campo em momentos diferentes. | Ver em um só lugar a ocupação estimada, as últimas zonas registradas e as confirmações, com o horário de atualização de cada dado. |
+| **4. Alta** | Entender o andamento da evacuação sem confundir status de área com presença de pessoas. | Que a aplicação separe a contagem das portarias, as zonas e as confirmações nos pontos de encontro. |
+| **5. Média** | Deixar um histórico claro para a troca de turno. | Ter os horários de acionamento, confirmações e alertas registrados na aplicação para consulta posterior. |
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
 **Tarefas**
 
-Na passagem de turno, Maria recebe informações sobre as condições operacionais e as ocorrências em aberto. Durante o trabalho, acompanha os painéis de processo e as câmeras disponíveis, verifica alarmes e relatos de campo e consulta os procedimentos antes de caracterizar ou comunicar uma ocorrência. Conforme as atribuições autorizadas, participa da avaliação da necessidade de evacuação, informa a equipe de segurança e comunica os grupos envolvidos.
+Na passagem de turno, Maria recebe as ocorrências em aberto. Durante o trabalho, acompanha os painéis de processo e as câmeras, verifica alarmes e relatos do campo e consulta os procedimentos antes de caracterizar uma ocorrência. Numa emergência, inicia o protocolo, comunica a SSMA, a brigada e a portaria e acompanha as atualizações. No fim, registra alarmes, comunicações e providências para a equipe seguinte.
 
-Em uma emergência, executa as ações de comunicação e acompanhamento atribuídas ao CCO, incluindo o acionamento de alarmes quando aplicável, e mantém contato com as equipes em campo. Acompanha as atualizações sem interpretar informações de processo como confirmação da presença de pessoas nos pontos de encontro. Por fim, registra alarmes, comunicações e providências para dar continuidade ao acompanhamento e transmitir as informações à equipe seguinte.
+**Comportamento em uma emergência**
 
-**Cenários de interação atuais:** no cenário hipotético, Maria toma conhecimento das ocorrências na passagem de turno e acompanha os instrumentos disponíveis. Diante de um alarme ou relato de incidente, verifica os sinais e os procedimentos, comunica as áreas responsáveis e executa as ações autorizadas. Durante a evacuação, recebe atualizações de campo sem presumir que um painel de processo confirme presenças no PE. Se a sala de controle for afetada, segue o procedimento aplicável; não se pressupõe proteção absoluta do local. Após o evento, registra e transmite as informações à equipe de segurança.
+Quando dois alarmes tocam ao mesmo tempo, Maria olha primeiro para o que pode virar vazamento e deixa os outros para depois. Antes de iniciar a emergência, liga para o operador de campo da área para confirmar o que está vendo nas telas. Durante a evacuação, anota à mão os números que chegam pelo rádio, porque eles chegam fora de ordem e às vezes se repetem. Trabalha na sala de controle, que a Unipar descreve como sala segura.
 
-**Interesses e hábitos relacionados ao processo:** Maria valoriza estabilidade operacional, interpretação correta de alarmes, comunicação inequívoca com o campo e registros confiáveis para a troca de turno. No perfil hipotético, trabalha por longos períodos diante de painéis e câmeras em tempo real, consulta procedimentos e registra ocorrências. A frequência, os canais e as telas específicas da Unipar devem ser observados em pesquisa com o CCO.
+**Interesses e hábitos**
 
-**Interação com o projeto:** na Sprint 1, Maria pode avaliar a clareza da demonstração e receber o saldo comunicado por quem lê o LCD; não existe painel remoto conectado. Na visão planejada, consultará ocupação por PE, pendências, tempo e validade dos dados no dashboard, apoiando a comunicação com SSMA. Essa interface e seu uso sob pressão ainda serão avaliados.
+Maria valoriza estabilidade operacional, comunicação sem ambiguidade com o campo e registros confiáveis para a troca de turno. Passa longos períodos diante de painéis e câmeras.
+
+**Letramento digital**
+
+Alto nas ferramentas operacionais que usa todos os dias: interpreta indicadores e navega entre telas de processo e câmeras com facilidade. Para um sistema novo, precisa de interface clara, que mostre a origem e o horário de cada informação, e de treinamento antes de usá-lo sob pressão.
 
 **Falas ilustrativas, não coletadas em entrevista**
 
-> “Preciso confirmar o que o alarme indica antes de repassar a ocorrência.”
+> "Preciso confirmar o que o alarme indica antes de repassar a ocorrência."
 
-> “Enquanto converso com o campo, continuo acompanhando as condições do processo.”
+> "Enquanto converso com o campo, continuo acompanhando as condições do processo."
 
-> “O painel mostra a condição da área, mas a conferência das pessoas vem da equipe responsável.”
+> "O painel mostra a condição da área, mas quem confere as pessoas é a equipe no ponto de encontro."
 
-**Nível de letramento digital:** Maria apresenta nível alto no uso das ferramentas operacionais com as quais trabalha. Maria interpreta indicadores, acompanha alarmes e navega entre telas de processo e câmeras com familiaridade. Essa experiência não pressupõe domínio imediato de novos sistemas de apoio à evacuação: interfaces claras, identificação das fontes e dos horários das informações e treinamento específico são necessários para apoiar seu uso sob pressão. O perfil deve ser validado com os profissionais do CCO.
+**Interação com a solução**
 
-**Variações do público e limites da persona:** Maria representa uma operadora de CCO habituada ao monitoramento de processos e à comunicação com equipes em campo. Não representa as atribuições do SSMA, da brigada ou dos trabalhadores em evacuação. Seu perfil é hipotético e não permite concluir que todo operador tenha autonomia para determinar uma evacuação, acionar alarmes ou confirmar a presença de pessoas. Essas responsabilidades e os limites de atuação do CCO precisam ser confirmados nos procedimentos da unidade e na pesquisa com seus profissionais.
+Na solução descrita na seção 3.1.3, Maria inicia o modo de emergência na aplicação web, seleciona os pontos de encontro ativos indicados pela SSMA (conforme a direção do vento e a área afetada) e avisa os porteiros por rádio para acionarem o botão dos dispositivos das portarias. Durante a evacuação, acompanha na aplicação a ocupação estimada, as últimas zonas registradas e as confirmações; os nomes só aparecem enquanto a emergência está ativa. A aplicação está prevista para as Sprints 4 e 5.
 
-**Abrangência e variações do público:** a persona reúne necessidades comuns aos profissionais de operação do CCO: interpretar alarmes, acionar evacuações, acompanhar as condições do processo, comunicar ocorrências e manter registros confiáveis entre turnos. Tempo de experiência, formação, turno, área monitorada, permissões de acesso, familiaridade com as ferramentas e necessidades de acessibilidade podem variar. A pesquisa deve contemplar essas diferenças, incluindo profissionais recém-integrados e experientes, para que a rotina atribuída a Maria não seja tomada como padrão de toda a equipe.
+**Abrangência e limites**
+
+Maria representa as necessidades comuns aos profissionais de operação do CCO: interpretar alarmes, iniciar o protocolo de emergência, acompanhar o processo, comunicar ocorrências e manter registros entre turnos. Tempo de experiência, turno, área monitorada e permissões de acesso variam e devem ser observados em pesquisa. Maria não representa as atribuições da SSMA, da brigada ou dos trabalhadores em evacuação.
 
 #### 3.2.1.3. Persona – Gestor de SSMA (Segurança, Saúde e Meio Ambiente)
 
-A Figura 7 apresenta Tuco Salamanca, proto-persona que representa a perspectiva da gestão de Segurança, Saúde e Meio Ambiente.
+A Figura 7 apresenta Tuco Salamanca, que representa a gestão de Segurança, Saúde e Meio Ambiente e, dentro dela, a equipe de campo que faz a conferência nos pontos de encontro.
 
 <div align="center">
   <p>Figura 7 – Proto-persona Tuco Salamanca, gestor de SSMA</p>
@@ -640,104 +709,103 @@ A Figura 7 apresenta Tuco Salamanca, proto-persona que representa a perspectiva 
   <p><sub>Fonte: elaboração dos autores (2026), com auxílio de inteligência artificial no ChatGPT.</sub></p>
 </div>
 
-Tuco Salamanca é um nome fictício. A proto-persona tem 43 anos, reside em Santos e trabalha em Cubatão, São Paulo, como gestor de Segurança, Saúde e Meio Ambiente (SSMA). Possui graduação em Engenharia Química e pós-graduação em Engenharia de Segurança do Trabalho, com atuação relacionada à área de Segurança, Saúde, Meio Ambiente e Qualidade (SSMAQ) e às operações industriais.
+**Dados demográficos**
+
+- **Nome:** Tuco Salamanca
+- **Idade:** 43 anos
+- **Formação:** graduação em Engenharia Química e pós-graduação em Engenharia de Segurança do Trabalho
+- **Ocupação:** gestor de Segurança, Saúde e Meio Ambiente (SSMA)
+- **Local:** mora em Santos e trabalha em Cubatão, São Paulo
+- **Perfil socioeconômico:** classe média alta; cargo de gestão; mora em Santos com a esposa e dois filhos adolescentes
 
 **Biografia**
 
-Tuco trabalha há 18 anos no setor químico e petroquímico e atua há seis anos na Unipar, sendo o responsável por liderar as diretrizes de prevenção de acidentes e as estratégias do Plano de Ação de Emergência (PAE). Vive em Santos com a esposa e dois filhos adolescentes; nos dias de folga, gosta de velejar e acompanhar novidades sobre tecnologia industrial. Chega à fábrica focado na meta de "Zero Acidentes" e tem como prioridade máxima durante uma emergência obter visibilidade em tempo real sobre a evacuação de todos os colaboradores, orientar com precisão as equipes de resposta e garantir que ninguém fique para trás em áreas de risco.
-
-**Matriz de Dores, Necessidades e Desejos**
+Tuco tem 18 anos de experiência no setor químico e petroquímico, seis deles na Unipar. Lidera as diretrizes de prevenção de acidentes e o Plano de Ação de Emergência (PAE) da unidade. Tem como meta o "Zero Acidentes". Nas folgas, gosta de velejar e de acompanhar novidades sobre tecnologia industrial. Numa emergência, quer saber quem falta e onde procurar, sem mandar a brigada para o lugar errado.
 
 <p align="center">Quadro 6 – Dores, necessidades e desejos da proto-persona Tuco Salamanca</p>
 
-| Prioridade      | Dor ou Necessidade                                                                                                              | O que espera da solução (Desejos)                                                                                                    |
-| :-------------- | :------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------- |
-| **1 — Crítica** | Ter visibilidade em tempo real da contagem de pessoas nos pontos de encontro durante uma evacuação.                             | Deseja um dashboard unificado no Centro de Controle de Emergência (CCE) que confirme automaticamente a presença de cada colaborador. |
-| **2 — Crítica** | Identificar com rapidez se ainda existem colaboradores ou terceiros retidos em áreas fabris de risco em situações de evacuação. | Espera alertas e notificações automáticas de pendência para direcionar a brigada de emergência com precisão.                         |
-| **3 — Alta**    | Tomar decisões ágeis no comando da crise sem depender de informações fragmentadas.                                              | Precisa de uma interface simples, legível e "à prova de falhas" que consolide o status geral em instantes sob alta pressão.          |
-| **4 — Alta**    | Eliminar a lentidão e as falhas da contagem presencial por listas em papel.                                                     | Busca a substituição do processo manual por uma validação digital rastreável e imediata.                                             |
-| **5 — Média**   | Obter dados precisos do tempo de evacuação para análises e treinamentos pós-incidente.                                          | Deseja relatórios históricos automatizados para comprovar a eficácia do plano em auditorias e aprimorar os simulados.                |
+| Prioridade | Dor ou necessidade | O que deseja da solução |
+| :--- | :--- | :--- |
+| **1. Crítica** | Acompanhar as confirmações nos pontos de encontro durante a evacuação. | Ver na aplicação as confirmações por crachá em cada ponto de encontro e quantas pessoas ainda não confirmaram. |
+| **2. Crítica** | Saber se ainda há pessoas em áreas de risco e onde procurar. | Aos 10 minutos, receber a lista de quem tem registro de zona e não confirmou, com a última zona registrada, para decidir a busca. |
+| **3. Alta** | Decidir sem depender de informações fragmentadas. | Uma interface simples, que mostre a origem e o horário de cada dado e avise quando os números não são confiáveis. |
+| **4. Alta** | Acabar com a lentidão e os erros da contagem por listas em papel. | Confirmação digital nos pontos de encontro, conduzida pelos brigadistas e líderes de ponto. |
+| **5. Média** | Ter dados do tempo de evacuação para auditorias e simulados. | Um relatório do evento após o encerramento, com tempos, alertas e confirmações. |
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
----
+**Tarefas**
 
-**Tarefas e Responsabilidades**
+Tuco elabora e revisa o PAE e as rotas de evacuação, acompanha os indicadores de SSMA e coordena simulados com as equipes operacionais e a brigada. Numa emergência, coordena a resposta, orienta os brigadistas e decide quando e onde fazer buscas. Depois, encaminha os relatórios de simulados e ocorrências à diretoria e aos órgãos fiscalizadores.
 
-No perfil proposto, Tuco define, revisa e supervisiona os procedimentos do Plano de Ação de Emergência (PAE) e as rotas de evacuação. Acompanha os indicadores de SSMA, supervisiona o cumprimento das normas e da política de segurança e coordena simulados periódicos com as equipes operacionais e a brigada.
+**Equipe de campo: brigadistas e líderes de ponto**
 
-Durante uma emergência, atua no Centro de Controle de Emergência (CCE), coordena a resposta e consolida os dados recebidos por rádio sobre as pessoas que chegaram aos pontos de encontro. Também encaminha relatórios de simulados e ocorrências à diretoria, à liderança executiva e aos órgãos fiscalizadores, conforme as atribuições previstas para sua função.
+Tuco coordena os brigadistas e os líderes de ponto, que fazem a conferência nos pontos de encontro. Hoje, eles chamam nome por nome com lista e prancheta e repassam os números pelo rádio, com sirene e vento ao fundo. Na solução, são eles que orientam as pessoas a aproximar o crachá do totem, ativam o totem pelo botão local se a conexão cair e fazem a busca orientada pela última zona registrada. As necessidades desse público estão incluídas nesta persona até que ele ganhe uma persona própria.
 
-**Cenários de Interação Atuais**
+**Comportamento em uma emergência**
 
-No início do turno, Tuco analisa os indicadores da fábrica e verifica as permissões de trabalho de alto risco em seu computador de mesa. Em um simulado ou alarme real, quando a sirene soa, ele assume o comando do CCE. Atualmente, aguarda que as equipes de brigada nos pontos de encontro realizem a conferência manual de cada pessoa utilizando papel e prancheta e repassem os números por rádio ruidoso. Esse processo gera atrasos, dúvidas sobre a precisão da contagem e perda de tempo na tomada de decisão sobre o resgate.
+Quando o alarme toca, Tuco vai para a coordenação da emergência e a primeira coisa que pede pelo rádio é o número de cada ponto de encontro. Se a soma não bate com quem estava na planta, ele pede aos líderes de ponto uma segunda chamada antes de mandar a brigada, porque não quer arriscar uma equipe por um erro de contagem. Só encerra a emergência quando cada líder de ponto confirma que fechou a lista.
 
-> **Nota:** Atualmente não há um dispositivo individual de confirmação automática ou um dashboard digital de monitoramento em tempo real em uso no CCE.
+**Interesses e hábitos**
 
-**Interesses e Hábitos Relacionados ao Processo**
+Tuco valoriza dados confiáveis, processos auditáveis, equipamentos adequados para áreas classificadas e ferramentas que reduzam o erro humano sob estresse. No dia a dia, acompanha relatórios e faz inspeções.
 
-Tuco valoriza confiabilidade absoluta dos dados, processos auditáveis, tecnologias homologadas para áreas classificadas e ferramentas que reduzam a margem de erro humano em momentos de estresse. Sua interação com o processo ocorre no planejamento, na avaliação de riscos, no comando dos simulados e na gestão de crises reais. No cotidiano, acompanha relatórios e realiza inspeções, não interagindo com dispositivos manuais nos pontos de encontro, pois sua atuação é focada na gestão centralizada no CCE.
+**Letramento digital**
 
-**Nível de Letramento Digital**
-
-Tuco apresenta letramento digital entre intermediário e avançado. No perfil hipotético, utiliza sistemas corporativos de gestão, como SAP, ferramentas de análise de dados, como Power BI, e programas de gestão de riscos. Compreende os conceitos gerais de Internet das Coisas (IoT), sensoriamento e automação industrial. Ainda assim, espera que o sistema de acompanhamento da evacuação seja simples de aprender e operar durante uma emergência.
+Entre intermediário e avançado. Usa sistemas corporativos de gestão, ferramentas de análise de dados e programas de gestão de riscos, e entende os conceitos gerais de Internet das Coisas e automação industrial. Mesmo assim, espera que o sistema da evacuação seja simples de usar numa emergência.
 
 **Falas ilustrativas, não coletadas em entrevista**
 
-> _"Preciso bater o olho na tela do CCE e saber em segundos quantos evacuaram e se há alguém na área afetada."_
+> "Preciso olhar a tela e saber em segundos quantos já chegaram e quem ainda falta."
 
-> _"A contagem manual em papel funcionou por décadas, mas não nos dá a velocidade necessária para salvar vidas em tempo real."_
+> "A contagem em papel funcionou por décadas, mas é lenta demais quando cada minuto conta."
 
-> _"A tecnologia IoT no CCE precisa ser indiscutível e direta; em uma emergência, não temos tempo para telas complexas ou sistemas lentos."_
+> "Não mando a brigada atrás de um número; mando atrás de uma pessoa e de um lugar."
 
-**Variações do Público, Limites e Abrangência**
+**Interação com a solução**
 
-**Limites da persona:** Tuco Salamanca representa a perspectiva do gestor estratégico no CCE da unidade fabril de Cubatão. A sua visão difere da visão de um brigadista em campo (que precisa de mobilidade e alertas locais) ou de um operador (focado em sair com segurança). Além disso, as particularidades das plantas da Unipar na Argentina ou em outras localidades do Brasil podem demandar diferentes adaptações nos protocolos ou nos dashboards locais.
+Na solução descrita na seção 3.1.3, Tuco acompanha na aplicação as confirmações e as pendências e, aos 10 minutos, recebe a sinalização de quem ainda não confirmou, com a última zona registrada. A decisão de buscar é dele: a aplicação não aciona a brigada sozinha. É a SSMA quem encerra o modo de emergência, depois de avaliar se todos estão seguros. Como a última zona registrada não é a posição exata da pessoa e a contagem das portarias é estimada, os números apoiam a decisão de Tuco, mas não a substituem.
 
-**Interação com o projeto:** na Sprint 1, Tuco representa quem avalia se o total local e os cenários simulados ajudam a compreender a apuração quantitativa. Não há confirmação individual no protótipo. Na evolução planejada, poderá consultar a consolidação dos PEs, o balanço e os alertas, confrontando-os com a conferência humana. A leitura de crachá no PE identifica quem chegou; identificar quem falta exige também uma relação nominal válida de pessoas presentes no início do evento. Essa comparação não localiza ausentes, e saldo zero não dispensa a brigada. CCE designa aqui o contexto hipotético de coordenação da emergência, cuja organização efetiva deve ser confirmada com a Unipar.
+**Abrangência e limites**
 
-**Abrangência:** a persona do Gestor de SSMA canaliza os objetivos corporativos de toda a liderança e equipe de resposta a emergências: garantir visibilidade total do contingente, acelerar decisões de resgate e manter a conformidade com o compromisso de zero acidentes. Embora os colaboradores operacionais e terceiros interajam na ponta (sendo monitorados e confirmando presença), o Gestor de SSMA é o usuário final primário das informações consolidadas da solução tecnológica proposta.
+Tuco representa a gestão da emergência na unidade de Cubatão e, dentro dela, a equipe de campo que faz a conferência. A visão dele difere da do brigadista, que precisa de mobilidade e orientação no local, e da do operador, focado em sair com segurança. Plantas da Unipar em outras localidades podem demandar adaptações. A estrutura de coordenação da emergência na unidade deve ser confirmada com a Unipar.
 
-Em conjunto, as proto-personas Gustavo, Maria e Tuco conectam três perspectivas complementares da evacuação: a experiência de quem se desloca para um local seguro, o acompanhamento das condições operacionais e a gestão da resposta à emergência. A necessidade de Gustavo de ter sua chegada reconhecida se relaciona à necessidade de Maria de receber informações consistentes sobre o andamento da ocorrência e à de Tuco de acompanhar a conferência das pessoas e identificar pendências. Essa relação orienta o propósito do projeto: apoiar uma evacuação mais segura por meio de informações claras, ágeis e rastreáveis sobre a presença nos pontos de encontro, reduzindo a incerteza e o tempo necessário para consolidar os dados. As proto-personas, portanto, fornecem uma base inicial para orientar a pesquisa com usuários, propor prioridades de requisitos, elaborar jornadas e avaliar a solução em simulados, considerando tanto a experiência em campo quanto o uso das informações pelo CCO e pelo SSMA. Essas decisões deverão ser revistas à medida que as hipóteses dos perfis forem confirmadas ou corrigidas pela pesquisa. A confirmação de presença e as pendências de registro devem ser apresentadas de forma distinta, para que a ausência de confirmação não seja interpretada automaticamente como localização de uma pessoa em uma área de risco.
+Em conjunto, Gustavo, Maria e Tuco conectam três perspectivas da evacuação: quem se desloca até um local seguro, quem inicia e acompanha a ocorrência e quem coordena a resposta. A necessidade de Gustavo de ter a chegada confirmada se liga à necessidade de Maria de acompanhar a evacuação com dados confiáveis e à de Tuco de saber quem falta e onde procurar. Essa relação orienta a solução: confirmação por crachá nos pontos de encontro, última zona registrada como apoio à busca e informações organizadas para a SSMA e o CCO, sem que a falta de confirmação seja lida automaticamente como pessoa em área de risco.
 
 #### 3.2.1.4. Processo de Elaboração das Personas
 
-A concepção das personas deste projeto seguiu um processo estruturado em etapas de pesquisa exploratória (_desk research_), imersão com o parceiro de negócios, identificação de partes interessadas (_stakeholders_) e modelagem preliminar de perfis com a metodologia de **proto-personas** (GOTHELF; SEIDEN, 2016). Esse método permitiu tangibilizar e humanizar os requisitos operacionais, dores e tarefas dos usuários antes da aplicação de entrevistas em campo no complexo industrial da Unipar em Cubatão.
+As personas foram construídas como proto-personas (Gothelf; Seiden, 2016), método que organiza hipóteses sobre os usuários antes de haver pesquisa de campo. O processo teve três etapas.
 
-O processo de construção dos perfis foi conduzido a partir das seguintes fases:
+##### 1. Pesquisa documental
 
-##### 1. Levantamento de dados e pesquisa exploratória (_Desk Research_)
+- **Termo de Abertura do Projeto de Inovação (TAPI) (Unipar, 2026a):** forneceu o escopo do desafio, os usuários previstos (gestores de SSMA, equipes de resposta, liderança local, colaboradores e terceiros) e a restrição de que o projeto não trata de localização precisa em ambientes internos.
+- **Normas Regulamentadoras (Brasil, 2022; Brasil, 2025):** a NR-23 (proteção contra incêndios) orientou a atenção a saídas de emergência desobstruídas e comunicação clara; a NR-20 foi consultada, mas sua aplicação depende das substâncias de cada área.
+- **Riscos do cloro (NIOSH, 2019):** o comportamento do cloro (gás tóxico, mais denso que o ar, que se acumula perto do solo) mostrou a importância do tempo de evacuação e da escolha do ponto de encontro conforme a direção do vento.
 
-O ponto de partida da investigação consistiu na análise de fontes documentais do projeto, regulamentações vigentes e dados do setor químico e petroquímico:
+##### 2. Imersão no contexto da Unipar (kickoff)
 
-- **Termo de Abertura do Projeto de Inovação (TAPI) (UNIPAR, 2026):** Forneceu o escopo do desafio, a população de referência estimada na fábrica de Cubatão (cerca de 755 pessoas, sendo 355 colaboradores diretos e cerca de 400 terceirizados) e as diretrizes arquiteturais, como a premissa de não utilizar rastreamento invasivo ou de alta precisão em ambientes internos e a recomendação de compatibilidade com os crachás de identificação já utilizados pelos funcionários.
-- **Normas Regulamentadoras (NR-20 e NR-23) (BRASIL, 2022; BRASIL, 2025):** A NR-20 (segurança com inflamáveis e combustíveis) e a NR-23 (proteção contra incêndios) orientaram a definição das tarefas e limites operacionais dos trabalhadores durante emergências, exigindo rotas de fuga sempre desobstruídas, saídas céleres e comunicação eficaz sem adição de barreiras físicas ou cognitivas aos colaboradores.
-- **Estudo de Riscos Toxicológicos e Procedimentos Químicos (NIOSH, 2019):** O entendimento do comportamento do cloro (gás tóxico, fortemente oxidante e mais denso que o ar, acumulando-se rente ao solo) evidenciou a extrema criticidade do tempo de evacuação e a necessidade de chegar aos Pontos de Encontro (PEs) com máxima presteza e na direção perpendicular ou oposta ao vento.
-- **Benchmarking de Soluções de Evacuação:** Análise de práticas de contagem automatizada e rastreamento em outras plantas industriais (como os casos da Ferrero e da Chevron Oronite), permitindo identificar a viabilidade e os gargalos de abordagens por contagem anônima versus identificação individualizada.
+Na reunião de kickoff com a Unipar, em 16 de outubro de 2026 (informação verbal)[^kickoff-personas], foram levantados os pontos que mais pesaram nos perfis:
 
-##### 2. Imersão no contexto operacional do parceiro (_Kickoff_)
+1. **População de referência:** cerca de 755 pessoas na unidade de Cubatão, sendo 355 colaboradores diretos e cerca de 400 terceirizados.
+2. **Catracas liberadas no alarme:** no acionamento da emergência, as catracas e portas são liberadas para agilizar a saída, o que interrompe o registro habitual de passagem.
+3. **Conferência manual:** a checagem nos pontos de encontro é feita por líderes e brigadistas, com listas e rádio, sob ruído de sirene e vento.
+4. **Prazo de 10 minutos:** a pessoa sem confirmação no ponto de encontro em até 10 minutos após o alarme passa a ser caso crítico para a SSMA decidir a busca.
 
-As dinâmicas reais de emergência e as dores vivenciadas na planta foram detalhadas durante a reunião de _kickoff_ com os interlocutores da Unipar, realizada em **16 de outubro de 2026**. Nesse encontro, foram mapeados aspectos fundamentais do fluxo de abandono da fábrica de Cubatão:
+##### 3. Seleção dos perfis
 
-1. **Abertura compulsória das catracas no alarme:** Durante o acionamento do alarme de emergência, as catracas de portaria e portas de contenção entre setores são destravadas para viabilizar a evasão rápida e evitar pisoteamentos ou retenção de fluxo. Esse procedimento interrompe o registro magnético/RFID dos crachás, criando um ponto cego no sistema corporativo sobre quem saiu e quem permaneceu nas edificações.
-2. **Conferência manual por listas e pranchetas:** A checagem de presença nos Pontos de Encontro (PEs) é realizada manualmente por líderes de setor e brigadistas por meio de chamadas orais com listas impressas e comunicação via rádio, sob ruído severo de sirenes, vento e movimentação de veículos de emergência, gerando morosidade e risco de erros de contagem.
-3. **Regra crítica do prazo interno de 10 minutos (SLA):** A liderança da Unipar estabeleceu que qualquer colaborador cuja presença não seja confirmada no Ponto de Encontro em até 10 minutos após o alarme é classificado como caso crítico, determinando o acionamento imediato da brigada de emergência para busca e salvamento em área de risco.
+Foram identificados cinco grupos: colaboradores, operadores de CCO, gestores de SSMA, brigadistas e líderes de ponto, e profissionais de Infraestrutura e TI. Três foram detalhados como personas:
 
-##### 3. Mapeamento de atores e seleção dos perfis primários
+- **Técnico de operação (Gustavo Fring):** quem precisa evacuar com segurança e ter a chegada confirmada no ponto de encontro com o crachá, sem procedimentos complexos.
+- **Operadora de CCO (Maria Schrader):** quem trabalha na sala segura da unidade, distingue alarmes de processo de emergências reais, inicia o modo de emergência e seleciona os pontos de encontro ativos.
+- **Gestor de SSMA (Tuco Salamanca):** quem coordena a resposta, acompanha os indicadores da evacuação (como `B₀ − |M(t)|`, as pessoas ainda não confirmadas) e decide quando e onde fazer buscas. Os brigadistas e líderes de ponto estão representados nesta persona, porque atuam sob a coordenação da SSMA.
 
-Com base nos dados coletados, a equipe realizou dinâmicas de mapeamento de partes interessadas com o auxílio da Matriz CSD (Certezas, Suposições e Dúvidas). Foram identificados cinco grupos operacionais distintos: colaboradores de fábrica/campo, operadores de sala de controle (CCO), gestores de SSMA, brigadistas de emergência e profissionais de Infraestrutura/TI.
+Infraestrutura e TI ficou como público secundário, ligado ao suporte dos dispositivos e da rede.
 
-Para orientar o desenvolvimento da solução na Sprint 1, a equipe selecionou e aprofundou **três perfis primários** que cobrem todo o ciclo de vida do evento de evacuação:
+##### 4. Articulação com a proposta de valor e os requisitos
 
-- **Técnico de Operação (Gustavo Fring):** Representa o usuário da ponta — quem está no chão de fábrica e precisa evacuar. O perfil sintetiza as necessidades do trabalhador que utiliza EPIs pesados, atua em ambientes com ruído de máquinas e precisa apenas evacuar pela rota segura e ter a certeza imediata de que sua passagem pelo Ponto de Encontro foi registrada, sem depender de dispositivos intrusivos ou procedimentos complexos.
-- **Operadora do Centro de Controle Operacional - CCO (Maria Schrader):** Representa o elo de comunicação e monitoramento de processos. Atuando a partir de uma sala protegida (_bunker_), precisa discernir anomalias de processo de alertas de emergência, acionar os alarmes sonoros e acompanhar a evolução das áreas sem confundir status operacional de máquinas com o balanço de pessoas em trânsito.
-- **Gestor de SSMA (Tuco Salamanca):** Representa o tomador de decisão estratégica e comandante da crise no Centro de Controle de Emergência (CCE). É quem consome diretamente o balanço de evacuação ($D = B - A$, onde $B$ é a população de referência congelada no alarme e $A$ são as chegadas registradas), sendo o principal responsável por cumprir a meta dos 10 minutos e decidir com segurança quando e para onde despachar equipes de resgate.
+As dores e necessidades das personas foram conectadas ao Value Proposition Canvas (seção 3.1.4), à Matriz de Riscos (seção 3.1.5), às regras de negócio e aos requisitos funcionais. A necessidade de Gustavo de ter a chegada confirmada se reflete na confirmação por crachá no totem (RF009) e na regra de contagem por identificadores distintos (RN06). A necessidade de Maria de iniciar e acompanhar a ocorrência se reflete no início manual do modo de emergência pelo CCO (RN01 e RF016) e no painel da evacuação (RF018). A necessidade de Tuco de saber quem falta e onde procurar se reflete na última zona registrada (RF007), na sinalização aos 10 minutos (RN07.1 e RF019) e na decisão da busca pela SSMA (RN07.2). A exibição de nomes só durante a emergência (RN12 e RF024) responde à preocupação com a privacidade dos três públicos.
 
-Os **Brigadistas** e os profissionais de **Infraestrutura e TI** foram categorizados como stakeholders secundários nesta etapa. Embora suas tarefas sejam vitais (intervenção em campo e sustentação da infraestrutura de hardware/rede, respectivamente), suas demandas no MVP estão coordenadas com as decisões estratégicas da SSMA e os fluxos de telecomunicações do CCO, estando seu detalhamento em personas próprias reservado para refinamento nas próximas etapas do projeto.
-
-##### 4. Articulação com a proposta de valor e regras de negócio
-
-A caracterização das dores, necessidades e tarefas de cada perfil foi diretamente conectada ao _Value Proposition Canvas_ (seção 3.1.4) e à Matriz de Riscos (seção 3.1.5). Dores como a lentidão da contagem por papel, a perda de dados nas catracas liberadas e a ansiedade da liderança sem números confiáveis subsidiaram a especificação das Regras de Negócio RN01 a RN06 (seção 3.3.2) e dos Requisitos Funcionais de contagem local (RF001), totalização anônima (RF005) e alerta crítico aos 10 minutos (RF008).
+[^kickoff-personas]: Informações fornecidas pela Unipar na reunião de kickoff do projeto, em 16 de outubro de 2026.
 
 ### 3.2.2. Jornada do Usuário e Storyboard
 
@@ -1268,9 +1336,9 @@ A execução visual/serial desses CTs não aprova os RNFs relacionados. As [ress
 
 #### Cobertura e atualização
 
-A cobertura documental desta matriz inclui 16/16 RFs, 20/20 RNs e 8/8 RNFs ligados a necessidades ou personas e a um CT registrado ou uma validação PV planejada. Os oito RNFs permanecem sem aprovação experimental da arquitetura integrada.
+A especificação atual reúne 58 requisitos funcionais, organizados em 25 grupos, 20 regras de negócio e 8 requisitos não funcionais. O atendimento deve ser acompanhado por requisito, distinguindo implementação, implementação parcial e validação pendente. CT01–CT10 registram os ensaios da Sprint 1 e precisam ser repetidos no circuito corrigido. CT11–CT15 correspondem a um planejamento sujeito a readequação e execução. CT16–CT23 possuem evidências de simulação do protótipo de monitoramento, com o alcance e as limitações descritos na Seção 3.4.2.4; CT20–CT22 apoiam a verificação parcial de RF006.1. Os testes de botão e sinalização local do protótipo de zonas ainda dependem de definição de requisitos específicos. O totem possui funcionalidades locais implementadas ou parcialmente implementadas, mas seus casos de teste permanecem pendentes. A integração entre dispositivos e aplicação requer implementação e validação próprias. Os oito RNFs permanecem sem aprovação experimental da arquitetura integrada.
 
-Há **16 RFs**: três implementados localmente (RF001, RF014, RF015) e 13 propostas futuras. Os dez CTs possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização. Há **20 RNs**: RN12–RN14 possuem evidência parcial nos CTs; as outras 17 dependem de implementação ou validação futura. RN19 só entra na implementação se o monitoramento por zonas for aprovado e receber RF e teste específicos.
+Os dez CTs da Sprint 1 possuem arquivos de evidência e vínculo específico, mas sua cobertura não é integral: faltam, entre outros, limites exatos da distância, permanência prolongada, ambos os sensores ativos no mesmo ciclo, retorno do botão ao verde e reinicialização.
 
 A próxima revisão do circuito ficará a cargo da equipe e deverá ser seguida de nova execução da bateria, identificando versão/commit, responsável, entradas, saídas e resultado real. Esta atualização da matriz é documental e referencia a execução já registrada de CT16–CT23, sem nova execução de testes. A cada sprint, atualizar RFs, RNs, riscos e testes juntos. Um caso só muda para aprovado após execução e evidência; planejamento não é cobertura experimental.
 
@@ -1324,54 +1392,43 @@ Justifique como a arquitetura suporta os requisitos funcionais e não funcionais
 
 A revisão deverá incluir comentários sobre cada ponto levantado, mostrando como os ajustes foram realizados, além da descrição da arquitetura revisada.\_
 
-### 3.3.8. Modelo de contagem, capacidade e limites do protótipo (sprint 1)
+### 3.3.8. Modelo de contagem, capacidade e limites operacionais (Sprint 2)
 
-#### Variáveis e balanço da solução integrada futura
+#### Referência e saldo de evacuação
 
-`B` é o saldo de pessoas na planta nas Portarias P1/P2 congelado no instante do alarme `t0`. Não é um valor fixo de 755: esse número é somente o cenário preliminar de dimensionamento. `E_j(t)` e `S_j(t)` são, respectivamente, entradas e saídas válidas acumuladas no PE `j` desde `t0`. Para uma contagem inicialmente reconciliada:
+Nas portarias P1/P2, os acumulados reconciliados de entrada e saída usam a mesma origem de contagem. Se houver pessoas presentes na abertura da contagem, elas entram no saldo inicial reconciliado de entradas. No instante do alarme t0, congelar a referência B = E_total(t0) − S_total(t0), equivalente a B₀ na seção 3.1.3. Passagens posteriores podem apoiar a reconciliação, mas não alteram silenciosamente B. O cenário de 755 pessoas serve para dimensionamento.
 
-$$A_j(t) = A_j(t_0) + E_j(t) - S_j(t), \qquad A(t) = \sum_j A_j(t), \qquad D(t) = B - A(t)$$
+Em cada ponto de encontro j, C_PE,j(t) é a quantidade de confirmações válidas atribuídas ao ponto no evento aberto. A aplicação deduplica por identificador e evento, e mantém uma única associação ativa por pessoa entre todos os PEs. Repetições mantêm a mesma confirmação. Uma transferência confirmada muda a associação entre PEs sem aumentar o total. Assim, A(t) = Σ C_PE,j(t) = cardinalidade de M(t), e D(t) = B − A(t). Uma confirmação RFID registra chegada, e o balanço não comprova permanência física nem identifica nominalmente os ausentes sem uma lista de referência confiável. Saídas diretas da planta e pessoas presentes no PE ao disparar o alarme exigem reconciliação com a SSMA.
 
-Assim, `A` é a ocupação estimada atual, enquanto `E` é o total de entradas; a confirmação nominal por crachá no PE é mantida separadamente em `M(t)`. Uma pessoa que sai e retorna não deve somar uma presença adicional, desde que ambos os eventos sejam registrados corretamente. Transferências entre PEs exigem registro de saída na origem e entrada no destino. Pessoas já presentes no PE em `t0` precisam entrar na reconciliação inicial, evitando assumir zero sem conferência.
+| Estado | Condição | Ação |
+| --- | --- | --- |
+| Nominal | Referência válida, fontes atualizadas e D = 0. | Exibir saldo conciliado e solicitar conferência. Somente a SSMA autorizada registra o encerramento. |
+| Divergente | Referência válida, fontes atualizadas e D > 0. | Exibir a pendência quantitativa. Aos 600 s desde t0, alertar CCO e SSMA para acionamento da brigada conforme o procedimento da planta. |
+| Inconclusivo | D < 0, base inválida, nó crítico indisponível, dados atrasados ou sequência ainda não reconciliada. | Exibir causa e horário do último dado válido, acionar a contingência manual e manter o relógio original. Aos 600 s, destacar que a conferência segue pendente. |
 
-O firmware atual inicializa o total em zero ao ligar, incrementa entradas e aplica `max(0, total - 1)` nas saídas. Não recebe `B`, não sincroniza `t0`, não mantém contadores separados de entradas/saídas e não persiste o saldo após reinicialização. Portanto, fornece somente uma estimativa local, cuja equivalência à fórmula depende da inicialização e da detecção corretas. Saídas com saldo zero são sinalizadas pelo buzzer/serial, mas não descontadas; essa proteção pode ocultar inconsistências e exige reconciliação. O firmware atual não identifica pessoas. Na solução futura, `M(t)` registra por crachá quem chegou ao PE, mas a diferença quantitativa não exclui erros que se compensem.
+A ocupação por entradas menos saídas na RN04 e em PV03 representa a variante anônima anterior. Para os totens RFID, o indicador da Sprint 2 é o conjunto de confirmações válidas. A RTM explicita a diferença e a revisão pendente dos RFs e RNs correlatos.
 
-Na evolução conectada, `D > 0` em `t0 + 600 s` deverá produzir alerta automático para acionamento imediato da brigada, conforme o SLA informado. `D < 0`, base inconsistente, nó indisponível ou dados desatualizados tornam o balanço inconclusivo, com apuração manual. Nenhum desses automatismos de balanço e alarme está implementado na Sprint 1.
+#### Vazão dos leitores RFID e distribuição por PE
 
-#### Hardware, detecção e geometria
+Com 755 pessoas em 600 s, a vazão agregada mínima é de 75,5 pessoas/min. Reservando 180 s para deslocamento no cenário exploratório, restam 420 s, o que exige cerca de 107,9 pessoas/min durante o atendimento. O tempo efetivo s por pessoa inclui aproximação, leitura, retorno local, liberação do campo e novas tentativas. Para cada PE com demanda B_j, janela útil T_j e margem de capacidade m, usar k_j = ceil(B_j × s_j / ((1 − m) × T_j)). A vazão nominal por totem é 60/s_j pessoas/min. O total de totens é a soma dos k_j e depende da distribuição das chegadas.
 
-O circuito atual utiliza Arduino Uno, dois HC-SR04 dedicados a entrada e saída, LCD 16 × 2 com interface I²C, buzzer e LEDs. O botão alterna vermelho/verde; os sensores funcionam em ambos os estados. No `loop()`, a saída é consultada antes da entrada; depois de um evento, o outro sensor fica ignorado até a liberação. Não existe discriminação de direção pela sequência dos feixes. A instalação futura precisa garantir passagens coerentes com os sensores dedicados ou implementar e validar outra lógica de direção.
+<p align="center">Tabela 2 – Cenários exploratórios para 755 confirmações com demanda equilibrada</p>
 
-O limiar configurado é **distância medida maior que zero e menor que 200 cm**. Trata-se da distância entre sensor e alvo na direção da medição, não de uma largura de corredor nem de garantia de cobertura lateral. Largura útil, orientação, posição, altura, campo de detecção, reflexões e separação de pessoas precisam ser definidos e ensaiados na montagem física. A proposta anterior de corredor de 150 cm não demonstra cobertura nem assegura fila individual por estar abaixo de 200 cm. Nenhuma largura de instalação está aprovada nesta etapa, e delimitadores não podem obstruir a evasão.
+| Tempo efetivo por pessoa | Vazão por totem | Totens com 600 s | Totens com 420 s | Totens com 420 s e reserva de 20% |
+| --- | --- | --- | --- | --- |
+| 1,5 s | 40 pessoas/min | 2 | 3 | 4 |
+| 2,0 s | 30 pessoas/min | 3 | 4 | 5 |
+| 3,0 s | 20 pessoas/min | 4 | 6 | 7 |
 
-Após a detecção, é necessário permanecer sem detecção por pelo menos 1.000 ms para rearmar. Isso se soma ao tempo de ocupação do feixe, às leituras e ao processamento (`delay(20)` no fim do laço; timeout de eco de 30 ms por medição). O sinal sonoro de 100 ms não é o intervalo completo entre contagens. O espaçamento físico deve assegurar esse período livre; uma distância fixa de 1 m entre pessoas, isoladamente, não garante o rearmamento. Falhas de eco retornam `-1`; descartar essa leitura evita um evento espúrio, mas não comprova que nenhuma passagem foi perdida.
+Com s = 2 s e reserva de 20%, um PE que receba 500 pessoas precisa de três totens em 420 s e outro que receba 255 precisa de dois. Se o primeiro receber 600, precisa de quatro, mesmo que sobre capacidade no segundo. A SSMA deve validar a distribuição, as chegadas tardias, a indisponibilidade de um totem e o posicionamento das filas. Os números são estimativas de projeto. O ensaio de carga deve medir a vazão efetiva, incluindo releituras e interrupções, antes de confirmar o dimensionamento.
 
-#### Dimensionamento dos acessos em dez minutos
+#### Leitura, latência e contingência
 
-Uma fila única para 755 pessoas exigiria intervalo médio de no máximo `600 / 755 = 0,795 s/pessoa`, mesmo sem caminhada ou margem operacional. O rearmamento de um segundo, acrescido da ocupação e do processamento, impede essa vazão no firmware atual. **Um único acesso é insuficiente.**
-
-Seja `s` o intervalo efetivo entre contagens corretas, incluindo passagem e rearmamento; a vazão por acesso é `Q = 60 / s` pessoas/minuto. Como aproximação conservadora, reserve `t_desloc` segundos desde o alarme até a disponibilização do grupo na fila e utilize `T = 600 - t_desloc` para processá-lo. Para acessos independentes com divisão equilibrada da demanda:
-
-$$k_{min} = \left\lceil \frac{755\,s}{600 - t_{desloc}} \right\rceil$$
-
-<p align="center">Tabela 2 – Dimensionamento exploratório dos acessos para 755 pessoas</p>
-
-| Intervalo efetivo assumido `s`                      | Vazão por acesso | Acessos mínimos com 600 s disponíveis | Acessos mínimos com 420 s disponíveis (180 s reservados ao deslocamento) |
-| --------------------------------------------------- | ---------------- | ------------------------------------- | ------------------------------------------------------------------------ |
-| 1 s (limite idealizado, sem ocupação/processamento) | 60 pessoas/min   | 2                                     | 2                                                                        |
-| 1,5 s                                               | 40 pessoas/min   | 2                                     | 3                                                                        |
-| 2 s                                                 | 30 pessoas/min   | 3                                     | 4                                                                        |
-| 3 s                                                 | 20 pessoas/min   | 4                                     | 6                                                                        |
-
-<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
-
-Esses cenários são cálculos, não vazões medidas. Por exemplo, com `s = 2 s` e três minutos de deslocamento, são necessários **pelo menos quatro acessos independentes**. Para uma reserva adicional de 20% da capacidade nesse cenário, `ceil(755 × 2 / (0,8 × 420)) = 5` acessos. Esses parâmetros ainda precisam ser medidos e aprovados com a SSMA; não há número definitivo de acessos de implantação.
-
-A soma da capacidade não basta se uma fila ficar sobrecarregada. Para cada PE com demanda `B_j`, deve-se verificar `k_j = ceil(B_j × s_j / T_j)` e somar os acessos necessários. O ensaio deve registrar a distribuição e os horários reais de chegada, inclusive o último grupo, as saídas, interrupções e eventual indisponibilidade de um acesso. Acesso independente significa um nó que possa contar em paralelo: os dois sensores do mesmo Arduino não são dois acessos independentes, pois compartilham o bloqueio. A montagem física também deve avaliar interferência entre sensores próximos. A organização de filas depende de validação de segurança para não atrasar o abandono.
-
-#### Evoluções previstas
-
-Comunicação em rede/MQTT, integração P1/P2, congelamento de `B`, sincronização de horário, dashboard, registros persistentes e alertas remotos são propostas para avaliação futura; a adoção de ESP32 depende da arquitetura a definir. As mensagens atuais no monitor serial não constituem histórico persistente com data/hora. Eventual controle por zonas com crachás exigiria nova decisão de escopo; a Sprint 1 se restringe à contagem local nos PEs e aos testes CT01–CT10, sem rastreamento contínuo em ambientes internos.
+- **RFID e botão local.** Adotar como ponto de partida uma janela de 1.000 ms para suprimir repetições do mesmo crachá no mesmo leitor, sem bloquear crachás distintos. Leituras contínuas do mesmo crachá geram um único evento até a retirada do campo. A deduplicação de confirmação por pessoa e evacuação continua válida após a janela e entre totens. Para o botão local, aceitar uma transição após 50 ms de estado estável e rearmar após soltura estável. Medir esses tempos com crachás sucessivos, leitura mantida e acionamentos repetidos.
+- **Processamento.** Medir desde a captura até a sinalização local, com limite proposto de 0,5 s, e até a atualização remota, com limite de 3,0 s sob rede operacional. Registrar separadamente a duração de leitura, gravação local e entrega ao painel. Usar heartbeat proposto de 5 s e sinalizar desatualização após 15 s sem heartbeat ou quando houver lacuna conhecida.
+- **MQTT ou Wi-Fi indisponível.** Persistir localmente cada evento antes de sinalizar aceitação. Dimensionar o buffer para pelo menos 900 eventos por totem, equivalentes a 15 min a 1 evento/s. Ao reconectar, retransmitir com identidade estável de dispositivo, sessão e sequência, preservar o horário original e remover o evento do buffer após confirmação de processamento persistente pela aplicação. O painel deduplica reenvios e mantém o estado inconclusivo até a reconciliação. Fila de armazenamento cheia, leitura falha ou atraso persistente exigem sinalização local e conferência manual.
+- **Filas físicas e falhas de leitura.** Encaminhar para totens disponíveis conforme o procedimento da SSMA, preservando as rotas de saída. Encaminhar crachá ilegível, pessoa sem crachá ou saída direta da planta para conferência manual com registro separado e reconciliação autorizada. Evitar confirmação dupla na consolidação.
+- **Limites do protótipo da Sprint 1.** O Arduino Uno usa HC-SR04 dedicados por sentido e contagem local. O limite de detecção é maior que zero e menor que 200 cm na direção do sensor, com rearme após 1.000 ms livres, timeout de eco de 30 ms por medição e botão que alterna LEDs sem pausar a contagem. O limite de distância não define largura útil. Os dois sensores compartilham o bloqueio e não equivalem a duas filas independentes. Os CT01–CT10 registram o comportamento local, enquanto RFID, persistência, MQTT e vazão aguardam os ensaios integrados.
 
 ## 3.4. Resultados
 
@@ -1949,6 +2006,8 @@ ELETROGATE. **LED difuso 5 mm vermelho**. [S. l.]: Eletrogate, [s. d.]c. Dispon�
 
 ELETROGATE. **Protoboard 400 pontos**. [S. l.]: Eletrogate, [s. d.]d. Disponível em: https://www.eletrogate.com/protoboard-400-pontos. Acesso em: 20 out. 2026.
 
+GOTHELF, Jeff; SEIDEN, Josh. **Lean UX**: designing great products with agile teams. 2. ed. Sebastopol: O'Reilly Media, 2016.
+
 HARVARD BUSINESS SCHOOL. Institute for Strategy and Competitiveness. **The five forces**. [S. l.]: Harvard Business School, [s. d.]. Disponível em: https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx. Acesso em: 23 out. 2026.
 
 INSTITUTO NACIONAL DE METROLOGIA, QUALIDADE E TECNOLOGIA (INMETRO). **Maturidade da Indústria 4.0**. Brasília, DF: Inmetro, 2026. Disponível em: https://www.gov.br/inmetro/pt-br/assuntos/metrologia-cientifica/laboratorios/tecnologia-da-informacao-e-telecomunicacoes/maturidade-da-industria-4.0. Acesso em: 23 out. 2026.
@@ -1977,7 +2036,7 @@ SARAVATI. **Resistor 1 kΩ 5% 1/4 W**. [S. l.]: Saravati, [s. d.]. Disponível e
 
 SYNTHETIX. **C.R.I.S.I.S: protótipo inicial e evidências CT01–CT10**. São Paulo: Inteli, 2026. Disponível em: https://wokwi.com/projects/478404642645348353. Acesso em: 23 out. 2026. Arquivos associados: [firmware](../src/firmware/prototipo-contagem/sketch.ino), [circuito](../src/firmware/prototipo-contagem/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). A consulta aos arquivos não equivale à reexecução da simulação.
 
-UNIPAR. **Aviso de privacidade**. [S. l.]: Unipar, [s. d.]a. Disponível em: https://unipar.com/aviso-de-privacidade. Acesso em: 22 out. 2026.
+UNIPAR. **Aviso de privacidade**. [S. l.]: Unipar, [s. d.]a. Disponível em: https://unipar.com/aviso-de-privacidade. Acesso em: 29 out. 2026.
 
 UNIPAR. **Cloro: fabricação, transporte e aplicações**. [S. l.]: Unipar, [s. d.]b. Disponível em: https://unipar.com/produtos/cloro. Acesso em: 22 out. 2026.
 
