@@ -1,0 +1,4 @@
+Browser tab: 1, Title: "PrototipoMonitoramento - Wokwi ESP32, STM32, Arduino Simulator", URL: "https://wokwi.com/projects/479252249534862337".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~			48 text 00:45.450 55%
+The focused UI element is 43 checkbox (settable, integer) Description: Hold, Value: 1

@@ -1175,6 +1175,8 @@ A tabela segue os oito eixos do IoTDoc. A [ISO/IEC 25010:2023](https://www.iso.o
 | RNF07 | REST — Restrições de design | Restringir a telemetria dos sensores de contagem das portarias a passagens anônimas. Tratar os registros identificados das catracas em fluxo separado e autorizado; limitar as leituras RFID aos pontos previstos pela solução. Não produzir rastreamento contínuo por coordenadas. | Inspecionar 100% dos esquemas e mensagens da massa de teste. Exigir 0 coordenadas contínuas e 0 identificadores pessoais na telemetria dos sensores de contagem das portarias. Verificar separadamente que os registros identificados das catracas circulam apenas pelo fluxo autorizado e com acesso restrito aos perfis previstos. | Preservar a distinção entre contagem anônima e registros identificados necessários à conferência durante a emergência. |
 | RNF08 | ORG — Organizacionais | Apoiar o procedimento de conferência e a autoridade do CCO para registrar o encerramento do evento, conforme RF012 e RN07. | Em quatro simulações — saldo reconciliado, saldo positivo aos 600 s, dados inconclusivos e tentativa de encerramento por outro perfil — obter o procedimento esperado em 4/4, com registro de usuário, instante e justificativa em todo encerramento autorizado. | Preservar a decisão humana e o acionamento da brigada conforme o procedimento da Unipar. |
 
+<a id="rtm"></a>
+
 ### 3.3.4. Matriz de Rastreabilidade (RTM)
 
 A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa resultado informado no ensaio original da seção 3.4.1, com imagem existente; não significa nova execução nesta revisão. A correção do circuito requer repetir a bateria. **Planejado** significa critério de aceitação futuro, sem resultado executado. A relação com uma persona indica a necessidade atendida, não participação dessa pessoa fictícia no teste.
@@ -1196,7 +1198,38 @@ A RTM liga necessidade, requisito, regra e evidência. **Registrado** significa 
 
 <p><sub>Fonte: elaboração dos autores (2026).</sub></p>
 
-#### Rastreabilidade das validações planejadas
+#### Casos planejados para o protótipo físico offline
+
+CT11–CT15 registram o planejamento anterior de leitura autorizada com ESP32 e RC522, ainda não executado. Os vínculos e os comportamentos esperados precisam de readequação à versão integrada do modelo 2, conforme a [seção 3.4.2.4](#testes-prototipos). As evidências de execução física por caso permanecem pendentes.
+
+<p align="center">Quadro 10A – Rastreabilidade planejada do protótipo físico offline</p>
+
+| Caso | Necessidade / persona                                     | RF                      | RN                             | Evidência prevista                                                                                                                        | Status                   |
+| ---- | --------------------------------------------------------- | ----------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| CT11 | Reconhecer que o dispositivo está pronto / apoio de TI    | RF011, a refinar        | RN09; inicialização a definir  | Foto da montagem energizada e registro serial da inicialização do ESP32 e do RC522; estado inicial dos LEDs identificado.                 | Planejado; não executado |
+| CT12 | Receber retorno visual de leitura aceita / Gustavo        | RF011, a refinar        | RN09; aceite local a definir   | Foto ou vídeo da aproximação de uma tag fictícia válida, UID mascarado no registro e LED verde aceso pelo intervalo definido no firmware. | Planejado; não executado |
+| CT13 | Evitar registros repetidos involuntários / Gustavo, Tuco  | RF011, a refinar        | RN09; repetição a definir      | Vídeo de uma mesma tag mantida no campo de leitura e log que permita verificar a política de bloqueio ou intervalo entre leituras.        | Planejado; não executado |
+| CT14 | Tornar uma leitura não autorizada compreensível / Gustavo | RF011, a refinar        | RN09; rejeição local a definir | Foto ou vídeo de tag fictícia fora da lista de teste, com LED vermelho e sem indicação de aceite.                                         | Planejado; não executado |
+| CT15 | Sinalizar indisponibilidade do sensor / apoio de TI, Tuco | RF009, RF011, a refinar | RN08, RN09                     | Foto da condição controlada de falha, saída serial de diagnóstico e LED vermelho; o sistema não deve registrar aceite.                    | Planejado; não executado |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+#### Rastreabilidade da simulação de monitoramento
+
+Os casos abaixo verificam o comportamento local do firmware ESP32 preservado com as evidências. Os RFs e RNs desta branch ainda descrevem o protótipo Arduino e integrações futuras. A formalização dos requisitos de modo de emergência e leitura RFID permanece pendente, portanto os vínculos abaixo não representam cobertura integral de requisito aprovado.
+
+| Caso | Necessidade / persona                                | Vínculo com os requisitos atuais                                                                                             | Evidência                                                                                                                                                                       | Resultado e alcance                                                                            |
+| ---- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| CT16 | Reconhecer o estado inicial / Maria                  | Inicialização do monitoramento ESP32 a formalizar. A mensagem inicial não valida o diagnóstico de RF009.                     | [Inicialização](../assets/casos_teste_prototipos/wokwi-monitoramento/ct16-inicializacao.png)                                                                                    | Aprovado no escopo visual/serial.                                                              |
+| CT17 | Acionar a sinalização de emergência / Maria          | Regra de alternância local do ESP32 a formalizar. RF014 e RN14 descrevem o botão do Arduino.                                 | [Emergência](../assets/casos_teste_prototipos/wokwi-monitoramento/ct17-emergencia.png)                                                                                          | Aprovado no escopo visual/serial.                                                              |
+| CT18 | Restaurar a sinalização normal / Maria               | Mesmo vínculo pendente de CT17.                                                                                              | [Normal](../assets/casos_teste_prototipos/wokwi-monitoramento/ct18-normal.png)                                                                                                  | Aprovado no escopo visual/serial.                                                              |
+| CT19 | Evitar alternâncias durante pressão contínua / Maria | Debounce e acionamento único do ESP32 a formalizar.                                                                          | [Pressão contínua](../assets/casos_teste_prototipos/wokwi-monitoramento/ct19-pressao-continua.png)                                                                              | Parcial. Duração e sequência contínua sem comprovação temporal.                                |
+| CT20 | Obter retorno da leitura local / Gustavo             | Aquisição de UID a formalizar. RF011 e RN09 tratam da consulta corporativa e da privacidade, cuja integração segue pendente. | [Cartão em modo normal](../assets/casos_teste_prototipos/wokwi-monitoramento/ct20-rfid-normal.png)                                                                              | Parcial. UID e LEDs observados, áudio pendente.                                                |
+| CT21 | Ler cartão durante emergência / Gustavo, Tuco        | Regra de leitura nos dois modos a formalizar. Confirmação de presença ainda pendente.                                        | [Cartão em emergência](../assets/casos_teste_prototipos/wokwi-monitoramento/ct21-rfid-emergencia.png)                                                                           | Parcial. UID e LEDs observados, áudio pendente.                                                |
+| CT22 | Distinguir leitura de autorização / Gustavo, Tuco    | Autorização de cartão e cadastro ainda pendentes de requisito e implementação.                                               | [Segundo cartão](../assets/casos_teste_prototipos/wokwi-monitoramento/ct22-segundo-cartao.png)                                                                                  | Parcial. Dois UIDs fictícios lidos, áudio pendente.                                            |
+| CT23 | Conhecer o estado após reinício / Maria, Tuco        | Recuperação do modo de emergência a formalizar. RF016 e RN15 tratam de reconexão e saldo, não de persistência desse modo.    | [Antes](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-antes-reinicio.png) e [depois](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-reinicio-normal.png) | Aprovado para o retorno implementado a NORMAL. Persistência da emergência pendente de decisão. |
+
+#### Rastreabilidade preliminar da evolução
 
 Os identificadores PV representam validações planejadas para os RFs, RNs e RNFs desta versão da develop. A coluna RNF vincula os critérios da seção 3.3.3 às necessidades das personas e às evidências previstas. A coluna de cenário descreve a verificação a executar. Os códigos CT só são atribuídos quando o caso oficial for detalhado na seção de testes.
 
@@ -1346,7 +1379,9 @@ _Nesta seção, detalhe os resultados obtidos com a implementação, de acordo c
 
 ### 3.4.1. Protótipo Inicial do Projeto usando o Simulador Wokwi (sprint 1)
 
-O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito estão armazenados no diretório [`src/firmware/prototipo`](../src/firmware/prototipo/).
+O protótipo inicial está disponível no [projeto publicado no Wokwi](https://wokwi.com/projects/478404642645348353). O código-fonte e o diagrama do circuito estão armazenados no diretório [`src/firmware/prototipo`](../src/firmware/prototipo-contagem/).
+
+As versões seguintes adotam ESP32, com conectividade Wi-Fi para a integração MQTT planejada. CT01–CT10 registram os resultados da Sprint 1 com Arduino Uno. A simulação com ESP32 e RFID está documentada em CT16–CT23, na seção 3.4.2.
 
 O protótipo consiste em um contador de pessoas desenvolvido com Arduino Uno e dois sensores ultrassônicos HC-SR04. Um dos sensores registra a entrada de pessoas e incrementa o contador, enquanto o segundo registra a saída e decrementa o total. O valor atualizado é apresentado em um display LCD 16 × 2 conectado por I²C. Cada entrada ou saída válida também aciona um buzzer na frequência de 1.000 Hz durante 100 ms.
 
@@ -1361,6 +1396,8 @@ O software contém as funções obrigatórias `setup()` e `loop()`, além de fun
 Na próxima execução, usar juntos os arquivos locais `sketch.ino` e `diagram.json` em um projeto Arduino Uno no Wokwi. Para reproduzir CT01, preparar ambos os sensores em 400 cm e manter o botão solto. O diagrama recebeu ajustes locais na etapa anterior desta revisão, mas sua conferência elétrica e a execução ficaram pendentes para a equipe. Nenhuma alteração no circuito ou no firmware foi feita nesta etapa documental. As capturas abaixo pertencem ao ensaio registrado anteriormente e não comprovam nova execução da versão local.
 
 Antes de cada caso isolado, restaurar o ECHO e as conexões normais, afastar ambos os sensores e aguardar pelo menos 1 s livre; quando houver reinício, o saldo esperado é zero. CT01–CT05 são sequenciais. CT06–CT10 requerem preparação própria indicada na tabela; CT09 começa com zero e detecta a entrada antes da saída. Para CT10, manter o sensor não testado em 400 cm e desconectar apenas o ECHO do sensor testado. Não restaurar conexões de alimentação invertidas para imitar a captura antiga.
+
+<a id="testes-modelo-1"></a>
 
 #### Casos de teste
 
@@ -1468,9 +1505,11 @@ Como campanha exploratória futura, planejar cinco baterias de 20 passagens por 
 
 **Resposta local e futura latência remota:** medir o intervalo entre a passagem pela referência física de detecção e a atualização legível no LCD, sincronizando a observação por vídeo ou instrumentação. A meta exploratória local é até 0,5 s; não foi comprovada por cronometrias nos CT01–CT10. Para o sistema conectado futuro, medir separadamente do registro do evento no nó até a exibição no dashboard, com relógios sincronizados, meta proposta de até 3 s e pelo menos 50 eventos, relatando máximo, distribuição e perdas. Histórico e registros de horário necessários a essa análise ainda precisam ser implementados.
 
-### 3.4.2. Protótipo Físico do Projeto (offline) (sprint 2)
+### 3.4.2. Protótipo Físico do Projeto (offline)
 
 Esta seção contextualiza o protótipo físico offline da Sprint 2 e sua relação com a solução proposta para a evacuação industrial. O conteúdo apresenta o cenário de uso e o papel esperado dos dispositivos; as subseções seguintes organizam a descrição funcional, os protótipos e os registros de validação, distinguindo o que foi implementado nesta etapa das capacidades previstas para a solução integrada.
+
+> **Maturidade das entregas:** o dispositivo 2, de monitoramento por zonas, constitui a entrega principal da Sprint 2. O dispositivo 1 preserva o protótipo de contagem da Sprint 1, com formalização da arquitetura e do desenho esquemático prevista para a Sprint 3. O dispositivo 3 é apresentado preliminarmente por suas montagens física e digital, funcionalidades, componentes e código; sua arquitetura, desenho esquemático formal, casos de teste, requisitos funcionais e regras de negócio específicos serão desenvolvidos na Sprint 3. Os três dispositivos são apresentados em escopo offline, ainda sem o sistema web de integração.
 
 #### 3.4.2.1. Contexto da Solução
 
@@ -1478,13 +1517,157 @@ Em uma emergência industrial na unidade da Unipar em Cubatão, como um vazament
 
 A solução proposta integra três tipos de dispositivos baseados em ESP32 a uma aplicação web. O dispositivo nas portarias utiliza sensores ultrassônicos para estimar entradas, saídas e a quantidade de pessoas dentro da planta; essa contagem é agregada e não identifica indivíduos. Os dispositivos instalados junto a portas de zonas monitoradas utilizam leitores RFID para registrar a última zona associada ao crachá. Nos pontos de encontro, que são áreas abertas situadas entre as portarias e as zonas monitoradas, totens RFID registram a confirmação de chegada. Em cada unidade, o ESP32 processa as leituras dos sensores, leitores e botões e controla as saídas locais, como LCD, LEDs e buzzer, conforme a função do dispositivo. O CCO ativa os totens por integração com o alarme; se não houver conexão, um membro da SSMA ou um Brigadista pode ativá-los localmente, com armazenamento das leituras para sincronização posterior.
 
-O cálculo do *gap* relaciona a estimativa corrente de pessoas dentro da planta à quantidade de identificadores distintos associados a zonas: `G(t) = P(t) − |Z(t)|`. Como os pontos de encontro ficam fora das zonas monitoradas, as pessoas reunidas nesses locais também fazem parte do *gap* até a confirmação pelo totem. Consideradas leituras exclusivas e sincronizadas, a subtração das confirmações distintas nos pontos (`G(t) − |M(t)|`) estima o contingente ainda sem associação a uma zona e sem confirmação em ponto de encontro. Esse resultado orienta a análise da SSMA, mas não informa por si só a identidade ou a posição exata das pessoas.
+O cálculo do _gap_ relaciona a estimativa corrente de pessoas dentro da planta à quantidade de identificadores distintos associados a zonas: `G(t) = P(t) − |Z(t)|`. Como os pontos de encontro ficam fora das zonas monitoradas, as pessoas reunidas nesses locais também fazem parte do _gap_ até a confirmação pelo totem. Consideradas leituras exclusivas e sincronizadas, a subtração das confirmações distintas nos pontos (`G(t) − |M(t)|`) estima o contingente ainda sem associação a uma zona e sem confirmação em ponto de encontro. Esse resultado orienta a análise da SSMA, mas não informa por si só a identidade ou a posição exata das pessoas.
 
 No escopo físico offline desta seção, os dispositivos são contextualizados como componentes da solução completa, mas sua existência não significa que a aplicação web, a comunicação MQTT ou a integração entre todos eles já estejam implementadas. O LCD, os LEDs, o buzzer e os botões fornecem informações ou interação local conforme a função de cada dispositivo. A leitura de crachá exige aproximação ao leitor e pode influenciar o fluxo de evacuação; as leituras por zona representam somente a última passagem registrada. A solução não realiza localização precisa em ambientes internos nem calcula rotas. A apresentação nominal na aplicação ocorre somente enquanto uma emergência está ativa e para usuários autorizados; a contagem ultrassônica, por si só, não produz uma lista nominal de pessoas presentes.
 
-> ***totens**: estruturas cilíndricas, similares a um poste, com aproximadamente 1,20 metros de altura e feitos de um material rígido. (madeira, plástico ou PVC, por exemplo).
+> **\*totens**: estruturas cilíndricas, similares a um poste, com aproximadamente 1,20 metros de altura e feitos de um material rígido. (madeira, plástico ou PVC, por exemplo).
 
-##### Diagrama de classes UML conceitual — Protótipo de Monitoramento em tempo real
+#### 3.4.2.2. Funcionalidades dos Dispositivos Físicos
+
+As funcionalidades são organizadas pelos três tipos de dispositivo da solução, seguindo seu propósito, entradas, processamento, saídas, interação e limitações. A descrição considera a descrição da solução (Seção 3.1.3) e as especificações de Requisitos Funcionais (Seção 3.3.1), Regras de Negócio (Seção 3.3.2) e Requisitos Não Funcionais (Seção 3.3.3). Os identificadores RF, RN e RNF relacionam as funcionalidades às respectivas especificações. A situação de implementação é delimitada pelo código disponível.
+
+O quadro-resumo apresenta os componentes e as funções locais codificadas em cada protótipo. As referências à aplicação explicam o destino dos dados e as dependências de integração dos dispositivos.
+
+**Quadro-resumo dos dispositivos físicos**
+
+| Dispositivo e controlador do protótipo                                           | Sensores e entradas                                  | Atuadores e saídas                                | Comunicação                                                              | Funcionalidades implementadas no firmware                                                                                         |
+| -------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| Controle de entradas e saídas — Arduino Uno; ESP32 definido para a solução final | Dois sensores ultrassônicos HC-SR04 e botão          | LCD, LEDs verde/vermelho, buzzer e monitor serial | Local, sem rede; Wi-Fi/MQTT previstos na versão ESP32                    | Contagem de entradas e saídas, bloqueio entre detecções, total mínimo zero e sinalização local.                                   |
+| Monitoramento por zonas — ESP32                                                  | Leitor RFID RC522 e botão                            | LEDs verde/vermelho, buzzer e monitor serial      | Local, sem rede; envio de leituras previsto na integração                | Leitura de UID, sinal sonoro e alternância do estado local normal/emergência pelo botão.                                          |
+| Confirmação nos pontos de encontro — ESP32                                       | Leitor RFID RC522, botão e comandos seriais de teste | LEDs azul/verde, buzzer e monitor serial          | Local, sem rede; ativação remota e sincronização previstas na integração | Ativação local, registro de até 50 UIDs distintos, persistência, recuperação após reinicialização e tratamento de algumas falhas. |
+
+<p><sub>Fonte: elaboração dos autores, com base nos firmwares dos protótipos.</sub></p>
+
+##### Dispositivo 1 — Controle de entradas e saídas da planta
+
+O controle das portarias ainda não possui protótipo com ESP32 nesta sprint. Todas as funcionalidades locais descritas como implementadas provêm do firmware do Arduino Uno da Sprint 1, registrado em [`prototipo-contagem/sketch.ino`](../src/firmware/prototipo-contagem/sketch.ino) e preservado como histórico do projeto. O dispositivo final deve utilizar ESP32 para fornecer a referência quantitativa de ocupação da planta e comunicar-se com a solução integrada; os comportamentos dessa versão são indicados como previstos.
+
+- **Propósito:** estimar continuamente o total local de pessoas a partir das passagens de entrada e saída, fornecendo uma referência para a conferência da evacuação. A detecção produz uma contagem anônima (RN13 e RN14).
+- **Entradas e sensores:** dois sensores ultrassônicos HC-SR04, dedicados separadamente à entrada e à saída, e um botão para alternar a sinalização local. No firmware do primeiro protótipo, uma detecção é aceita quando a distância é maior que zero e menor que 200 cm; a ausência de eco em até 30 ms não produz passagem (RF001.1–RF001.3, RF003.3 e RN15).
+- **Processamento e comportamento:** o contador inicia em zero, acrescenta uma unidade por entrada aceita e reduz uma unidade por saída quando há saldo, sem assumir valores negativos. Após uma detecção, ambos os sensores ficam bloqueados até que o sensor acionado permaneça sem detecção por pelo menos 1.000 ms; quando livre, o programa verifica primeiro a saída. O botão alterna os LEDs sem interromper a contagem. No dispositivo final com ESP32, conforme a descrição da solução (Seção 3.1.3), o porteiro aciona o botão após o aviso do CCO por rádio e volta ao estado normal após o encerramento comunicado pela SSMA. Essa interação representa o protocolo no local (RF003, RF004, RN05 e RN16).
+- **Saídas informacionais:** o LCD apresenta o total local; o buzzer emite um sinal de 1.000 Hz por 100 ms quando uma detecção é aceita; os LEDs verde e vermelho representam o estado selecionado. O monitor serial informa entradas, saídas, alternância e liberação dos sensores. Mesmo com saldo zero, uma detecção de saída aciona o buzzer e imprime `Pessoa saiu: -1`, embora o total permaneça zero; essa mensagem ainda não atende à redação de RF001.3.
+- **Interação com os demais dispositivos:** o primeiro protótipo funciona isoladamente. O dispositivo final com ESP32 deve enviar os eventos por Wi-Fi e MQTT para permitir a consolidação das portarias e a comparação com os registros de zonas e pontos de encontro. A integração utiliza os eventos anônimos do contador (RF005, RF012 e RF013, previstos).
+- **Limitações conhecidas:** passagens simultâneas, grupos e catracas liberadas podem produzir erros; durante o bloqueio, passagens no outro sensor podem não ser contabilizadas. A reinicialização perde o saldo mantido em memória volátil. O firmware do primeiro protótipo não possui persistência ou rede. A contagem permanece anônima também na versão final com ESP32.
+
+##### Dispositivo 2 — Monitoramento por zonas
+
+O dispositivo representa o ponto de leitura de crachá que fornecerá indícios da última zona registrada. O firmware disponível em [`prototipo-monitoramento/sketch.ino`](../src/firmware/prototipo-monitoramento/sketch.ino) implementa leitura RFID e sinalização local em ESP32; a manutenção dos estados de zona descrita na solução final ainda não está implementada nesse código.
+
+- **Propósito:** capturar o identificador de um crachá em um acesso monitorado, criando a base física para apoiar a busca coordenada pela SSMA e pelos brigadistas. O registro representa a última passagem detectada pelo leitor.
+- **Entradas e sensores:** um leitor RFID RC522 para aproximação de tags compatíveis com a solução, que adota MIFARE de 13,56 MHz, e um botão de simulação do estado local. O firmware e o diagrama disponíveis representam um único leitor. Na implantação prevista, cada porta monitorada terá seu próprio nó.
+- **Processamento e comportamento:** o ESP32 inicia no estado normal e alterna entre normal e emergência quando reconhece um pressionamento estabilizado por mais de 25 ms. A leitura de UID permanece disponível nos dois estados. Uma leitura obtida pelo leitor gera sinal sonoro e impressão no monitor serial; não há consulta a cadastro, validação de autorização ou registro persistente. Para a solução final, a descrição da solução (Seção 3.1.3) define alternância entre entrada e saída por tag, uma leitura por passagem e no máximo uma zona ativa por pessoa; a entrada em outra zona e a confirmação em ponto de encontro encerram a associação anterior. Esses comportamentos dependem da integração posterior (RF006, RF007 e RN17–RN20).
+- **Saídas informacionais:** o LED verde indica o estado local normal e o vermelho indica emergência. Cada UID lido gera um bipe de 2.000 Hz por 50 ms e é impresso em hexadecimal no monitor serial, junto às mensagens de inicialização ou mudança de estado. O bipe indica a leitura obtida.
+- **Interação com os demais dispositivos:** não há comunicação entre nós no firmware atual. Na solução integrada, as leituras deverão ser associadas ao dispositivo, à zona e ao horário para envio à aplicação; a associação com o cadastro e a conciliação com confirmações dos totens ocorrerão nessa integração. A consulta nominal operacional ficará restrita à emergência ativa e aos usuários autorizados, conforme a descrição da solução (Seção 3.1.3) e a RN12.
+- **Limitações conhecidas:** o código não identifica sentido físico de passagem, não alterna estados por tag, não elimina repetições conforme a RN20 e não mantém histórico ou fila offline. Falhas de leitura e aproximações repetidas podem comprometer a futura inferência de zona. A descrição da solução (Seção 3.1.3) prevê zeramento nas trocas de turno ou com a planta vazia; esse procedimento ainda exige conferência do estado inicial, pois pode retirar a associação de pessoas que permaneçam no local. A impressão de UID bruto no monitor serial também precisa ser revista para atender ao RNF04 antes do uso de dados vinculáveis a participantes reais.
+
+##### Dispositivo 3 — Confirmação nos pontos de encontro
+
+O totem registra crachás apresentados no ponto de encontro. O firmware [`prototipo-totem/sketch.ino`](../src/firmware/prototipo-totem/sketch.ino) implementa ativação local, leitura RFID, controle de duplicidades e armazenamento persistente em ESP32. Essas funcionalidades compõem o protótipo offline; a integração com o alarme e a sincronização continuam pendentes.
+
+- **Propósito:** registrar a chegada de crachás distintos em um ponto de encontro e preservar os registros localmente, oferecendo suporte à conferência pela SSMA e pelos brigadistas. Os pontos são áreas abertas dentro da planta e fora das zonas monitoradas. O total do protótipo corresponde aos UIDs distintos armazenados naquele equipamento; a associação ao cadastro e a consolidação entre pontos dependem da integração.
+- **Entradas e sensores:** ESP32 com leitor RC522, tags compatíveis e botão de ativação local. Para os testes do protótipo, o monitor serial recebe os comandos `L`, que lista os registros, e `R`, que reinicia o dispositivo sem apagar a lista. Esses comandos são ferramentas de teste, não funcionalidades operacionais da solução final. O botão exige estabilização por pelo menos 40 ms. A leitura aceita UIDs de 4, 7 ou 10 bytes; a validação de cadastro e autorização depende da integração.
+- **Processamento e comportamento:** no primeiro uso, o totem inicia inativo e não registra chegadas até o acionamento do botão. Depois de ativado, rejeita UIDs já presentes e armazena até 50 identificadores distintos na memória persistente do ESP32, usando `Preferences`. Esse limite é uma configuração específica do protótipo, definida pela constante `CAPACIDADE = 50`, e deve ser ampliado para a implantação. Cada registro contém UID, número da inicialização e tempo decorrido desde essa inicialização. O programa atualiza a contagem e emite a indicação de registro somente após a rotina de gravação retornar sucesso. Reinicializações recuperam a lista e o estado de ativação; pressionar novamente o botão mantém os registros, sem encerrar o atendimento. Falhas detectadas na memória ou na disponibilidade inicial do leitor bloqueiam o atendimento, e uma lista cheia impede novas inclusões (implementação parcial de RF008.2, RF009, RF011, RN04 e RN06).
+- **Saídas informacionais:** após a inicialização, o LED azul indica atendimento ativo com memória e leitor considerados disponíveis. Um novo registro gravado acende o LED verde por aproximadamente 300 ms e aciona o buzzer em 2.000 Hz por 120 ms. O monitor serial apresenta UIDs, total, repetições e erros. Durante a inicialização, o programa executa uma sequência de acionamento dos LEDs e do buzzer para verificação das saídas. Durante o atendimento, a sinalização de um novo registro indica a gravação local concluída.
+- **Interação com os demais dispositivos:** o código atual não possui Wi-Fi, MQTT, recepção de comando do CCO ou sincronização. Conforme a descrição da solução (Seção 3.1.3), a integração com o alarme deverá ativar os totens dos pontos designados pela SSMA; em falha de conexão, um membro da SSMA ou um brigadista poderá ativá-los localmente. Os registros preservados deverão ser enviados após o restabelecimento da comunicação e conciliados com os demais pontos e zonas. A associação ao cadastro será realizada pela aplicação (RF008.1, RF012, RF013, RN03, RN04 e RN19).
+- **Limitações conhecidas:** a deduplicação vale apenas para a lista local, sem distinguir eventos de emergência ou registros em outros totens. Não existem encerramento, descarte controlado ou abertura de uma nova lista por evento; por isso, a retomada automática após reinicialização pode manter o atendimento ativo depois do término da emergência. O botão não identifica o operador que o acionou. Os tempos armazenados são relativos à inicialização e excluem períodos desligados; a sincronização exige uma referência adicional ao horário original de calendário. A capacidade de 50 registros é uma limitação específica deste protótipo. Para a implantação na planta, frequentada diariamente por mais de 700 pessoas, conforme informado pela Unipar no kickoff (informação verbal)[^1], o limite deve ser ampliado e dimensionado conforme a população de referência da emergência e a demanda dos pontos ativos, incluindo concentração de pessoas e indisponibilidade de outros pontos. Essa ampliação exige revisar também os tipos dos contadores e as estruturas de armazenamento, além de validar memória, persistência e tempo de atendimento. O dimensionamento deve contemplar a meta de 900 eventos por totem do RNF02 e o cenário de evacuação do RNF06. Os UIDs são exibidos no serial e não há proteção de transporte ou controle de acesso implementados para atender aos RNF04 e RNF05. Falhas de leitura sem UID obtido também não recebem diagnóstico específico.
+
+A descrição registra comportamentos identificados nos firmwares. A execução física, os tempos de resposta, a capacidade e a recuperação após falhas precisam ser verificados nos testes, conforme os RNFs. Os sinais locais indicam estados, leituras ou gravações e não atestam a segurança das pessoas; os registros de zona representam passagens discretas, sem localização precisa. A adequação ao ambiente industrial exige avaliação específica. A montagem, as versões e as evidências de execução são documentadas nas subseções seguintes.
+
+<a id="prototipos-codigos"></a>
+
+#### 3.4.2.3. Protótipos Físicos e Códigos
+
+Esta subseção reúne os componentes representados nas montagens digitais, suas conexões e os códigos dos três protótipos. O levantamento foi realizado a partir dos arquivos `diagram.json` e confrontado com os pinos definidos nos respectivos firmwares. As listas complementam a BOM (Seção 3.1.7), cuja pesquisa para os dispositivos da solução integrada está prevista para a Sprint 3; não incluem preços, fornecedores ou quantidades de aquisição.
+
+As figuras distinguem o esquema digital no Wokwi do registro fotográfico da montagem física. A numeração será ajustada na revisão geral da documentação. Os componentes e valores listados correspondem aos esquemas; eventuais diferenças da montagem física devem ser registradas junto às fotografias. Os resultados dos testes pertencem à Seção 3.4.2.4.
+
+<a id="codigo-modelo-1"></a>
+
+##### Protótipo do Dispositivo 1 — Controle de entradas e saídas da planta
+
+**Código-fonte e esquema:** [sketch.ino do contador](../src/firmware/prototipo-contagem/sketch.ino) e [diagram.json da montagem](../src/firmware/prototipo-contagem/diagram.json). A simulação está disponível no [projeto do contador no Wokwi](https://wokwi.com/projects/478404642645348353).
+
+O primeiro protótipo utiliza Arduino Uno e preserva a implementação da Sprint 1 que fundamenta o controle das portarias. A versão final do dispositivo deve utilizar ESP32; o circuito abaixo documenta a montagem inicial.
+
+**Componentes utilizados no esquema**
+
+| Componente                           | Quantidade | Identificação e função                                     |
+| ------------------------------------ | ---------: | ---------------------------------------------------------- |
+| Arduino Uno                          |          1 | Controlador da contagem e da sinalização local.            |
+| Sensor ultrassônico HC-SR04          |          2 | Um sensor de entrada e um de saída.                        |
+| Display LCD 16 × 2 com interface I²C |          1 | Apresentação do total local.                               |
+| LED verde e LED vermelho             |  1 de cada | Indicação do estado local.                                 |
+| Resistor de 1 kΩ                     |          2 | Um em série com cada LED.                                  |
+| Buzzer                               |          1 | Sinalização sonora de detecção.                            |
+| Botão momentâneo de 6 mm             |          1 | Alternância da sinalização.                                |
+| Protoboard                           |          1 | Organização dos componentes e distribuição de alimentação. |
+
+Os fios de interligação são representados no diagrama; a quantidade de jumpers e o cabo de alimentação da montagem física ainda precisam ser registrados na BOM.
+
+**Montagem, conexões e alimentação:** o esquema distribui 5 V e GND do Uno pelos barramentos da protoboard para os sensores e o LCD. O sensor de saída utiliza TRIG no pino 3 e ECHO no pino 2; o de entrada utiliza TRIG no pino 5 e ECHO no pino 4. O LCD utiliza SDA em A4 e SCL em A5, com endereço `0x27` definido no firmware. O LED verde está associado ao pino 13, o vermelho ao 12, o buzzer ao 6 e o botão ao 11, com `INPUT_PULLUP` e acionamento para GND. LEDs, resistores, botão, buzzer e sensores estão organizados na protoboard; Uno e LCD aparecem ao lado dela. O esquema representa as tensões do circuito, enquanto a fonte e o cabo usados em bancada devem ser identificados no registro físico.
+
+**Figuras da montagem**
+
+<div align="center">
+  <p>Figura – Montagem digital do primeiro protótipo de controle das portarias, com Arduino Uno</p>
+  <img src="../assets/prototipo_1/montagem-digital1.png" alt="Montagem no Wokwi com Arduino Uno, dois sensores ultrassônicos, LCD, botão, LEDs, resistores e buzzer" width="100%">
+  <p><sub>Fonte: elaboração dos autores no Wokwi; captura do protótipo inicial já registrada na Sprint 1.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 1</p>
+  <img src="../assets/prototipo_2/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+<div align="center">
+  <p>Figura – Montagem física do protótipo de controle de entradas e saídas – vista 2</p>
+  <img src="../assets/prototipo_2/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de controle de entradas e saídas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
+
+**Versão do código e ambiente:** código e esquema registrados no commit `91d5329`. O firmware utiliza a API Arduino e a biblioteca `Wire`, com comunicação serial a 9.600 baud e controle do LCD implementado no próprio sketch. O alvo da montagem digital é Arduino Uno. A versão do compilador e do núcleo Arduino não está registrada nos arquivos consultados.
+
+<a id="codigo-modelo-2"></a>
+
+##### Protótipo do Dispositivo 2 — Monitoramento por zonas
+
+**Código-fonte e esquema:** [sketch.ino do monitoramento](../src/firmware/prototipo-monitoramento/sketch.ino), [diagram.json da montagem](../src/firmware/prototipo-monitoramento/diagram.json). A simulação está disponível no [projeto do monitoramento por zonas no Wokwi](https://wokwi.com/projects/479939986090755073).
+
+O protótipo utiliza ESP32 e um leitor RFID para representar um acesso monitorado. O botão e os LEDs permitem alternar e visualizar o estado local durante a demonstração, enquanto o buzzer sinaliza a leitura do crachá.
+
+**Componentes utilizados no esquema**
+
+| Componente               | Quantidade | Identificação e função                                              |
+| ------------------------ | ---------: | ------------------------------------------------------------------- |
+| ESP32 DevKitC V4         |          1 | Controlador representado no Wokwi como `board-esp32-devkit-c-v4`.   |
+| Leitor RFID RC522        |          1 | Leitura de tags por aproximação, representado como `board-mfrc522`. |
+| LED verde e LED vermelho |  1 de cada | Indicação do estado local normal/emergência.                        |
+| Resistor de 1 kΩ         |          3 | Dois associados aos LEDs e um em série com o buzzer.                |
+| Buzzer                   |          1 | Sinalização sonora de leitura.                                      |
+| Botão momentâneo         |          1 | Alternância do estado local.                                        |
+| Protoboard               |          1 | Organização das entradas e saídas e do retorno comum.               |
+
+As tags compatíveis com a solução, de 13,56 MHz, são necessárias à interação com o leitor. A quantidade de crachás físicos de teste, dos jumpers e dos cabos não é especificada pelo `diagram.json` e deve constar do levantamento da montagem física.
+
+**Montagem, conexões e alimentação:** o RC522 recebe 3,3 V do ESP32 e compartilha GND com a protoboard. A comunicação SPI utiliza SCK no GPIO 18, MISO no 19 e MOSI no 23; o terminal SDA do módulo atua como seleção SPI (SS), ligado ao GPIO 5, e RST utiliza o GPIO 17. O LED verde utiliza GPIO 26, o vermelho GPIO 33 e o buzzer GPIO 25. O botão utiliza GPIO 27, configurado com `INPUT_PULLUP` e fechamento para GND. Os barramentos negativos superior e inferior da protoboard estão interligados; os resistores ficam em série com as respectivas saídas. ESP32 e leitor aparecem ao lado da protoboard no esquema. O cabo e a fonte efetivamente utilizados na bancada devem ser identificados no registro fotográfico.
+
+**Desenho Esquemático**
+
+Um desenho esquemático representa os componentes de um circuito e suas ligações elétricas por meio de símbolos e linhas, sem reproduzir a posição física das peças. Aqui, seu objetivo é mostrar como o ponto de leitura RFID é alimentado e conectado ao controlador e como o protótipo recebe comandos e sinaliza seu estado.
+
+<div align="center">
+  <p>Figura – Desenho esquemático do protótipo de monitoramento por zonas</p>
+  <img src="../assets/diagrama-esquematico-prototipo-monitoramento.png" alt="Esquema com ESP32, leitor RFID RC522, botão, buzzer, LEDs, resistores e ligações de alimentação e sinal" width="100%">
+  <p><sub>Fonte: elaboração dos autores.</sub></p>
+</div>
+
+No centro, o **ESP32 (U1)** controla a leitura e as saídas. À esquerda, o **RC522 (U2)** recebe 3,3 V e GND do circuito e troca dados com o ESP32 pela interface SPI; o pino SDA do leitor funciona como seleção do dispositivo, e RST permite reiniciá-lo. À direita, o **botão (SW1)** fecha o GPIO 27 para GND quando pressionado e alterna o estado local; a indicação de _pull-up interno_ mostra que o pino permanece em nível alto enquanto o botão está solto. O **LED vermelho (D1)** indica emergência e o **verde (D2)** indica operação normal. Os **resistores de 1 kΩ (R1 e R2)** limitam a corrente dos LEDs. O **buzzer (BZ1)** emite um sinal sonoro a cada UID lido. As linhas representam as conexões elétricas; os símbolos de **GND** indicam o retorno comum.
+
+Para reproduzir a montagem, devem prevalecer as conexões descritas acima e no `diagram.json`: a figura troca os rótulos MOSI e MISO em relação aos GPIOs 19 e 23 e não mostra o terceiro resistor de 1 kΩ em série com o buzzer, presente na montagem digital.
+
+**Diagrama de Classes UML Conceitual — Protótipo de monitoramento em tempo real**
 
 O diagrama abaixo representa **somente o firmware offline atualmente implementado** em [`prototipo-monitoramento/sketch.ino`](../src/firmware/prototipo-monitoramento/sketch.ino). `SistemaMonitoramento` coordena os componentes físicos e mantém `EstadoEmergencia`; não representa a aplicação web ou a solução integrada descrita acima. O botão alterna o estado local após debounce, os LEDs o exibem, e a leitura RFID produz um bipe e imprime o UID no monitor serial. O UID é uma leitura transitória, não uma entidade de pessoa nem uma confirmação de chegada persistida.
 
@@ -1530,115 +1713,190 @@ classDiagram
 
 Esta arquitetura deliberadamente não inclui classes para pessoa, zona, ponto de encontro, MQTT, armazenamento ou dashboard: nenhuma dessas responsabilidades existe neste sketch. A leitura do crachá continua disponível tanto no estado normal quanto no de emergência; o protótipo não valida autorização, não deduplica UIDs e não envia dados à rede. Essas capacidades da solução proposta exigem implementação e testes próprios antes de constarem no diagrama do firmware.
 
-#### 3.4.2.2. Funcionalidades dos Dispositivos Físicos
+**Figuras da montagem**
 
-As funcionalidades são organizadas pelos três tipos de dispositivo da solução, seguindo seu propósito, entradas, processamento, saídas, interação e limitações. A descrição considera a solução final proposta na versão 7 e as especificações de Requisitos Funcionais (Seção 3.3.1), Regras de Negócio (Seção 3.3.2) e Requisitos Não Funcionais (Seção 3.3.3). Os identificadores RF, RN e RNF relacionam as funcionalidades às respectivas especificações. Em caso de divergência de comportamento, prevalece a descrição da solução; a situação de implementação é delimitada pelo código disponível.
+<div align="center">
+  <p>Figura – Montagem digital do protótipo de monitoramento por zonas no Wokwi</p>
+  <img src="../assets/prototipo_2/montagem-digital2.png" alt="Esquema digital do protótipo com ESP32, leitor RC522, botão, LEDs e buzzer" width="100%">
+  <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
+</div>
 
-Os firmwares do primeiro contador, do monitoramento por zonas e do totem offline permitem descrever comportamentos locais já codificados. Essa inspeção não equivale à execução de ensaios ou à comprovação de desempenho físico. Os vínculos com a aplicação são apresentados somente para explicar o destino dos dados e as dependências dos dispositivos, sem detalhar as funcionalidades do sistema web.
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 1</p>
+  <img src="../assets/prototipo_1/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
 
-##### Dispositivo 1 — Controle de entradas e saídas da planta
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 2</p>
+  <img src="../assets/prototipo_1/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
 
-O dispositivo final de controle das portarias deve ser implementado com ESP32, fornecendo a referência quantitativa de ocupação da planta e a comunicação com a solução integrada. Sua lógica deriva do primeiro protótipo, desenvolvido com Arduino Uno na Sprint 1 e registrado em [`prototipo-contagem/sketch.ino`](../src/firmware/prototipo-contagem/sketch.ino). Esse registro preserva o histórico do projeto; os comportamentos locais descritos a seguir têm como evidência esse firmware, enquanto a implementação final deve utilizar ESP32.
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 3</p>
+  <img src="../assets/prototipo_1/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
 
-- **Propósito:** estimar continuamente o total local de pessoas a partir das passagens de entrada e saída, fornecendo uma referência para a conferência da evacuação. A detecção é anônima e não identifica colaboradores, terceiros ou visitantes (RN13 e RN14).
-- **Entradas e sensores:** dois sensores ultrassônicos HC-SR04, dedicados separadamente à entrada e à saída, e um botão para alternar a sinalização local. No firmware do primeiro protótipo, uma detecção é aceita quando a distância é maior que zero e menor que 200 cm; a ausência de eco em até 30 ms não produz passagem (RF001.1–RF001.3, RF003.3 e RN15).
-- **Processamento e comportamento:** o contador inicia em zero, acrescenta uma unidade por entrada aceita e reduz uma unidade por saída quando há saldo, sem assumir valores negativos. Após uma detecção, ambos os sensores ficam bloqueados até que o sensor acionado permaneça sem detecção por pelo menos 1.000 ms; quando livre, o programa verifica primeiro a saída. O botão alterna os LEDs sem interromper a contagem. No dispositivo final com ESP32, conforme a versão 7, o porteiro aciona o botão após o aviso do CCO por rádio e volta ao estado normal após o encerramento comunicado pela SSMA. Essa interação representa o protocolo no local; o protótipo Uno não abre um evento integrado (RF003, RF004, RN05 e RN16).
-- **Saídas informacionais:** o LCD apresenta o total local; o buzzer emite um sinal de 1.000 Hz por 100 ms quando uma detecção é aceita; os LEDs verde e vermelho representam o estado selecionado. O monitor serial informa entradas, saídas, alternância e liberação dos sensores. Mesmo com saldo zero, uma detecção de saída aciona o buzzer e imprime `Pessoa saiu: -1`, embora o total permaneça zero; essa mensagem ainda não atende à redação de RF001.3.
-- **Interação com os demais dispositivos:** o primeiro protótipo funciona isoladamente. O dispositivo final com ESP32 deve enviar os eventos por Wi-Fi e MQTT para permitir a consolidação das portarias e a comparação com os registros de zonas e pontos de encontro. O contador não realiza comunicação direta com os leitores RFID nem converte passagens em identidades (RF005, RF012 e RF013, previstos).
-- **Limitações conhecidas:** passagens simultâneas, grupos e catracas liberadas podem produzir erros; durante o bloqueio, passagens no outro sensor podem não ser contabilizadas. A reinicialização perde o saldo mantido em memória volátil. O firmware do primeiro protótipo não possui persistência ou rede. A contagem permanece anônima também na versão final com ESP32. Os tempos de resposta e a capacidade definidos nos RNFs são critérios a verificar, não resultados demonstrados por esta descrição.
+<div align="center">
+  <p>Figura – Montagem física do protótipo de monitoramento por zonas – vista 4</p>
+  <img src="../assets/prototipo_1/montagem-04.jpeg" alt="Vista 4 da montagem de bancada do protótipo de monitoramento por zonas" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
 
-##### Dispositivo 2 — Monitoramento por zonas
+**Versão do código e ambiente:** firmware na revisão `c096117`, com esquema registrado em `91d5329`. O código utiliza a API Arduino para ESP32 e as bibliotecas `SPI` e `MFRC522`, com comunicação serial a 115.200 baud. O arquivo `libraries.txt` declara `MFRC522`, sem fixar sua versão. As versões do núcleo Arduino-ESP32 e do compilador ainda precisam ser registradas para reprodução do ambiente.
 
-O dispositivo representa o ponto de leitura de crachá que fornecerá indícios da última zona registrada. O firmware disponível em [`prototipo-monitoramento/sketch.ino`](../src/firmware/prototipo-monitoramento/sketch.ino) implementa leitura RFID e sinalização local em ESP32; a manutenção dos estados de zona descrita na solução final ainda não está implementada nesse código.
+<a id="codigo-modelo-3"></a>
 
-- **Propósito:** capturar o identificador de um crachá em um acesso monitorado, criando a base física para apoiar a busca coordenada pela SSMA e pelos brigadistas. O registro representa uma passagem pelo leitor e não uma posição precisa ou um acompanhamento contínuo da pessoa.
-- **Entradas e sensores:** um leitor RFID RC522 para aproximação de tags compatíveis com a solução, que adota MIFARE de 13,56 MHz, e um botão de simulação do estado local. O firmware e o diagrama disponíveis representam um único leitor. Na implantação prevista, cada porta monitorada terá seu próprio nó.
-- **Processamento e comportamento:** o ESP32 inicia no estado normal e alterna entre normal e emergência quando reconhece um pressionamento estabilizado por mais de 25 ms. A leitura de UID permanece disponível nos dois estados. Uma leitura obtida pelo leitor gera sinal sonoro e impressão no monitor serial; não há consulta a cadastro, validação de autorização ou registro persistente. Para a solução final, a versão 7 define alternância entre entrada e saída por tag, uma leitura por passagem e no máximo uma zona ativa por pessoa; a entrada em outra zona e a confirmação em ponto de encontro encerram a associação anterior. Esses comportamentos dependem da integração posterior e não devem ser atribuídos ao firmware atual (RF006, RF007 e RN17–RN20).
-- **Saídas informacionais:** o LED verde indica o estado local normal e o vermelho indica emergência. Cada UID lido gera um bipe de 2.000 Hz por 50 ms e é impresso em hexadecimal no monitor serial, junto às mensagens de inicialização ou mudança de estado. Os LEDs não confirmam cadastro, presença em zona ou segurança da pessoa; o bipe indica somente a leitura obtida.
-- **Interação com os demais dispositivos:** não há comunicação entre nós no firmware atual. Na solução integrada, as leituras deverão ser associadas ao dispositivo, à zona e ao horário para envio à aplicação; a associação com o cadastro e a conciliação com confirmações dos totens ocorrerão nessa integração. A consulta nominal operacional ficará restrita à emergência ativa e aos usuários autorizados, conforme a versão 7 e a RN12.
-- **Limitações conhecidas:** o código não identifica sentido físico de passagem, não alterna estados por tag, não elimina repetições conforme a RN20 e não mantém histórico ou fila offline. Falhas de leitura e aproximações repetidas podem comprometer a futura inferência de zona. A versão 7 prevê zeramento nas trocas de turno ou com a planta vazia; esse procedimento ainda exige conferência do estado inicial, pois pode retirar a associação de pessoas que permaneçam no local. A impressão de UID bruto no monitor serial também precisa ser revista para atender ao RNF04 antes do uso de dados vinculáveis a participantes reais.
+##### Protótipo do Dispositivo 3 — Confirmação nos pontos de encontro
 
-##### Dispositivo 3 — Confirmação nos pontos de encontro
+O protótipo do totem utiliza ESP32 e RFID para registrar localmente crachás distintos, com persistência e sinalização de atendimento. O circuito de bancada representa a eletrônica do dispositivo; o invólucro do totem não aparece no esquema digital.
 
-O totem registra crachás apresentados no ponto de encontro. O firmware [`prototipo-totem/sketch.ino`](../src/firmware/prototipo-totem/sketch.ino) implementa ativação local, leitura RFID, controle de duplicidades e armazenamento persistente em ESP32. Essas funcionalidades compõem o protótipo offline; a integração com o alarme e a sincronização continuam pendentes.
+**Componentes utilizados no esquema**
 
-- **Propósito:** registrar a chegada de crachás distintos em um ponto de encontro e preservar os registros localmente, oferecendo suporte à conferência pela SSMA e pelos brigadistas. Os pontos são áreas abertas dentro da planta e fora das zonas monitoradas. O total do protótipo corresponde a UIDs distintos armazenados naquele equipamento, não a pessoas identificadas por cadastro nem ao total consolidado de todos os pontos.
-- **Entradas e sensores:** ESP32 com leitor RC522, tags compatíveis e botão de ativação local. O programa também recebe os comandos `L`, para listar os registros, e `R`, para reiniciar sem apagar a lista, pelo monitor serial. O botão exige estabilização por pelo menos 40 ms. A leitura aceita UIDs de 4, 7 ou 10 bytes; essa verificação de formato não comprova que o crachá esteja cadastrado ou autorizado.
-- **Processamento e comportamento:** no primeiro uso, o totem inicia inativo e não registra chegadas até o acionamento do botão. Depois de ativado, rejeita UIDs já presentes e armazena até 50 identificadores distintos na memória persistente do ESP32, usando `Preferences`. Esse limite foi definido pela constante `CAPACIDADE = 50` no código do protótipo e não representa a capacidade exigida para a solução final nem um limite intrínseco do ESP32. Cada registro contém UID, número da inicialização e tempo decorrido desde essa inicialização. O programa atualiza a contagem e emite a indicação de registro somente após a rotina de gravação retornar sucesso. Reinicializações recuperam a lista e o estado de ativação; pressionar novamente o botão mantém os registros, sem encerrar o atendimento. Falhas detectadas na memória ou na disponibilidade inicial do leitor bloqueiam o atendimento, e uma lista cheia impede novas inclusões (implementação parcial de RF008.2, RF009, RF011, RN04 e RN06).
-- **Saídas informacionais:** após a inicialização, o LED azul indica atendimento ativo com memória e leitor considerados disponíveis. Um novo registro gravado acende o LED verde por aproximadamente 300 ms e aciona o buzzer em 2.000 Hz por 120 ms. O monitor serial apresenta UIDs, total, repetições e erros. Durante a inicialização, o programa executa uma sequência de acionamento dos LEDs e do buzzer; essa sequência não representa chegada de pessoa nem comprova que os componentes responderam fisicamente. A sinalização de um registro confirma a gravação local, não o recebimento por outro sistema ou a segurança do portador.
-- **Interação com os demais dispositivos:** o código atual não possui Wi-Fi, MQTT, recepção de comando do CCO ou sincronização. Na solução final da versão 7, a integração com o alarme deverá ativar os totens dos pontos designados pela SSMA; em falha de conexão, um membro da SSMA ou um brigadista poderá ativá-los localmente. Os registros preservados deverão ser enviados após o restabelecimento da comunicação e conciliados com os demais pontos e zonas. A aplicação fará a associação ao cadastro; essa etapa não existe no firmware offline (RF008.1, RF012, RF013, RN03, RN04 e RN19).
-- **Limitações conhecidas:** a deduplicação vale apenas para a lista local, sem distinguir eventos de emergência ou registros em outros totens. Não existem encerramento, descarte controlado ou abertura de uma nova lista por evento; por isso, a retomada automática após reinicialização não comprova que ainda exista uma emergência ativa. O botão não identifica o operador que o acionou. Os tempos armazenados são relativos à inicialização e não incluem períodos desligados, portanto não equivalem ao horário original de calendário exigido para a futura sincronização. A capacidade de 50 registros é uma limitação específica deste protótipo. Para a implantação na planta, frequentada diariamente por mais de 700 pessoas, o limite deve ser ampliado e dimensionado conforme a população de referência da emergência e a demanda dos pontos ativos, incluindo concentração de pessoas e indisponibilidade de outros pontos. Essa ampliação exige revisar também os tipos dos contadores e as estruturas de armazenamento, além de validar memória, persistência e tempo de atendimento. A configuração atual não demonstra atendimento à meta de 900 eventos por totem do RNF02 nem ao cenário de evacuação do RNF06. Os UIDs são exibidos no serial e não há proteção de transporte ou controle de acesso implementados para atender aos RNF04 e RNF05. Falhas de leitura sem UID obtido também não recebem diagnóstico específico.
+| Componente        | Quantidade | Identificação e função                                        |
+| ----------------- | ---------: | ------------------------------------------------------------- |
+| ESP32 DevKitC V4  |          1 | Controlador e armazenamento dos registros na memória interna. |
+| Leitor RFID RC522 |          1 | Captura dos identificadores das tags.                         |
+| LED azul          |          1 | Indicação de atendimento ativo.                               |
+| LED verde         |          1 | Sinalização de um novo registro gravado.                      |
+| Resistor de 330 Ω |          2 | Um em série com cada LED.                                     |
+| Buzzer            |          1 | Sinalização sonora local.                                     |
+| Botão momentâneo  |          1 | Ativação local do atendimento.                                |
+| Protoboard        |          1 | Organização do circuito e das interligações.                  |
 
-Nos três dispositivos, o atendimento aos critérios de usabilidade, confiabilidade, desempenho e segurança dos RNFs depende de validação própria. A leitura do código permite descrever as funções programadas, mas não comprova tempos medidos, recuperação após falhas ou adequação industrial. O registro da montagem, das versões e das evidências de execução pertence às subseções seguintes.
+Também são necessárias tags compatíveis de 13,56 MHz para os ensaios. A quantidade de tags, jumpers e cabos físicos deve ser registrada na BOM. A persistência utiliza a memória interna do ESP32; o esquema não inclui cartão de memória ou módulo de armazenamento externo.
 
-#### 3.4.2.3. Protótipos Físicos e Códigos
+**Montagem, conexões e alimentação:** o RC522 recebe 3,3 V do ESP32 e utiliza GND comum. As conexões SPI são SCK no GPIO 18, MISO no 19 e MOSI no 23; SDA/SS utiliza GPIO 21 e RST utiliza GPIO 22. O LED azul está associado ao GPIO 25, o verde ao GPIO 26, o buzzer ao GPIO 27 e o botão ao GPIO 32. O botão utiliza `INPUT_PULLUP` e acionamento para GND. No esquema, parte dos terminais do ESP32 está inserida na protoboard, cujos barramentos negativos são interligados. Os resistores de 330 Ω ficam em série com os LEDs e o leitor aparece separado, conectado por fios. A fonte e o cabo utilizados na montagem física devem ser identificados junto à fotografia.
 
-_[Apresente cada montagem física, incluindo componentes, conexões, alimentação e organização na protoboard. Inclua imagens identificadas e legendadas. Registre a versão do código correspondente a cada montagem.]_
+**Figuras da montagem**
 
-##### Protótipo do Dispositivo 1 — [Nome]
+<div align="center">
+  <p>Figura – Montagem digital do protótipo de confirmação nos pontos de encontro no Wokwi</p>
+  <img src="../assets/prototipo_3/montagem-digital3.png" alt="Esquema digital do totem offline com ESP32, leitor RC522, botão, LEDs azul e verde e buzzer" width="100%">
+  <p><sub>Fonte: elaboração dos autores no Wokwi.</sub></p>
+</div>
 
-- **Componentes utilizados:** [Placeholder]
-- **Montagem e conexões:** [Placeholder]
-- **Figura da montagem:** [Inserir imagem e legenda]
-- **Código-fonte:** [Inserir código ou link para o arquivo]
-- **Versão do código e ambiente de compilação:** [Placeholder]
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 1</p>
+  <img src="../assets/prototipo_3/montagem-01.jpeg" alt="Vista 1 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
 
-##### Protótipo do Dispositivo 2 — [Nome]
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 2</p>
+  <img src="../assets/prototipo_3/montagem-02.jpeg" alt="Vista 2 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
 
-- **Componentes utilizados:** [Placeholder]
-- **Montagem e conexões:** [Placeholder]
-- **Figura da montagem:** [Inserir imagem e legenda]
-- **Código-fonte:** [Inserir código ou link para o arquivo]
-- **Versão do código e ambiente de compilação:** [Placeholder]
+<div align="center">
+  <p>Figura – Montagem física do protótipo de confirmação nos pontos de encontro – vista 3</p>
+  <img src="../assets/prototipo_3/montagem-03.jpeg" alt="Vista 3 da montagem de bancada do protótipo de confirmação nos pontos de encontro" width="100%">
+  <p><sub>Fonte: acervo da equipe Synthetix.</sub></p>
+</div>
 
-##### Protótipo do Dispositivo 3 — [Nome]
+**Código-fonte e esquema:** [sketch.ino do totem](../src/firmware/prototipo-totem/sketch.ino), [diagram.json da montagem](../src/firmware/prototipo-totem/diagram.json) e [libraries.txt](../src/firmware/prototipo-totem/libraries.txt). A simulação está disponível no [projeto do totem no Wokwi](https://wokwi.com/projects/479314160569873409).
 
-- **Componentes utilizados:** [Placeholder]
-- **Montagem e conexões:** [Placeholder]
-- **Figura da montagem:** [Inserir imagem e legenda]
-- **Código-fonte:** [Inserir código ou link para o arquivo]
-- **Versão do código e ambiente de compilação:** [Placeholder]
+**Versão do código e ambiente:** conjunto do protótipo registrado no commit `f86c7ca`. O firmware utiliza Arduino para ESP32, `SPI`, `MFRC522` e `Preferences`, além de `cstring`, com comunicação serial a 115.200 baud. O arquivo `libraries.txt` declara `MFRC522`; as versões dessa biblioteca, do núcleo e do compilador ainda precisam ser registradas. O código mantém a capacidade experimental de 50 UIDs descrita na Seção 3.4.2.2.
+
+As revisões identificam os arquivos usados neste levantamento. A correspondência entre fotografias, esquemas e códigos deve considerar eventuais diferenças de componentes, conexões e alimentação.
+
+<a id="testes-prototipos"></a>
 
 #### 3.4.2.4. Casos de Teste
 
-_Registre situações de teste do sistema físico, incluindo casos de sucesso e possíveis falhas de leitura de entradas ou de acionamento de saídas. Cada caso deve indicar pré-condição, procedimento, resultado esperado e pós-condição. Continue a numeração CT a partir da tabela anterior. Após a execução, registre o resultado observado e associe as evidências ao caso correspondente._
+Os registros são organizados pelo dispositivo e pela versão ensaiada. A montagem, o código e o ambiente de cada modelo estão na [seção 3.4.2.3](#prototipos-codigos). As fotografias dessa subseção documentam as montagens de bancada. Os resultados por caso são acompanhados das evidências de execução correspondentes.
 
-<p align="center">Quadro 14 – Modelo de registro de testes da Sprint 2</p>
+| Modelo                              | Casos e documentação                                                                                                                                                                                                    | Situação                                                                                                                         |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 1 — Contagem com Arduino Uno        | [CT01–CT10, documentados anteriormente na Sprint 1](#testes-modelo-1), com [firmware](../src/firmware/prototipo-contagem/sketch.ino) e [evidências originais](../assets/casos_teste_prototipos/inicial/).               | Resultados históricos da simulação. A versão ESP32 do contador aguarda desenvolvimento e nova validação.                         |
+| 2 — Monitoramento com ESP32 e RC522 | CT16–CT23 abaixo, [firmware atual](../src/firmware/prototipo-monitoramento/sketch.ino), [versão ensaiada e capturas do Wokwi](../assets/casos_teste_prototipos/wokwi-monitoramento/) e [ressalvas técnicas](#ressalvas-modelo-2). | Execução visual/serial registrada para a versão ensaiada, com ressalvas temporais e de áudio. Os registros de execução física por caso estão pendentes. |
+| 3 — Totem offline com ESP32         | [Código e montagem do totem](#codigo-modelo-3), incluindo persistência e limite de 50 UIDs.                                                                                                                             | Documentação preliminar. A elaboração e a execução dos casos específicos permanecem previstas para a Sprint 3.                   |
 
-| **CT#** | **Descrição**                                    | **Pré-condição**                  | **Procedimento de teste**                                                                                                 | **Pós-condição/Resultado esperado**                                                                         | **Observações** (opcional) |
-| ------- | ------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
-| CT11    | ex. Verificação de conexão de rede bem-sucedida. | ex. O dispositivo está desligado. | ex. Ligue o dispositivo, aguarde alguns segundos e verifique se ele estabelece uma conexão bem-sucedida com a rede Wi-Fi. | ex. O LED verde indicador de conexão acende de forma contínua, sinalizando uma conexão bem-sucedida à rede. |
+##### Modelo 1 — Testes documentados na Sprint 1
 
-<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+Os casos CT01–CT10 foram documentados anteriormente na [seção 3.4.1](#testes-modelo-1), com entradas, resultados e imagens T01–T10. Eles abrangem inicialização, entrada, saída, bloqueio/rearme, sinalização, saldo mínimo e falha de eco do protótipo Arduino Uno. A mesma versão do contador está preservada em prototipo-contagem.
 
-_[Acrescente linhas para os demais casos planejados. Inclua pelo menos três casos alinhados ao escopo, cobrindo comportamentos representativos e, quando aplicável, falhas de entrada e saída.]_
+A inclusão das fotos de bancada na [descrição do modelo 1](#codigo-modelo-1) complementa o registro da montagem. A execução desses dez casos na bancada e a migração para ESP32 exigem resultados e evidências próprios.
 
-<p><sub>Fonte: modelo de registro de testes do projeto, adaptado para incluir execução e evidências.</sub></p>
+##### Modelo 2 — Monitoramento por zonas
+
+O firmware e o circuito estão em [prototipo-monitoramento](../src/firmware/prototipo-monitoramento/). A versão integrada corresponde às cópias preservadas na bateria CT16–CT23, após normalizar as quebras de linha. As [fotos da montagem do modelo 2](#codigo-modelo-2) estão na subseção anterior.
+
+###### Planejamento anterior — CT11–CT15
+
+CT11–CT15 foram elaborados para uma hipótese de leitura autorizada com LEDs de aceite e rejeição. Permanecem registrados para rastrear a evolução do planejamento, com status não executado. A versão integrada indica modos NORMAL e EMERGÊNCIA nos LEDs e imprime o UID sem consultar cadastro. O planejamento precisa ser readequado a esse firmware e aos requisitos antes da execução física.
+
+<p align="center">Quadro 14 – Casos de teste planejados para o protótipo físico offline</p>
+
+| **CT#** | **Descrição**                                | **Pré-condição**                                                                                             | **Procedimento de teste**                                                                                                                                                             | **Pós-condição / resultado esperado**                                                                                                                                                                              | **Evidência e status**                                                        |
+| ------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| CT11    | Inicialização do ESP32 e do leitor RFID.     | Montagem desenergizada, conexões revisadas e firmware da Sprint 2 gravado.                                   | Energizar o ESP32, abrir o monitor serial e aguardar a rotina de inicialização. Não aproximar tags.                                                                                   | O ESP32 inicia sem reinicializações contínuas; o RC522 é reconhecido; o estado inicial dos LEDs corresponde ao definido no firmware e nenhuma leitura é aceita sem tag.                                            | Pendente: foto da montagem energizada e captura serial. **Não executado.**    |
+| CT12    | Leitura aceita de tag fictícia válida.       | CT11 aprovado; uma tag fictícia cadastrada para teste; nenhum LED de resposta ativo.                         | Aproximar a tag do RC522 uma vez e afastá-la após a leitura. Observar o monitor serial e os LEDs.                                                                                     | Uma única leitura é reconhecida; o LED verde acende pelo intervalo especificado; o vermelho permanece apagado; o log indica aceite sem expor UID completo.                                                         | Pendente: vídeo ou sequência de fotos e captura serial. **Não executado.**    |
+| CT13    | Controle de leitura repetida da mesma tag.   | CT11 aprovado; tag fictícia válida; política de bloqueio ou intervalo definida no firmware.                  | Manter a mesma tag no campo do RC522 por tempo superior ao intervalo normal de leitura e depois afastá-la.                                                                            | O comportamento coincide com a política documentada: não ocorre uma sequência indefinida de aceites; o LED e o log permitem distinguir uma leitura válida de repetições bloqueadas.                                | Pendente: vídeo contínuo e log com marcas de tempo. **Não executado.**        |
+| CT14    | Rejeição de tag fictícia não cadastrada.     | CT11 aprovado; tag compatível com o RC522, mas ausente da lista fictícia de teste.                           | Aproximar a tag não cadastrada uma vez e afastá-la após a resposta.                                                                                                                   | Nenhum aceite é registrado; o LED vermelho acende pelo intervalo definido; o verde permanece apagado; o log informa rejeição sem expor UID completo.                                                               | Pendente: vídeo ou sequência de fotos e captura serial. **Não executado.**    |
+| CT15    | Falha controlada de comunicação com o RC522. | Montagem desenergizada e procedimento seguro definido; firmware com diagnóstico de inicialização ou leitura. | Desenergizar, desconectar de forma controlada uma conexão de comunicação do RC522, energizar novamente e observar a resposta. Ao terminar, desenergizar antes de restaurar a ligação. | O sistema não apresenta leitura como aceita; o LED vermelho ou outro estado de erro documentado é acionado; o log informa indisponibilidade do leitor e orienta inspeção, sem reinicialização infinita silenciosa. | Pendente: foto da condição, captura serial e vídeo do LED. **Não executado.** |
+
+<p><sub>Fonte: elaboração dos autores (2026).</sub></p>
+
+###### Execução do modelo 2 no Wokwi — CT16–CT23
+
+A simulação do [PrototipoMonitoramento no Wokwi](https://wokwi.com/projects/479252249534862337), registrada em 4 de novembro de 2026, usa ESP32, RC522 por SPI, botão no GPIO 27, LEDs nos GPIOs 26 (verde) e 33 (vermelho) e buzzer no GPIO 25. O monitor serial opera a 115200 baud. As [cópias do firmware, circuito e dependências](../assets/casos_teste_prototipos/wokwi-monitoramento/) identificam a versão ensaiada.
+
+Nessa versão, os LEDs representam os modos NORMAL e EMERGÊNCIA. A leitura de um cartão imprime seu UID fictício e aciona no código um bipe de 2.000 Hz por 50 ms. O firmware permite ler cartões nos dois modos e não contém lista de autorização, persistência de presença, MQTT ou diagnóstico explícito de falha do leitor. Esse comportamento difere do planejamento de CT11–CT15.
+
+A execução registrada foi realizada por automação de navegador (Codex). As evidências disponíveis são capturas da simulação e um registro da interface com a saída serial. Elas sustentam os resultados visuais e seriais, com as ressalvas de cada caso. A duração da pressão contínua de CT19 e o áudio de CT20–CT22 permanecem sem comprovação nos arquivos. O hardware físico aguarda ensaio.
+
+<p align="center">Quadro 14A – Casos de teste da versão de monitoramento do Artefato 5</p>
+
+| **CT#** | **Configuração do ambiente**                                              | **Ação do usuário / procedimento**                                                                  | **Resposta esperada do sistema**                                                                                                                                                   | **Evidência e status**                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| CT16    | Circuito carregado, botão solto e nenhum cartão apresentado.              | Iniciar a simulação e acompanhar LEDs e serial a 115200 baud.                                       | Verde aceso, vermelho apagado; mensagens `Sistema inicializado!` e `STATUS: NORMAL`; nenhum bipe ou registro de cartão. A mensagem inicial não comprova funcionamento do leitor.   | Inicialização com `Sistema inicializado!` e `STATUS: NORMAL`; verde aceso e vermelho apagado, sem registro de cartão. **Aprovado no escopo visual/serial.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct16-inicializacao.png).                                                                                                                                                                            |
+| CT17    | CT16 aprovado; modo NORMAL.                                               | Pressionar o botão por 100 ms ou mais e soltar.                                                     | Uma transição para EMERGÊNCIA: verde apaga, vermelho acende e serial imprime `EMERGENCIA`. O botão não solicita bipe.                                                              | Pressão acionou `EMERGENCIA`, vermelho aceso e verde apagado, uma vez. **Aprovado no escopo visual/serial.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct17-emergencia.png).                                                                                                                                                                                                                              |
+| CT18    | Modo EMERGÊNCIA; botão solto por pelo menos 100 ms.                       | Pressionar novamente por 100 ms ou mais e soltar.                                                   | Verde acende, vermelho apaga; serial imprime `NORMAL` uma vez para esse acionamento.                                                                                               | Nova pressão retornou a `NORMAL`, verde aceso e vermelho apagado. **Aprovado no escopo visual/serial.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct18-normal.png).                                                                                                                                                                                                                                       |
+| CT19    | Modo NORMAL e nenhum cartão apresentado.                                  | Manter o botão pressionado por 2 s; soltar por pelo menos 100 ms e pressionar novamente por 100 ms. | Pressão contínua gera uma única transição para EMERGÊNCIA; soltar não alterna o modo; nova pressão retorna a NORMAL. O debounce exige estabilidade por mais de 25 ms.              | A captura registra uma mensagem `EMERGENCIA`. CT18 registra o retorno a `NORMAL`. **Parcial.** A imagem isolada não comprova pressão contínua por 2 s, soltura sem transição ou o limiar de 25 ms. Falta um registro temporal da sequência. [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct19-pressao-continua.png).                                                                                         |
+| CT20    | Modo NORMAL; leitor configurado e cartão compatível com UID fictício.     | Apresentar o cartão uma vez e afastá-lo após a leitura.                                             | Serial imprime `Cartao detectado! UID: ` e bytes em hexadecimal; comando de bipe de 2.000 Hz por 50 ms; verde permanece aceso e vermelho apagado. Não há validação de autorização. | Blue Card: `Cartao detectado! UID: 01 02 03 04`; modo NORMAL preservado. **Parcial: leitura e LEDs confirmados; buzzer não medido.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct20-rfid-normal.png).                                                                                                                                                                                                     |
+| CT21    | Modo EMERGÊNCIA; cartão fictício compatível.                              | Apresentar o cartão uma vez e afastá-lo após a leitura.                                             | Mesmo registro e bipe do CT20; vermelho permanece aceso e verde apagado. A emergência não suspende leituras nem registra chegada ao ponto de encontro.                             | Green Card: `Cartao detectado! UID: 11 22 33 44` após `EMERGENCIA`; modo preservado. **Parcial: leitura e LEDs confirmados; buzzer não medido.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct21-rfid-emergencia.png).                                                                                                                                                                                     |
+| CT22    | Modo NORMAL; outro cartão compatível, com UID fictício diferente do CT20. | Apresentar o segundo cartão sem alterar o firmware.                                                 | Também gera UID no serial e bipe, sem mudar o modo. A autorização por cadastro pertence à futura integração e não é critério deste caso.                                           | Green Card (UID `11 22 33 44`) também lido no modo NORMAL. **Parcial: leitura do segundo UID confirmada; buzzer não medido.** [Captura](../assets/casos_teste_prototipos/wokwi-monitoramento/ct22-segundo-cartao.png).                                                                                                                                                                                        |
+| CT23    | Modo EMERGÊNCIA; cartão afastado e botão solto.                           | Parar e reiniciar a simulação ou reiniciar o ESP32 na bancada.                                      | Retorna a NORMAL com verde aceso, vermelho apagado e mensagens iniciais. O modo anterior não é persistido; registrar a perda do estado de emergência como limitação a avaliar.     | Comando Restart aplicado após emergência; mensagens iniciais e modo NORMAL restaurados. **Aprovado no escopo visual/serial para o comportamento implementado.** O retorno a NORMAL após reinício é uma limitação para operação em emergência. [Antes](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-antes-reinicio.png) e [depois](../assets/casos_teste_prototipos/wokwi-monitoramento/ct23-reinicio-normal.png). |
+
+<p><sub>Fonte: elaboração dos autores (2026), com base no firmware do projeto Wokwi indicado acima.</sub></p>
+
+<a id="ressalvas-modelo-2"></a>
+
+###### Ressalvas técnicas e alcance das evidências do modelo 2
+
+Os CT16–CT23 registram a versão ensaiada em 04/11/2026. As capturas comprovam os estados visíveis e as mensagens seriais descritos em cada caso, mas uma imagem isolada não mede duração, latência ou áudio. As ressalvas abaixo delimitam o alcance desses resultados e dos ensaios complementares da task #113, realizados em 05/11/2026:
+
+- **CT16 — inicialização:** a mensagem `Sistema inicializado!` não comprova que o leitor RFID esteja comunicando. Em ensaio complementar, a simulação iniciou com a ligação MISO do RC522 desconectada e ainda exibiu `STATUS: NORMAL`, sem diagnóstico da falha ([captura](../assets/casos_teste_prototipos/revisao-113/08-falha-miso-inicializacao.jpg)). A leitura de um cartão e a resposta do botão nessa condição não foram verificadas.
+- **CT19 — botão:** a captura de `EMERGENCIA` não comprova os dois segundos de pressão contínua, a ausência de transição na soltura nem o limiar de debounce de 25 ms. Falta um registro temporal da sequência; também não há medição da latência máxima do botão durante leituras ou falhas do leitor.
+- **CT20–CT22 — cartões:** os UIDs fictícios e os estados visuais foram observados, mas o bipe não foi medido. Um ensaio complementar registrou nova leitura do mesmo UID após manter o cartão apresentado ([captura](../assets/casos_teste_prototipos/revisao-113/04-cartao-mantido.jpg)); trata-se de repetição da leitura local, não de confirmação duplicada de presença. A autorização de crachás e a confirmação na plataforma pertencem ao futuro sistema de integração, fora do escopo desses CTs.
+- **CT23 — reinício:** o retorno a `NORMAL` após reiniciar foi observado e corresponde ao comportamento da versão ensaiada, mas perde o modo de emergência anterior. A recuperação segura desse modo ainda precisa ser definida e testada.
+
+O [firmware atual](../src/firmware/prototipo-monitoramento/sketch.ino) passou a guardar localmente o estado dentro/fora da área por UID e a apresentá-lo no serial. A [captura complementar do log](../assets/prototipo_2/print-log-prototipo-monitoramento.png) mostra leituras e a mensagem `EMERGENCIA` dessa versão posterior; ela não altera retroativamente os resultados dos CT16–CT23 nem demonstra autorização na plataforma ou persistência do modo de emergência. Áudio, comportamento físico e resposta temporal permanecem sem ensaio correspondente. Os resistores de 1 kΩ do circuito simulado e os de 330 Ω da lista de montagem física também exigem conciliação antes da conferência elétrica em bancada.
+
+##### Modelo 3 — Testes previstos para a Sprint 3
+
+O [totem offline](#codigo-modelo-3) possui firmware e fotos de montagem nesta branch. A bateria específica será detalhada na Sprint 3, conforme o escopo de maturidade da entrega. Ela deverá verificar ativação local, registro de UID distinto, rejeição de repetidos, recuperação após reinício e tratamento de memória cheia e falhas de leitor ou armazenamento, com dados fictícios e evidências da versão executada.
+
+A numeração dos novos casos começa em CT24, compartilhada com os demais ensaios da Sprint 3. Nenhum resultado dos modelos 1 ou 2 é atribuído ao totem.
+
+##### Registro dos resultados
+
+O registro de cada ensaio reúne data, responsável, versão do firmware, entrada aplicada, resultado observado, evidência e status, com atualização correspondente na [RTM da seção 3.3.4](#rtm). CT01–CT10 mantêm seu registro histórico, CT11–CT15 aguardam readequação, e CT16–CT23 preservam os resultados e as ressalvas da simulação. Os ensaios físicos por caso e a bateria do modelo 3 permanecem pendentes.
 
 #### 3.4.2.5. Conclusão e Ressalvas
 
-_[Resuma o que foi implementado e demonstrado pelos três protótipos físicos.]_
+A Sprint 2 amplia a solução com o protótipo 2, principal entrega desta etapa, baseado em ESP32 e leitor RFID para apoiar o monitoramento por zonas. O firmware realiza a leitura de crachás, a sinalização sonora e visual e a alternância do estado local pelo botão. Essa entrega estabelece a base física para o registro de passagens; a associação de pessoas a zonas depende da integração posterior. O protótipo 1, desenvolvido com Arduino Uno na Sprint 1, permanece como referência da contagem de entradas e saídas, enquanto o protótipo 3 introduz o totem offline de confirmação nos pontos de encontro, com leitura RFID e armazenamento local.
 
-_[Indique quais casos foram executados e seus resultados, com referência às evidências.]_
+O detalhamento dos dispositivos apresenta níveis distintos de maturidade. Para o protótipo 1, estão previstas para a Sprint 3 a atualização do controlador de Arduino Uno para ESP32 e a formalização da arquitetura e do desenho esquemático correspondentes, preservando-se o circuito inicial como registro histórico da Sprint 1. A inclusão do protótipo 3 nesta etapa é preliminar e abrange suas montagens física e digital, funcionalidades, componentes e código. Sua arquitetura, desenho esquemático formal, casos de teste, requisitos funcionais e regras de negócio específicos serão desenvolvidos na Sprint 3. Os diagramas de montagem no Wokwi servem de referência aos circuitos e não substituem essa documentação técnica.
 
-_[Registre falhas encontradas, limitações técnicas e condições ainda não testadas.]_
-
-_[Explique o que os resultados permitem concluir e quais afirmações ainda dependem de testes adicionais.]_
-
-_[Registre ressalvas sobre o uso do protótipo, incluindo que resultados de bancada não comprovam, por si só, desempenho ou segurança em ambiente industrial.]_
+Os protótipos operam localmente, sem o sistema web de integração, a consolidação dos registros entre dispositivos ou a sincronização em rede. Os testes do modelo 1 estão documentados na [seção 3.4.1](#testes-modelo-1). A [seção 3.4.2.4](#testes-prototipos) reúne a bateria simulada do modelo 2, suas limitações e o planejamento anterior. Os resultados de execução física por caso e os testes específicos do modelo 3 continuam pendentes. Assim, esta entrega documenta a evolução física e offline da solução; a validação do desempenho, da confiabilidade e da adequação ao ambiente industrial permanece dependente das próximas etapas de implementação e testes.
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
-
-<p align="center">Quadro 15 – Modelo de registro de testes da Sprint 3</p>
-
-| **CT#** | **Configuração do ambiente**                                                                                                                   | **Ação do usuário**                                                                     | **Resposta esperada do sistema**                                                                                                                 |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| CT21    | ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização |
-
-<p><sub>Fonte: modelo da documentação do projeto, disponibilizado pelo Inteli (2026).</sub></p>
+A integração MQTT e I²C e seus ensaios estão planejados para a Sprint 3. Os novos casos serão numerados a partir de CT24 e deverão cobrir a operação integrada, a perda de conexão e a recuperação dos dispositivos. O detalhamento dos cenários, os resultados e as evidências estão pendentes.
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)
 
@@ -1717,7 +1975,7 @@ OSTERWALDER, Alexander; PIGNEUR, Yves; BERNARDA, Gregory; SMITH, Alan. **Value p
 
 SARAVATI. **Resistor 1 kΩ 5% 1/4 W**. [S. l.]: Saravati, [s. d.]. Disponível em: https://www.saravati.com.br/resistor-1k-5-1-4w.html. Acesso em: 20 out. 2026.
 
-SYNTHETIX. **C.R.I.S.I.S: protótipo inicial e evidências CT01–CT10**. São Paulo: Inteli, 2026. Disponível em: https://wokwi.com/projects/478404642645348353. Acesso em: 23 out. 2026. Arquivos associados: [firmware](../src/firmware/prototipo/sketch.ino), [circuito](../src/firmware/prototipo/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). A consulta aos arquivos não equivale à reexecução da simulação.
+SYNTHETIX. **C.R.I.S.I.S: protótipo inicial e evidências CT01–CT10**. São Paulo: Inteli, 2026. Disponível em: https://wokwi.com/projects/478404642645348353. Acesso em: 23 out. 2026. Arquivos associados: [firmware](../src/firmware/prototipo-contagem/sketch.ino), [circuito](../src/firmware/prototipo-contagem/diagram.json) e [evidências locais](../assets/casos_teste_prototipos/inicial/). A consulta aos arquivos não equivale à reexecução da simulação.
 
 UNIPAR. **Aviso de privacidade**. [S. l.]: Unipar, [s. d.]a. Disponível em: https://unipar.com/aviso-de-privacidade. Acesso em: 22 out. 2026.
 
