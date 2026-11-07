@@ -87,6 +87,13 @@ public:
     digitalWrite(pinoVermelho_, emergencia ? HIGH : LOW);
   }
 
+  void mostrarFalha()
+  {
+    piscandoVerde_ = false;
+    digitalWrite(pinoVerde_, LOW);
+    digitalWrite(pinoVermelho_, LOW);
+  }
+
   void piscarVerde(unsigned long agora)
   {
     if (estado_ != EstadoEmergencia::Emergencia)
@@ -135,11 +142,13 @@ class LeitorCracha
 public:
   LeitorCracha(byte pinoSs, byte pinoReset) : leitor_(pinoSs, pinoReset), pinoSs_(pinoSs) {}
 
-  void iniciar()
+  bool iniciar()
   {
     SPI.begin(Configuracao::pinoSpiSck, Configuracao::pinoSpiMiso,
               Configuracao::pinoSpiMosi, pinoSs_);
     leitor_.PCD_Init();
+    const byte versao = leitor_.PCD_ReadRegister(MFRC522::VersionReg);
+    return versao != 0x00 && versao != 0xFF;
   }
 
   bool lerUid(MFRC522::Uid &uid)
@@ -265,15 +274,27 @@ public:
     botao_.iniciar();
     indicador_.iniciar();
     sinalizador_.iniciar();
-    indicador_.mostrar(estado_);
     armazenamentoDisponivel_ = presenca_.iniciar();
-    leitor_.iniciar();
+    leitorDisponivel_ = leitor_.iniciar();
 
     Serial.println("Sistema inicializado!");
-    Serial.println("STATUS: NORMAL");
+    if (!leitorDisponivel_ || !armazenamentoDisponivel_)
+    {
+      indicador_.mostrarFalha();
+      Serial.println("STATUS: INDISPONIVEL");
+    }
+    else
+    {
+      indicador_.mostrar(estado_);
+      Serial.println("STATUS: NORMAL");
+    }
     if (!armazenamentoDisponivel_)
     {
       Serial.println("Erro: memoria de cartoes indisponivel.");
+    }
+    if (!leitorDisponivel_)
+    {
+      Serial.println("Erro: leitor RC522 sem comunicacao; confira SPI e alimentacao.");
     }
   }
 
@@ -283,20 +304,28 @@ public:
     indicador_.atualizar(agora);
     if (botao_.foiPressionado(agora))
     {
-      estado_ = estado_ == EstadoEmergencia::Normal
+      if (!leitorDisponivel_ || !armazenamentoDisponivel_)
+      {
+        Serial.println("Modo indisponivel: verifique leitor e memoria.");
+      }
+      else
+      {
+        estado_ = estado_ == EstadoEmergencia::Normal
                     ? EstadoEmergencia::Emergencia
                     : EstadoEmergencia::Normal;
-      indicador_.mostrar(estado_);
-      Serial.println(estado_ == EstadoEmergencia::Emergencia ? "EMERGENCIA" : "NORMAL");
+        indicador_.mostrar(estado_);
+        Serial.println(estado_ == EstadoEmergencia::Emergencia ? "EMERGENCIA" : "NORMAL");
+      }
     }
 
     MFRC522::Uid uid;
-    if (leitor_.lerUid(uid))
+    if (leitorDisponivel_ && leitor_.lerUid(uid))
     {
-      indicador_.piscarVerde(millis());
       bool dentro;
       if (armazenamentoDisponivel_ && presenca_.registrarLeitura(uid, dentro))
       {
+        // Sinaliza somente depois que o novo estado foi gravado na memoria.
+        indicador_.piscarVerde(millis());
         Serial.print("Cartao UID: ");
         for (byte i = 0; i < uid.size; ++i)
         {
@@ -306,6 +335,10 @@ public:
         }
         Serial.println(dentro ? " | DENTRO DA AREA" : " | FORA DA AREA");
         sinalizador_.confirmarLeitura();
+      }
+      else if (!armazenamentoDisponivel_)
+      {
+        Serial.println("Leitura sem registro: memoria de cartoes indisponivel.");
       }
     }
   }
@@ -318,6 +351,7 @@ private:
   LeitorCracha leitor_;
   ControlePresenca presenca_;
   bool armazenamentoDisponivel_ = false;
+  bool leitorDisponivel_ = false;
 };
 
 SistemaMonitoramento sistema;
