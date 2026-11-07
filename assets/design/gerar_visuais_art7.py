@@ -58,7 +58,7 @@ def journey(person, role, title, phases, rows, out):
     out.write_text(document(f"{title} — {person}", "Jornada futura em quatro fases, com ações, pensamentos, contatos, riscos, insights e oportunidades.", body, width, height), encoding="utf-8")
 
 
-def storyboard(out, person, subtitle, scenes):
+def storyboard(out, person, subtitle, scenes, places):
     width, height = 1600, 970
     body = rect(0, 0, width, 125, GREEN)
     body += label(38, 58, f"Storyboard — {person}", 34, 700, "#ffffff")
@@ -69,10 +69,16 @@ def storyboard(out, person, subtitle, scenes):
         body += rect(x, y, 370, 348, "#ffffff", LINE, 12)
         body += rect(x, y, 370, 60, LIGHT, radius=12)
         body += label(x + 18, y + 39, heading, 20, 700, GREEN)
-        body += label(x + 18, y + 96, "AÇÃO", 14, 700, GREEN)
-        body += lines(x + 18, y + 126, action, 36, 17, 24)
-        body += label(x + 18, y + 226, "REAÇÃO DO SISTEMA", 14, 700, GREEN)
-        body += lines(x + 18, y + 256, response, 36, 17, 24)
+        body += rect(x + 18, y + 70, 334, 78, LIGHT, radius=8)
+        body += label(x + 30, y + 96, f"AMBIENTE · {places[i]}", 14, 700, GREEN)
+        body += f'<circle cx="{x + 55}" cy="{y + 120}" r="9" fill="{GREEN}"/>'
+        body += rect(x + 44, y + 130, 22, 11, GREEN, radius=3)
+        body += rect(x + 255, y + 108, 70, 30, "#ffffff", LINE, 3)
+        body += f'<path d="M{x + 263} {y + 130} L{x + 277} {y + 122} L{x + 289} {y + 127} L{x + 307} {y + 116}" fill="none" stroke="{GREEN}" stroke-width="2"/>'
+        body += label(x + 18, y + 170, "AÇÃO", 14, 700, GREEN)
+        body += lines(x + 18, y + 196, action, 36, 17, 24)
+        body += label(x + 18, y + 268, "REAÇÃO DO SISTEMA", 14, 700, GREEN)
+        body += lines(x + 18, y + 292, response, 36, 17, 24)
     body += label(1210, 618, "A última zona é uma pista", 18, 700, GREEN)
     body += label(1210, 645, "de passagem, não localização.", 16, color=MUTED)
     body += label(28, 946, "Números ilustrativos. O saldo zero isolado não comprova segurança nem encerra a emergência.", 16, color=MUTED)
@@ -121,6 +127,7 @@ storyboard(
         ("6 · Dez minutos", "Após novas confirmações, restam duas pendências; Maria avisa a SSMA.", "O painel mostra horários e última zona, sem indicar posição atual."),
         ("7 · Encerramento", "Líderes conferem as pessoas; a SSMA decide o fim da operação.", "O CCO desliga o alarme e registra decisão, hora e justificativa."),
     ],
+    ["CCO", "CCO", "CCO e alarme", "Portaria e PE", "CCO", "CCO e rádio", "CCO e SSMA"],
 )
 
 storyboard(
@@ -135,4 +142,5 @@ storyboard(
         ("6 · Dez minutos", "Após novas confirmações, restam duas pendências; Tuco confere com líderes.", "O CCO informa a última zona como pista histórica de passagem."),
         ("7 · Decisão", "Líderes verificam as pessoas; a SSMA decide encerrar.", "O CCO desliga o alarme e registra decisão e justificativa."),
     ],
+    ["Campo e CCO", "Campo", "Campo e alarme", "Ponto de encontro", "Campo e rádio", "Campo e Zona B", "Campo e CCO"],
 )
