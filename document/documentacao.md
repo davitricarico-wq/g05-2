@@ -1388,15 +1388,47 @@ A revisão do circuito e a execução em bancada permanecem pendentes. Quando os
 
 ### 3.3.5. Arquitetura da Solução (sprint 3)
 
-A arquitetura integrada, suas conexões, o broker MQTT, o painel e a justificativa de atendimento aos requisitos serão documentados após a implementação e a validação da Sprint 3. As descrições dos protótipos offline e seus limites constam da seção 3.4.2.
+_Vídeo de explicação sobre a arquitetura da solução: (coloque aqui o link do vídeo)_
+
+_Descreva a arquitetura técnica da solução de forma detalhada (visão de arquitetura)._
+
+_Justifique como a arquitetura suporta os requisitos funcionais e não funcionais._
+
+_O diagrama de arquitetura deve:_
+- _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
+- _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
+- _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
+- _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
+- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
+- _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros_
 
 ### 3.3.6. Arquitetura do Protótipo (sprint 4)
 
-O diagrama de blocos e a relação dos componentes efetivamente utilizados serão registrados após a montagem e a validação do protótipo online. As tecnologias e a comunicação previstas ainda dependem de ensaio integrado.
+_Vídeo de explicação sobre a arquitetura do protótipo físico: (coloque aqui o link do vídeo)_
+
+_Descreva as tecnologias utilizadas de forma detalhada (visão de tecnologia)._
+
+_Descreva a arquitetura usando um diagrama de blocos similar à visão anterior, porém especificando as tecnologias utilizadas. O diagrama de arquitetura deve:_
+- _Mostrar microcontroladores, incluindo descrições de sua função no sistema (por exemplo: "Irá processar o sinal dos sensores a cada X minutos")_
+- _Mostrar sensores, incluindo descrição de função e especificações técnicas do tipo de informação que será coletada_
+- _Mostrar apresentadores de informação (displays), incluindo descrição de que tipo de informação será apresentada (por exemplo, "Mostrar temperatura dos sensores")_
+- _Mostrar atuadores, caso existam na solução, incluindo descrições do que irão acionar (por exemplo, "Ligar motor de irrigação durante x minutos")_
+- _Mostrar o broker MQTT e o dashboard que é a interface do usuário_
+- _Mostrar ligações entre os elementos (com fio ou sem fio) – incluindo conexões com sensores e atuadores, conexão com WiFi, entre outros._
+_Faça uma tabela dos possíveis componentes utilizados. Todos os componentes devem estar presentes na arquitetura._
+
+| **Componente** | **Descrição** | **Tipo** | 
+|----------|----------|----------|
+|E.g. ESP32 WROOM 32 Devkit|E.g. Trata-se de um microcontrolador amplamente usado na indústria e em projetos educacionais, que possui interfaces mais amigáveis para conexão de componentes diversos...|E.g. Microcontrolador|
+|E.g. sensor XPTO|E.g. Este sensor mede o sinal de XYZ em unidades q/s, e possui tolerância de abcd...|E.g. Sensor|
 
 ### 3.3.7. Arquitetura Refinada da Solução (sprint 5)
 
-A revisão da arquitetura e a avaliação do atendimento aos requisitos funcionais e não funcionais serão documentadas na Sprint 5, com base nos resultados de integração e teste.
+_Descreva a revisão da arquitetura técnica da solução de forma detalhada (visão de arquitetura)._ <br>
+
+_Justifique como a arquitetura suporta os requisitos funcionais e não funcionais._ <br>
+
+_A revisão deverá incluir comentários sobre cada ponto levantado, mostrando como os ajustes foram realizados, além da descrição da arquitetura revisada._
 
 ### 3.3.8. Modelo de contagem, capacidade e limites operacionais (Sprint 2)
 
@@ -1989,8 +2021,8 @@ Os protótipos operam localmente, sem o sistema web de integração, a consolida
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
+_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema._ <br>
+_Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
 
 **CT#** | **Configuração do ambiente** | **Ação do usuário** | **Resposta esperada do sistema** 
 |----------|----------|----------|----------|
@@ -1998,14 +2030,14 @@ Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esq
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)
 
-_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
+_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema._ <br>
 **Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
-Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+_Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
 
 ### 3.4.5. Protótipo Final do Projeto (sprint 5)
 
-_Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste. <br>
-Também inclua figuras da versão final do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
+_Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste._ <br>
+_Também inclua figuras da versão final do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
