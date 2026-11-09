@@ -1989,15 +1989,23 @@ Os protótipos operam localmente, sem o sistema web de integração, a consolida
 
 ### 3.4.3. Protótipo do Projeto com MQTT e I²C (sprint 3)
 
-A integração MQTT e I²C e seus ensaios estão planejados para a Sprint 3. Os futuros casos de integração começam em CT33, depois dos roteiros locais CT24–CT32, e deverão cobrir operação integrada, perda de conexão e recuperação dos dispositivos. O detalhamento dos cenários, os resultados e as evidências estão pendentes.
+_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
+Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo. Continue a numeração de CT a partir da tabela anterior. A tabela a seguir serve como exemplo._
+
+**CT#** | **Configuração do ambiente** | **Ação do usuário** | **Resposta esperada do sistema** 
+|----------|----------|----------|----------|
+|CT21|ex. precisa de um computador conectado na interface, dois ou mais dispositivos que simulem o posicionamento de um item X no espaço físico etc. | ex. usuário logado busca a localização do item X, que está ativo e operando normalmente | ex. interface do sistema acessa os dados da última localização registrada do item X e apresenta, constando local e horário de última atualização | 
 
 ### 3.4.4. Protótipo Físico do Projeto (online) (sprint 4)
 
-A descrição do protótipo online, os diagramas de sequência, os cenários de sucesso e falha e as evidências dos ensaios serão preenchidos após a implementação e a validação da Sprint 4.
+_Aqui você deve registrar diversas situações de uso de seu sistema como um todo, indicando exemplos de ação do usuário e resposta do sistema, apontando como o ambiente deverá estar configurado para receber a ação e produzir a resposta. Estes registros serão utilizados para testar seu sistema, portanto, descreva várias situações, incluindo não apenas casos de sucesso, mas também de falha nos comportamentos do sistema. <br>
+**Desta vez, utilize diagramas de sequência UML para descrever os fluxos de teste do sistema.** <br>
+Siga as nomenclaturas e convenções já utilizadas anteriormente, e não se esqueça dos alinhamentos de negócios e experiência do usuário para pensar em situações representativas. Inclua figuras do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
 
 ### 3.4.5. Protótipo Final do Projeto (sprint 5)
 
-A modelagem UML revisada, as figuras do protótipo final, os dashboards e os resultados de teste serão registrados após a validação da Sprint 5.
+_Registre as situações de uso do sistema revisadas utilizando a modelagem UML para descrever os fluxos de teste. <br>
+Também inclua figuras da versão final do protótipo físico e dashboards, além de descrições dos testes realizados para ilustrar o funcionamento do protótipo._
 
 ## <a name="c4"></a>4. Conclusões e Recomendações
 
